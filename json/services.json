@@ -1,62 +1,58 @@
 [
   {
     "name": "Hair Salon",
-    "image": ""
+    "icon": "hair"
   },
   {
     "name": "Babershop Salon",
-    "image": ""
+    "icon": "baber"
   },
   {
     "name": "Nail Salon",
-    "image": ""
+    "icon": "nail"
   },
   {
     "name": "Skin Care Salon",
-    "image": ""
+    "icon": "skin"
   },
   {
     "name": "Eyebrows & Lashes Salon",
-    "image": ""
+    "icon": "eyebrow"
   },
   {
     "name": "Massage",
-    "image": ""
+    "icon": "massage"
   },
   {
     "name": "Day Spa",
-    "image": ""
+    "icon": "spa"
   },
   {
     "name": "Braids & Locks",
-    "image": ""
+    "icon": "braids"
   },
   {
-    "name": "Tatto Shops",
-    "image": ""
-  },
-  {
-    "name": "Personal Trainer",
-    "image": ""
+    "name": "Tattoo Shops",
+    "icon": "tatto"
   },
   {
     "name": "Chiropractic",
-    "image": ""
+    "icon": "chiropractic"
   },
   {
     "name": "Wedding Makeup Artist",
-    "image": ""
+    "icon": "makeup"
   },
   {
     "name": "Home Improvement",
-    "image": ""
+    "icon": ""
   },
   {
     "name": "Phyiscal Therapy",
-    "image": ""
+    "icon": ""
   },
   {
     "name": "Pet Services",
-    "image": ""
+    "icon": ""
   }
 ]
