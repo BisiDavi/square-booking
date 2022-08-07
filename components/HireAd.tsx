@@ -44,7 +44,6 @@ export default function HireAd() {
             }
             .text {
               text-decoration: underline;
-              color: #4e54c8;
             }
           `}
         </style>

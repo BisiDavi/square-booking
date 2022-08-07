@@ -1,3 +1,4 @@
+import Banner from "@/components/Banner1";
 import HomepageBanner from "@/components/HomepageBanner";
 import MainView from "@/components/MainView";
 import ServiceIconView from "@/components/ServiceIconView";
@@ -7,7 +8,8 @@ import type { NextPage } from "next";
 const Home: NextPage = () => {
   return (
     <DefaultLayout>
-      <HomepageBanner />
+      {/* <HomepageBanner /> */}
+      <Banner />
       <ServiceIconView />
       <MainView />
     </DefaultLayout>

@@ -8,7 +8,13 @@ export default function HomepageSlider() {
   return (
     <>
       <div className="w-3/4">
-        <Splide>
+        <Splide
+          options={{
+            type: "fade",
+            autoplay: true,
+            rewind: true,
+          }}
+        >
           {slideBanners.map((slideBanner) => (
             <SplideSlide key={slideBanner.img}>
               <Image

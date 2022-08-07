@@ -6,7 +6,6 @@ export default function MainView() {
     <div className="main-view h-96 flex items-center">
       <div className="container flex mx-auto flex-col lg:flex-row">
         <GettingStarted />
-        <SevicesBanner />
       </div>
     </div>
   );

@@ -4,16 +4,13 @@ export default function BannerTypewriter() {
   const listArray = new Array(10).fill(0);
   return (
     <>
-      <div className="w-1/4 typewriter">
-        <div className="context">
-          <div className="area">
-            <ul className="circles">
-              {listArray.map((_, index) => (
-                <li key={index}></li>
-              ))}
-            </ul>
-          </div>
-          <HireAd />
+      <div className="context">
+        <div className="area">
+          <ul className="circles">
+            {listArray.map((_, index) => (
+              <li key={index}></li>
+            ))}
+          </ul>
         </div>
       </div>
       <style jsx>
@@ -24,7 +21,7 @@ export default function BannerTypewriter() {
           .context {
             position: absolute;
             top: 0;
-            width: 100%;
+            width: 50%;
             height: 100%;
           }
 
@@ -35,7 +32,6 @@ export default function BannerTypewriter() {
           }
 
           .area {
-            background: #4e54c8;
             background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
             width: 100%;
             display: flex;
