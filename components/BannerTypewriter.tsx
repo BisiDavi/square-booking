@@ -1,22 +1,31 @@
+import HireAd from "@/components/HireAd";
+
 export default function BannerTypewriter() {
   const listArray = new Array(10).fill(0);
   return (
     <>
-      <div className="w-1/4 context" />
-      <div className="area">
-        <ul className="circles">
-          {listArray.map((_, index) => (
-            <li key={index}></li>
-          ))}
-        </ul>
+      <div className="w-1/4 typewriter">
+        <div className="context">
+          <div className="area">
+            <ul className="circles">
+              {listArray.map((_, index) => (
+                <li key={index}></li>
+              ))}
+            </ul>
+          </div>
+          <HireAd />
+        </div>
       </div>
       <style jsx>
         {`
+          .typewriter {
+            position: relative;
+          }
           .context {
             position: absolute;
-            top: 50vh;
-            width: 25%;
-            height: 50vh;
+            top: 0;
+            width: 100%;
+            height: 100%;
           }
 
           .context h1 {
@@ -28,7 +37,9 @@ export default function BannerTypewriter() {
           .area {
             background: #4e54c8;
             background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
-            width: 30%;
+            width: 100%;
+            display: flex;
+            height: 100%;
           }
 
           .circles {
