@@ -16,7 +16,7 @@ export default function HomepageSlider() {
                 alt={slideBanner.alt}
                 layout="responsive"
                 width={1200}
-                height={600}
+                height={500}
               />
             </SplideSlide>
           ))}
