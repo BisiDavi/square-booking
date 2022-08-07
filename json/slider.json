@@ -1,9 +1,9 @@
 [
-  "/baber.webp",
-  "/beauty-salon.webp",
-  "/eye-brow-main.webp",
-  "/hair-braided.webp",
-  "/massage-spa-services.webp",
-  "/nail-polish.webp",
-  "/tattoo-salon.webp"
+  { "img": "/baber.webp", "alt": "hire a baber", "bg": "palegreen" },
+  { "img": "/beauty-salon.webp", "alt": "hire a beauty specialist", "bg": "lightgray" },
+  { "img": "/eye-brow-main.webp", "alt": "hire eye-brow specialist", "bg": "lightblue" },
+  { "img": "/hair-braided.webp", "alt": "hire an hairdresser", "bg": "brown" },
+  { "img": "/massage-spa-services.webp", "alt": "hire a masseur", "bg": "purple" },
+  { "img": "/nail-polish.webp", "alt": "hire a pedicure expert", "bg": "violet" },
+  { "img": "/tattoo-salon.webp", "alt": "hire a tattoo expert", "bg": "skyblue" }
 ]
