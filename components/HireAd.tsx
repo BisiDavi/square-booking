@@ -11,12 +11,13 @@ export default function HireAd() {
               strings: [
                 "Baber",
                 "Hairdresser",
+                "Yoga",
                 "Chiropractor",
                 "Makeup Artist",
                 "Masseur",
                 "Tattoo Expert",
                 "Song Writer",
-                "Cleaner"
+                "Cleaner",
               ],
               autoStart: true,
               loop: true,
