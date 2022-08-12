@@ -1,13 +1,18 @@
 import { PropsWithChildren } from "react";
 
-import useUI from "@/hooks/useUI";
 
 interface Props {
   title?: string;
+  toggleModal: (value: null | "auth-modal") => void;
+  modal: null | "auth-modal";
 }
 
-export default function Modal({ children, title }: PropsWithChildren<Props>) {
-  const { modal, toggleModal } = useUI();
+export default function Modal({
+  children,
+  title,
+  modal,
+  toggleModal,
+}: PropsWithChildren<Props>) {
   return (
     <>
       {modal === "auth-modal" ? (

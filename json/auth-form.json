@@ -1,0 +1,11 @@
+{
+  "signin": [
+    { "placeholder": "Email Address", "type": "email", "icon": "email" },
+    { "placeholder": "Password", "type": "password", "icon": "passowrd" }
+  ],
+  "signup": [
+    { "placeholder": "Email Address", "type": "email", "icon": "email" },
+    { "placeholder": "Password", "type": "password", "icon": "passowrd" },
+    { "placeholder": "Confirm Password", "type": "password" }
+  ]
+}

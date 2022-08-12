@@ -13,7 +13,7 @@ export default function Header() {
         <div className="button-group flex items-center">
           <Button
             text="Log in / Sign up"
-            className="text-white flex items-center hover:text-red-300"
+            className="text-white flex items-center hover:text-gray-500"
             type="button"
             icon={<BsPersonCircle className="mr-4 text-2xl" />}
             onClick={() => toggleModal("auth-modal")}

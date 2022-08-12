@@ -46,7 +46,7 @@ export default function ServiceIconView() {
       {serviceIcons.map((serviceIcon) => (
         <li
           key={serviceIcon.icon}
-          className="flex  flex-col justify-center mx-auto items-center text-center bg-dark-800 rounded-full w-1/6"
+          className="flex flex-col justify-center mx-auto items-center text-center bg-dark-800 rounded-full w-1/6"
         >
           <span className="icon hover:bg-gray-500 flex mx-auto">
             {displayServiceIcon(serviceIcon.icon)}
