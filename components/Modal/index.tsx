@@ -1,60 +1,65 @@
+import { PropsWithChildren } from "react";
+
 import useUI from "@/hooks/useUI";
 
-export default function Modal() {
+interface Props {
+  title?: string;
+}
+
+export default function Modal({ children, title }: PropsWithChildren<Props>) {
   const { modal, toggleModal } = useUI();
   return (
     <>
       {modal === "auth-modal" ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div
+            role="dialog"
+            className="justify-center h-4/5 site-modal items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 z-40 h-96 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Modal Title</h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => toggleModal(null)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
-                </div>
+                {title && (
+                  <div className="flex items-start justify-between px-5 py-2 border-b border-solid border-slate-200 rounded-t">
+                    <h3 className="text-xl mr-4 pb-0 mb-0 font-semibold">
+                      {title}
+                    </h3>
+                    <button
+                      className="hover:bg-red-500 hover:text-white hover:border-white p-1 ml-auto border border-gray-900 rounded-full text-black flex items-center float-right -mr-3 -mt-1 text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      onClick={() => toggleModal(null)}
+                    >
+                      <span className="close text-center h-4 w-4 p-1  flex text-2xl items-center justify-center">
+                        ×
+                      </span>
+                    </button>
+                  </div>
+                )}
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They&#39;re slowed down by their perception
-                    of themselves. If you&#39;re taught you can’t do anything,
-                    you won’t do anything. I was taught I could do everything.
-                  </p>
-                </div>
-                {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                  <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => toggleModal(null)}
-                  >
-                    Close
-                  </button>
-                  <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => toggleModal(null)}
-                  >
-                    Save Changes
-                  </button>
-                </div>
+                <div className="relative p-6 flex-auto">{children}</div>
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div
+            className="opacity-50 fixed inset-0 z-50 bg-black"
+            onClick={() => toggleModal(null)}
+          ></div>
         </>
       ) : null}
+      <style jsx>
+        {`
+          .site-modal {
+            z-index: 100;
+            height: fit-content;
+            width: fit-content;
+            margin: auto;
+            border: none;
+          }
+          .close {
+            margin-top: -2.5px;
+          }
+        `}
+      </style>
     </>
   );
 }

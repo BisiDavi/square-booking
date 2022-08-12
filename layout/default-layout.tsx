@@ -7,7 +7,7 @@ import Modal from "@/components/Modal";
 export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
   return (
     <>
-      <Modal />
+      <Modal title="Welcome to BookSpree, Sign up or Login" />
       <Header />
       {children}
       <Footer />

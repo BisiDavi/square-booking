@@ -1,19 +1,14 @@
 import Link from "next/link";
 
-interface Props {
-  footer?: boolean;
-}
-
-export default function Logo({ footer }: Props) {
-  const logoClassName = footer
-    ? "text-white"
-    : "hover:bg-gray-500 hover:text-white ";
+export default function Logo() {
   return (
     <>
       <Link href="/" passHref>
-        <a className={`border-2 border-white p-2 ${logoClassName}`}>
+        <a
+          className={`border-2 border-white p-2 text-white hover:bg-gray-100 hover:text-black`}
+        >
           <h4 className="font-bold">
-            Book <span className="italic font-light">SPREE</span>
+            Book <span className="font-light -ml-1">Spree</span>
           </h4>
         </a>
       </Link>

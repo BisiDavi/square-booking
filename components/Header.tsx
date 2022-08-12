@@ -1,3 +1,5 @@
+import { BsPersonCircle } from "react-icons/bs";
+
 import Button from "@/components/Button";
 import Logo from "@/components/Logo";
 import useUI from "@/hooks/useUI";
@@ -5,20 +7,15 @@ import useUI from "@/hooks/useUI";
 export default function Header() {
   const { toggleModal } = useUI();
   return (
-    <div className="bg-blue-100">
+    <div className="bg-gray-900 py-2">
       <div className="container flex items-center mx-auto justify-between">
         <Logo />
         <div className="button-group flex items-center">
           <Button
-            text="Log in"
-            className="text-black"
+            text="Log in / Sign up"
+            className="text-white flex items-center hover:text-red-300"
             type="button"
-            onClick={() => toggleModal("auth-modal")}
-          />
-          <Button
-            text="Sign up"
-            className="bg-red-500 border-r-500 m-4 text-white p-2 px-4"
-            type="button"
+            icon={<BsPersonCircle className="mr-4 text-2xl" />}
             onClick={() => toggleModal("auth-modal")}
           />
         </div>
