@@ -2,7 +2,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import UIReducer from "@/redux/ui-slice";
 
 const RootReducer = combineReducers({
-  ui: UIReducer,
+  UI: UIReducer,
 });
 
 export type RootState = ReturnType<typeof RootReducer>;

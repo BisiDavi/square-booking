@@ -1,8 +1,7 @@
-import useAuth from "@/hooks/useAuth";
+import useUI from "@/hooks/useUI";
 
 export default function Modal() {
-  const { modal, toggleModal } = useAuth();
-  console.log("modal", modal);
+  const { modal, toggleModal } = useUI();
   return (
     <>
       {modal === "auth-modal" ? (

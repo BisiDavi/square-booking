@@ -1,9 +1,9 @@
 import Button from "@/components/Button";
 import Logo from "@/components/Logo";
-import useAuth from "@/hooks/useAuth";
+import useUI from "@/hooks/useUI";
 
 export default function Header() {
-  const { toggleModal } = useAuth();
+  const { toggleModal } = useUI();
   return (
     <div className="bg-blue-100">
       <div className="container flex items-center mx-auto justify-between">
