@@ -7,7 +7,7 @@ interface Props {
 
 export default function TabItem({ setOpenTab, openTab, index, text }: Props) {
   const tabActiveClassName =
-    openTab === index ? "bg-blue-500 text-white" : "text-blue-600";
+    openTab === index ? "bg-blue-600 text-white" : "text-blue-600";
   return (
     <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
       <a

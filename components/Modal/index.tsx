@@ -1,6 +1,5 @@
 import { PropsWithChildren } from "react";
 
-
 interface Props {
   title?: string;
   toggleModal: (value: null | "auth-modal") => void;
@@ -23,11 +22,11 @@ export default function Modal({
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
-              <div className="border-0 z-40 h-96 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 z-40  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 {title && (
                   <div className="flex items-start justify-between px-5 py-2 border-b border-solid border-slate-200 rounded-t">
-                    <h3 className="text-xl mr-4 pb-0 mb-0 font-semibold">
+                    <h3 className="text-xl flex mx-auto text-center mr-4 pb-0 mb-0 font-semibold">
                       {title}
                     </h3>
                     <button

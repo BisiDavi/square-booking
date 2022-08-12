@@ -1,11 +1,15 @@
 {
   "signin": [
     { "placeholder": "Email Address", "type": "email", "icon": "email" },
-    { "placeholder": "Password", "type": "password", "icon": "passowrd" }
+    { "placeholder": "Password", "type": "password", "icon": "password" }
   ],
   "signup": [
     { "placeholder": "Email Address", "type": "email", "icon": "email" },
-    { "placeholder": "Password", "type": "password", "icon": "passowrd" },
-    { "placeholder": "Confirm Password", "type": "password" }
+    { "placeholder": "Password", "type": "password", "icon": "password" },
+    {
+      "placeholder": "Confirm Password",
+      "type": "password",
+      "icon": "password"
+    }
   ]
 }

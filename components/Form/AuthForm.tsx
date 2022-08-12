@@ -9,6 +9,7 @@ export function SignupForm() {
           key={`${formElement.type}-${index}`}
           placeholder={formElement.placeholder}
           type={formElement.type}
+          icon={formElement.icon}
         />
       ))}
     </form>
@@ -23,6 +24,7 @@ export function SigninForm() {
           key={`${formElement.type}-${index}`}
           placeholder={formElement.placeholder}
           type={formElement.type}
+          icon={formElement.icon}
         />
       ))}
     </form>

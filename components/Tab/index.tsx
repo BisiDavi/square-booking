@@ -10,7 +10,6 @@ interface Props {
 
 export default function Tabs({ tabBody1, tabBody2, tabHeader }: Props) {
   const [openTab, setOpenTab] = useState(0);
-  console.log("openTab", openTab);
   return (
     <>
       <div className="flex flex-wrap w-96">
@@ -29,7 +28,7 @@ export default function Tabs({ tabBody1, tabBody2, tabHeader }: Props) {
               />
             ))}
           </ul>
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+          <div className="relative flex flex-col min-w-0 break-words border border-gray-200 bg-white w-full mb-6 shadow-lg rounded">
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 0 ? "block" : "hidden"} id="link1">
