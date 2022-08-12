@@ -1,7 +1,9 @@
 import Button from "@/components/Button";
 import Logo from "@/components/Logo";
+import useAuth from "@/hooks/useAuth";
 
 export default function Header() {
+  const { toggleModal } = useAuth();
   return (
     <div className="bg-blue-100">
       <div className="container flex items-center mx-auto justify-between">
@@ -11,13 +13,13 @@ export default function Header() {
             text="Log in"
             className="text-black"
             type="button"
-            onClick={() => null}
+            onClick={() => toggleModal("auth-modal")}
           />
           <Button
             text="Sign up"
             className="bg-red-500 border-r-500 m-4 text-white p-2 px-4"
             type="button"
-            onClick={() => null}
+            onClick={() => toggleModal("auth-modal")}
           />
         </div>
       </div>
