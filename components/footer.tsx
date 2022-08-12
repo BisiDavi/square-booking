@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Logo from "@/components/logo";
+import Logo from "@/components/Logo";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-300 w-full">
+    <footer className="bg-gray-900  w-full">
       <Image
         alt="footer-image"
         src="/footer-gradient.png"
@@ -13,8 +13,9 @@ export default function Footer() {
       />
       <div className="h-52 container flex mx-auto items-center justify-between">
         <Logo footer />
-        <span className="text-white">All rights reserved</span>
+        <span className="text-white">All rights reserved © 2022</span>
       </div>
     </footer>
   );
 }
+   

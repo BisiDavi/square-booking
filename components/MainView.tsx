@@ -1,11 +1,18 @@
-import GettingStarted from "@/components/GettingStarted";
-import SevicesBanner from "@/components/SevicesBanner";
 import Image from "next/image";
 
 export default function MainView() {
   return (
-    <div className="main-view py-10 flex items-center">
-      <div className="container flex mx-auto flex-col lg:flex-row items-center">
+    <div className="main-view py- flex items-center">
+      <div className="container flex mx-auto flex-col lg:flex-row items-center justify-between">
+        <div className="image-wrapper w-2/5">
+          <Image
+            src="/services-rendered.webp"
+            alt="services"
+            layout="responsive"
+            height={600}
+            width={800}
+          />
+        </div>
         <div className="w-1/2">
           <h3 className="text-4xl text-blue-900 font-bold">
             We are Online Booking System
@@ -23,15 +30,6 @@ export default function MainView() {
             Simply define your services and providers, display their
             availability, and you will have clients making bookings 24/7.
           </p>
-        </div>
-        <div className="image-wrapper w-1/2">
-          <Image
-            src="/services-rendered.webp"
-            alt="services"
-            layout="responsive"
-            height={600}
-            width={800}
-          />
         </div>
       </div>
     </div>

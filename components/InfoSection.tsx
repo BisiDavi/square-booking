@@ -9,7 +9,7 @@ export default function InfoSection() {
         const order = index === 1 ? "order-2" : "";
         return (
           <section
-            className="container flex mx-auto my-8 items-center"
+            className="container flex mx-auto my-2 items-center"
             key={info.image}
           >
             <div className={`text w-1/2 ${order}`}>
