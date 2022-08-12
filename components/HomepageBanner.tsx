@@ -1,5 +1,6 @@
 import Typewriter from "typewriter-effect";
 import Image from "next/image";
+
 import BannerTypewriter from "@/components/BannerTypewriter";
 
 export default function HomepageBanner() {

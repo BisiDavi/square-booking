@@ -1,5 +1,3 @@
-import HireAd from "@/components/HireAd";
-
 export default function BannerTypewriter() {
   const listArray = new Array(10).fill(0);
   return (

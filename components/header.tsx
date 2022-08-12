@@ -1,5 +1,5 @@
-import Button from "@/components/button";
-import Logo from "@/components/logo";
+import Button from "@/components/Button";
+import Logo from "@/components/Logo";
 
 export default function Header() {
   return (
