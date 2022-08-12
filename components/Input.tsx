@@ -1,18 +1,26 @@
+import { useFormContext } from "react-hook-form";
+
 import { displayFormIcons } from "@/lib/displayFormIcons";
 
 interface Props {
   icon?: string;
   placeholder: string;
   type: string;
-  onChange?: () => void;
+  name: string;
 }
 
 export default function Input({
   icon,
-  onChange,
+  name,
   placeholder,
   type = "text",
 }: Props) {
+  const {
+    register,
+    formState: { errors },
+  }: any = useFormContext();
+  const inputClassName = icon ? "pl-10" : "";
+  console.log("errors", errors);
   return (
     <div className="relative flex w-full flex-wrap items-center items-stretch mb-3">
       {icon && (
@@ -23,9 +31,11 @@ export default function Input({
       <input
         type={type}
         placeholder={placeholder}
-        className="px-3 py-3 border border-gray-300 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-        onChange={onChange}
+        aria-invalid={errors[name] ? "true" : "false"}
+        className={`px-3 py-3 border border-gray-300 placeholder-slate-300 text-slate-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full ${inputClassName}`}
+        {...register(name)}
       />
+      <p className="text-red-500 text-sm">{errors[name]?.message}</p>
     </div>
-  );  
+  );
 }

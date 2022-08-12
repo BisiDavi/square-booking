@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 interface Props {
   setOpenTab: (tab: number) => void;
   openTab: number;

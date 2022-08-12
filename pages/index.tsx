@@ -3,9 +3,8 @@ import InfoSection from "@/components/InfoSection";
 import MainView from "@/components/MainView";
 import ServiceIconView from "@/components/ServiceIconView";
 import DefaultLayout from "@/layout/Default-layout";
-import type { NextPage } from "next";
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <DefaultLayout>
       <HomepageBanner />
@@ -14,6 +13,4 @@ const Home: NextPage = () => {
       <InfoSection />
     </DefaultLayout>
   );
-};
-
-export default Home;
+}

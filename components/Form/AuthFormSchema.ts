@@ -1,21 +1,27 @@
 import * as yup from "yup";
 
 export const signinFormSchema = yup.object({
-  email: yup
+  signinEmail: yup
     .string()
     .email("Enter a vaild email address")
     .required("E-mail address is required"),
-  password: yup.string().min(6).required("Password is required"),
+  signinPassword: yup
+    .string()
+    .min(6, "minimum of 6 characters is required")
+    .required("Password is required"),
 });
 
 export const signupFormSchema = yup.object({
-  email: yup
+  signupEmail: yup
     .string()
     .email("Enter a vaild email address")
     .required("E-mail address is required"),
-  password: yup.string().min(6).required("Password is required"),
-  confirmPassword: yup
+  signupPassword: yup
+    .string()
+    .min(6, "minimum of 6 characters is required")
+    .required("Password is required"),
+  signupConfirmPassword: yup
     .string()
     .required("Confirm password is required")
-    .oneOf([yup.ref("password"), null], "Passwords must match"),
+    .oneOf([yup.ref("signupPassword"), null], "Passwords must match"),
 });

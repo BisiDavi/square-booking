@@ -1,6 +1,6 @@
 interface Props {
-  className: string;
-  onClick: () => void;
+  className?: string;
+  onClick?: () => void;
   type: "button" | "submit" | "reset";
   text: string;
   icon?: JSX.Element;
