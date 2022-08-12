@@ -12,7 +12,7 @@ export default function Footer() {
         layout="responsive"
       />
       <div className="h-52 container flex mx-auto items-center justify-between">
-        <Logo footer />
+        <Logo />
         <span className="text-white">All rights reserved © 2022</span>
       </div>
     </footer>
