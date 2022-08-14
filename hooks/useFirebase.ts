@@ -5,75 +5,70 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { useRef } from "react";
 
 import useToast from "@/hooks/useToast";
 import { firebaseConfig } from "@/lib/firebaseConfig";
+import useUI from "@/hooks/useUI";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 export default function useFirebase() {
-  const ref = useRef(null);
+  const toastId = useRef(null);
   const { loadingToast, updateToast } = useToast();
+  const { toggleModal } = useUI();
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 
   function authSignup(email: string, password: string) {
-    const toastId: any = loadingToast(ref);
+    loadingToast(toastId);
     const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
+
+    return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         console.log("user", user);
         updateToast(toastId, "success", "Auth sign up successfull");
+        toggleModal(null);
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(
-          "error",
-          error,
-          "errorMessage",
-          errorMessage,
-          "errorCode",
-          errorCode
-        );
+      .catch(() => {
         updateToast(toastId, "error", "Auth sign up error");
       });
   }
 
-  function signIn(email: string, password: string) {
-    const toastId: any = loadingToast(ref);
+  function authSignIn(email: string, password: string) {
+    loadingToast(toastId);
     const auth = getAuth();
 
-    signInWithEmailAndPassword(auth, email, password)
+    return signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         console.log("user", user);
-        updateToast(toastId, "success", "Auth sign up successfull");
-
-        // ...
+        updateToast(toastId, "success", "Auth sign up successful");
+        toggleModal(null);
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(
-          "error",
-          error,
-          "errorMessage",
-          errorMessage,
-          "errorCode",
-          errorCode
-        );
+      .catch(() => {
+        updateToast(toastId, "error", "oops, an error occurred");
       });
   }
 
-  return { app, analytics, authSignup, signIn };
+  function authSignOut() {
+    const auth = getAuth();
+    loadingToast(toastId);
+
+    return signOut(auth)
+      .then((data) => {
+        console.log("user", data);
+        updateToast(toastId, "success", "logout successful");
+        toggleModal(null);
+      })
+      .catch(() => {
+        updateToast(toastId, "error", "logout successful");
+      });
+  }
+
+  return { app, analytics, authSignup, authSignIn, authSignOut };
 }

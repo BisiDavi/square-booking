@@ -8,6 +8,7 @@ import {
   signupFormSchema,
 } from "@/components/Form/AuthFormSchema";
 import Button from "@/components/Button";
+import useFirebase from "@/hooks/useFirebase";
 
 interface Props {
   formContent: {
@@ -39,14 +40,21 @@ interface AuthFormProps {
 }
 
 export default function AuthForm({ type }: AuthFormProps) {
+  const { authSignup, authSignIn } = useFirebase();
   const formSchema = type === "signin" ? signinFormSchema : signupFormSchema;
   const methods = useForm({
     mode: "all",
     resolver: yupResolver(formSchema),
   });
-  const onSubmit = (data: any) => console.log("data", data);
+  const onSubmit = (data: any) => {
+    console.log("onsubmit-data", data);
+    return type === "signin"
+      ? authSignIn(data.signinEmail, data.signinPassword)
+      : authSignup(data.signupEmail, data.signupPassword);
+  };
   const formData =
     type === "signin" ? authFormContent.signin : authFormContent.signup;
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>

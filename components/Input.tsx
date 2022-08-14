@@ -24,8 +24,6 @@ export default function Input({
   const inputClassName = icon ? "pl-10" : "";
   const [showPassword, setShowPassword] = useState(false);
 
-  console.log("showPassword", showPassword);
-
   function updatePasswordVisibility() {
     setShowPassword((prevState) => !prevState);
   }

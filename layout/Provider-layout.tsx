@@ -5,6 +5,7 @@ import { PropsWithChildren } from "react";
 import { ToastContainer } from "react-toastify";
 
 import store from "@/redux/store";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Providerlayout({ children }: PropsWithChildren<{}>) {
   const queryClient = new QueryClient();
