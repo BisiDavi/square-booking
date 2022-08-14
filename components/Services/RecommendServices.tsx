@@ -9,7 +9,7 @@ import { updateServiceCategories } from "@/redux/service-categories-slice";
 import getServiceCategories from "@/lib/getServiceCategories";
 
 import type { serviceType } from "@/types/service-type";
-import RecommendServiceLoader from "../Loader/RecommendServiceLoader";
+import RecommendServiceLoader from "@/components/Loader/RecommendServiceLoader";
 
 interface queryType {
   data: { data: string };

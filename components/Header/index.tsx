@@ -7,7 +7,7 @@ import useUI from "@/hooks/useUI";
 export default function Header() {
   const { toggleModal } = useUI();
   return (
-    <div className="bg-gray-900 py-2">
+    <header className="bg-gray-900 py-2">
       <div className="container flex items-center mx-auto justify-between">
         <Logo />
         <div className="button-group flex items-center">
@@ -20,6 +20,6 @@ export default function Header() {
           />
         </div>
       </div>
-    </div>
+    </header>
   );
 }

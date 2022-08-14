@@ -6,3 +6,7 @@
 :root {
   --site-purple: #4e44c4;
 }
+
+.bg-site-purple {
+  background-color: var(--site-purple);
+}
