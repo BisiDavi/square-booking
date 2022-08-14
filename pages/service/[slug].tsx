@@ -11,6 +11,8 @@ import type { GetServerSideProps } from "next";
 import type { serviceItemType } from "@/types/service-type";
 import type { storeProfileType } from "@/types/store-types";
 import { BsPhone } from "react-icons/bs";
+import formatTime from "@/lib/formatTime";
+import formatDays from "@/lib/formatDays";
 
 interface Props {
   service: serviceItemType;
@@ -57,7 +59,20 @@ export default function ServicePage({
               </div>
             </div>
             <hr className="w-full bg-gray-400 h-1" />
-            
+            <ul className="opening-days mt-4">
+              {storeProfile?.businessHours.periods.map((period) => (
+                <li
+                  key={period.dayOfWeek}
+                  className="text-sm flex justify-between py-1"
+                >
+                  {formatDays(period.dayOfWeek)}{" "}
+                  <span>
+                    {period.startLocalTime} AM -{" "}
+                    {formatTime(period.endLocalTime)} PM{" "}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import Logo from "@/components/Logo";
 import { useAppSelector } from "@/hooks/useRedux";
 import formatTime from "@/lib/formatTime";
 import formatCountry from "@/lib/formatCountry";
+import formatDays from "@/lib/formatDays";
 
 export default function Footer() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
@@ -19,7 +20,7 @@ export default function Footer() {
         />
       </div>
       <footer className="bg-gray-900 h-52 w-full py-10">
-        <div className="container flex mx-auto items-start justify-between">
+        <div className="container mb-8 flex mx-auto items-start justify-between">
           <Logo />
 
           {storeProfile && (
@@ -48,9 +49,15 @@ export default function Footer() {
               <h3 className="text-lg font-bold">Business Hours</h3>
               <ul>
                 {storeProfile?.businessHours.periods.map((period) => (
-                  <li key={period.dayOfWeek} className="text-sm">
-                    {period.dayOfWeek} : {period.startLocalTime} AM -{" "}
-                    {formatTime(period.endLocalTime)} PM
+                  <li
+                    key={period.dayOfWeek}
+                    className="text-sm justify-between flex py-0.5"
+                  >
+                    <span>{formatDays(period.dayOfWeek)}</span>
+                    <span>
+                      {period.startLocalTime} AM -{" "}
+                      {formatTime(period.endLocalTime)} PM
+                    </span>
                   </li>
                 ))}
               </ul>
