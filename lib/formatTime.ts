@@ -10,3 +10,14 @@ export default function formatTime(givenTime: string) {
     return hour;
   }
 }
+
+export function formatServicePeriod(givenPeriod: number) {
+  const ggivenPeriod = givenPeriod / 1000;
+  if (ggivenPeriod > 60) {
+    const periodMinutes = ggivenPeriod / 60;
+    return `${periodMinutes} mins`;
+  } else if (ggivenPeriod > 60) {
+    const periodMSeconds = ggivenPeriod / 60;
+    return periodMSeconds;
+  }
+}

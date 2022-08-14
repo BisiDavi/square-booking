@@ -9,12 +9,20 @@ import DefaultLayout from "@/layout/Default-layout";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
+import RecommendServices from "@/components/Services/RecommendServices";
 
 interface Props {
   storeProfile: storeProfileType;
 }
 
+// function listServices() {
+//   return axios.get("/api/catalog/search-catalog-items");
+// }
+
 export default function Home({ storeProfile }: Props) {
+  // const { data } = useQuery("listServices", listServices);
+
+  // console.log("data", JSON.parse(data?.data));
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(updateStoreProfile(storeProfile));
@@ -24,6 +32,7 @@ export default function Home({ storeProfile }: Props) {
     <DefaultLayout>
       <HomepageBanner />
       <ServiceIconView />
+      <RecommendServices />
       <MainView />
       <InfoSection />
     </DefaultLayout>
