@@ -7,9 +7,9 @@ import RecommendService from "@/components/Services/RecommendService";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateServiceCategories } from "@/redux/service-categories-slice";
 import getServiceCategories from "@/lib/getServiceCategories";
+import RecommendServiceLoader from "@/components/Loader/RecommendServiceLoader";
 
 import type { serviceType } from "@/types/service-type";
-import RecommendServiceLoader from "@/components/Loader/RecommendServiceLoader";
 
 interface queryType {
   data: { data: string };

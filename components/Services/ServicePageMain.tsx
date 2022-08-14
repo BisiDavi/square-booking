@@ -1,14 +1,16 @@
+import { AiOutlineHeart } from "react-icons/ai";
+
 import { useAppSelector } from "@/hooks/useRedux";
 import formatCountry from "@/lib/formatCountry";
 import type { serviceItemType } from "@/types/service-type";
-import { AiOutlineHeart } from "react-icons/ai";
+import SearchServices from "@/components/Form/FormElement/SearchServices";
 
 interface Props {
   service: serviceItemType;
 }
 
 export default function ServicePageMain({ service }: Props) {
-  console.log("service", service);
+  console.log("servicefdfs", service);
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
@@ -30,11 +32,7 @@ export default function ServicePageMain({ service }: Props) {
               </div>
               <div className="service flex items-center justify-between">
                 <h3 className="text-2xl">Services</h3>
-                <input
-                  type="text"
-                  className="input p-3 px-5 rounded-lg bg-gray-200 w-2/5"
-                  placeholder="Search for services"
-                />
+                <SearchServices />
               </div>
             </div>
           </div>
