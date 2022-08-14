@@ -1,4 +1,3 @@
-import { Client, Environment } from "square";
 import { useEffect } from "react";
 
 import HomepageBanner from "@/components/HomepageBanner";
@@ -10,19 +9,13 @@ import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
+import squareClient from "@/lib/squareClient";
 
 interface Props {
   storeProfile: storeProfileType;
 }
 
-// function listServices() {
-//   return axios.get("/api/catalog/search-catalog-items");
-// }
-
 export default function Home({ storeProfile }: Props) {
-  // const { data } = useQuery("listServices", listServices);
-
-  // console.log("data", JSON.parse(data?.data));
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(updateStoreProfile(storeProfile));
@@ -40,10 +33,7 @@ export default function Home({ storeProfile }: Props) {
 }
 
 export async function getStaticProps() {
-  const client = new Client({
-    accessToken: process.env.NEXT_PUBLIC_SQUARE_SANDBOX_ACCESS_TOKEN,
-    environment: Environment.Sandbox,
-  });
+  const { client } = await squareClient();
   try {
     const response = await client.locationsApi.listLocations();
     return {

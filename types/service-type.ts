@@ -4,7 +4,7 @@ export type serviceType = {
   matched_variation_ids: string[];
 };
 
-type serviceItemType = {
+export type serviceItemType = {
   type: string;
   id: string;
   updatedAt: string;
