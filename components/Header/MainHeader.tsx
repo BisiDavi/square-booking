@@ -8,7 +8,7 @@ export default function MainHeader() {
   const { toggleModal } = useUI();
 
   return (
-    <header className="bg-gray-900 py-2">
+    <header className="bg-gray-900 py-2 w-full h-30 fixed z-50">
       <div className="container flex items-center mx-auto justify-between">
         <Logo />
         <div className="button-group flex items-center">

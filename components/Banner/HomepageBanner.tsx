@@ -9,7 +9,7 @@ export default function HomepageBanner() {
     (state) => state.ServiceCategories
   );
   return (
-    <section className="w-full relative bg-orange-50 py-10">
+    <section className="w-full relative bg-orange-50 py-10 pt-24">
       <div className="container flex mx-auto justify-center items-center">
         <div className="w-1/2">
           <h1 className="font-bold text-5xl text-gray-900">
