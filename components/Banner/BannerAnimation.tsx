@@ -1,4 +1,4 @@
-export default function BannerTypewriter() {
+export default function BannerAnimation() {
   const listArray = new Array(10).fill(0);
   return (
     <>
@@ -22,14 +22,12 @@ export default function BannerTypewriter() {
             width: 50%;
             height: 100%;
           }
-
           .context h1 {
             text-align: center;
             color: #fff;
             font-size: 50px;
           }
-
-          .area {
+          .context .area {
             background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
             width: 100%;
             display: flex;
@@ -43,6 +41,7 @@ export default function BannerTypewriter() {
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index:100;
           }
 
           .circles li {
@@ -54,6 +53,7 @@ export default function BannerTypewriter() {
             background: rgba(255, 255, 255, 0.2);
             animation: animate 25s linear infinite;
             bottom: -150px;
+            z-index:200;
           }
 
           .circles li:nth-child(1) {

@@ -1,9 +1,12 @@
 import Typewriter from "typewriter-effect";
 import Image from "next/image";
 
-import BannerTypewriter from "@/components/BannerTypewriter";
+import { useAppSelector } from "@/hooks/useRedux";
+import BannerAnimation from "@/components/Banner/BannerAnimation";
 
 export default function HomepageBanner() {
+  const { storeProfile } = useAppSelector((state) => state.StoreProfile);
+  console.log("storeProfile", storeProfile);
   return (
     <section className="w-full relative bg-orange-50 py-10">
       <div className="container flex mx-auto justify-center items-center">
@@ -35,7 +38,7 @@ export default function HomepageBanner() {
               }}
             />
           </div>
-          <p className="mt-3 text-xl text-gray-400">
+          <p className="mt-3 text-xl text-gray-400 word-break w-11/12">
             Discover the easiest way to schedule appointments with the #1 online
             booking system
           </p>
@@ -50,7 +53,7 @@ export default function HomepageBanner() {
           />
         </div>
       </div>
-      <BannerTypewriter />
+      <BannerAnimation />
       <style jsx>
         {`
           .w-full {

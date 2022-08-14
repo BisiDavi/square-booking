@@ -9,10 +9,22 @@ interface queryType {
   status: "error" | "loading" | "idle" | "success";
 }
 
+function getserviceCategories(services: serviceType["items"]) {
+  const serviceCategories: string[] = [];
+  services.map((service) => {
+    serviceCategories.push(service.itemData.name);
+  });
+  return serviceCategories;
+}
+
 export default function RecommendServices() {
   const { data, status }: queryType = useQuery("listServices", listServices);
   const serviceData = status === "success" ? JSON.parse(data.data) : [];
   const services: serviceType["items"] = serviceData.items;
+
+  const serviceCategory =
+    status === "success" ? getserviceCategories(services) : [];
+  console.log("serviceCategory", serviceCategory);
 
   return (
     <div className="flex items-center my-8 container mx-auto">

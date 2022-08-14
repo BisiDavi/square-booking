@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 
-import HomepageBanner from "@/components/HomepageBanner";
+import HomepageBanner from "@/components/Banner/HomepageBanner";
 import InfoSection from "@/components/InfoSection";
-import MainView from "@/components/MainView";
+import MainView from "@/components/View/MainView";
 import ServiceIconView from "@/components/ServiceIconView";
 import DefaultLayout from "@/layout/Default-layout";
 import { storeProfileType } from "@/types/store-types";
