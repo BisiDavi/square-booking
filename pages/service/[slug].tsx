@@ -12,6 +12,7 @@ import ServicePageSidebar from "@/components/Sidebar/ServicePageSidebar";
 import type { GetServerSideProps } from "next";
 import type { serviceItemType } from "@/types/service-type";
 import type { storeProfileType } from "@/types/store-types";
+import ServicePageMain from "@/components/Services/ServicePageMain";
 
 interface Props {
   service: serviceItemType;
@@ -33,13 +34,12 @@ export default function ServicePage({
 
   return (
     <DefaultLayout>
-      <section className="service-page container mx-auto pt-20">
-        <h1 className="font-bold text-xl">{service.itemData.name}</h1>
-        <div className="content h-screen flex">
-          <div className="w-3/4 bg-white"></div>
+      <main className="service-page container mx-auto pt-20">
+        <div className="content h-screen flex py-4 justify-between">
+          <ServicePageMain service={service} />
           <ServicePageSidebar service={service} />
         </div>
-      </section>
+      </main>
     </DefaultLayout>
   );
 }
