@@ -3,22 +3,16 @@ import { useQuery } from "react-query";
 import { useEffect, useMemo } from "react";
 
 import { listServices } from "@/requests";
-import type { serviceType } from "@/types/service-type";
 import RecommendService from "@/components/Services/RecommendService";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateServiceCategories } from "@/redux/service-categories-slice";
+import getServiceCategories from "@/lib/getServiceCategories";
+
+import type { serviceType } from "@/types/service-type";
 
 interface queryType {
   data: { data: string };
   status: "error" | "loading" | "idle" | "success";
-}
-
-function getserviceCategories(services: serviceType["items"]) {
-  const serviceCategories: string[] = [];
-  services.map((service) => {
-    serviceCategories.push(service.itemData.name);
-  });
-  return serviceCategories;
 }
 
 export default function RecommendServices() {
@@ -31,7 +25,7 @@ export default function RecommendServices() {
   );
 
   const memoizedServiceCategory = useMemo(() => {
-    return status === "success" ? getserviceCategories(services) : [];
+    return status === "success" ? getServiceCategories(services) : [];
   }, [status]);
 
   useEffect(() => {
