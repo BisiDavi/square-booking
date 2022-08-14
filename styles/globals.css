@@ -3,3 +3,6 @@
 @import "tailwindcss/utilities";
 
 /* Your own custom component styles */
+:root {
+  --site-purple: #4e44c4;
+}

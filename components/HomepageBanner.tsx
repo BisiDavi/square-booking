@@ -54,7 +54,7 @@ export default function HomepageBanner() {
       <style jsx>
         {`
           .w-full {
-            background-color: #4e44c4;
+            background-color: var(--site-purple);
             height: 69vh;
           }
           .container {
