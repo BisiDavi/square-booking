@@ -6,7 +6,7 @@ function numberWithCommas(x: number | string) {
 
 export function currencySymbol(currencyCode: string) {
   const currencyData = currencySymbols.filter(
-    (currencyItem) => currencyItem.abbreviation === currencyCode
+    (currencyItem) => currencyItem.code === currencyCode
   );
   return currencyData[0].symbol;
 }
@@ -15,5 +15,5 @@ export default function formatPrice(givenPrice: number, currencyCode: string) {
   const price = Number(givenPrice / 100);
   const priceFixed2 = price?.toFixed(2);
   const formattedPrice = numberWithCommas(priceFixed2);
-  return `${currencySymbol(currencyCode)} ${formattedPrice}`;
+  return `${currencySymbol(currencyCode)}${formattedPrice}`;
 }

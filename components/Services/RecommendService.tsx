@@ -11,11 +11,15 @@ export default function RecommendService({ service }: Props) {
     service?.itemData?.variations[0]?.itemVariationData;
   const { amount, currency } = priceMoney;
   return (
-    <div className="recommended-services border border-gray-200 rounded mr-2 p-4 h-52">
+    <div className="recommended-services border border-gray-200 rounded mr-2 p-4 h-44">
       <h3 className="font-bold text-xl">{service.itemData.name}</h3>
-      <p className="text-gray-400">{service?.itemData?.description}</p>
-      <span className="mt-4">{formatPrice(amount, currency)}</span>
-      <span>⏰ {formatServicePeriod(serviceDuration)} </span>
+      <p className="text-gray-400 text-md font-medium">
+        {service?.itemData?.description}
+      </p>
+      <div className="flex items-center mt-4">
+        <span className="m4">{formatPrice(amount, currency)}</span>
+        <span className="ml-4">⏰ {formatServicePeriod(serviceDuration)} </span>
+      </div>
     </div>
   );
 }

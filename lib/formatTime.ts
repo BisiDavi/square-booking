@@ -11,13 +11,21 @@ export default function formatTime(givenTime: string) {
   }
 }
 
-export function formatServicePeriod(givenPeriod: number) {
-  const ggivenPeriod = givenPeriod / 1000;
-  if (ggivenPeriod > 60) {
-    const periodMinutes = ggivenPeriod / 60;
-    return `${periodMinutes} mins`;
-  } else if (ggivenPeriod > 60) {
-    const periodMSeconds = ggivenPeriod / 60;
-    return periodMSeconds;
+export function formatServicePeriod(milliSeconds: number) {
+  const seconds = milliSeconds / 1000;
+  if (seconds < 60) {
+    // seconds
+    const secondsText = seconds === 1 ? "second" : "seconds";
+    return `${seconds} ${secondsText}`;
+  } else if (seconds > 60) {
+    // minutes
+    const periodMinutes = seconds / 60;
+    const minuteText = periodMinutes < 2 ? "min" : "mins";
+    return `${periodMinutes} ${minuteText}`;
+  } else if (seconds > 3600) {
+    // hours
+    const periodHour = seconds / 3600;
+    const hourText = periodHour < 2 ? "hr" : "hrs";
+    return `${periodHour} ${hourText}`;
   }
 }
