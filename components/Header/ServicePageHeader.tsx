@@ -7,7 +7,7 @@ export default function ServicePageHeader() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
-    <header className="w-full bg-white shadow py-3">
+    <header className="w-full fixed bg-white shadow py-3">
       <div className="container  flex justify-between mx-auto items-center">
         <div className="store-name w-2/5">
           <h4 className="text-2xl font-bold">{storeProfile?.name}</h4>

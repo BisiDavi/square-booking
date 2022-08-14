@@ -33,6 +33,10 @@ export default function ServicePage({
     <DefaultLayout>
       <section className="service-page container mx-auto">
         <h1 className="font-bold text-xl">{service.itemData.name}</h1>
+        <div className="content h-screen">
+          <div className="w-3/4"></div>
+          <div className="w-1/4 bg-gray-100"></div>
+        </div>
       </section>
     </DefaultLayout>
   );
