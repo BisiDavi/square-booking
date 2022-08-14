@@ -9,6 +9,7 @@ import { updateServiceCategories } from "@/redux/service-categories-slice";
 import getServiceCategories from "@/lib/getServiceCategories";
 
 import type { serviceType } from "@/types/service-type";
+import RecommendServiceLoader from "../Loader/RecommendServiceLoader";
 
 interface queryType {
   data: { data: string };
@@ -39,7 +40,7 @@ export default function RecommendServices() {
       {status === "error" ? (
         "error"
       ) : status === "loading" ? (
-        "loading"
+        <RecommendServiceLoader />
       ) : (
         <div className="flex flex-col">
           <h3 className="text-2xl font-bold mb-3">Recommended Services</h3>
