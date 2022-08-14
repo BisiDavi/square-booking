@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
 import { useAppSelector } from "@/hooks/useRedux";
@@ -5,7 +6,7 @@ import Button from "@/components/UI/Button";
 import getStoreInitials from "@/lib/getStoreInitials";
 import formatCountry from "@/lib/formatCountry";
 
-export default function ServicePageHeader() {
+function ServicePageHeaderComponent() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
@@ -40,3 +41,6 @@ export default function ServicePageHeader() {
     </header>
   );
 }
+
+const ServicePageHeader = memo(ServicePageHeaderComponent);
+export default ServicePageHeader;

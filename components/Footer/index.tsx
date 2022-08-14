@@ -7,7 +7,6 @@ import formatCountry from "@/lib/formatCountry";
 
 export default function Footer() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
-  console.log("storeProfile", storeProfile);
   return (
     <>
       <div className="footer-wrapper">

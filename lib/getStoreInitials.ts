@@ -17,6 +17,5 @@ export default function getStoreInitials(storeName: string) {
   first3WordChar.map((text) => {
     storeInitials += `${text} `;
   });
-  console.log("storeInitials", storeInitials);
   return storeInitials;
 }

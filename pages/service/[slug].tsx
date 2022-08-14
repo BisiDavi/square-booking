@@ -10,6 +10,7 @@ import { updateStoreProfile } from "@/redux/store-profile-slice";
 import type { GetServerSideProps } from "next";
 import type { serviceItemType } from "@/types/service-type";
 import type { storeProfileType } from "@/types/store-types";
+import { BsPhone } from "react-icons/bs";
 
 interface Props {
   service: serviceItemType;
@@ -31,11 +32,33 @@ export default function ServicePage({
 
   return (
     <DefaultLayout>
-      <section className="service-page container mx-auto">
+      <section className="service-page container mx-auto pt-20">
         <h1 className="font-bold text-xl">{service.itemData.name}</h1>
-        <div className="content h-screen">
-          <div className="w-3/4"></div>
-          <div className="w-1/4 bg-gray-100"></div>
+        <div className="content h-screen flex">
+          <div className="w-3/4 bg-white"></div>
+          <div className="w-1/4 bg-gray-200 rounded-lg px-4 py-2">
+            <h6 className="text-md pt-2 text-gray-600 font-bold">ABOUT US</h6>
+            <p className="pt-1 pb-8">{service.itemData.description}</p>
+            <h6 className="text-md py-1  text-gray-600 font-bold">
+              CONTACT & BUSINESS HOURS
+            </h6>
+            <hr className="w-full bg-gray-400 h-1" />
+            <div className="call flex items-center justify-between py-4">
+              <div className="flex items-center">
+                <BsPhone className="mr-2" /> <p>{storeProfile?.phoneNumber}</p>
+              </div>
+              <div className="dial-phone font-medium text-center bg-white border border-gray-100 rounded w-1/6 hover:bg-gray-100">
+                <a
+                  className="text-md"
+                  href={`tel:+${storeProfile?.phoneNumber}`}
+                >
+                  Call
+                </a>
+              </div>
+            </div>
+            <hr className="w-full bg-gray-400 h-1" />
+            
+          </div>
         </div>
       </section>
     </DefaultLayout>
