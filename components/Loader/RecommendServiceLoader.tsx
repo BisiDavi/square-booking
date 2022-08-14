@@ -5,6 +5,7 @@ function RecommendServiceLoaderItem(props: any) {
     <ContentLoader
       animate
       speed={2}
+      uniqueKey="serviceLoader"
       viewBox="0 0 150 90"
       backgroundColor="#e3d9d9"
       foregroundColor="#ada4a4"
