@@ -1,6 +1,6 @@
 import { BsPersonCircle } from "react-icons/bs";
 
-import Button from "@/components/Button";
+import Button from "@/components/UI/Button";
 import Logo from "@/components/Logo";
 import useUI from "@/hooks/useUI";
 

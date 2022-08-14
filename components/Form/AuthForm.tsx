@@ -1,13 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, FormProvider } from "react-hook-form";
 
-import Input from "@/components/Input";
+import Input from "@/components/Form/FormElement/Input";
 import authFormContent from "@/json/auth-form.json";
 import {
   signinFormSchema,
   signupFormSchema,
 } from "@/components/Form/AuthFormSchema";
-import Button from "@/components/Button";
+import Button from "@/components/UI/Button";
 import useFirebase from "@/hooks/useFirebase";
 
 interface Props {

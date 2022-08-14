@@ -2,9 +2,9 @@
 import { useEffect } from "react";
 
 import HomepageBanner from "@/components/Banner/HomepageBanner";
-import InfoSection from "@/components/InfoSection";
+import InfoSection from "@/components/UI/InfoSection";
 import MainView from "@/components/View/MainView";
-import ServiceIconView from "@/components/ServiceIconView";
+import ServiceIconView from "@/components/View/ServiceIconView";
 import DefaultLayout from "@/layout/Default-layout";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
