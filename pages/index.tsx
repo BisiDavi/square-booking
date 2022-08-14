@@ -1,4 +1,5 @@
 import { Client, Environment } from "square";
+import { useEffect } from "react";
 
 import HomepageBanner from "@/components/HomepageBanner";
 import InfoSection from "@/components/InfoSection";
@@ -6,13 +7,18 @@ import MainView from "@/components/MainView";
 import ServiceIconView from "@/components/ServiceIconView";
 import DefaultLayout from "@/layout/Default-layout";
 import { storeProfileType } from "@/types/store-types";
+import { useAppDispatch } from "@/hooks/useRedux";
+import { updateStoreProfile } from "@/redux/store-profile-slice";
 
 interface Props {
   storeProfile: storeProfileType;
 }
 
 export default function Home({ storeProfile }: Props) {
-  console.log("home", storeProfile);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(updateStoreProfile(storeProfile));
+  }, []);
 
   return (
     <DefaultLayout>

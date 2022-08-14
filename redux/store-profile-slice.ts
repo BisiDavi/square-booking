@@ -11,7 +11,7 @@ const initialState: initialStateType = {
   storeProfile: null,
 };
 
-const UISlice = createSlice({
+const StoreprofileSlice = createSlice({
   name: "UI",
   initialState,
   reducers: {
@@ -21,5 +21,5 @@ const UISlice = createSlice({
   },
 });
 
-export const { updateStoreProfile } = UISlice.actions;
-export default UISlice.reducer;
+export const { updateStoreProfile } = StoreprofileSlice.actions;
+export default StoreprofileSlice.reducer;
