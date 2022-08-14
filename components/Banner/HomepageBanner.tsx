@@ -5,8 +5,9 @@ import { useAppSelector } from "@/hooks/useRedux";
 import BannerAnimation from "@/components/Banner/BannerAnimation";
 
 export default function HomepageBanner() {
-  const { storeProfile } = useAppSelector((state) => state.StoreProfile);
-  console.log("storeProfile", storeProfile);
+  const { serviceCategories } = useAppSelector(
+    (state) => state.ServiceCategories
+  );
   return (
     <section className="w-full relative bg-orange-50 py-10">
       <div className="container flex mx-auto justify-center items-center">
@@ -19,24 +20,16 @@ export default function HomepageBanner() {
             together ✌🏼
           </h1>
           <div className="text mt-2 font-bold">
-            <h4>Hire</h4>
-            <Typewriter
-              options={{
-                strings: [
-                  "Baber",
-                  "Hairdresser",
-                  "Yoga",
-                  "Chiropractor",
-                  "Makeup Artist",
-                  "Masseur",
-                  "Tattoo Expert",
-                  "Song Writer",
-                  "Cleaner",
-                ],
-                autoStart: true,
-                loop: true,
-              }}
-            />
+            <h4>Book for </h4>
+            {serviceCategories && (
+              <Typewriter
+                options={{
+                  strings: serviceCategories,
+                  autoStart: true,
+                  loop: true,
+                }}
+              />
+            )}
           </div>
           <p className="mt-3 text-xl text-gray-400 word-break w-11/12">
             Discover the easiest way to schedule appointments with the #1 online

@@ -1,8 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "react-query";
+import { useEffect, useMemo } from "react";
 
 import { listServices } from "@/requests";
 import type { serviceType } from "@/types/service-type";
 import RecommendService from "@/components/Services/RecommendService";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { updateServiceCategories } from "@/redux/service-categories-slice";
 
 interface queryType {
   data: { data: string };
@@ -21,10 +25,20 @@ export default function RecommendServices() {
   const { data, status }: queryType = useQuery("listServices", listServices);
   const serviceData = status === "success" ? JSON.parse(data.data) : [];
   const services: serviceType["items"] = serviceData.items;
+  const dispatch = useAppDispatch();
+  const { serviceCategories } = useAppSelector(
+    (state) => state.ServiceCategories
+  );
 
-  const serviceCategory =
-    status === "success" ? getserviceCategories(services) : [];
-  console.log("serviceCategory", serviceCategory);
+  const memoizedServiceCategory = useMemo(() => {
+    return status === "success" ? getserviceCategories(services) : [];
+  }, [status]);
+
+  useEffect(() => {
+    if (serviceCategories === null && status === "success") {
+      dispatch(updateServiceCategories(memoizedServiceCategory));
+    }
+  }, [dispatch, serviceCategories, memoizedServiceCategory, status]);
 
   return (
     <div className="flex items-center my-8 container mx-auto">
