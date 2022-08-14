@@ -1,25 +1,22 @@
-import { BsPersonCircle } from "react-icons/bs";
+import { useRouter } from "next/router";
 
-import Button from "@/components/UI/Button";
-import Logo from "@/components/Logo";
-import useUI from "@/hooks/useUI";
+import useScroll from "@/hooks/useScroll";
+import ServicePageHeader from "./ServicePageHeader";
+import MainHeader from "./MainHeader";
 
 export default function Header() {
-  const { toggleModal } = useUI();
+  const { scroll } = useScroll();
+  const scrollUp = Number(scroll) > 100 ? true : false;
+  const router = useRouter();
+
+  console.log("router", router);
   return (
-    <header className="bg-gray-900 py-2">
-      <div className="container flex items-center mx-auto justify-between">
-        <Logo />
-        <div className="button-group flex items-center">
-          <Button
-            text="Log in / Sign up"
-            className="text-white flex items-center hover:text-gray-500"
-            type="button"
-            icon={<BsPersonCircle className="mr-4 text-2xl" />}
-            onClick={() => toggleModal("auth-modal")}
-          />
-        </div>
-      </div>
-    </header>
+    <>
+      {router.route.includes("service") && 5 ? (
+        <ServicePageHeader />
+      ) : (
+        <MainHeader />
+      )}
+    </>
   );
 }
