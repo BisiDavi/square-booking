@@ -3,6 +3,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { useAppSelector } from "@/hooks/useRedux";
 import Button from "@/components/UI/Button";
 import getStoreInitials from "@/lib/getStoreInitials";
+import formatCountry from "@/lib/formatCountry";
 
 export default function ServicePageHeader() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
@@ -18,12 +19,15 @@ export default function ServicePageHeader() {
               </h3>
             </div>
           )}
-          <div className="service-name">
-            <h4 className="text-2xl font-bold">{storeProfile?.name}</h4>
-            <p className="text-gray-600">
-              {storeProfile?.address.addressLine1}
-            </p>
-          </div>
+          {storeProfile && (
+            <div className="service-name">
+              <h4 className="text-2xl font-bold">{storeProfile?.name}</h4>
+              <p className="text-gray-600">
+                {storeProfile?.address.addressLine1},{" "}
+                {formatCountry(storeProfile.country)}
+              </p>
+            </div>
+          )}
         </div>
         <div className="cta w-2/5 flex items-center justify-end">
           <AiOutlineHeart className="text-3xl mr-8" color="gray" />
@@ -33,7 +37,6 @@ export default function ServicePageHeader() {
           />
         </div>
       </div>
-      {/* <style jsx>{``}</style> */}
     </header>
   );
 }
