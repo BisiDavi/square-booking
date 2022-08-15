@@ -1,5 +1,6 @@
 import toSlug from "@/lib/toSlug";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
+import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
 
 interface AccordionItemProps {
   icon?: JSX.Element;
@@ -11,9 +12,19 @@ export function AccordionItem({
   icon,
   children,
 }: PropsWithChildren<AccordionItemProps>) {
+  const [showAccordion, setShowAccordion] = useState(false);
+
+  function toggleAccordion() {
+    setShowAccordion((prevState) => !prevState);
+  }
+  const headerClassName = showAccordion ? "border-b" : "";
   return (
-    <div className="accordion-item bg-white border border-gray-200">
-      <h2 className="accordion-header mb-0" id={toSlug(title)}>
+    <div className="accordion-item bg-white border border-gray-200 my-1 rounded-md">
+      <h2
+        className={`accordion-header ${headerClassName} mb-0 flex items-center justify-between px-4`}
+        id={toSlug(title)}
+        onClick={toggleAccordion}
+      >
         <button
           className="
         accordion-button
@@ -21,8 +32,7 @@ export function AccordionItem({
         flex
         items-center
         w-full
-        py-4
-        px-5
+        py-3
         text-base text-gray-800 text-left
         bg-white
         border-0
@@ -38,15 +48,24 @@ export function AccordionItem({
         >
           {icon} {title}
         </button>
+        <button>
+          {showAccordion ? (
+            <BsArrowUpCircle className="text-2xl" />
+          ) : (
+            <BsArrowDownCircle className="text-2xl" />
+          )}
+        </button>
       </h2>
-      <div
-        id={toSlug(title)}
-        className="accordion-collapse collapse show"
-        aria-labelledby={toSlug(title)}
-        data-bs-parent="#accordion"
-      >
-        <div className="accordion-body py-4 px-5">{children}</div>
-      </div>
+      {showAccordion && (
+        <div
+          id={toSlug(title)}
+          className="accordion-collapse collapse show"
+          aria-labelledby={toSlug(title)}
+          data-bs-parent="#accordion"
+        >
+          <div className="accordion-body py-4 px-5">{children}</div>
+        </div>
+      )}
     </div>
   );
 }

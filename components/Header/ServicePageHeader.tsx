@@ -10,7 +10,7 @@ function ServicePageHeaderComponent() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
-    <header className="w-full fixed bg-white shadow py-3">
+    <header className="w-full fixed bg-white shadow py-3 z-50">
       <div className="container flex justify-between mx-auto items-center">
         <div className="store-name w-2/5 flex">
           {storeProfile?.name && (

@@ -13,7 +13,7 @@ export default function ServicePageSidebar({ service }: Props) {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
-    <div className="w-1/3 bg-gray-200 rounded-lg px-4 py-2 ml-12">
+    <div className="w-1/3 bg-gray-200 rounded-lg px-4 py-2 ml-12 max-h-full">
       <h6 className="text-md pt-2 text-gray-600 font-bold">ABOUT US</h6>
       <p className="pt-1 pb-8">{service.itemData.description}</p>
       <h6 className="text-md py-1  text-gray-600 font-bold">
