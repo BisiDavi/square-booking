@@ -19,7 +19,6 @@ export default function ServiceVariationList({ variation }: Props) {
   const { priceMoney, serviceDuration, teamMemberIds } = itemVariationData;
   const { amount, currency } = priceMoney;
 
-  console.log("teamMemberIds", teamMemberIds);
   return (
     <li
       key={variation.id}
