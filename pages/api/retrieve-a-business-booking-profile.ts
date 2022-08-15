@@ -1,15 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import squareClient from "@/lib/squareClient";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Client, Environment } from "square";
 
 export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const client = new Client({
-    accessToken: process.env.NEXT_PUBLIC_SQUARE_SANDBOX_ACCESS_TOKEN,
-    environment: Environment.Sandbox,
-  });
+  const { client } = await squareClient();
+
   switch (req.method) {
     case "GET": {
       try {

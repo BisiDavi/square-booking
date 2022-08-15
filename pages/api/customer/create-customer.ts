@@ -3,20 +3,23 @@ import formatBigInt from "@/lib/formatBigInt";
 import squareClient from "@/lib/squareClient";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function Handler(
+export default async function CreateCustomerHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { client } = await squareClient();
+  const { email, firstName, lastName } = req.body;
 
   switch (req.method) {
-    case "GET": {
+    case "POST": {
       try {
-        const response = await client.catalogApi.searchCatalogItems({
-          productTypes: ["APPOINTMENTS_SERVICE"],
+        const response = await client.customersApi.createCustomer({
+          givenName: firstName,
+          familyName: lastName,
+          emailAddress: email,
         });
 
-        console.log("result-result", response.result.items);
+        console.log("result-result", response.result);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);
