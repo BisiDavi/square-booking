@@ -9,12 +9,14 @@ interface Props {
   placeholder: string;
   type: string;
   name: string;
+  className?: string;
 }
 
 export default function Input({
   icon,
   name,
   placeholder,
+  className,
   type = "text",
 }: Props) {
   const {
@@ -35,7 +37,7 @@ export default function Input({
       : type;
 
   return (
-    <div className="input-form mb-3">
+    <div className={`input-form mb-3 ${className}`}>
       <div className="relative flex w-full flex-wrap items-center items-stretch">
         {icon && (
           <span className="z-10 h-full mb-0 leading-snug font-normal absolute text-center text-slate-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3 pt-4">

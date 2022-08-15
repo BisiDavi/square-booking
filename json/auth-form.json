@@ -1,36 +1,60 @@
 {
   "signin": [
-    {
-      "placeholder": "Email Address",
-      "type": "email",
-      "icon": "email",
-      "name": "signinEmail"
-    },
-    {
-      "placeholder": "Password",
-      "type": "password",
-      "icon": "password",
-      "name": "signinPassword"
-    }
+    [
+      {
+        "placeholder": "Email Address",
+        "type": "email",
+        "icon": "email",
+        "name": "signinEmail"
+      }
+    ],
+    [
+      {
+        "placeholder": "Password",
+        "type": "password",
+        "icon": "password",
+        "name": "signinPassword"
+      }
+    ]
   ],
   "signup": [
-    {
-      "placeholder": "Email Address",
-      "type": "email",
-      "icon": "email",
-      "name": "signupEmail"
-    },
-    {
-      "placeholder": "Password",
-      "type": "password",
-      "icon": "password",
-      "name": "signupPassword"
-    },
-    {
-      "placeholder": "Confirm Password",
-      "type": "password",
-      "icon": "password",
-      "name": "signupConfirmPassword"
-    }
+    [
+      {
+        "placeholder": "First Name",
+        "type": "text",
+        "icon": "person",
+        "name": "firstName"
+      },
+      {
+        "placeholder": "Last Name",
+        "type": "text",
+        "icon": "person",
+        "name": "familyName"
+      }
+    ],
+    [
+      {
+        "placeholder": "Email Address",
+        "type": "email",
+        "icon": "email",
+        "name": "signupEmail"
+      }
+    ],
+    [
+      {
+        "placeholder": "Password",
+        "type": "password",
+        "icon": "password",
+        "name": "signupPassword"
+      }
+    ],
+    [
+      {
+        "placeholder": "Confirm Password",
+        "type": "password",
+        "icon": "password",
+        "name": "signupConfirmPassword"
+      }
+    ]
   ]
 }

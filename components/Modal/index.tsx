@@ -5,6 +5,7 @@ interface Props {
   title?: string;
   toggleModal: (modalState: null | "auth-modal") => void;
   modal: null | "auth-modal";
+  size?: "large" | "small";
 }
 
 export default function Modal({
@@ -12,7 +13,9 @@ export default function Modal({
   title,
   modal,
   toggleModal,
+  size,
 }: PropsWithChildren<Props>) {
+  const modalSize = size ? `${size} w-auto` : "max-w-2xl w-screen";
   return (
     <>
       {modal === "auth-modal" ? (
@@ -21,7 +24,7 @@ export default function Modal({
             role="dialog"
             className="justify-center h-4/5 site-modal items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className={`relative my-6 mx-auto ${modalSize}`}>
               {/* content*/}
               <div className="border-0 z-40  rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* header*/}

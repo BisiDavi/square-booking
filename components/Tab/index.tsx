@@ -12,7 +12,7 @@ export default function Tabs({ tabBody1, tabBody2, tabHeader }: Props) {
   const [openTab, setOpenTab] = useState(0);
   return (
     <>
-      <div className="flex flex-wrap w-96">
+      <div className="flex flex-wrap w-full">
         <div className="w-full">
           <ul
             className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"

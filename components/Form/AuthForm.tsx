@@ -10,27 +10,45 @@ import {
 import Button from "@/components/UI/Button";
 import useFirebase from "@/hooks/useFirebase";
 
+type formContentType = {
+  type: string;
+  icon?: string;
+  name: string;
+  placeholder: string;
+}[];
+
 interface Props {
-  formContent: {
-    type: string;
-    icon?: string;
-    name: string;
-    placeholder: string;
-  }[];
+  formContent: formContentType[];
 }
 
 function FormElement({ formContent }: Props) {
   return (
     <>
-      {formContent.map((item, index: number) => (
-        <Input
-          key={`${item.type}-${index}`}
-          placeholder={item.placeholder}
-          type={item.type}
-          icon={item.icon}
-          name={item.name}
-        />
-      ))}
+      {formContent.map((item, indexV: number) => {
+        const inputClassname = item.length > 1 ? "w-1/2" : "w-full";
+
+        return (
+          <div
+            key={indexV}
+            className="input-wrapper justify-between flex items-center w-full"
+          >
+            {item.map((elementItem, index) => {
+              const elementClassname =
+                Number(item.length - 1) !== index ? "mr-4" : "";
+              return (
+                <Input
+                  key={`${elementItem.type}-${index}`}
+                  placeholder={elementItem.placeholder}
+                  type={elementItem.type}
+                  icon={elementItem.icon}
+                  name={elementItem.name}
+                  className={`${inputClassname} ${elementClassname}`}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
     </>
   );
 }
@@ -57,7 +75,7 @@ export default function AuthForm({ type }: AuthFormProps) {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
         <FormElement formContent={formData} />
         <Button
           text="Submit"
