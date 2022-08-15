@@ -29,7 +29,7 @@
         "placeholder": "Last Name",
         "type": "text",
         "icon": "person",
-        "name": "familyName"
+        "name": "lastName"
       }
     ],
     [
