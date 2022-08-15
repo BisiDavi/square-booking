@@ -5,13 +5,15 @@ import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";
 import Button from "@/components/UI/Button";
 import GetTeam from "@/components/Team/GetTeam";
-import { serviceItemType } from "@/types/service-type";
+import GetLocation from "@/components/Location/GetLocation";
+
+import type { serviceItemType } from "@/types/service-type";
 
 interface Props {
   variation: serviceItemType["itemData"]["variations"][0];
 }
 
-export default function ServiceVariationList({ variation }:Props) {
+export default function ServiceVariationList({ variation }: Props) {
   const { priceMoney, serviceDuration } = variation.itemVariationData;
   const { amount, currency } = priceMoney;
   return (
@@ -29,6 +31,7 @@ export default function ServiceVariationList({ variation }:Props) {
         </span>
         <span className="flex items-center">
           <GoLocation className="mr-1 text-xl" /> Location:{" "}
+          <GetLocation locationIds={variation.presentAtLocationIds} />
         </span>
       </div>
       <div className="at-right flex items-center">
