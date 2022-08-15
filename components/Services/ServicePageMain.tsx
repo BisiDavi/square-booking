@@ -1,16 +1,29 @@
 import { AiOutlineHeart } from "react-icons/ai";
+import { useQuery } from "react-query";
 
 import { useAppSelector } from "@/hooks/useRedux";
 import formatCountry from "@/lib/formatCountry";
-import type { serviceItemType } from "@/types/service-type";
 import SearchServices from "@/components/Form/FormElement/SearchServices";
 import ServiceView from "@/components/View/ServiceView";
+
+import type { serviceItemType, serviceType } from "@/types/service-type";
+import { listServices } from "@/requests";
 interface Props {
   service: serviceItemType;
 }
 
 export default function ServicePageMain({ service }: Props) {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
+  const { data, status } = useQuery("listServices", listServices);
+  const serviceData: serviceType =
+    status === "success" ? JSON.parse(data.data) : null;
+
+  const otherServices =
+    status === "success"
+      ? serviceData?.items.filter((services) => services.id !== service.id)
+      : [];
+
+  console.log("otherServices", otherServices);
 
   return (
     <>
@@ -35,6 +48,16 @@ export default function ServicePageMain({ service }: Props) {
               </div>
               <div className="main-service">
                 <ServiceView service={service} />
+                <div className="other-services flex flex-col">
+                  <h4 className="text-center text-2xl font-bold my-2 text-gray-500">
+                    Other Services
+                  </h4>
+                  {otherServices.length > 0
+                    ? otherServices.map((service) => (
+                        <ServiceView key={service.id} service={service} />
+                      ))
+                    : null}
+                </div>
               </div>
             </div>
           </div>

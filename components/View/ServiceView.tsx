@@ -8,8 +8,8 @@ interface Props {
 
 export default function ServiceView({ service }: Props) {
   return (
-    <div>
-      <h4 className="font-bold text-xl">{service.itemData.name}</h4>
+    <div className="serviceview my-2">
+      <h4 className="font-semibold text-xl">{service.itemData.name}</h4>
       <p className="text-md font-medium">{service.itemData.description}</p>
       <ul>
         <h5 className="font-medium text-lg text-center mb-0">Variations</h5>
