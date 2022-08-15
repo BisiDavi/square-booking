@@ -11,13 +11,14 @@ function createSquareCustomer({
   return createCustomer({ email, lastName, firstName });
 }
 
-export default function useSignupMutation() {
-  function useSquareCustomerSignup() {
-    return useRequestMutation(createSquareCustomer, "squareSignupMutation", {
+export default function useCustomerMutation() {
+  function useCreateSquareCustomer() {
+    return useRequestMutation(createSquareCustomer, {
+      mutationKey: "squareSignupMutation",
       success: "Customer created Successfully",
       error: "Error creating customer",
     });
   }
 
-  return { useSquareCustomerSignup };
+  return { useCreateSquareCustomer };
 }

@@ -47,7 +47,7 @@ export default function useFirebase() {
         // Signed in
         const user = userCredential.user;
         console.log("user", user);
-        updateToast(toastId, "success", "Auth sign up successful");
+        updateToast(toastId, "success", "Auth sign in successful");
         toggleModal(null);
       })
       .catch(() => {

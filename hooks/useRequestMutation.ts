@@ -4,34 +4,42 @@ import { useMutation } from "react-query";
 
 import useToast from "@/hooks/useToast";
 
-type toastType = {
+type mutationDataType = {
+  mutationKey: string;
   success: string;
   error: string;
+  onSuccessMethod?: () => void;
+  onErrorMethod?: () => void;
+  onSettledMethod?: () => void;
 };
 
 type mutationFnType = (variables: any) => Promise<any>;
 
 export default function useRequestMutation(
   mutationFn: mutationFnType,
-  mutationKey: string,
-  toast: toastType
+  mutationData: mutationDataType
 ) {
   const { loadingToast, updateToast } = useToast();
   const toastID = useRef(null);
 
   return useMutation(mutationFn, {
-    mutationKey,
+    mutationKey: mutationData.mutationKey,
     onMutate: () => {
       loadingToast(toastID);
     },
-    onSettled: {},
     onSuccess: (data: any) => {
       console.log("response", data);
-      updateToast(toastID, "success", toast.success);
+      if (mutationData.onSuccessMethod) {
+        mutationData.onSuccessMethod();
+      }
+      updateToast(toastID, "success", mutationData.success);
     },
     onError: (err: any) => {
       console.log("err", err);
-      updateToast(toastID, "error", toast.error);
+      if (mutationData.onErrorMethod) {
+        mutationData.onErrorMethod();
+      }
+      updateToast(toastID, "error", mutationData.error);
     },
   });
 }

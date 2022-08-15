@@ -8,7 +8,7 @@ import {
   signupFormSchema,
 } from "@/components/Form/AuthFormSchema";
 import Button from "@/components/UI/Button";
-import useFirebase from "@/hooks/useFirebase";
+import useAuthForm from "@/hooks/useAuthForm";
 
 type formContentType = {
   type: string;
@@ -58,24 +58,23 @@ interface AuthFormProps {
 }
 
 export default function AuthForm({ type }: AuthFormProps) {
-  const { authSignup, authSignIn } = useFirebase();
+  const { onSubmit } = useAuthForm();
+
   const formSchema = type === "signin" ? signinFormSchema : signupFormSchema;
   const methods = useForm({
     mode: "all",
     resolver: yupResolver(formSchema),
   });
-  const onSubmit = (data: any) => {
-    console.log("onsubmit-data", data);
-    return type === "signin"
-      ? authSignIn(data.signinEmail, data.signinPassword)
-      : authSignup(data.signupEmail, data.signupPassword);
-  };
+
   const formData =
     type === "signin" ? authFormContent.signin : authFormContent.signup;
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
+      <form
+        onSubmit={methods.handleSubmit((data) => onSubmit(data, type))}
+        className="w-full"
+      >
         <FormElement formContent={formData} />
         <Button
           text="Submit"
