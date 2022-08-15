@@ -11,6 +11,7 @@ export default function useAuthMutation() {
       ({ email, password }) => authSignup(email, password),
       {
         mutationKey: "useSignupMutation",
+        cacheKey:"useAuthMutation",
         success: "Sign up Successful",
         error: "Sign up error",
       }
@@ -23,6 +24,7 @@ export default function useAuthMutation() {
       {
         mutationKey: "useSigninMutation",
         success: "Sign in successful",
+        cacheKey: "useAuthMutation",
         error: "oops, an error occured",
         onSuccessMethod: () => toggleModal(null),
       }
@@ -33,6 +35,7 @@ export default function useAuthMutation() {
     return useRequestMutation(authSignOut, {
       mutationKey: "useSignoutMutation",
       success: "logout successful",
+      cacheKey: "useAuthMutation",
       error: "oops, an error occured",
     });
   }

@@ -14,7 +14,8 @@ function createSquareCustomer({
 export default function useCustomerMutation() {
   function useCreateSquareCustomer() {
     return useRequestMutation(createSquareCustomer, {
-      mutationKey: "squareSignupMutation",
+      mutationKey: "useCreateSquareCustomer",
+      cacheKey: "useCreateSquareCustomer",
       success: "Customer created Successfully",
       error: "Error creating customer",
     });

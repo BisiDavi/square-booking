@@ -15,7 +15,6 @@ export default function useAuthForm() {
     type: "signin" | "signup",
     methods: { reset: () => void }
   ) => {
-    console.log("onsubmit-data", data, "type", type);
     if (type === "signin") {
       const { signinEmail, signinPassword } = data;
       signinMutate.mutate({ email: signinEmail, password: signinPassword });

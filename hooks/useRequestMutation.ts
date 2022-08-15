@@ -1,13 +1,13 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { useRef } from "react";
 import { useMutation } from "react-query";
-
 import useToast from "@/hooks/useToast";
 
 type mutationDataType = {
   mutationKey: string;
   success: string;
   error: string;
+  cacheKey: string;
   onSuccessMethod?: () => void;
   onErrorMethod?: () => void;
   onSettledMethod?: () => void;
@@ -28,12 +28,13 @@ export default function useRequestMutation(
       loadingToast(toastID);
     },
     onSuccess: (data: any) => {
-      console.log(`response-data-${mutationData.mutationKey}`, data);
+      console.log(`response-data-${mutationData.mutationKey}`, data.data);
       if (mutationData.onSuccessMethod) {
         mutationData.onSuccessMethod();
       }
       updateToast(toastID, "success", mutationData.success);
     },
+    onSettled: () => {},
     onError: (err: any) => {
       console.log("err", err);
       if (mutationData.onErrorMethod) {

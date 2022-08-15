@@ -10,10 +10,11 @@ import NextNProgress from "@/components/Loader/NextNProgress";
 
 export default function Providerlayout({ children }: PropsWithChildren<{}>) {
   const queryClient = new QueryClient();
+
   return (
     <Provider store={store}>
       <NextNProgress color="#4e44c4" />
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient} contextSharing={true}>
         <ToastContainer />
         {children}
         <ReactQueryDevtools initialIsOpen={false} />
