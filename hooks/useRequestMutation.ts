@@ -7,7 +7,6 @@ type mutationDataType = {
   mutationKey: string;
   success: string;
   error: string;
-  cacheKey: string;
   onSuccessMethod?: () => void;
   onErrorMethod?: () => void;
   onSettledMethod?: () => void;
