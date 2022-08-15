@@ -5,9 +5,9 @@ import { useAppSelector } from "@/hooks/useRedux";
 import formatCountry from "@/lib/formatCountry";
 import SearchServices from "@/components/Form/FormElement/SearchServices";
 import ServiceView from "@/components/View/ServiceView";
+import { listServices } from "@/requests";
 
 import type { serviceItemType, serviceType } from "@/types/service-type";
-import { listServices } from "@/requests";
 interface Props {
   service: serviceItemType;
 }
@@ -23,12 +23,10 @@ export default function ServicePageMain({ service }: Props) {
       ? serviceData?.items.filter((services) => services.id !== service.id)
       : [];
 
-  console.log("otherServices", otherServices);
-
   return (
     <>
       {storeProfile && (
-        <div className="w-2/3 bg-white overflow-y-scroll">
+        <div className="w-3/5 bg-white overflow-y-scroll mr-12">
           <div className="image-carousel">
             <div className="h-80 bg-gray-600 w-full rounded-lg" />
             <div className="store">

@@ -16,23 +16,26 @@ function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
   });
   return (
     <div className="team w-">
-      {status === "error"
-        ? "unable to fetch team member"
-        : status === "loading"
-        ? "fetching team member..."
-        : data.data.teamMember.status === "ACTIVE" && (
-            <div className={`${showBorder} w-full`}>
-              <h6>
-                <span className="font-medium mr-1">Name:</span>
-                {data.data.teamMember?.givenName}{" "}
-                {data.data.teamMember?.familyName}
-              </h6>
-              <p>
-                <span className="font-medium mr-1">Email</span>
-                {data.data.teamMember?.emailAddress}
-              </p>
-            </div>
-          )}
+      {status === "error" ? (
+        "unable to fetch team member"
+      ) : status === "loading" ? (
+        "fetching team member..."
+      ) : (
+        <div className={`${showBorder} w-full`}>
+          <h6>
+            <span className="font-medium mr-1">Name:</span>
+            {data.data.teamMember?.givenName} {data.data.teamMember?.familyName}
+          </h6>
+          <p>
+            <span className="font-medium mr-1">Email</span>
+            {data.data.teamMember?.emailAddress}
+          </p>
+          <p>
+            <span className="font-medium mr-1">Status:</span>
+            {data.data.teamMember?.status}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

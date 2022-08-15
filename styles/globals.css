@@ -10,3 +10,7 @@
 .bg-site-purple {
   background-color: var(--site-purple);
 }
+
+.height-max-content {
+  height: max-content;
+}

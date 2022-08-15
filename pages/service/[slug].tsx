@@ -35,7 +35,7 @@ export default function ServicePage({
   return (
     <DefaultLayout>
       <main className="service-page container mx-auto pt-20">
-        <div className="content flex py-4 justify-between">
+        <div className="content flex py-4 justify-between relative w-full">
           <ServicePageMain service={service} />
           <ServicePageSidebar service={service} />
         </div>
