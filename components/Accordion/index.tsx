@@ -41,8 +41,6 @@ export function AccordionItem({
         focus:outline-none
       "
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target={`#${toSlug(title)}`}
           aria-expanded="true"
           aria-controls={toSlug(title)}
         >
@@ -61,7 +59,6 @@ export function AccordionItem({
           id={toSlug(title)}
           className="accordion-collapse collapse show"
           aria-labelledby={toSlug(title)}
-          data-bs-parent="#accordion"
         >
           <div className="accordion-body py-4 px-5">{children}</div>
         </div>

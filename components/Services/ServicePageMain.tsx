@@ -4,7 +4,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 import formatCountry from "@/lib/formatCountry";
 import type { serviceItemType } from "@/types/service-type";
 import SearchServices from "@/components/Form/FormElement/SearchServices";
-import ServiceVariationList from "./ServiceVariationList";
+import ServiceView from "@/components/View/ServiceView";
 interface Props {
   service: serviceItemType;
 }
@@ -34,21 +34,7 @@ export default function ServicePageMain({ service }: Props) {
                 <SearchServices />
               </div>
               <div className="main-service">
-                <h4 className="font-bold text-xl">{service.itemData.name}</h4>
-                <p className="text-md font-medium">
-                  {service.itemData.description}
-                </p>
-                <ul>
-                  <h5 className="font-medium text-lg text-center mb-0">
-                    Variations
-                  </h5>
-                  {service.itemData.variations.map((variation) => (
-                    <ServiceVariationList
-                      variation={variation}
-                      key={variation.id}
-                    />
-                  ))}
-                </ul>
+                <ServiceView service={service} />
               </div>
             </div>
           </div>
