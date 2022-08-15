@@ -28,13 +28,17 @@ function LocationItem({ locationId }: LocationItemProps) {
         : data.data.location.status === "ACTIVE" && (
             <>
               <div className="location flex flex-col">
-                <span>
-                  Address : {data.data.location.address.postalCode},{" "}
+                <div>
+                  <span className="font-medium mr-1">Address:</span>
+                  {data.data.location.address.postalCode},{" "}
                   {data.data.location.address.addressLine1},{" "}
                   {data.data.location.address.locality},{" "}
                   {formatCountry(data.data.location.address.country)}
-                </span>
-                <span>Timezone : {data.data.location.timezone}</span>
+                </div>
+                <div>
+                  <span className="font-medium mr-1">Timezone:</span>
+                  {data.data.location.timezone}
+                </div>
               </div>
             </>
           )}

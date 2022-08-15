@@ -7,26 +7,31 @@ interface Props {
 
 interface GetTeammateProps {
   teamId: string;
+  showBorder: string;
 }
 
-function GetTeammate({ teamId }: GetTeammateProps) {
+function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
   const { data, status } = useQuery(`team-${teamId}`, () => getTeam(teamId), {
     enabled: !!teamId,
   });
   return (
-    <div className="team">
+    <div className="team w-">
       {status === "error"
         ? "unable to fetch team member"
         : status === "loading"
         ? "fetching team member..."
         : data.data.teamMember.status === "ACTIVE" && (
-            <>
+            <div className={`${showBorder} w-full`}>
               <h6>
+                <span className="font-medium mr-1">Name:</span>
                 {data.data.teamMember?.givenName}{" "}
                 {data.data.teamMember?.familyName}
               </h6>
-              <p>{data.data.teamMember?.emailAddress}</p>
-            </>
+              <p>
+                <span className="font-medium mr-1">Email</span>
+                {data.data.teamMember?.emailAddress}
+              </p>
+            </div>
           )}
     </div>
   );
@@ -34,9 +39,12 @@ function GetTeammate({ teamId }: GetTeammateProps) {
 
 export default function GetTeam({ teams }: Props) {
   return (
-    <div className="teams flex flex-col">
-      {teams.map((team) => {
-        return <GetTeammate key={team} teamId={team} />;
+    <div className="teams flex flex-col w-full">
+      {teams.map((team, index) => {
+        const teamLength = Number(teams.length - 1);
+        console.log("teamLength", teamLength, index);
+        const showBorder = index !== teamLength ? "border-b pb-1" : "";
+        return <GetTeammate key={team} teamId={team} showBorder={showBorder} />;
       })}
     </div>
   );

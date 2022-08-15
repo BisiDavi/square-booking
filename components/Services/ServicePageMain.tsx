@@ -15,7 +15,7 @@ export default function ServicePageMain({ service }: Props) {
   return (
     <>
       {storeProfile && (
-        <div className="w-2/3 bg-white">
+        <div className="w-2/3 bg-white overflow-y-scroll">
           <div className="image-carousel">
             <div className="h-80 bg-gray-600 w-full rounded-lg" />
             <div className="store">

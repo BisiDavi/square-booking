@@ -36,39 +36,41 @@ export default function ServiceVariationList({ variation }: Props) {
   return (
     <li
       key={variation.id}
-      className="flex justify-between items-center ml-4 border px-4 my-2"
+      className="flex flex-col justify-between border px-4 pb-4 my-2"
     >
-      <div className="at-left flex flex-col">
+      <div className="w-full justify-between flex items-center my-3">
         <h5 className="text-lg font-semibold">
           {variation.itemVariationData.name}
         </h5>
-        <Accordion>
-          <AccordionItem
-            title="Team"
-            icon={<RiTeamFill className="mr-1 text-xl" />}
-          >
-            <StoreTeam variation={variation} />
-          </AccordionItem>
-          <AccordionItem
-            title="Location"
-            icon={<GoLocation className="mr-1 text-xl" />}
-          >
-            <StoreLocation variation={variation} />
-          </AccordionItem>
-        </Accordion>
+        <div className="flex items-center">
+          <span className="mr-4">
+            <h6 className="font-medium mb-0">
+              {formatPrice(amount, currency)}
+            </h6>
+            <p className="text-gray-700 font-medium text-sm">
+              {formatServicePeriod(serviceDuration)}
+            </p>
+          </span>
+          <Button
+            className="bg-site-purple mx-2 text-white hover:bg-blue-700  py-1 px-3 rounded-md"
+            text="Book"
+          />
+        </div>
       </div>
-      <div className="at-right flex items-center">
-        <span className="mr-4">
-          <h6 className="font-medium mb-0">{formatPrice(amount, currency)}</h6>
-          <p className="text-gray-700 font-medium text-sm">
-            {formatServicePeriod(serviceDuration)}
-          </p>
-        </span>
-        <Button
-          className="bg-site-purple mx-2 text-white hover:bg-blue-700  py-1 px-3 rounded-md"
-          text="Book"
-        />
-      </div>
+      <Accordion>
+        <AccordionItem
+          title="Team"
+          icon={<RiTeamFill className="mr-1 text-xl" />}
+        >
+          <StoreTeam variation={variation} />
+        </AccordionItem>
+        <AccordionItem
+          title="Location"
+          icon={<GoLocation className="mr-1 text-xl" />}
+        >
+          <StoreLocation variation={variation} />
+        </AccordionItem>
+      </Accordion>
     </li>
   );
 }
