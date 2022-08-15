@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "react-query";
-import { useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 import { listServices } from "@/requests";
 import RecommendService from "@/components/Services/RecommendService";
@@ -29,11 +29,11 @@ export default function RecommendServices() {
     return status === "success" ? getServiceCategories(services) : [];
   }, [status]);
 
-  useEffect(() => {
+  useCallback(() => {
     if (serviceCategories === null && status === "success") {
       dispatch(updateServiceCategories(memoizedServiceCategory));
     }
-  }, [dispatch, serviceCategories, memoizedServiceCategory, status]);
+  }, [status]);
 
   return (
     <div className="flex items-center my-8 container mx-auto">

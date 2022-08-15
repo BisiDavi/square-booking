@@ -8,7 +8,7 @@ export default async function CreateCustomerHandler(
   res: NextApiResponse
 ) {
   const { client } = await squareClient();
-  const { email, firstName, lastName } = req.body;
+  const { email, firstName, lastName, idempotencyKey } = req.body;
 
   switch (req.method) {
     case "POST": {
@@ -17,6 +17,7 @@ export default async function CreateCustomerHandler(
           givenName: firstName,
           familyName: lastName,
           emailAddress: email,
+          idempotencyKey,
         });
 
         console.log("result-result", response.result);

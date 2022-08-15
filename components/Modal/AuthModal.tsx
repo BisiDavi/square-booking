@@ -1,9 +1,11 @@
+import { memo } from "react";
+
 import Modal from "@/components/Modal";
 import Tabs from "@/components/Tab";
 import AuthForm from "@/components/Form/AuthForm";
 import useUI from "@/hooks/useUI";
 
-export default function AuthModal() {
+function AuthModalComponent() {
   const { modal, toggleModal } = useUI();
 
   return (
@@ -20,3 +22,6 @@ export default function AuthModal() {
     </Modal>
   );
 }
+
+const AuthModal = memo(AuthModalComponent);
+export default AuthModal;
