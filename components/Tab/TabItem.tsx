@@ -1,3 +1,5 @@
+import toSlug from "@/lib/toSlug";
+
 /* eslint-disable unused-imports/no-unused-vars */
 interface Props {
   setOpenTab: (tab: number) => void;
@@ -15,7 +17,7 @@ export default function TabItem({ setOpenTab, openTab, index, text }: Props) {
         className={`text-xs font-bold uppercase px-5 py-3 ${tabActiveClassName} shadow-lg rounded block leading-normal`}
         onClick={() => setOpenTab(index)}
         data-toggle="tab"
-        href={`#link${index}`}
+        href={`#${toSlug(text)}`}
         role="tablist"
       >
         {text}
