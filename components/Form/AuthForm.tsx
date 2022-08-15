@@ -72,7 +72,7 @@ export default function AuthForm({ type }: AuthFormProps) {
   return (
     <FormProvider {...methods}>
       <form
-        onSubmit={methods.handleSubmit((data) => onSubmit(data, type))}
+        onSubmit={methods.handleSubmit((data) => onSubmit(data, type, methods))}
         className="w-full"
       >
         <FormElement formContent={formData} />

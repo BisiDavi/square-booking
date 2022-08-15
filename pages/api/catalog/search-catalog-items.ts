@@ -15,8 +15,6 @@ export default async function Handler(
         const response = await client.catalogApi.searchCatalogItems({
           productTypes: ["APPOINTMENTS_SERVICE"],
         });
-
-        console.log("result-result", response.result.items);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);

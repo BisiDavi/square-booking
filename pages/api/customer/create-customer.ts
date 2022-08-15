@@ -19,8 +19,6 @@ export default async function CreateCustomerHandler(
           emailAddress: email,
           idempotencyKey,
         });
-
-        console.log("result-result", response.result);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);

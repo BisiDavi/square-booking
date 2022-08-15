@@ -28,7 +28,7 @@ export default function useRequestMutation(
       loadingToast(toastID);
     },
     onSuccess: (data: any) => {
-      console.log("response", data);
+      console.log(`response-data-${mutationData.mutationKey}`, data);
       if (mutationData.onSuccessMethod) {
         mutationData.onSuccessMethod();
       }

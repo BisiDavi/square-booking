@@ -4,7 +4,6 @@ import useUI from "@/hooks/useUI";
 
 export default function useAuthMutation() {
   const { toggleModal } = useUI();
-
   const { authSignup, authSignIn, authSignOut } = useAuth();
 
   function useSignupMutation() {
@@ -14,7 +13,6 @@ export default function useAuthMutation() {
         mutationKey: "useSignupMutation",
         success: "Sign up Successful",
         error: "Sign up error",
-        onSuccessMethod: () => toggleModal(null),
       }
     );
   }
