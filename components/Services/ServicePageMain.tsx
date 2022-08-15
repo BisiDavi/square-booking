@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default function ServicePageMain({ service }: Props) {
-  console.log("servicefdfs", service);
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (

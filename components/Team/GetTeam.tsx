@@ -13,7 +13,6 @@ function GetTeammate({ teamId }: GetTeammateProps) {
   const { data, status } = useQuery(`team-${teamId}`, () => getTeam(teamId), {
     enabled: !!teamId,
   });
-  console.log("data", data);
   return (
     <div className="team">
       {status === "error"

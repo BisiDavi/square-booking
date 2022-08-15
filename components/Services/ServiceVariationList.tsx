@@ -6,11 +6,28 @@ import { formatServicePeriod } from "@/lib/formatTime";
 import Button from "@/components/UI/Button";
 import GetTeam from "@/components/Team/GetTeam";
 import GetLocation from "@/components/Location/GetLocation";
+import Accordion, { AccordionItem } from "@/components/Accordion";
 
 import type { serviceItemType } from "@/types/service-type";
 
 interface Props {
   variation: serviceItemType["itemData"]["variations"][0];
+}
+
+function StoreTeam({ variation }: Props) {
+  return (
+    <span className="flex items-center">
+      <GetTeam teams={variation.itemVariationData.teamMemberIds} />
+    </span>
+  );
+}
+
+function StoreLocation({ variation }: Props) {
+  return (
+    <span className="flex items-center">
+      <GetLocation locationIds={variation.presentAtLocationIds} />
+    </span>
+  );
 }
 
 export default function ServiceVariationList({ variation }: Props) {
@@ -25,14 +42,20 @@ export default function ServiceVariationList({ variation }: Props) {
         <h5 className="text-lg font-semibold">
           {variation.itemVariationData.name}
         </h5>
-        <span className="flex items-center">
-          <RiTeamFill className="mr-1 text-xl" /> Team:{" "}
-          <GetTeam teams={variation.itemVariationData.teamMemberIds} />
-        </span>
-        <span className="flex items-center">
-          <GoLocation className="mr-1 text-xl" /> Location:{" "}
-          <GetLocation locationIds={variation.presentAtLocationIds} />
-        </span>
+        <Accordion>
+          <AccordionItem
+            title="Team"
+            icon={<RiTeamFill className="mr-1 text-xl" />}
+          >
+            <StoreTeam variation={variation} />
+          </AccordionItem>
+          <AccordionItem
+            title="Location"
+            icon={<GoLocation className="mr-1 text-xl" />}
+          >
+            <StoreLocation variation={variation} />
+          </AccordionItem>
+        </Accordion>
       </div>
       <div className="at-right flex items-center">
         <span className="mr-4">
