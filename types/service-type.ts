@@ -20,10 +20,9 @@ export type serviceItemType = {
       {
         type: string;
         id: string;
-        updated_at: string;
-        created_at: string;
+        updatedAt: string;
         version: string;
-        is_deleted: false;
+        isDeleted: false;
         presentAtAllLocations: false;
         presentAtLocationIds: string[];
         itemVariationData: {
