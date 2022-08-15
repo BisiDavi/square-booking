@@ -2,8 +2,8 @@
 
 - [x] Call the Locations API to list and retrieve business locations for the user to choose from for a particular booking.
 
-[ ] Call the Catalog API to create, list, or search for services that can be booked by customers online.
-- [x] list services from Catalog API 
+- [ ] Call the Catalog API to create, list, or search for services that can be booked by customers online.
+- [x] list services from Catalog API
 
 - [ ] Call the Customers API to create or search for a customer profile representing the user to receive the service for a booking.
 
