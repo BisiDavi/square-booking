@@ -15,6 +15,7 @@ export default function useCustomerMutation() {
     return useRequestMutation(createSquareCustomer, {
       mutationKey: "useCreateSquareCustomer",
       success: "Customer created Successfully",
+      // onSettledMethodWithData: () => null,
       error: "Error creating customer",
     });
   }
