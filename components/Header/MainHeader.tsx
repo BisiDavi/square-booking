@@ -3,9 +3,14 @@ import { BsPersonCircle } from "react-icons/bs";
 import Button from "@/components/UI/Button";
 import Logo from "@/components/Logo";
 import useUI from "@/hooks/useUI";
+import useFirebase from "@/hooks/useFirebase";
 
 export default function MainHeader() {
   const { toggleModal } = useUI();
+  const { getAuthdetails } = useFirebase();
+
+  const authDetails = getAuthdetails();
+  console.log("authDetails", authDetails);
 
   return (
     <header className="bg-gray-900 py-2 w-full h-30 fixed z-50">

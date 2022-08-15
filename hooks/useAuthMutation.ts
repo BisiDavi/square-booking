@@ -8,7 +8,8 @@ export default function useAuthMutation() {
 
   function useSignupMutation() {
     return useRequestMutation(
-      ({ email, password }) => authSignup(email, password),
+      ({ email, password, firstName, lastName }) =>
+        authSignup(email, password, firstName, lastName),
       {
         mutationKey: "useSignupMutation",
         success: "Sign up Successful",

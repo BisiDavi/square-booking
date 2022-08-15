@@ -21,7 +21,7 @@ export default function useAuthForm() {
     } else if (type === "signup") {
       const { signupEmail, signupPassword, firstName, lastName } = data;
       signupMutate.mutate(
-        { email: signupEmail, password: signupPassword },
+        { email: signupEmail, password: signupPassword, firstName, lastName },
         {
           onSuccess: () => {
             createCustomerMutate.mutate({

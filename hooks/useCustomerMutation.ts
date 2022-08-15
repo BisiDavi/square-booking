@@ -1,4 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import { createCustomer } from "@/requests";
 import type { createCustomerType } from "@/types/request-types";
 import useRequestMutation from "@/hooks/useRequestMutation";
