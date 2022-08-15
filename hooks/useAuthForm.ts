@@ -1,7 +1,6 @@
 import useAuthMutation from "@/hooks/useAuthMutation";
 import useCustomerMutation from "@/hooks/useCustomerMutation";
 import useUI from "@/hooks/useUI";
-import firebaseDB from "@/lib/firebaseDB";
 
 export default function useAuthForm() {
   const { useSignupMutation, useSigninMutation } = useAuthMutation();
@@ -25,32 +24,11 @@ export default function useAuthForm() {
         { email: signupEmail, password: signupPassword, firstName, lastName },
         {
           onSuccess: () => {
-            createCustomerMutate.mutate(
-              {
-                email: signupEmail,
-                firstName,
-                lastName,
-              },
-              {
-                onSuccess: (data: any) => {
-                  console.log("data", data);
-                  if (typeof data.data === "object") {
-                    const stringifyData = JSON.stringify(data?.data);
-                    const { writeData } = firebaseDB();
-                    writeData(
-                      stringifyData,
-                      `/users/user/${data.data.customer.id}`
-                    );
-                  } else if (typeof data?.data === "string") {
-                    const { writeData } = firebaseDB();
-                    writeData(
-                      data.data,
-                      `/users/user/${data.data.customer.id}`
-                    );
-                  }
-                },
-              }
-            );
+            createCustomerMutate.mutate({
+              email: signupEmail,
+              firstName,
+              lastName,
+            });
             toggleModal(null);
           },
           onError: () => {

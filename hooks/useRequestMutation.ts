@@ -1,6 +1,7 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { useRef } from "react";
 import { useMutation } from "react-query";
+
 import useToast from "@/hooks/useToast";
 
 type mutationDataType = {
@@ -8,6 +9,7 @@ type mutationDataType = {
   success: string;
   error: string;
   onSuccessMethod?: () => void;
+  onSuccessMethodWithData?: (data: any) => void;
   onErrorMethod?: () => void;
   onSettledMethod?: () => void;
 };
@@ -31,9 +33,11 @@ export default function useRequestMutation(
       if (mutationData.onSuccessMethod) {
         mutationData.onSuccessMethod();
       }
+      if (mutationData.onSuccessMethodWithData) {
+        mutationData.onSuccessMethodWithData(data?.data);
+      }
       updateToast(toastID, "success", mutationData.success);
     },
-    onSettled: () => {},
     onError: (err: any) => {
       console.log("err", err);
       if (mutationData.onErrorMethod) {

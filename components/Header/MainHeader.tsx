@@ -18,7 +18,6 @@ export default function MainHeader() {
   }
 
   const authDetails = getAuthdetails();
-  console.log("authDetails", authDetails);
   const authDetailsArray = Object.values(authDetails);
 
   return (

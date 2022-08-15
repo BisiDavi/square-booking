@@ -1,4 +1,3 @@
-import { initializeApp } from "firebase/app";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,10 +7,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-import { firebaseConfig } from "@/lib/firebaseConfig";
+import useFirebase from "@/hooks/useFirebase";
 
 export default function useAuth() {
-  const app = initializeApp(firebaseConfig);
+  const { initFB } = useFirebase();
+  const app = initFB();
 
   async function authSignup(
     email: string,

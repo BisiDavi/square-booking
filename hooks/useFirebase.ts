@@ -1,11 +1,24 @@
-import { initializeApp } from "firebase/app";
+import { getApp, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 import { firebaseConfig } from "@/lib/firebaseConfig";
 
+const createFirebaseApp = (config = {}) => {
+  try {
+    return getApp();
+  } catch (err) {
+    return initializeApp(config);
+  }
+};
+
 export default function useFirebase() {
+  function initFB() {
+    const app = createFirebaseApp(firebaseConfig);
+    return app;
+  }
   function getAuthdetails() {
-    const app = initializeApp(firebaseConfig);
+    const app = initFB();
     const auth = getAuth(app);
     const user = auth.currentUser;
     const currentUser: any = {};
@@ -19,5 +32,25 @@ export default function useFirebase() {
     return currentUser;
   }
 
-  return { getAuthdetails };
+  function initializeDB() {
+    const app = initFB();
+    const db = getDatabase(app);
+    return db;
+  }
+
+  function writeData(data: any, dbNode: string) {
+    const db = initializeDB();
+    return set(ref(db, dbNode), data);
+  }
+
+  function readData(dbNode: string) {
+    const db = initializeDB();
+    const dataRef = ref(db, dbNode);
+    onValue(dataRef, (snapshot) => {
+      const data = snapshot.val();
+      return data;
+    });
+  }
+
+  return { getAuthdetails, initFB, writeData, readData };
 }
