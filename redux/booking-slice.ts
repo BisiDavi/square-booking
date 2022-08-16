@@ -4,19 +4,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { BookingStateType } from "@/types/redux-types";
 
 const initialState: BookingStateType = {
-  date: undefined,
-  time: null,
+  bookingDate: undefined,
+  bookingTime: null,
 };
 
 const BookingSlice = createSlice({
   name: "Booking",
   initialState,
   reducers: {
-    updateDate(state, action: PayloadAction<BookingStateType["date"]>) {
-      state.date = action.payload;
+    updateDate(state, action: PayloadAction<BookingStateType["bookingDate"]>) {
+      state.bookingDate = action.payload;
     },
-    updateTime(state, action: PayloadAction<BookingStateType["time"]>) {
-      state.time = action.payload;
+    updateTime(state, action: PayloadAction<BookingStateType["bookingTime"]>) {
+      state.bookingTime = action.payload;
     },
   },
 });

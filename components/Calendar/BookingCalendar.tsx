@@ -6,7 +6,7 @@ import { updateDate } from "@/redux/booking-slice";
 import "react-day-picker/dist/style.css";
 
 export default function BookingCalendar() {
-  const { date: bookingDate } = useAppSelector((state) => state.Booking);
+  const { bookingDate } = useAppSelector((state) => state.Booking);
   const dispatch = useAppDispatch();
 
   function selectDateHandler(date: any) {

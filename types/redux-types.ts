@@ -4,6 +4,6 @@ export type UIStateType = {
 };
 
 export type BookingStateType = {
-  date: Date | undefined;
-  time: string | null;
+  bookingDate: Date | undefined;
+  bookingTime: string | null;
 };
