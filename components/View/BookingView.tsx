@@ -111,7 +111,11 @@ export default function BookingView() {
           </>
         )}
       </div>
-      <BookingSidebar />
+      <BookingSidebar
+        serviceDuration={
+          catalogData?.itemData.variations[0].itemVariationData.serviceDuration
+        }
+      />
     </div>
   );
 }

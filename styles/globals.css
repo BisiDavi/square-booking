@@ -11,6 +11,10 @@
   background-color: var(--site-purple);
 }
 
+.hover-bg-site-purple:hover {
+  background-color: var(--site-purple);
+}
+
 .height-max-content {
   height: max-content;
 }
