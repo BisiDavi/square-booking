@@ -21,7 +21,7 @@ export default function TimePill({ time }: TimePillProps) {
   const validTime = `${amPm}:${getSecondString} ${amPmPeriod}`;
 
   function selectTimeHandler(time: string) {
-    if (bookingDate === null) {
+    if (bookingDate === undefined) {
       toast.info("Please select a booking date");
     } else {
       dispatch(updateTime(time));

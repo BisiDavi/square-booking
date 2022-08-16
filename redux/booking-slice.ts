@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { BookingStateType } from "@/types/redux-types";
 
 const initialState: BookingStateType = {
-  date: null,
+  date: undefined,
   time: null,
 };
 
