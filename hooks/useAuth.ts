@@ -27,7 +27,10 @@ export default function useAuth() {
             userCredential
           );
           const user = userCredential.user;
-          writeData(JSON.stringify(user.providerData[0]), `/users/${user.uid}/fb/`);
+          writeData(
+            JSON.stringify(user.providerData[0]),
+            `/users/${user.uid}/fb/`
+          );
         }
       );
       return await updateProfile(auth.currentUser, {
