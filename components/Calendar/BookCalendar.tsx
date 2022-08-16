@@ -7,12 +7,14 @@ import "react-day-picker/dist/style.css";
 export default function BookCalendar() {
   const [selected, setSelected] = useState<Date>();
 
-  let footer = <p>Please pick a day.</p>;
+  let footer = (
+    <p className="text-red-500 font-bold text-md mt-4">Please pick a day.</p>
+  );
   if (selected) {
     footer = (
       <p className="font-bold text-green-500 text-md mt-4">
         {" "}
-        {format(selected, "PP")} Selected.
+        {format(selected, "PP")} selected.
       </p>
     );
   }

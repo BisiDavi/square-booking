@@ -2,7 +2,7 @@
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
-import { BiLoaderCircle } from "react-icons/bi";
+import { BiLoaderCircle, BiTimeFive } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
 
 import Button from "@/components/UI/Button";
@@ -10,6 +10,9 @@ import GetLocation from "@/components/Location/GetLocation";
 import BookingSidebar from "@/components/Sidebar/BookingSidebar";
 import { getACatalogObject } from "@/requests";
 import GetStaff from "@/components/Team/GetStaff";
+import formatPrice from "@/lib/formatPrice";
+import { formatServicePeriod } from "@/lib/formatTime";
+import { IoPricetag } from "react-icons/io5";
 
 export default function BookingView() {
   const router = useRouter();
@@ -28,8 +31,9 @@ export default function BookingView() {
   const catalogData =
     status === "success" ? JSON.parse(data?.data).object : null;
 
-  console.log("catalogData", catalogData);
   const staffId: any = router.query.teamMember;
+
+  console.log("catalogData", catalogData);
 
   return (
     <div className="content container flex items-start mx-auto py-4 pt-24">
@@ -65,6 +69,28 @@ export default function BookingView() {
                 <span className="font-bold text-gray-800 mr-2">
                   <GetLocation locationIds={catalogData.presentAtLocationIds} />
                 </span>
+              </div>
+              <div className="mr-4 flex items-center justify-between">
+                <h6 className="font-medium mb-0">
+                  <span className="flex items-center">
+                    <IoPricetag className="mr-1" />
+                    {formatPrice(
+                      catalogData.itemData.variations[0].itemVariationData
+                        .priceMoney.amount,
+                      catalogData.itemData.variations[0].itemVariationData
+                        .priceMoney.currency
+                    )}{" "}
+                  </span>
+                </h6>
+                <h6 className="font-medium">
+                  <span className="flex items-center">
+                    <BiTimeFive className="mr-1 text-xl" />
+                    {formatServicePeriod(
+                      catalogData.itemData.variations[0].itemVariationData
+                        .serviceDuration
+                    )}
+                  </span>
+                </h6>
               </div>
             </div>
             <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
