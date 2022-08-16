@@ -9,6 +9,7 @@ import StoreLocation from "@/components/Location/StoreLocation";
 import StoreTeam from "@/components/Team/StoreTeam";
 
 import type { serviceItemType } from "@/types/service-type";
+import { useState } from "react";
 
 interface Props {
   variation: serviceItemType["itemData"]["variations"][0];
@@ -18,6 +19,13 @@ export default function ServiceVariationList({ variation }: Props) {
   const { presentAtLocationIds, itemVariationData } = variation;
   const { priceMoney, serviceDuration, teamMemberIds } = itemVariationData;
   const { amount, currency } = priceMoney;
+
+  const [teamAccordion, setTeamAccordion] = useState(false);
+
+
+  function toggleAccordionHandler() {
+    setTeamAccordion(true);
+  }
 
   return (
     <li
@@ -40,6 +48,7 @@ export default function ServiceVariationList({ variation }: Props) {
           <Button
             className="bg-site-purple mx-2 text-white hover:bg-blue-700  py-1 px-3 rounded-md"
             text="Book"
+            onClick={toggleAccordionHandler}
           />
         </div>
       </div>
@@ -48,6 +57,8 @@ export default function ServiceVariationList({ variation }: Props) {
           <AccordionItem
             title="Team"
             icon={<RiTeamFill className="mr-1 text-xl" />}
+            accordion={teamAccordion}
+            setTeamAccordion={setTeamAccordion}
           >
             <StoreTeam teamMemberIds={teamMemberIds} />
           </AccordionItem>

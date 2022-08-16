@@ -1,3 +1,4 @@
 export type UIStateType = {
-  modal: null | "auth-modal";
+  modal: "auth-modal" | null;
+  accordion: string | null;
 };

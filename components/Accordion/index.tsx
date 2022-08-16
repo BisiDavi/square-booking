@@ -1,22 +1,32 @@
-import toSlug from "@/lib/toSlug";
 import { PropsWithChildren, useState } from "react";
-import { BsArrowDownCircle, BsArrowUpCircle } from "react-icons/bs";
+
+import toSlug from "@/lib/toSlug";
+import AccordionBody from "@/components/Accordion/AccordionBody";
+import AccordionItemButton from "./AccordionItemButton";
 
 interface AccordionItemProps {
   icon?: JSX.Element;
   title: string;
+  accordion?: boolean;
+  setTeamAccordion?: any;
 }
 
 export function AccordionItem({
   title,
   icon,
   children,
+  accordion,
+  setTeamAccordion,
 }: PropsWithChildren<AccordionItemProps>) {
   const [showAccordion, setShowAccordion] = useState(false);
-
   function toggleAccordion() {
-    setShowAccordion((prevState) => !prevState);
+    if (title === "Team") {
+      setTeamAccordion((prevState: boolean) => !prevState);
+    } else {
+      setShowAccordion((prevState) => !prevState);
+    }
   }
+
   const headerClassName = showAccordion ? "border-b" : "";
   return (
     <div className="accordion-item bg-white border border-gray-200 my-1 rounded-md">
@@ -47,21 +57,17 @@ export function AccordionItem({
           {icon} {title}
         </button>
         <button>
-          {showAccordion ? (
-            <BsArrowUpCircle className="text-2xl" />
+          {title === "Team" && accordion ? (
+            <AccordionItemButton showAccordion={accordion} />
           ) : (
-            <BsArrowDownCircle className="text-2xl" />
+            <AccordionItemButton showAccordion={showAccordion} />
           )}
         </button>
       </h2>
-      {showAccordion && (
-        <div
-          id={toSlug(title)}
-          className="accordion-collapse collapse show"
-          aria-labelledby={toSlug(title)}
-        >
-          <div className="accordion-body py-4 px-5">{children}</div>
-        </div>
+      {title === "Team" && accordion ? (
+        <AccordionBody title={title}>{children}</AccordionBody>
+      ) : (
+        showAccordion && <AccordionBody title={title}>{children}</AccordionBody>
       )}
     </div>
   );

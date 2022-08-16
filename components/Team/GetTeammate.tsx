@@ -19,7 +19,7 @@ export default function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
     ? "bg-red-500 hover:bg-red-400"
     : "bg-gray-500";
 
-  const disableButton = statusCheck ? true : false;
+  const disableButton = !statusCheck ? true : false;
 
   const buttonText = statusCheck ? "Book me" : "Not available";
 

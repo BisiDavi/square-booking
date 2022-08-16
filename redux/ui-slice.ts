@@ -5,6 +5,7 @@ import type { UIStateType } from "@/types/redux-types";
 
 const initialState: UIStateType = {
   modal: null,
+  accordion: null,
 };
 
 const UISlice = createSlice({
@@ -14,8 +15,11 @@ const UISlice = createSlice({
     updateModal(state, action: PayloadAction<UIStateType["modal"]>) {
       state.modal = action.payload;
     },
+    toggleAccordion(state, action: PayloadAction<string | null>) {
+      state.accordion = action.payload;
+    },
   },
 });
 
-export const { updateModal } = UISlice.actions;
+export const { updateModal, toggleAccordion } = UISlice.actions;
 export default UISlice.reducer;
