@@ -35,6 +35,12 @@ export default function BookingView() {
 
   console.log("catalogData", catalogData);
 
+  const availabilityCheck =
+    catalogData?.itemData?.variations[0]?.itemVariationData;
+  const availabiltyClassName = availabilityCheck
+    ? "bg-green-600"
+    : "bg-red-600 ";
+
   return (
     <div className="content container flex items-start mx-auto py-4 pt-24">
       <div className="w-3/5">
@@ -53,8 +59,16 @@ export default function BookingView() {
           "loading..."
         ) : (
           <>
-            <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
-              <div className="flex-col text-gray-600 font-bold flex my-2">
+            <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100 relative">
+              <div
+                className={`tag ${availabiltyClassName} rounded-md absolute px-2 py-1 text-xs top-2 right-2 text-white`}
+              >
+                {catalogData.itemData.variations[0].itemVariationData
+                  .availableForBooking
+                  ? "AVAILABLE FOR BOOKING"
+                  : "NOT AVAILABLE"}
+              </div>
+              <div className="flex-col text-gray-600 font-bold flex my-2 ">
                 <span className="flex items-center text-md">
                   <BiLoaderCircle className="mr-2 text-xl" /> Service{" "}
                 </span>
