@@ -4,19 +4,19 @@ interface Props {
   type?: "button" | "submit" | "reset";
   text: string;
   icon?: JSX.Element;
+  disabled?:boolean
 }
 
-export default function Button({
-  className,
-  onClick,
-  type,
-  text,
-  icon,
-}: Props) {
+export default function Button({ className, onClick, type, text, icon, disabled }: Props) {
   const buttonType = type ? type : "button";
   return (
     <>
-      <button className={className} onClick={onClick} type={buttonType}>
+      <button
+        className={className}
+        onClick={onClick}
+        type={buttonType}
+        disabled={disabled}
+      >
         {icon} {text}
       </button>
     </>
