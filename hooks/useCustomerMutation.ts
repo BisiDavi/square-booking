@@ -12,25 +12,32 @@ function createSquareCustomer({
   return createCustomer({ email, lastName, firstName });
 }
 
-function saveCustomerToDb(writeData: any, data: any) {
-  console.log("typeof data", typeof data);
+function saveCustomerToDb(writeData: any, getAuthdetails: any, data: any) {
+  const authDetails = getAuthdetails();
+  const uid = authDetails.uid;
   if (typeof data === "object") {
     const stringifyData = JSON.stringify(data);
-    writeData(stringifyData, `/users/user/${data.customer.id}`);
+    writeData(
+      stringifyData,
+      `/users/${uid}/square/customer/${data.customer.id}`
+    );
   } else if (typeof data === "string") {
     const responseData: any = JSON.parse(data);
-    console.log("responseData", responseData);
-    writeData(data, `/users/${responseData?.customer.id}`);
+    writeData(
+      data,
+      `/users/${uid}/square/customer/${responseData.customer.id}`
+    );
   }
 }
 
 export default function useCustomerMutation() {
-  const { writeData } = useFirebase();
+  const { writeData, getAuthdetails } = useFirebase();
   function useCreateSquareCustomer() {
     return useRequestMutation(createSquareCustomer, {
       mutationKey: "useCreateSquareCustomer",
       success: "Customer created Successfully",
-      onSuccessMethodWithData: (data: any) => saveCustomerToDb(writeData, data),
+      onSuccessMethodWithData: (data: any) =>
+        saveCustomerToDb(writeData, getAuthdetails, data),
       error: "Error creating customer",
     });
   }

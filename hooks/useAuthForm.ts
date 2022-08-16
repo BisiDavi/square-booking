@@ -15,26 +15,26 @@ export default function useAuthForm() {
     type: "signin" | "signup",
     methods: { reset: () => void }
   ) => {
-    if (type === "signin") {
+    if (type === "signin") {  
       const { signinEmail, signinPassword } = data;
       signinMutate.mutate({ email: signinEmail, password: signinPassword });
     } else if (type === "signup") {
       const { signupEmail, signupPassword, firstName, lastName } = data;
       signupMutate.mutate(
-        { email: signupEmail, password: signupPassword, firstName, lastName }
-        // {
-        //   onSuccess: () => {
-        //     createCustomerMutate.mutate({
-        //       email: signupEmail,
-        //       firstName,
-        //       lastName,
-        //     });
-        //     toggleModal(null);
-        //   },
-        //   onError: () => {
-        //     methods.reset();
-        //   },
-        // }
+        { email: signupEmail, password: signupPassword, firstName, lastName },
+        {
+          onSuccess: () => {
+            createCustomerMutate.mutate({
+              email: signupEmail,
+              firstName,
+              lastName,
+            });
+            toggleModal(null);
+          },
+          onError: () => {
+            methods.reset();
+          },
+        }
       );
     }
   };
