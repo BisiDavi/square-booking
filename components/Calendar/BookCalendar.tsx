@@ -29,6 +29,7 @@ export default function BookCalendar() {
       from: new Date(1978, 0, 1),
       to: new Date(currentYear, currentMonth, calenderDate),
     },
+    "SUNDAY",
   ];
   return (
     <DayPicker

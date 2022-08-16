@@ -3,6 +3,7 @@ import { AiOutlineWarning } from "react-icons/ai";
 
 import BookCalendar from "@/components/Calendar/BookCalendar";
 import { useAppSelector } from "@/hooks/useRedux";
+import PickServiceTime from "@/components/Services/PickServiceTime";
 
 export default function BookingSidebar() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
@@ -22,6 +23,7 @@ export default function BookingSidebar() {
           {storeProfile?.timezone} time.
         </p>
       </div>
+      {storeProfile && <PickServiceTime />}
     </div>
   );
 }

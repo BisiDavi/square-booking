@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { BiLoaderCircle, BiTimeFive } from "react-icons/bi";
 import { GoLocation } from "react-icons/go";
+import { IoPricetag } from "react-icons/io5";
 
 import Button from "@/components/UI/Button";
 import GetLocation from "@/components/Location/GetLocation";
@@ -12,7 +13,6 @@ import { getACatalogObject } from "@/requests";
 import GetStaff from "@/components/Team/GetStaff";
 import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";
-import { IoPricetag } from "react-icons/io5";
 
 export default function BookingView() {
   const router = useRouter();
@@ -32,8 +32,6 @@ export default function BookingView() {
     status === "success" ? JSON.parse(data?.data).object : null;
 
   const staffId: any = router.query.teamMember;
-
-  console.log("catalogData", catalogData);
 
   const availabilityCheck =
     catalogData?.itemData?.variations[0]?.itemVariationData;

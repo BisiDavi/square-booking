@@ -19,3 +19,11 @@
   margin: 5px 10px;
   border: 1px solid;
 }
+
+.rdp-cell .rdp-day_selected:not([disabled]),
+.rdp-day_selected:focus:not([disabled]),
+.rdp-day_selected:active:not([disabled]),
+.rdp-day_selected:hover:not([disabled]) {
+  color: white;
+  background-color: var(--site-purple);
+}
