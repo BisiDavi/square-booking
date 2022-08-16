@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { AiOutlineWarning } from "react-icons/ai";
 
-import BookCalendar from "@/components/Calendar/BookCalendar";
+import BookingCalendar from "@/components/Calendar/BookingCalendar";
 import { useAppSelector } from "@/hooks/useRedux";
 import PickServiceTime from "@/components/Services/PickServiceTime";
 import { formatServicePeriod } from "@/lib/formatTime";
@@ -20,7 +20,7 @@ export default function BookingSidebar({ serviceDuration }: Props) {
   return (
     <div className="w-2/5 bg-gray-100 flex flex-col items-center justify-center">
       <div className="calender-wrapper border border-gray-400 rounded-lg my-6">
-        <BookCalendar />
+        <BookingCalendar />
       </div>
       <h4 className="font-bold text-lg text-gray-500 mb-0">
         Select Appointment Time

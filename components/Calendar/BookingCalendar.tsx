@@ -4,7 +4,7 @@ import { DayPicker } from "react-day-picker";
 
 import "react-day-picker/dist/style.css";
 
-export default function BookCalendar() {
+export default function BookingCalendar() {
   const [selected, setSelected] = useState<Date>();
 
   let footer = (
@@ -14,7 +14,7 @@ export default function BookCalendar() {
     footer = (
       <p className="font-bold text-green-500 text-md mt-4">
         {" "}
-        {format(selected, "PP")} selected.
+        {format(selected, "PP")} selected
       </p>
     );
   }
