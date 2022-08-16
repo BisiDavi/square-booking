@@ -8,11 +8,11 @@ import squareClient from "@/lib/squareClient";
 import { useAppDispatch } from "@/redux/store";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import ServicePageSidebar from "@/components/Sidebar/ServicePageSidebar";
+import ServicePageMain from "@/components/Services/ServicePageMain";
 
 import type { GetServerSideProps } from "next";
 import type { serviceItemType } from "@/types/service-type";
 import type { storeProfileType } from "@/types/store-types";
-import ServicePageMain from "@/components/Services/ServicePageMain";
 
 interface Props {
   service: serviceItemType;

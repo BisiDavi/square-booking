@@ -4,8 +4,9 @@ import { useRouter } from "next/router";
 
 import { getTeam } from "@/requests";
 import Button from "@/components/UI/Button";
-import type { serviceItemType } from "@/types/service-type";
 import toSlug from "@/lib/toSlug";
+
+import type { serviceItemType } from "@/types/service-type";
 
 interface GetTeammateProps {
   teamId: string;
@@ -38,17 +39,18 @@ export default function GetTeammate({
 
   const buttonText = statusCheck ? "Book me" : "Not available";
 
-  // ?id=variation.itemVariationData.itemId,teamMember
   function bookMeHandler() {
     router.query.teamMember = teamId;
     router.query.slug = serviceId;
     router.query.id = variation.itemVariationData.itemId;
-    router.push(router).then((responseData) => {
-      console.log("responseData", responseData);
+    router.push(router).then(() => {
       toast.success(
         `${data.data.teamMember?.givenName} ${data.data.teamMember?.familyName} selected`
       );
       toast.success(`${service} selected`);
+      router.push(
+        `/book/${router.query.slug}?id=${router.query.id}&teamMember=${router.query.teamMember}`
+      );
     });
   }
 
