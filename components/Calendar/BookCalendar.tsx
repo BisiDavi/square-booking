@@ -11,8 +11,17 @@ export default function BookCalendar() {
   if (selected) {
     footer = <p>You picked {format(selected, "PP")}.</p>;
   }
+  const currentFullDate = new Date();
+  const currentDate = currentFullDate.getDate();
+  const currentMonth = currentFullDate.getMonth();
+  const currentYear = currentFullDate.getFullYear();
+  const calenderDate = currentDate - 1;
+
   const disabledDays = [
-    { from: new Date(1978, 0, 1), to: new Date(2022, 7, 15) },
+    {
+      from: new Date(1978, 0, 1),
+      to: new Date(currentYear, currentMonth, calenderDate),
+    },
   ];
   return (
     <DayPicker

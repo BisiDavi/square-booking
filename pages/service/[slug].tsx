@@ -51,7 +51,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const response = await client.catalogApi.retrieveCatalogObject(serviceId);
     const storeProfileData = await client.locationsApi.listLocations();
 
-    console.log(response.result);
     const serviceResult = formatBigInt(response.result);
     const parsedServiceResult = JSON.parse(serviceResult);
 

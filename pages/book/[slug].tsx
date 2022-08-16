@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import { useRouter } from "next/router";
 
 import { useAppSelector } from "@/hooks/useRedux";
 import DefaultLayout from "@/layout/Default-layout";
+import BookCalendar from "@/components/Calendar/BookCalendar";
+import Button from "@/components/UI/Button";
+import { updateStoreProfile } from "@/redux/store-profile-slice";
 import squareClient from "@/lib/squareClient";
 import { useAppDispatch } from "@/redux/store";
-import BookCalendar from "@/components/Calendar/BookCalendar";
-import { updateStoreProfile } from "@/redux/store-profile-slice";
 
 import type { GetServerSideProps } from "next";
 import type { storeProfileType } from "@/types/store-types";
-import Button from "@/components/UI/Button";
-import { useRouter } from "next/router";
 
 interface Props {
   storeProfile: storeProfileType;
