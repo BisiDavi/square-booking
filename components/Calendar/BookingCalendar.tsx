@@ -1,20 +1,28 @@
-import { format } from "date-fns";
-import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
+import { useAppSelector, useAppDispatch } from "@/hooks/useRedux";
+
 import "react-day-picker/dist/style.css";
+import { updateDate } from "@/redux/booking-slice";
 
 export default function BookingCalendar() {
-  const [selected, setSelected] = useState<Date>();
+  const { date: bookingDate } = useAppSelector((state) => state.Booking);
+  const dispatch = useAppDispatch();
+
+  function selectDateHandler(date: any) {
+    dispatch(updateDate(date));
+  }
+
+  const formattedDate = bookingDate !== null ? bookingDate : undefined;
 
   let footer = (
     <p className="text-red-500 font-bold text-md mt-4">Please pick a day.</p>
   );
-  if (selected) {
+  if (bookingDate) {
     footer = (
       <p className="font-bold text-green-500 text-md mt-4">
         {" "}
-        {format(selected, "PP")} selected
+        {bookingDate && bookingDate.toDateString()} selected
       </p>
     );
   }
@@ -33,8 +41,8 @@ export default function BookingCalendar() {
   return (
     <DayPicker
       mode="single"
-      selected={selected}
-      onSelect={setSelected}
+      selected={formattedDate}
+      onDayClick={selectDateHandler}
       footer={footer}
       disabled={disabledDays}
     />
