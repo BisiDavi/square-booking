@@ -21,20 +21,20 @@ export default function useAuthForm() {
     } else if (type === "signup") {
       const { signupEmail, signupPassword, firstName, lastName } = data;
       signupMutate.mutate(
-        { email: signupEmail, password: signupPassword, firstName, lastName },
-        {
-          onSuccess: () => {
-            createCustomerMutate.mutate({
-              email: signupEmail,
-              firstName,
-              lastName,
-            });
-            toggleModal(null);
-          },
-          onError: () => {
-            methods.reset();
-          },
-        }
+        { email: signupEmail, password: signupPassword, firstName, lastName }
+        // {
+        //   onSuccess: () => {
+        //     createCustomerMutate.mutate({
+        //       email: signupEmail,
+        //       firstName,
+        //       lastName,
+        //     });
+        //     toggleModal(null);
+        //   },
+        //   onError: () => {
+        //     methods.reset();
+        //   },
+        // }
       );
     }
   };

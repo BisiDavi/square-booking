@@ -20,7 +20,7 @@ function saveCustomerToDb(writeData: any, data: any) {
   } else if (typeof data === "string") {
     const responseData: any = JSON.parse(data);
     console.log("responseData", responseData);
-    writeData(data, `/users/user/${responseData?.customer.id}`);
+    writeData(data, `/users/${responseData?.customer.id}`);
   }
 }
 

@@ -29,12 +29,17 @@ export default function useRequestMutation(
       loadingToast(toastID);
     },
     onSuccess: (data: any) => {
-      console.log(`response-data-${mutationData.mutationKey}`, data?.data);
+      console.log(`response-data-${mutationData.mutationKey}`, data);
+      console.log(`response-data-data-${mutationData.mutationKey}`, data?.data);
       if (mutationData.onSuccessMethod) {
         mutationData.onSuccessMethod();
       }
       if (mutationData.onSuccessMethodWithData) {
-        mutationData.onSuccessMethodWithData(data?.data);
+        if (data?.data) {
+          mutationData.onSuccessMethodWithData(data?.data);
+        } else {
+          mutationData.onSuccessMethodWithData(data);
+        }
       }
       updateToast(toastID, "success", mutationData.success);
     },

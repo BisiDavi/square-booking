@@ -3,14 +3,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
 
 import useFirebase from "@/hooks/useFirebase";
 
 export default function useAuth() {
-  const { initFB } = useFirebase();
+  const { initFB, writeData } = useFirebase();
   const app = initFB();
 
   async function authSignup(
@@ -21,15 +20,19 @@ export default function useAuth() {
   ) {
     const auth: any = getAuth(app);
     try {
-      await createUserWithEmailAndPassword(auth, email, password).catch((err) =>
-        console.log(err)
+      await createUserWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          console.log(
+            "userCredential-createUserWithEmailAndPassword",
+            userCredential
+          );
+          const user = userCredential.user;
+          writeData(JSON.stringify(user.providerData[0]), `/users/${user.uid}/fb/`);
+        }
       );
-      await sendEmailVerification(auth.currentUser).catch((err) =>
-        console.log(err)
-      );
-      await updateProfile(auth.currentUser, {
+      return await updateProfile(auth.currentUser, {
         displayName: `${firstName} ${lastName}`,
-      }).catch((err) => console.log(err));
+      });
     } catch (err) {
       console.log(err);
     }
