@@ -11,12 +11,16 @@ export default function BookCalendar() {
   if (selected) {
     footer = <p>You picked {format(selected, "PP")}.</p>;
   }
+  const disabledDays = [
+    { from: new Date(1978, 0, 1), to: new Date(2022, 7, 15) },
+  ];
   return (
     <DayPicker
       mode="single"
       selected={selected}
       onSelect={setSelected}
       footer={footer}
+      disabled={disabledDays}
     />
   );
 }
