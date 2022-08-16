@@ -1,31 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { FaLongArrowAltLeft } from "react-icons/fa";
-import { useRouter } from "next/router";
 
 import { useAppSelector } from "@/hooks/useRedux";
 import DefaultLayout from "@/layout/Default-layout";
-import BookCalendar from "@/components/Calendar/BookCalendar";
-import Button from "@/components/UI/Button";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import squareClient from "@/lib/squareClient";
 import { useAppDispatch } from "@/redux/store";
 
 import type { GetServerSideProps } from "next";
 import type { storeProfileType } from "@/types/store-types";
+import BookingView from "@/components/View/BookingView";
 
 interface Props {
   storeProfile: storeProfileType;
 }
 
 export default function BookPage({ storeProfile: storeProfileData }: Props) {
-  const dispatch = useAppDispatch();
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
-  const router = useRouter();
-
-  function goBack() {
-    router.back();
-  }
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (storeProfile === null) {
@@ -35,25 +27,7 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
 
   return (
     <DefaultLayout>
-      <div className="content container flex items-start mx-auto py-4 pt-24">
-        <div className="w-3/5">
-          <Button
-            text="back"
-            className="rounded-lg px-4 py-2 mb-2 bg-gray-400 text-white font-bold flex items-center hover:bg-gray-500"
-            icon={<FaLongArrowAltLeft className="mr-2 text-2xl" />}
-            onClick={goBack}
-          />
-          <h3 className="text-3xl font-medium">
-            Please, pick a date for your appointment
-          </h3>
-          <div className="pill rounded-xl px-5 py-8 border border-gray-500 w-3/4 mt-5">
-            <h4 className="text-xl font-bold">Service:</h4>
-          </div>
-        </div>
-        <div className="w-1/3 bg-gray-200 flex items-center justify-center">
-          <BookCalendar />
-        </div>
-      </div>
+      <BookingView />
     </DefaultLayout>
   );
 }

@@ -28,3 +28,9 @@ export function createCustomer({
     idempotencyKey: email,
   });
 }
+
+export function getACatalogObject(catalogObjectId: string) {
+  return axios.post("/api/catalog/retrieve-catalog-object", {
+    catalogObjectId,
+  });
+}
