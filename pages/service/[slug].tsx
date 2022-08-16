@@ -31,7 +31,7 @@ export default function ServicePage({
       dispatch(updateStoreProfile(storeProfileData));
     }
   }, []);
- 
+
   return (
     <DefaultLayout>
       <main className="service-page container mx-auto pt-20">
@@ -67,6 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         service: null,
+        storeProfileData: null,
       },
     };
   }
