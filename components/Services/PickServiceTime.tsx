@@ -5,10 +5,15 @@ interface TimePillProps {
 }
 
 function TimePill({ time }: TimePillProps) {
-    
+  const splitTime = time.split(":");
+  const getHourString = splitTime[0];
+  const getSecondString = splitTime[1];
+  const hour = Number(getHourString);
+  const amPm = hour % 12 > 0 ? hour % 12 : hour;
+  const amPmPeriod = hour > 11 ? "pm" : "am";
   return (
-    <div className="timepill w-2/3 my-2 hover-bg-site-purple hover:text-white rounded-md py-2 flex justify-center px-2 items-center border border-gray-500">
-      {time}
+    <div className="timepill  my-2 font-bold hover-bg-site-purple hover:text-white rounded-md py-2 flex justify-center px-2 items-center border border-gray-500">
+      {`${amPm}:${getSecondString} ${amPmPeriod}`}
     </div>
   );
 }
