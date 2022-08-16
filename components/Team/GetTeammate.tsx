@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
 
 import { getTeam } from "@/requests";
-import Button from "../UI/Button";
+import Button from "@/components/UI/Button";
+import { useRouter } from "next/router";
 
 interface GetTeammateProps {
   teamId: string;
@@ -9,19 +10,29 @@ interface GetTeammateProps {
 }
 
 export default function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
+  console.log("teamId", teamId);
   const { data, status } = useQuery(`team-${teamId}`, () => getTeam(teamId), {
     enabled: !!teamId,
   });
+  const router = useRouter();
 
   const statusCheck = data?.data?.teamMember?.status === "ACTIVE";
 
-  const bookMeClassname = statusCheck
-    ? "bg-red-500 hover:bg-red-400"
-    : "bg-gray-500";
+  const bookMeClassname =
+    router.query?.teamMember === teamId
+      ? "bg-site-purple"
+      : statusCheck
+      ? "bg-red-500 hover:bg-red-400"
+      : "bg-gray-500";
 
   const disableButton = !statusCheck ? true : false;
 
   const buttonText = statusCheck ? "Book me" : "Not available";
+
+  function bookMeHandler() {
+    router.query.teamMember = teamId;
+    router.push(router);
+  }
 
   return (
     <div className="team w-">
@@ -56,6 +67,7 @@ export default function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
             className={`${bookMeClassname} text-white py-2 px-4 rounded-md `}
             text={buttonText}
             disabled={disableButton}
+            onClick={bookMeHandler}
           />
         </div>
       )}

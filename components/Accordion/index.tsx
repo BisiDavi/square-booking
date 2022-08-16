@@ -27,7 +27,12 @@ export function AccordionItem({
     }
   }
 
-  const headerClassName = showAccordion ? "border-b" : "";
+  const headerClassName =
+    accordion && title === "Team"
+      ? "border-b"
+      : showAccordion
+      ? "border-b"
+      : "";
   return (
     <div className="accordion-item bg-white border border-gray-200 my-1 rounded-md">
       <h2
