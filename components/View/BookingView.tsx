@@ -2,10 +2,13 @@
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
+import { BiLoaderCircle } from "react-icons/bi";
 
 import Button from "@/components/UI/Button";
 import BookingSidebar from "@/components/Sidebar/BookingSidebar";
 import { getACatalogObject } from "@/requests";
+import { GoLocation } from "react-icons/go";
+import GetLocation from "../Location/GetLocation";
 
 export default function BookingView() {
   const router = useRouter();
@@ -43,8 +46,23 @@ export default function BookingView() {
         ) : status === "loading" ? (
           "loading..."
         ) : (
-          <div className="pill rounded-xl px-5 py-8 border border-gray-500 w-3/4 mt-5">
-            <h4 className="text-xl font-bold">Service:</h4>
+          <div className="pill rounded-xl px-5 py-8 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
+            <div className="flex-col text-gray-600 font-bold flex my-2">
+              <span className="flex items-center text-md">
+                <BiLoaderCircle className="mr-2" /> Service:{" "}
+              </span>
+              <h4 className="font-bold text-gray-800 text-2xl">
+                {catalogData.itemData.name}
+              </h4>
+            </div>
+            <div className="flex items-start flex-col font-bold text-gray-600">
+              <span className="flex items-center text-md">
+                <GoLocation className="mr-2" /> Location:
+              </span>
+              <span className="font-bold text-gray-800 mr-2">
+                <GetLocation locationIds={catalogData.presentAtLocationIds} />
+              </span>
+            </div>
           </div>
         )}
       </div>

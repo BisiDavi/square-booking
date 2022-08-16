@@ -14,3 +14,8 @@
 .height-max-content {
   height: max-content;
 }
+
+.calender-wrapper button.rdp-button_reset.rdp-button.rdp-day {
+  margin: 3px 6px;
+  border: 1px solid;
+}
