@@ -13,9 +13,10 @@ import { useState } from "react";
 
 interface Props {
   variation: serviceItemType["itemData"]["variations"][0];
+  service: string;
 }
 
-export default function ServiceVariationList({ variation }: Props) {
+export default function ServiceVariationList({ variation, service }: Props) {
   const { presentAtLocationIds, itemVariationData } = variation;
   const { priceMoney, serviceDuration, teamMemberIds } = itemVariationData;
   const { amount, currency } = priceMoney;
@@ -59,7 +60,7 @@ export default function ServiceVariationList({ variation }: Props) {
             accordion={teamAccordion}
             setTeamAccordion={setTeamAccordion}
           >
-            <StoreTeam variation={variation} />
+            <StoreTeam variation={variation} service={service} />
           </AccordionItem>
         )}
         {presentAtLocationIds.length > 0 && (

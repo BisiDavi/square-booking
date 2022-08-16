@@ -14,7 +14,11 @@ export default function ServiceView({ service }: Props) {
       <ul>
         <h5 className="font-medium text-lg text-center mb-0">Variations</h5>
         {service.itemData.variations.map((variation) => (
-          <ServiceVariationList variation={variation} key={variation.id} />
+          <ServiceVariationList
+            variation={variation}
+            key={variation.id}
+            service={service.itemData.name}
+          />
         ))}
       </ul>
     </div>

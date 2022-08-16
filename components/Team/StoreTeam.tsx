@@ -4,9 +4,10 @@ import type { serviceItemType } from "@/types/service-type";
 
 interface StoreTeamProps {
   variation: serviceItemType["itemData"]["variations"][0];
+  service: string;
 }
 
-export default function StoreTeam({ variation }: StoreTeamProps) {
+export default function StoreTeam({ variation, service }: StoreTeamProps) {
   const { teamMemberIds } = variation.itemVariationData;
   return (
     <div className="flex items-center">
@@ -20,6 +21,7 @@ export default function StoreTeam({ variation }: StoreTeamProps) {
               teamId={team}
               showBorder={showBorder}
               variation={variation}
+              service={service}
             />
           );
         })}
