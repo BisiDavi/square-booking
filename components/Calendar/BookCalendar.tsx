@@ -9,7 +9,12 @@ export default function BookCalendar() {
 
   let footer = <p>Please pick a day.</p>;
   if (selected) {
-    footer = <p>You picked {format(selected, "PP")}.</p>;
+    footer = (
+      <p className="font-bold text-green-500 text-md mt-4">
+        {" "}
+        {format(selected, "PP")} Selected.
+      </p>
+    );
   }
   const currentFullDate = new Date();
   const currentDate = currentFullDate.getDate();

@@ -25,9 +25,9 @@ export default function GetStaff({ staffId }: Props) {
         </h4>
       </div>
       {status === "error" ? (
-        "unable to fetch team member"
+        "unable to fetch staff"
       ) : status === "loading" ? (
-        "fetching team member..."
+        "fetching selected staff..."
       ) : (
         <div className={` w-full flex justify-between items-center`}>
           <div className="text">
