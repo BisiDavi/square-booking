@@ -3,12 +3,13 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import { BiLoaderCircle } from "react-icons/bi";
+import { GoLocation } from "react-icons/go";
 
 import Button from "@/components/UI/Button";
+import GetLocation from "@/components/Location/GetLocation";
 import BookingSidebar from "@/components/Sidebar/BookingSidebar";
 import { getACatalogObject } from "@/requests";
-import { GoLocation } from "react-icons/go";
-import GetLocation from "../Location/GetLocation";
+import GetStaff from "@/components/Team/GetStaff";
 
 export default function BookingView() {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function BookingView() {
     status === "success" ? JSON.parse(data?.data).object : null;
 
   console.log("catalogData", catalogData);
+  const staffId: any = router.query.teamMember;
 
   return (
     <div className="content container flex items-start mx-auto py-4 pt-24">
@@ -46,24 +48,29 @@ export default function BookingView() {
         ) : status === "loading" ? (
           "loading..."
         ) : (
-          <div className="pill rounded-xl px-5 py-8 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
-            <div className="flex-col text-gray-600 font-bold flex my-2">
-              <span className="flex items-center text-md">
-                <BiLoaderCircle className="mr-2" /> Service:{" "}
-              </span>
-              <h4 className="font-bold text-gray-800 text-2xl">
-                {catalogData.itemData.name}
-              </h4>
+          <>
+            <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
+              <div className="flex-col text-gray-600 font-bold flex my-2">
+                <span className="flex items-center text-md">
+                  <BiLoaderCircle className="mr-2 text-xl" /> Service{" "}
+                </span>
+                <h4 className="font-bold text-gray-800 text-2xl">
+                  {catalogData.itemData.name}
+                </h4>
+              </div>
+              <div className="flex items-start flex-col font-bold text-gray-600">
+                <span className="flex items-center text-md">
+                  <GoLocation className="mr-2 text-xl" /> Location
+                </span>
+                <span className="font-bold text-gray-800 mr-2">
+                  <GetLocation locationIds={catalogData.presentAtLocationIds} />
+                </span>
+              </div>
             </div>
-            <div className="flex items-start flex-col font-bold text-gray-600">
-              <span className="flex items-center text-md">
-                <GoLocation className="mr-2" /> Location:
-              </span>
-              <span className="font-bold text-gray-800 mr-2">
-                <GetLocation locationIds={catalogData.presentAtLocationIds} />
-              </span>
+            <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
+              <GetStaff staffId={staffId} />
             </div>
-          </div>
+          </>
         )}
       </div>
       <BookingSidebar />
