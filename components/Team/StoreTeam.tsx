@@ -1,12 +1,13 @@
 import GetTeammate from "@/components/Team/GetTeammate";
 
-import { serviceItemType } from "@/types/service-type";
+import type { serviceItemType } from "@/types/service-type";
 
 interface StoreTeamProps {
-  teamMemberIds: serviceItemType["itemData"]["variations"][0]["itemVariationData"]["teamMemberIds"];
+  variation: serviceItemType["itemData"]["variations"][0];
 }
 
-export default function StoreTeam({ teamMemberIds }: StoreTeamProps) {
+export default function StoreTeam({ variation }: StoreTeamProps) {
+  const { teamMemberIds } = variation.itemVariationData;
   return (
     <div className="flex items-center">
       <div className="teams flex flex-col w-full">
@@ -14,7 +15,12 @@ export default function StoreTeam({ teamMemberIds }: StoreTeamProps) {
           const teamLength = Number(teamMemberIds.length - 1);
           const showBorder = index !== teamLength ? "border-b pb-1" : "";
           return (
-            <GetTeammate key={team} teamId={team} showBorder={showBorder} />
+            <GetTeammate
+              key={team}
+              teamId={team}
+              showBorder={showBorder}
+              variation={variation}
+            />
           );
         })}
       </div>

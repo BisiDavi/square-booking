@@ -22,7 +22,6 @@ export default function ServiceVariationList({ variation }: Props) {
 
   const [teamAccordion, setTeamAccordion] = useState(false);
 
-
   function toggleAccordionHandler() {
     setTeamAccordion(true);
   }
@@ -60,7 +59,7 @@ export default function ServiceVariationList({ variation }: Props) {
             accordion={teamAccordion}
             setTeamAccordion={setTeamAccordion}
           >
-            <StoreTeam teamMemberIds={teamMemberIds} />
+            <StoreTeam variation={variation} />
           </AccordionItem>
         )}
         {presentAtLocationIds.length > 0 && (

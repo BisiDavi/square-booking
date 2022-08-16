@@ -1,16 +1,24 @@
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 import { getTeam } from "@/requests";
 import Button from "@/components/UI/Button";
-import { useRouter } from "next/router";
+import type { serviceItemType } from "@/types/service-type";
 
 interface GetTeammateProps {
   teamId: string;
   showBorder: string;
+  variation: serviceItemType["itemData"]["variations"][0];
 }
 
-export default function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
+export default function GetTeammate({
+  teamId,
+  showBorder,
+  variation,
+}: GetTeammateProps) {
   console.log("teamId", teamId);
+  console.log("variation", variation);
   const { data, status } = useQuery(`team-${teamId}`, () => getTeam(teamId), {
     enabled: !!teamId,
   });
@@ -31,7 +39,12 @@ export default function GetTeammate({ teamId, showBorder }: GetTeammateProps) {
 
   function bookMeHandler() {
     router.query.teamMember = teamId;
-    router.push(router);
+    router.push(router).then((responseData) => {
+      console.log("responseData", responseData);
+      toast.success(
+        `${data.data.teamMember?.givenName} ${data.data.teamMember?.familyName} selected`
+      );
+    });
   }
 
   return (
