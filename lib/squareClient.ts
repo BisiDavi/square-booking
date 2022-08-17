@@ -9,6 +9,8 @@ export default async function squareClient() {
 
   const squareEnvironment = squareClient.Environment.Production;
 
+  console.log(" tokenData.access_token", tokenData.access_token);
+
   const client = new squareClient.Client({
     accessToken: tokenData.access_token,
     environment: squareEnvironment,

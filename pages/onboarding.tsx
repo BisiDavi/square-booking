@@ -15,7 +15,7 @@ export default function OnboardingPage() {
   return (
     <>
       <Head>
-        <title> Welcome to Dutch | Booking Made Easy </title>
+        <title> Welcome to Bookify | Booking Made Easy </title>
       </Head>
       <main className="w-full h-screen flex items-center">
         <div className="w-1/2 bg-gray-100 flex pt-20  text-center  flex-col relative h-full">
