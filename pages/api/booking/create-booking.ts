@@ -30,10 +30,3 @@ export default async function handler(
     }
   }
 }
-
-// {
-// durationMinutes,
-// serviceVariationId,
-// teamMemberId,
-// serviceVariationVersion,
-// },

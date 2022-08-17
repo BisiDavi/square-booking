@@ -20,22 +20,28 @@ export default async function Handler(
       try {
         axios
           .post("https://connect.squareup.com/oauth2/token", {
-    client_id,
-    client_secret,
-    grant_type: "authorization_code",
-    code: squareCode,
-    short_lived: false,
-    scopes: [
-      "APPOINTMENTS_READ",
-      "APPOINTMENTS_WRITE",
-      "APPOINTMENTS_ALL_READ",
-      "APPOINTMENTS_BUSINESS_SETTINGS_READ",
-    ],
-  })
+            client_id,
+            client_secret,
+            grant_type: "authorization_code",
+            code: squareCode,
+            short_lived: false,
+            scopes: [
+              "APPOINTMENTS_READ",
+              "APPOINTMENTS_WRITE",
+              "APPOINTMENTS_ALL_READ",
+              "APPOINTMENTS_BUSINESS_SETTINGS_READ",
+              "ITEMS_READ",
+              "ITEMS_WRITE",
+              "MERCHANT_PROFILE_READ",
+              "MERCHANT_PROFILE_WRITE",
+              "EMPLOYEES_WRITE",
+              "EMPLOYEES_READ",
+            ],
+          })
           .then((response) => {
             console.log("obtain-access-token-response", response.data);
             saveAccessTokenToDB(dbClient, response.data);
-            res.status(200).json(response.data);
+            res.status(200).json({ data: "you're now authorized" });
           })
           .catch((error) => {
             console.log("obtain-access-token-error", error);
