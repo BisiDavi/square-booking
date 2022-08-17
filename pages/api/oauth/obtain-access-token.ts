@@ -1,5 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import axios from "axios";
+import { DBClient } from "@/DB/DBConnection";
+import saveAccessTokenToDB from "@/DB/saveAccessTokenToDB";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -10,6 +12,7 @@ export default async function Handler(
   const { squareCode } = req.body;
   const clientId = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const clientSecret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_ACCESS_TOKEN}`;
+  const dbClient = await DBClient();
 
   switch (req.method) {
     case "POST": {
@@ -30,6 +33,7 @@ export default async function Handler(
           })
           .then((response) => {
             console.log("obtain-access-token-response", response);
+            saveAccessTokenToDB(dbClient, response);
             res.status(200).json(response);
           })
           .catch((error) => {
