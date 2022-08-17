@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "react-query";
-import { useCallback, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import { listServices } from "@/requests";
 import RecommendService from "@/components/Services/RecommendService";
@@ -29,7 +29,7 @@ export default function RecommendServices() {
     return status === "success" ? getServiceCategories(services) : [];
   }, [status]);
 
-  useCallback(() => {
+  useEffect(() => {
     if (serviceCategories === null && status === "success") {
       dispatch(updateServiceCategories(memoizedServiceCategory));
     }
