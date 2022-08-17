@@ -11,12 +11,15 @@ export default async function Handler(
   res: NextApiResponse
 ) {
   const { squareCode } = req.body;
-  console.log("squareCode", squareCode);
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const dbClient = await DBClient();
 
-  const postData = {
+  switch (req.method) {
+    case "POST": {
+      try {
+        axios
+          .post("https://connect.squareup.com/oauth2/token", {
     client_id,
     client_secret,
     grant_type: "authorization_code",
@@ -28,17 +31,11 @@ export default async function Handler(
       "APPOINTMENTS_ALL_READ",
       "APPOINTMENTS_BUSINESS_SETTINGS_READ",
     ],
-  };
-
-  switch (req.method) {
-    case "POST": {
-      try {
-        axios
-          .post("https://connect.squareup.com/oauth2/token", postData)
+  })
           .then((response) => {
-            console.log("obtain-access-token-response", response);
-            saveAccessTokenToDB(dbClient, response);
-            res.status(200).json(response);
+            console.log("obtain-access-token-response", response.data);
+            saveAccessTokenToDB(dbClient, response.data);
+            res.status(200).json(response.data);
           })
           .catch((error) => {
             console.log("obtain-access-token-error", error);
