@@ -12,4 +12,5 @@ export type AuthStateType = {
   isAccessTokenAvailable: boolean;
   isAccessTokenValid: boolean | null;
   onboarding: boolean;
+  merchantId: boolean | null;
 };

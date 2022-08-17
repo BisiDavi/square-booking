@@ -41,7 +41,7 @@ export default async function Handler(
           .then((response) => {
             console.log("obtain-access-token-response", response.data);
             saveAccessTokenToDB(dbClient, response.data);
-            res.status(200).json({ data: "you're now authorized" });
+            res.status(200).json({ merchantId: response.data?.merchant_id });
           })
           .catch((error) => {
             console.log("obtain-access-token-error", error);

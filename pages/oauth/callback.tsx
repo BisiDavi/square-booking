@@ -12,6 +12,7 @@ import { obtainAccessToken } from "@/requests";
 import {
   updateAccessTokenValidity,
   updateAccessTokenStatus,
+  updateMerchantId,
 } from "@/redux/auth-slice";
 
 interface Props {
@@ -32,9 +33,10 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     if (!isAccessTokenAvailable && isAccessTokenValid === null && squareCode) {
       obtainAccessToken(squareCode)
         .then((response) => {
-          console.log("response", response);
+          console.log("response", response.data);
           dispatch(updateAccessTokenStatus(true));
           dispatch(updateAccessTokenValidity(true));
+          dispatch(updateMerchantId(response.data.merchantId));
         })
         .catch((error) => {
           console.log("error", error);
