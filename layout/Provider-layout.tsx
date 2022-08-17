@@ -17,15 +17,17 @@ export default function Providerlayout({ children }: PropsWithChildren<{}>) {
   let persistor = persistStore(store);
 
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <NextNProgress color="#4e44c4" />
-        <QueryClientProvider client={queryClient} contextSharing={true}>
-          <ToastContainer />
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </PersistGate>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NextNProgress color="#4e44c4" />
+          <QueryClientProvider client={queryClient} contextSharing={true}>
+            <ToastContainer />
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </PersistGate>
+      </Provider>
+    </>
   );
 }
