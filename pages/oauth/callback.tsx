@@ -57,7 +57,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
         <h1 className="text-center font-bold text-xl">
           Welcome to{" "}
           <span className="border mr-2 p-2 bg-gray-800 text-white">
-            {storeProfile.name}
+            {storeProfile?.name}
           </span>
           you&#39;re now authorized.
         </h1>
