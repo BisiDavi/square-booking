@@ -9,6 +9,10 @@ import useUI from "@/hooks/useUI";
 function AuthModalComponent() {
   const { modal, toggleModal } = useUI();
 
+  function closeModal() {
+    toggleModal(null);
+  }
+
   return (
     <Modal
       title="Welcome, Sign in / Sign up"
@@ -22,8 +26,14 @@ function AuthModalComponent() {
       />
       <h3 className="text-center font-medium text-xl">
         To become a Seller,
-        <Link href="/admin/login">
-          <a className="text-blue-500 hover:text-red-500 ml-1">Login / Signup </a>
+        <Link href="/admin/login" passHref>
+          <button
+            className="text-blue-500 hover:text-red-500 ml-1"
+            type="button"
+            onClick={closeModal}
+          >
+            Login / Signup{" "}
+          </button>
         </Link>
       </h3>
     </Modal>
