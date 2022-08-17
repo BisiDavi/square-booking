@@ -28,10 +28,8 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     .split("?code=")[1]
     .split("&response_type=")[0];
 
-  console.log("squareCode", squareCode);
-
   useEffect(() => {
-    if (!isAccessTokenAvailable && isAccessTokenValid === null) {
+    if (!isAccessTokenAvailable && isAccessTokenValid === null && squareCode) {
       obtainAccessToken(squareCode)
         .then((response) => {
           console.log("response", response);
@@ -42,7 +40,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           console.log("error", error);
         });
     }
-  }, [isAccessTokenAvailable]);
+  }, [isAccessTokenAvailable, squareCode]);
 
   useEffect(() => {
     dispatch(updateStoreProfile(storeProfile));

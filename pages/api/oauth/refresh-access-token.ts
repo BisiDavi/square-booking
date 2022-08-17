@@ -10,7 +10,7 @@ export default async function Handler(
 
   const { refreshToken } = req.body;
   const clientId = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
-  const clientSecret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_ACCESS_TOKEN}`;
+  const clientSecret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
 
   switch (req.method) {
     case "POST": {
