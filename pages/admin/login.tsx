@@ -1,8 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import Image from "next/image";
+import { v4 as uuidv4 } from "uuid";
 
 export default function AdminLogin() {
+  const stateCode = uuidv4();
+
+  const clientID =
+    process.env.NODE_ENV === "production"
+      ? process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID
+      : process.env.NEXT_PUBLIC_SQUARE_SANDBOX_APP_ID;
+
+  const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=APPOINTMENTS_READ+APPOINTMENTS_WRITE+APPOINTMENTS_ALL_READ+APPOINTMENTS_BUSINESS_SETTINGS_READ&session=false&state=${stateCode}`;
   return (
     <>
       <Head>
@@ -13,9 +21,12 @@ export default function AdminLogin() {
           <h3 className="text-center items-center text-2xl font-bold mb-24">
             Welcome, to the Admin Dashboard
           </h3>
-          <button className="bg-site-purple flex font-medium items-center w-24 mx-auto text-white px-3 py-2 rounded-md hover:bg-blue-500">
+          <a
+            href={squareLink}
+            className="bg-site-purple flex font-medium items-center w-24 mx-auto text-white px-3 py-2 rounded-md hover:bg-blue-500"
+          >
             Authorize
-          </button>
+          </a>
           <p className="font-bold text-md text-red-500 absolute bottom-10 left-20">
             By clicking on Authorize, You will be authorizing this application
             to use your Square account resources.
