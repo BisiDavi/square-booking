@@ -15,28 +15,23 @@ export default async function Handler(
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_ACCESS_TOKEN}`;
   const dbClient = await DBClient();
 
-  const postData = {
-    client_id,
-    client_secret,
-    grant_type: "authorization_code",
-    code: squareCode,
-    short_lived: false,
-    scopes: [
-      "APPOINTMENTS_READ",
-      "APPOINTMENTS_WRITE",
-      "APPOINTMENTS_ALL_READ",
-      "APPOINTMENTS_BUSINESS_SETTINGS_READ",
-    ],
-  };
-
   switch (req.method) {
     case "POST": {
       try {
         axios
-          .post(
-            "https://connect.squareup.com/oauth2/token",
-            JSON.stringify(postData)
-          )
+          .post("https://connect.squareup.com/oauth2/token", {
+            client_id,
+            client_secret,
+            grant_type: "authorization_code",
+            code: squareCode,
+            short_lived: false,
+            scopes: [
+              "APPOINTMENTS_READ",
+              "APPOINTMENTS_WRITE",
+              "APPOINTMENTS_ALL_READ",
+              "APPOINTMENTS_BUSINESS_SETTINGS_READ",
+            ],
+          })
           .then((response) => {
             console.log("obtain-access-token-response", response);
             saveAccessTokenToDB(dbClient, response);
