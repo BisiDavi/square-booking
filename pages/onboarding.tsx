@@ -21,7 +21,7 @@ export default function OnboardingPage() {
         <div className="w-1/2 bg-gray-100 flex pt-20  text-center  flex-col relative h-full">
           <h3 className="text-center items-center text-2xl font-bold mb-24">
             <span className="font-bold ml-1 text-center border-white bg-gray-800 text-4xl px-3 py-2 text-white">
-              Dutch
+              Bookify
             </span>
           </h3>
           <h5 className="font-bold">
