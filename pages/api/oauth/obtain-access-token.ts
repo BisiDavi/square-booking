@@ -10,8 +10,8 @@ export default async function Handler(
   res: NextApiResponse
 ) {
   const { squareCode } = req.body;
-  const clientId = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
-  const clientSecret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_ACCESS_TOKEN}`;
+  const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
+  const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_ACCESS_TOKEN}`;
   const dbClient = await DBClient();
 
   switch (req.method) {
@@ -19,11 +19,11 @@ export default async function Handler(
       try {
         axios
           .post("https://connect.squareup.com/oauth2/token", {
-            clientId,
-            clientSecret,
-            grantType: "authorization_code",
+            client_id,
+            client_secret,
+            grant_type: "authorization_code",
             code: squareCode,
-            shortLived: false,
+            short_lived: false,
             scopes: [
               "APPOINTMENTS_READ",
               "APPOINTMENTS_WRITE",
