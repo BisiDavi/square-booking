@@ -39,6 +39,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           dispatch(updateAccessTokenValidity(true));
           dispatch(updateOnboarding(true));
           dispatch(updateMerchantId(response.data.merchantId));
+          window.localStorage.setItem("merchantId", response.data.merchantId);
         })
         .catch((error) => {
           console.log("error", error);
