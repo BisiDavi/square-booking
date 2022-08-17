@@ -23,6 +23,7 @@ interface Props {
 export default function OAUTHPAGE({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   const { isAccessTokenAvailable, isAccessTokenValid } = useAppSelector(
     (state) => state.Auth
   );
@@ -38,8 +39,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           dispatch(updateAccessTokenStatus(true));
           dispatch(updateAccessTokenValidity(true));
           dispatch(updateOnboarding(true));
-          dispatch(updateMerchantId(response.data.merchantId));
-          window.localStorage.setItem("merchantId", response.data.merchantId);
+          dispatch(updateMerchantId(response.data?.merchantId));
         })
         .catch((error) => {
           console.log("error", error);
