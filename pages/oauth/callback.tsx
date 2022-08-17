@@ -6,8 +6,13 @@ import { useRouter } from "next/router";
 import DefaultLayout from "@/layout/Default-layout";
 import squareClient from "@/lib/squareClient";
 import { storeProfileType } from "@/types/store-types";
-import { useAppDispatch } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
+import { obtainAccessToken } from "@/requests";
+import {
+  updaateAccessTokenValidity,
+  updateAccessTokenStatus,
+} from "@/redux/auth-slice";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -16,12 +21,28 @@ interface Props {
 export default function OAUTHPAGE({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
-
+  const { isAccessTokenAvailable, isAccessTokenValid } = useAppSelector(
+    (state) => state.Auth
+  );
   const squareCode = router.asPath
     .split("?code=")[1]
     .split("&response_type=")[0];
 
-  console.log("router", router);
+  console.log("squareCode", squareCode);
+
+  useEffect(() => {
+    if (!isAccessTokenAvailable && isAccessTokenValid === null) {
+      obtainAccessToken(squareCode)
+        .then((response) => {
+          console.log("response", response);
+          dispatch(updateAccessTokenStatus(true));
+          dispatch(updaateAccessTokenValidity(true));
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
+    }
+  }, [isAccessTokenAvailable]);
 
   useEffect(() => {
     dispatch(updateStoreProfile(storeProfile));
