@@ -17,6 +17,10 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  const squareCode = router.asPath
+    .split("?code=")[1]
+    .split("&response_type=")[0];
+
   console.log("router", router);
 
   useEffect(() => {

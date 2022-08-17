@@ -5,10 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function AdminLogin() {
   const stateCode = uuidv4();
 
-  const clientID =
-    process.env.NODE_ENV === "production"
-      ? process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID
-      : process.env.NEXT_PUBLIC_SQUARE_SANDBOX_APP_ID;
+  const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
 
   const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=APPOINTMENTS_READ+APPOINTMENTS_WRITE+APPOINTMENTS_ALL_READ+APPOINTMENTS_BUSINESS_SETTINGS_READ&session=false&state=${stateCode}`;
   return (

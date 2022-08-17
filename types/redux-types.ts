@@ -7,3 +7,8 @@ export type BookingStateType = {
   bookingDate: Date | undefined;
   bookingTime: string | null;
 };
+
+export type AuthStateType = {
+  isAccessTokenAvailable: boolean;
+  isAccessTokenValid: undefined | null;
+};

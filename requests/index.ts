@@ -34,3 +34,7 @@ export function getACatalogObject(catalogObjectId: string) {
     catalogObjectId,
   });
 }
+
+export function obtainAccessToken(squareCode: string) {
+  return axios.post("/api/oauth/obtain-access-token", { squareCode });
+}
