@@ -13,6 +13,7 @@ import {
   updateAccessTokenValidity,
   updateAccessTokenStatus,
   updateMerchantId,
+  updateOnboarding,
 } from "@/redux/auth-slice";
 
 interface Props {
@@ -36,6 +37,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           console.log("response", response.data);
           dispatch(updateAccessTokenStatus(true));
           dispatch(updateAccessTokenValidity(true));
+          dispatch(updateOnboarding(true));
           dispatch(updateMerchantId(response.data.merchantId));
         })
         .catch((error) => {

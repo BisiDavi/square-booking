@@ -22,7 +22,7 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
 
   return (
     <>
-      {!apploaded && <SpinnerRipple centerRipple={true} />}
+      {!apploaded && <SpinnerRipple centerRipple />}
       {!onboarding ? (
         <OnboardingPage />
       ) : (
