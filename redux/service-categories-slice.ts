@@ -10,7 +10,7 @@ const initialState: initialStateType = {
 };
 
 const ServiceCategoriesSlice = createSlice({
-  name: "UI",
+  name: "ServiceCategories",
   initialState,
   reducers: {
     updateServiceCategories(state, action: PayloadAction<string[]>) {

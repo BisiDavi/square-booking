@@ -12,7 +12,7 @@ const initialState: initialStateType = {
 };
 
 const StoreprofileSlice = createSlice({
-  name: "UI",
+  name: "StoreProfile",
   initialState,
   reducers: {
     updateStoreProfile(state, action: PayloadAction<storeProfileType>) {

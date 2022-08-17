@@ -5,7 +5,7 @@ import type { AuthStateType } from "@/types/redux-types";
 
 const initialState: AuthStateType = {
   isAccessTokenAvailable: false,
-  isAccessTokenValid: undefined,
+  isAccessTokenValid: null,
 };
 
 const AuthSlice = createSlice({
