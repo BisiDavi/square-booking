@@ -9,7 +9,7 @@ const initialState: AuthStateType = {
 };
 
 const AuthSlice = createSlice({
-  name: "UI",
+  name: "Auth",
   initialState,
   reducers: {
     updateAccessTokenStatus(
