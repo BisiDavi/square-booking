@@ -11,7 +11,6 @@ export default async function RetrieveTeamHandler(
     case "POST": {
       try {
         const response = await client.teamApi.retrieveTeamMember(teamMemberId);
-        console.log("teamMember", response.result);
         res.status(200).json(response.result);
       } catch (error) {
         console.log("error", error);
