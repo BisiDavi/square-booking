@@ -39,7 +39,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           dispatch(updateAccessTokenStatus(true));
           dispatch(updateAccessTokenValidity(true));
           dispatch(updateOnboarding(true));
-          dispatch(updateMerchantId(response.data?.merchantId));
+          dispatch(updateMerchantId(response?.data?.merchantId));
         })
         .catch((error) => {
           console.log("error", error);
@@ -76,8 +76,8 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
 }
 
 export async function getStaticProps() {
-  const { client } = await squareClient();
   try {
+    const { client } = await squareClient();
     const response = await client.locationsApi.listLocations();
     return {
       props: {
