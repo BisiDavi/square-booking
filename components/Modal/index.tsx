@@ -57,7 +57,7 @@ export default function Modal({
       <style jsx>
         {`
           .site-modal {
-            z-index: 100;
+            z-index: 300;
             height: fit-content;
             width: fit-content;
             margin: auto;

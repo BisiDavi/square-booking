@@ -18,6 +18,7 @@ export default function BannerAnimation() {
             top: 0;
             width: 50%;
             height: 100%;
+            z-index: 1;
           }
           .context h1 {
             text-align: center;

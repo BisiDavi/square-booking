@@ -5,11 +5,14 @@ import Modal from "@/components/Modal";
 import Tabs from "@/components/Tab";
 import AuthForm from "@/components/Form/AuthForm";
 import useUI from "@/hooks/useUI";
+import { useRouter } from "next/router";
 
 function AuthModalComponent() {
   const { modal, toggleModal } = useUI();
+  const router = useRouter();
 
   function closeModal() {
+    router.push("/admin/login");
     toggleModal(null);
   }
 
