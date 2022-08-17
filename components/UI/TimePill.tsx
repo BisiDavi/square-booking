@@ -30,7 +30,7 @@ export default function TimePill({ time }: TimePillProps) {
 
   const selectedTime =
     validTime === bookingTime
-      ? "bg-site-purple text-white"
+      ? "bg-site-purple text-white border-site-purple"
       : "hover-bg-site-purple";
 
   return (

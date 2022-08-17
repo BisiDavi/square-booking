@@ -15,6 +15,10 @@
   background-color: var(--site-purple);
 }
 
+.border-site-purple {
+  border: var(--site-purple);
+}
+
 .height-max-content {
   height: max-content;
 }
