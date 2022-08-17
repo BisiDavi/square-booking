@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests";
 import {
-  updaateAccessTokenValidity,
+  updateAccessTokenValidity,
   updateAccessTokenStatus,
 } from "@/redux/auth-slice";
 
@@ -34,7 +34,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
         .then((response) => {
           console.log("response", response);
           dispatch(updateAccessTokenStatus(true));
-          dispatch(updaateAccessTokenValidity(true));
+          dispatch(updateAccessTokenValidity(true));
         })
         .catch((error) => {
           console.log("error", error);

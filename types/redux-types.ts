@@ -11,4 +11,5 @@ export type BookingStateType = {
 export type AuthStateType = {
   isAccessTokenAvailable: boolean;
   isAccessTokenValid: boolean | null;
+  onboarding: boolean;
 };
