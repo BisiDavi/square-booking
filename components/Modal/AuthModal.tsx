@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { memo } from "react";
 
 import Modal from "@/components/Modal";
@@ -19,6 +20,12 @@ function AuthModalComponent() {
         tabBody1={<AuthForm type="signin" />}
         tabBody2={<AuthForm type="signup" />}
       />
+      <h3 className="text-center font-medium text-xl">
+        To become a Seller,
+        <Link href="/admin/login">
+          <a className="text-blue-500 hover:text-red-500 ml-1">Login / Signup </a>
+        </Link>
+      </h3>
     </Modal>
   );
 }
