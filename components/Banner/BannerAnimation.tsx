@@ -13,9 +13,6 @@ export default function BannerAnimation() {
       </div>
       <style jsx>
         {`
-          .typewriter {
-            position: relative;
-          }
           .context {
             position: absolute;
             top: 0;
@@ -37,11 +34,11 @@ export default function BannerAnimation() {
           .circles {
             position: absolute;
             top: 0;
-            left: 0;j
+            left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index:100;
+            z-index: 100;
           }
 
           .circles li {
@@ -53,7 +50,7 @@ export default function BannerAnimation() {
             background: rgba(255, 255, 255, 0.2);
             animation: animate 25s linear infinite;
             bottom: -150px;
-            z-index:200;
+            z-index: 200;
           }
 
           .circles li:nth-child(1) {
