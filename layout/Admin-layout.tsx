@@ -9,7 +9,7 @@ export default function AdminLayoutPage({ children }: PropsWithChildren<{}>) {
       <AdminHeader />
       <section className="flex items-center w-full relative">
         <DashboardSidebar />
-        <div className="wrapper bg-gray-200 h-screen w-3/4 absolute px-4">
+        <div className="wrapper bg-gray-200 h-screen w-4/5 absolute px-6">
           {children}
         </div>
       </section>

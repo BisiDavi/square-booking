@@ -29,7 +29,7 @@ function SidebarLinks({ linkGroup }: Props) {
 
 export default function DashboardSidebar() {
   return (
-    <aside className="w-1/4 h-screen border border-r fixed top-20">
+    <aside className="w-1/5 h-screen border border-r fixed top-20">
       <SidebarLinks linkGroup="links" />
       <hr className="mb-10 mt-2" />
       <SidebarLinks linkGroup="extras" />
