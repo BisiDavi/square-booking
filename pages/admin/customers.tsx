@@ -1,10 +1,9 @@
 import AdminLayoutPage from "@/layout/Admin-layout";
-import React from "react";
 
 export default function CustomersPage() {
   return (
     <AdminLayoutPage>
-      <h1>Customer oage</h1>
+      <section className="customers bg-white h-screen my-4 rounded-md"></section>
     </AdminLayoutPage>
   );
 }

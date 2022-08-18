@@ -1,17 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import { v4 as uuidv4 } from "uuid";
 import { SiSquare } from "react-icons/si";
 
 import OnboardingBanner from "@/components/Banner/OnboardingBanner";
+import OnboardingForm from "@/components/Form/OnboardingForm";
 
 export default function OnboardingPage() {
-  const stateCode = uuidv4();
-
-  const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
-
-  const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=APPOINTMENTS_READ+APPOINTMENTS_WRITE+APPOINTMENTS_ALL_READ+APPOINTMENTS_BUSINESS_SETTINGS_READ+ITEMS_READ+ITEMS_WRITE+MERCHANT_PROFILE_READ+MERCHANT_PROFILE_WRITE+EMPLOYEES_WRITE+EMPLOYEES_READ&session=false&state=${stateCode}`;
-
   return (
     <>
       <Head>
@@ -30,12 +24,7 @@ export default function OnboardingPage() {
           <h6 className="font-medium my-4">
             Get onboarded with a single click.
           </h6>
-          <a
-            href={squareLink}
-            className="bg-site-purple flex font-medium items-center  mx-auto text-white px-3 py-2 rounded-md hover:bg-blue-500"
-          >
-            Onboard me
-          </a>
+          <OnboardingForm />
           <p className="font-bold text-xs text-red-500 absolute bottom-20 text-left left-10">
             By clicking on &#34;Onboard me&#34;, You will be authorizing this
             application to use your Square account resources.

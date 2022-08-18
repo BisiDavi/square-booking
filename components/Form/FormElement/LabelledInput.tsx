@@ -5,6 +5,7 @@ interface Props {
   label: string;
   type?: string;
   className?: string;
+  name?: string;
 }
 
 export default function LabelledInput({
@@ -12,16 +13,18 @@ export default function LabelledInput({
   label,
   type,
   className,
+  name,
 }: Props) {
   const id = toSlug(label);
   const inputType = type ? type : "text";
   const inputClassName = className ? className : "relative my-5 ";
+  const inputName = name ? name : id;
   return (
     <div className={inputClassName}>
       <input
         type={inputType}
         id={id}
-        name={id}
+        name={inputName}
         className="block px-2.5 pb-2.5 pt-4 w-full h-12 text-sm text-gray-900 rounded-lg border border-gray-800 focus:outline-none focus:ring-0 focus:border-blue-800 peer"
         placeholder={placeholder}
       />

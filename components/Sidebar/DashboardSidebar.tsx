@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import sidebarContent from "@/json/dashboard-sidebar.json";
 import SidebarIcons from "@/icons/SidebarIcons";
@@ -8,21 +9,27 @@ interface Props {
 }
 
 function SidebarLinks({ linkGroup }: Props) {
+  const router = useRouter();
+
   return (
     <ul>
-      {sidebarContent[linkGroup].map((content) => (
-        <li
-          className="my-4 hover:bg-gray-100 p-2 px-6 hover:text-purple-500"
-          key={content.link}
-        >
-          <Link href={content.link} passHref>
-            <a className="flex items-center">
-              <SidebarIcons icon={content.text} />
-              <span className="ml-2 text-xl">{content.text}</span>
-            </a>
-          </Link>
-        </li>
-      ))}
+      {sidebarContent[linkGroup].map((content) => {
+        const activeLink =
+          router.asPath === content.link ? "text-purple-500" : "";
+        return (
+          <li
+            className={`my-4 hover:bg-gray-100 p-2 px-6 hover:text-purple-500 ${activeLink}`}
+            key={content.link}
+          >
+            <Link href={content.link} passHref>
+              <a className="flex items-center">
+                <SidebarIcons icon={content.text} />
+                <span className="ml-2 text-xl">{content.text}</span>
+              </a>
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 }
