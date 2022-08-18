@@ -1,0 +1,10 @@
+[
+  { "link": "/admin/", "text": "Home" },
+  { "link": "/admin/services", "text": "Services" },
+  { "link": "/admin/customers", "text": "Customers" },
+  { "link": "/admin/team", "text": "Team" },
+  { "link": "/admin/Order", "text": "Order" },
+  { "link": "/admin/account", "text": "Account" },
+  { "link": "/admin/settings", "text": "Settings" },
+  { "link": "/admin/staff", "text": "Staff" }
+]
