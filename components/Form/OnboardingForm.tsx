@@ -1,27 +1,36 @@
-import { v4 as uuidv4 } from "uuid";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useAppDispatch } from "@/hooks/useRedux";
 
 import LabelledInput from "@/components/Form/FormElement/LabelledInput";
 import { onboardingFormSchema } from "@/components/Form/Schema/OnboardingSchema";
-import { useAppSelector } from "@/hooks/useRedux";
+import Button from "@/components/UI/Button";
+import { updateOnboarding } from "@/redux/auth-slice";
 
 export default function OnboardingForm() {
-  const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
-  const stateCode = uuidv4();
-  const { userEmail } = useAppSelector((state) => state.Auth);
-
-  const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=APPOINTMENTS_READ+APPOINTMENTS_WRITE+APPOINTMENTS_ALL_READ+APPOINTMENTS_BUSINESS_SETTINGS_READ+ITEMS_READ+ITEMS_WRITE+MERCHANT_PROFILE_READ+MERCHANT_PROFILE_WRITE+EMPLOYEES_WRITE+EMPLOYEES_READ&session=false&state=${stateCode}`;
-
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  
   const methods = useForm({
     mode: "all",
     resolver: yupResolver(onboardingFormSchema),
   });
 
-  methods.setValue("email", userEmail);
-
   async function onSubmit(data: any) {
     console.log("data", data);
+    axios
+      .post("/api/onboard-user", { email: data?.email })
+      .then((response) => {
+        console.log("onboard-response", response);
+        dispatch(updateOnboarding(true));
+      })
+      .catch((err) => {
+        console.log("onboard-error", err);
+        dispatch(updateOnboarding(false));
+        // router.push(err.)
+      });
   }
 
   return (
@@ -39,12 +48,11 @@ export default function OnboardingForm() {
             name="email"
             type="email"
           />
-          <a
-            href={squareLink}
+          <Button
+            text="Onboard me"
+            type="submit"
             className="bg-site-purple flex font-medium items-center w-1/3  mx-auto justify-center flex text-white px-3 py-2 rounded-md hover:bg-blue-500"
-          >
-            Onboard me
-          </a>
+          />
         </form>
       </FormProvider>
     </div>

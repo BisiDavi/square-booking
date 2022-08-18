@@ -21,7 +21,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["UI", "StoreProfile", " View"],
+  blacklist: ["UI", "StoreProfile", "View"],
 };
 
 const RootReducer = persistReducer(persistConfig, reducers);

@@ -7,7 +7,7 @@ export default function Logo() {
     <>
       <Link href="/" passHref>
         <a
-          className={`border-2 border-white p-2 text-black hover:bg-gray-100 hover:text-black`}
+          className={`border-2 border-white text-white p-2  hover:bg-gray-100 hover:text-black`}
         >
           <h4 className="font-bold">{storeProfile?.name}</h4>
         </a>

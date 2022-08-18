@@ -19,8 +19,12 @@ export default async function Handler(
         const dbClient = await DBClient();
         await fetchAccessTokenFromDBViaEmail(dbClient, email)
           .then((response) => {
-            console.log("response", response);
-            res.status(200).json({ status: "onboarded" });
+            if (response) {
+              res.status(200).json({
+                status: "onboarded",
+                accessToken: response.access_token,
+              });
+            }
           })
           .catch((err) => {
             console.log("db-error", err);
@@ -30,7 +34,9 @@ export default async function Handler(
           });
       } catch (error) {
         console.log("error", error);
-        res.status(400).json(error);
+        res
+          .status(400)
+          .json({ status: "not-onboarded", onboardingLink: squareLink });
       }
     }
   }
