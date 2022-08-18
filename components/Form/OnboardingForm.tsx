@@ -4,10 +4,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import LabelledInput from "@/components/Form/FormElement/LabelledInput";
 import { onboardingFormSchema } from "@/components/Form/Schema/OnboardingSchema";
+import { useAppSelector } from "@/hooks/useRedux";
 
 export default function OnboardingForm() {
   const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
   const stateCode = uuidv4();
+  const { userEmail } = useAppSelector((state) => state.Auth);
 
   const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=APPOINTMENTS_READ+APPOINTMENTS_WRITE+APPOINTMENTS_ALL_READ+APPOINTMENTS_BUSINESS_SETTINGS_READ+ITEMS_READ+ITEMS_WRITE+MERCHANT_PROFILE_READ+MERCHANT_PROFILE_WRITE+EMPLOYEES_WRITE+EMPLOYEES_READ&session=false&state=${stateCode}`;
 
@@ -16,15 +18,21 @@ export default function OnboardingForm() {
     resolver: yupResolver(onboardingFormSchema),
   });
 
+  methods.setValue("email", userEmail);
+
+  async function onSubmit(data: any) {
+    console.log("data", data);
+  }
+
   return (
     <div className="w-2/3 mx-auto bg-white  p-4 rounded-md">
       <h5 className="font-bold">
         Welcome <span className="text-2xl ml-2">🤗</span>
       </h5>
-      <h6 className="font-medium my-4">Get onboarded with a single click.</h6>
+      <h6 className="font-medium my-2">Get onboarded with a single click.</h6>
 
       <FormProvider {...methods}>
-        <form>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
           <LabelledInput
             label="Enter your email"
             placeholder="Enter your email"

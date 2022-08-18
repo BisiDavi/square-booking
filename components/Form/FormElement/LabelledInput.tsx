@@ -40,7 +40,7 @@ export default function LabelledInput({
       />
       <label
         htmlFor={id}
-        className={`absolute text-sm text-gray-500 duration-300 transform ${labelClassName} -translate-y-4 scale-45 top-1 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-80 peer-focus:-translate-y-3 left-1`}
+        className={`absolute text-sm text-gray-500 duration-300 transform ${labelClassName} -translate-y-4 scale-45 top-1 z-10 origin-[0] bg-white  px-1 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-80 peer-focus:-translate-y-3 left-1`}
       >
         {label}
       </label>

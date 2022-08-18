@@ -14,6 +14,7 @@ export type AuthStateType = {
   isAccessTokenValid: boolean | null;
   onboarding: boolean;
   merchantId: string | null;
+  userEmail: string;
 };
 
 export type ViewStateType = {

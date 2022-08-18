@@ -18,4 +18,3 @@ export default async function squareClient() {
 
   return { client };
 }
-// EAAAEZH_bK9xCDQDnxVUb1dABMqg_UvPqlGidyEz9qiFMC1JMAN1UkHd2FtwnGDc

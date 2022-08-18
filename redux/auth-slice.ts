@@ -8,6 +8,7 @@ const initialState: AuthStateType = {
   isAccessTokenValid: null,
   onboarding: false,
   merchantId: null,
+  userEmail: "",
 };
 
 const AuthSlice = createSlice({
@@ -38,6 +39,9 @@ const AuthSlice = createSlice({
     ) {
       state.merchantId = action.payload;
     },
+    updateUserEmail(state, action: PayloadAction<AuthStateType["userEmail"]>) {
+      state.userEmail = action.payload;
+    },
   },
 });
 
@@ -46,5 +50,6 @@ export const {
   updateAccessTokenValidity,
   updateOnboarding,
   updateMerchantId,
+  updateUserEmail,
 } = AuthSlice.actions;
 export default AuthSlice.reducer;
