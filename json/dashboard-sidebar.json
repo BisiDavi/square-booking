@@ -1,8 +1,13 @@
-[
-  { "link": "/admin/", "text": "Home" },
-  { "link": "/admin/services", "text": "Services" },
-  { "link": "/admin/customers", "text": "Customers" },
-  { "link": "/admin/team", "text": "Team" },
-  { "link": "/admin/staff", "text": "Staff" },
-  { "link": "/admin/settings", "text": "Account & Settings" }
-]
+{
+  "links": [
+    { "link": "/admin/", "text": "Home" },
+    { "link": "/admin/services", "text": "Services" },
+    { "link": "/admin/customers", "text": "Customers" },
+    { "link": "/admin/team", "text": "Team" },
+    { "link": "/admin/staff", "text": "Staff" },
+    { "link": "/admin/settings", "text": "Account & Settings" }
+  ],
+  "extras": [
+    { "link": "/admin/link-to-instagram", "text": "Link with Instagram" }
+  ]
+}
