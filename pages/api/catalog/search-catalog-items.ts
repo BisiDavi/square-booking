@@ -11,9 +11,7 @@ export default async function Handler(
   switch (req.method) {
     case "GET": {
       try {
-        const response = await client.catalogApi.searchCatalogItems({
-          productTypes: ["APPOINTMENTS_SERVICE"],
-        });
+        const response = await client.catalogApi.searchCatalogItems({});
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);
