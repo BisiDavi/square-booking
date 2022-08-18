@@ -19,7 +19,7 @@ export default function Footer() {
           layout="responsive"
         />
       </div>
-      <footer className="bg-gray-900 h-52 w-full py-10">
+      <footer className="bg-gray-900 w-full py-10">
         <div className="container mb-8 flex mx-auto items-start justify-between">
           <Logo />
 

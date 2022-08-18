@@ -11,7 +11,9 @@ export default function StoreLocation({
 }: StoreLocationProps) {
   return (
     <span className="flex items-center">
-      <GetLocation locationIds={presentAtLocationIds} />
+      {presentAtLocationIds && (
+        <GetLocation locationIds={presentAtLocationIds} />
+      )}
     </span>
   );
 }

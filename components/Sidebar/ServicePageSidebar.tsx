@@ -15,7 +15,7 @@ export default function ServicePageSidebar({ service }: Props) {
   return (
     <div className="w-1/3 bg-gray-200 rounded-lg px-5 py-4 ml-12 height-max-content fixed right-20 z-50">
       <h6 className="text-md pt-2 text-gray-600 font-bold">ABOUT US</h6>
-      <p className="pt-1 pb-8">{service.itemData.description}</p>
+      <p className="pt-1 pb-8">{service?.itemData.description}</p>
       <h6 className="text-md py-1  text-gray-600 font-bold">
         CONTACT & BUSINESS HOURS
       </h6>

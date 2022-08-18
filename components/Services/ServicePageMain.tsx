@@ -20,7 +20,7 @@ export default function ServicePageMain({ service }: Props) {
 
   const otherServices =
     status === "success"
-      ? serviceData?.items.filter((services) => services.id !== service.id)
+      ? serviceData?.items.filter((services) => services?.id !== service?.id)
       : [];
 
   return (
@@ -52,7 +52,7 @@ export default function ServicePageMain({ service }: Props) {
                   </h4>
                   {otherServices.length > 0
                     ? otherServices.map((service) => (
-                        <ServiceView key={service.id} service={service} />
+                        <ServiceView key={service?.id} service={service} />
                       ))
                     : null}
                 </div>

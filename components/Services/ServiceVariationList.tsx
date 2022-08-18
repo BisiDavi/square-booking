@@ -53,7 +53,7 @@ export default function ServiceVariationList({ variation, service }: Props) {
         </div>
       </div>
       <Accordion>
-        {teamMemberIds.length > 0 && (
+        {teamMemberIds?.length > 0 && (
           <AccordionItem
             title="Team"
             icon={<RiTeamFill className="mr-1 text-xl" />}
@@ -63,7 +63,7 @@ export default function ServiceVariationList({ variation, service }: Props) {
             <StoreTeam variation={variation} service={service} />
           </AccordionItem>
         )}
-        {presentAtLocationIds.length > 0 && (
+        {presentAtLocationIds?.length > 0 && (
           <AccordionItem
             title="Location"
             icon={<GoLocation className="mr-1 text-xl" />}
