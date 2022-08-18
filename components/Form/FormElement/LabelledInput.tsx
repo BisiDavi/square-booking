@@ -21,6 +21,7 @@ export default function LabelledInput({
       <input
         type={inputType}
         id={id}
+        name={id}
         className="block px-2.5 pb-2.5 pt-4 w-full h-12 text-sm text-gray-900 rounded-lg border border-gray-800 focus:outline-none focus:ring-0 focus:border-blue-800 peer"
         placeholder={placeholder}
       />

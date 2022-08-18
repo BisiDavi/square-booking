@@ -4,7 +4,8 @@ import { updateService } from "@/redux/view-slice";
 import LabelledInput from "@/components/Form/FormElement/LabelledInput";
 import Select from "@/components/Form/FormElement/Select";
 import Textarea from "@/components/Form/FormElement/Textarea";
-import UploadIcon from "./FormElement/UploadIcon";
+import UploadIcon from "@/components/Form/FormElement/UploadIcon";
+import PriceOverride from "@/components/Form/FormElement/PriceOverride";
 
 export default function CreateServiceForm() {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ export default function CreateServiceForm() {
           className="bg-purple-900 text-white px-3 py-1 rounded-lg hover:bg-opacity-70"
         />
       </div>
-      <div className="form-content mt-4 py-4 bg-white h-screen container rounded-xl">
+      <div className="form-content mt-4 py-4 bg-white container rounded-xl">
         <h2 className="font-bold text-xl text-center">Create a Service</h2>
         <div className="content w-11/12 mx-auto">
           <form>
@@ -42,22 +43,23 @@ export default function CreateServiceForm() {
               placeholder="Add a service description, describe details like features, benefits"
             />
             <div className="variations">
-              <div className="row flex items-center mt-4 justify-between mb-10">
+              <div className="row flex items-center mt-4 justify-between mb-5">
                 <h4 className="font-bold text-xl">Variations</h4>
-                <h6 className="font-bold">Variations</h6>
               </div>
-              <LabelledInput placeholder="service sku" label="SKU" />
-              <div className="row flex items-center">
+              <LabelledInput placeholder="Service sku" label="Service SKU" />
+              <div className="row flex items-center mt-3">
                 <Select
                   label="Category"
                   className="relative w-1/2 mr-4 -mb-5"
                 />
                 <LabelledInput
-                  placeholder="service sku"
-                  label="SKU"
+                  placeholder="Price"
+                  label="Price"
                   className="w-1/2 relative"
+                  type="number"
                 />
               </div>
+              <PriceOverride />
             </div>
           </form>
         </div>
