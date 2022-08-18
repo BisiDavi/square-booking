@@ -23,16 +23,18 @@ export default function OnboardingForm() {
 
   async function onSubmit(data: any) {
     console.log("data", data);
-    mutate(data.email, {
-      onSuccess: (response: any) => {
-        console.log("onboard-response", response);
-        dispatch(updateOnboarding(true));
-      },
-      onError: (err: any) => {
-        console.log("onboard-error", err);
-        dispatch(updateOnboarding(false));
-      },
-    });
+    if (data) {
+      mutate(data.email, {
+        onSuccess: (response: any) => {
+          console.log("onboard-response", response);
+          dispatch(updateOnboarding(true));
+        },
+        onError: (err: any) => {
+          console.log("onboard-error", err?.response.data);
+          dispatch(updateOnboarding(false));
+        },
+      });
+    }
   }
 
   return (

@@ -13,6 +13,8 @@ export async function fetchAccessTokenFromDBViaEmail(
   client: any,
   emailAddress: string
 ) {
+  console.log("emailAddress", emailAddress);
+
   return await client
     .db("square-booking")
     .collection("auth")
