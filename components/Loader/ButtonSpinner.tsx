@@ -6,6 +6,7 @@ export default function ButtonSpinner() {
         xmlns="http://www.w3.org/2000/svg"
         width="30"
         height="30"
+        className="mr-2"
         viewBox="0 0 48 48"
       >
         <g fill="none">
@@ -24,7 +25,7 @@ export default function ButtonSpinner() {
       <style jsx>
         {`
           #loading-spinner {
-            animation: loading-spinner 1s linear infinte;
+            animation: loading-spinner 1s linear infinite;
           }
           @keyframes loading-spinner {
             from {

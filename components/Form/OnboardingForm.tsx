@@ -53,7 +53,7 @@ export default function OnboardingForm() {
           <Button
             text="Onboard me"
             type="submit"
-            className="bg-site-purple flex font-medium items-center w-1/3  mx-auto justify-center flex text-white px-3 py-2 rounded-md hover:bg-blue-500"
+            className="bg-site-purple flex font-medium items-center mx-auto justify-center flex text-white px-3 py-2 rounded-md hover:bg-blue-500"
             loading={isLoading}
           />
         </form>
