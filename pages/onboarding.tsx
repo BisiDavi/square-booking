@@ -4,6 +4,7 @@ import { SiSquare } from "react-icons/si";
 
 import OnboardingBanner from "@/components/Banner/OnboardingBanner";
 import OnboardingForm from "@/components/Form/OnboardingForm";
+import AppLogo from "@/components/Logo/AppLogo";
 
 export default function OnboardingPage() {
   return (
@@ -13,17 +14,7 @@ export default function OnboardingPage() {
       </Head>
       <main className="w-full h-screen flex items-center">
         <div className="w-1/2 bg-gray-100 flex pt-20  text-center  flex-col relative h-full">
-          <h3 className="text-center items-center text-2xl font-bold mb-24">
-            <span className="font-bold ml-1 text-center border-white bg-gray-800 text-4xl px-3 py-2 text-white">
-              Bookify
-            </span>
-          </h3>
-          <h5 className="font-bold">
-            Welcome <span className="text-2xl ml-2">🤗</span>
-          </h5>
-          <h6 className="font-medium my-4">
-            Get onboarded with a single click.
-          </h6>
+          <AppLogo className="text-4xl mx-auto flex justify-center mb-24" />
           <OnboardingForm />
           <p className="font-bold text-xs text-red-500 absolute bottom-20 text-left left-10">
             By clicking on &#34;Onboard me&#34;, You will be authorizing this
