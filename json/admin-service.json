@@ -1,0 +1,41 @@
+{
+  "main": [
+    {
+      "type": "text",
+      "placeholder": "Service Name",
+      "name": "name",
+      "elementType": "input"
+    },
+    {
+      "placeholder": "Category",
+      "name": "category",
+      "elementType": "select",
+      "options": ["None"]
+    },
+    {
+      "placeholder": "Description",
+      "name": "description",
+      "elementType": "textarea"
+    },
+    {
+      "placeholder": "Location",
+      "name": "location",
+      "elementType": "select-modal"
+    }
+  ],
+  "variations": [
+    {
+      "placeholder": "SKU",
+      "name": "sku",
+      "elementType": "input",
+      "type": "text"
+    },
+    [
+      {
+        "placeholder": "Unit",
+        "name": "unit",
+        "elementType": "select"
+      }
+    ]
+  ]
+}
