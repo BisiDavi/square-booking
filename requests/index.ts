@@ -39,6 +39,10 @@ export function obtainAccessToken(squareCode: string) {
   return axios.post("/api/oauth/obtain-access-token", { squareCode });
 }
 
-export function listUsers(){
-  return axios.get("/api/customr")
+export function listUsers() {
+  return axios.get("/api/custom");
+}
+
+export function onboardUser(email: string) {
+  return axios.post("/api/onboard-user", { email });
 }

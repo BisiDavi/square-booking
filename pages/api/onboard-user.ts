@@ -24,6 +24,11 @@ export default async function Handler(
                 status: "onboarded",
                 accessToken: response.access_token,
               });
+            } else {
+              res.status(400).json({
+                status: "not-onboarded",
+                onboardingLink: squareLink,
+              });
             }
           })
           .catch((err) => {

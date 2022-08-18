@@ -1,13 +1,24 @@
+import ButtonSpinner from "@/components/Loader/ButtonSpinner";
+
 interface Props {
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   text: string;
   icon?: JSX.Element;
-  disabled?:boolean
+  disabled?: boolean;
+  loading?: boolean;
 }
 
-export default function Button({ className, onClick, type, text, icon, disabled }: Props) {
+export default function Button({
+  className,
+  onClick,
+  type,
+  text,
+  icon,
+  disabled,
+  loading,
+}: Props) {
   const buttonType = type ? type : "button";
   return (
     <>
@@ -17,7 +28,7 @@ export default function Button({ className, onClick, type, text, icon, disabled 
         type={buttonType}
         disabled={disabled}
       >
-        {icon} {text}
+        {loading && <ButtonSpinner />} {icon} {text}
       </button>
     </>
   );
