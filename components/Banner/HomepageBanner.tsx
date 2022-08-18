@@ -35,6 +35,7 @@ export default function HomepageBanner() {
             Discover the easiest way to schedule appointments with the #1 online
             booking system
           </p>
+          <BannerAnimation />
         </div>
         <div className="w-1/2">
           <Image
@@ -46,7 +47,6 @@ export default function HomepageBanner() {
           />
         </div>
       </div>
-      <BannerAnimation />
       <style jsx>
         {`
           .w-full {
