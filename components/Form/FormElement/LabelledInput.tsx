@@ -4,13 +4,20 @@ interface Props {
   placeholder: string;
   label: string;
   type?: string;
+  className?: string;
 }
 
-export default function LabelledInput({ placeholder, label, type }: Props) {
+export default function LabelledInput({
+  placeholder,
+  label,
+  type,
+  className,
+}: Props) {
   const id = toSlug(label);
   const inputType = type ? type : "text";
+  const inputClassName = className ? className : "relative my-5 ";
   return (
-    <div className="relative my-5">
+    <div className={inputClassName}>
       <input
         type={inputType}
         id={id}

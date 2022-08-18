@@ -42,9 +42,21 @@ export default function CreateServiceForm() {
               placeholder="Add a service description, describe details like features, benefits"
             />
             <div className="variations">
-              <div className="row flex items-center justify-between">
+              <div className="row flex items-center mt-4 justify-between mb-10">
                 <h4 className="font-bold text-xl">Variations</h4>
                 <h6 className="font-bold">Variations</h6>
+              </div>
+              <LabelledInput placeholder="service sku" label="SKU" />
+              <div className="row flex items-center">
+                <Select
+                  label="Category"
+                  className="relative w-1/2 mr-4 -mb-5"
+                />
+                <LabelledInput
+                  placeholder="service sku"
+                  label="SKU"
+                  className="w-1/2 relative"
+                />
               </div>
             </div>
           </form>
