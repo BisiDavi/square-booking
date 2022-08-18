@@ -10,7 +10,7 @@ export default function LabelledInput({ placeholder, label, type }: Props) {
   const id = toSlug(label);
   const inputType = type ? type : "text";
   return (
-    <div className="relative my-4">
+    <div className="relative my-5">
       <input
         type={inputType}
         id={id}
