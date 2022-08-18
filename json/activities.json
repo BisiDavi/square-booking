@@ -1,0 +1,6 @@
+[
+  { "text": "Total Bookings", "count": 0, "icon": "/bookingIcon.png" },
+  { "text": "Total Customers", "count": 0, "icon": "/customer.png" },
+  { "text": "Total Services", "count": 0, "icon": "/services.png" },
+  { "text": "Staff Total ", "count": 0, "icon": "staff.png" }
+]
