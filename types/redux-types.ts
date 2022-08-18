@@ -15,3 +15,8 @@ export type AuthStateType = {
   onboarding: boolean;
   merchantId: string | null;
 };
+
+export type ViewStateType = {
+  service: "create-service" | "create-service-form";
+  staff: "create-staff" | "create-staff-form";
+};

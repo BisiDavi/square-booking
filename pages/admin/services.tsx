@@ -1,9 +1,10 @@
 import AdminLayoutPage from "@/layout/Admin-layout";
+import AdminServiceView from "@/components/View/AdminServiceView";
 
 export default function ServicePage() {
   return (
     <AdminLayoutPage>
-      <h4>Service page</h4>
+      <AdminServiceView />
     </AdminLayoutPage>
   );
 }
