@@ -12,7 +12,7 @@ function QuicLinkItem({ icon, text, link }: Props) {
   return (
     <li>
       <Link href={link}>
-        <a className="font-bold my-2 text-blue-500 hover:text-red-500 flex items-center">
+        <a className="font-bold my-3 text-blue-500 hover:text-red-500 flex items-center">
           {icon}
           {text}
         </a>
@@ -23,8 +23,8 @@ function QuicLinkItem({ icon, text, link }: Props) {
 
 export default function QuickLinks() {
   return (
-    <div className="quick-task mt-4">
-      <h3 className="font-medium">Quick Task to Get You Started</h3>
+    <div className="quick-task mt-8">
+      <h3 className="font-medium mb-2">Quick Task to Get You Started</h3>
       <ul>
         <QuicLinkItem
           icon={<AiFillTags className="mr-2 text-xl" />}

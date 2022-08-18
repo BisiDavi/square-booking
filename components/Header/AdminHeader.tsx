@@ -8,7 +8,7 @@ export default function AdminHeader() {
 
   return (
     <div className="w-full z-40 fixed bg-white max-h-20 shadow justify-between py-4 px-8 flex items-center">
-      <AppLogo className="text-2xl" />
+      <AppLogo className="text-2xl" link="/admin" />
       <Logo />
       <div className="greetings flex items-center">
         <h3>Welcome {storeProfile?.name}</h3>
@@ -17,4 +17,3 @@ export default function AdminHeader() {
     </div>
   );
 }
- 
