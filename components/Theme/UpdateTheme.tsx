@@ -3,7 +3,7 @@ import { MdModeNight } from "react-icons/md";
 
 export default function UpdateTheme() {
   return (
-    <div>
+    <div className="flex items-center">
       <MdModeNight />
       <BsFillSunFill />
     </div>

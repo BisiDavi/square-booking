@@ -1,13 +1,18 @@
 import Link from "next/link";
 
-export default function AppLogo() {
+interface Props {
+  className: string;
+}
+
+export default function AppLogo({ className }: Props) {
+  const logoclassName = className ? className : "text-2xl";
   return (
     <Link href="/">
       <a>
-        <h3 className="text-center items-center text-2xl font-bold mb-24">
-          <span className="font-bold ml-1 text-center border-white bg-gray-800 text-4xl px-3 py-2 text-white">
-            Bookify
-          </span>
+        <h3
+          className={`text-center items-center ${logoclassName} font-bold  ml-1 text-center border-white bg-gray-800 px-3 py-2 text-white`}
+        >
+          Bookify
         </h3>
       </a>
     </Link>

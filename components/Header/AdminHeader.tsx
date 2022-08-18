@@ -7,10 +7,10 @@ export default function AdminHeader() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
-    <div className="w-full shadow justify-between flex items-center">
-      <AppLogo />
+    <div className="w-full fixed bg-white max-h-20 shadow justify-between py-4 px-8 flex items-center">
+      <AppLogo className="text-2xl" />
       <Logo />
-      <div className="greetings">
+      <div className="greetings flex items-center">
         <h3>Welcome {storeProfile?.name}</h3>
         <UpdateTheme />
       </div>

@@ -1,10 +1,16 @@
-import AdminHeader from "@/components/Header/AdminHeader";
+import { PropsWithChildren } from "react";
 
-export default function AdminLayoutPage() {
+import AdminHeader from "@/components/Header/AdminHeader";
+import DashboardSidebar from "@/components/Sidebar/DashboardSidebar";
+
+export default function AdminLayoutPage({ children }: PropsWithChildren<{}>) {
   return (
-    <main>
+    <main className="relative">
       <AdminHeader />
-      
+      <section className="flex items-center">
+        <DashboardSidebar />
+        <div className="wrapper w-full">{children}</div>
+      </section>
     </main>
   );
 }
