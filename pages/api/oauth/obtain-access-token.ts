@@ -10,7 +10,7 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { squareCode } = req.body;
+  const { squareCode, email } = req.body;
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const dbClient = await DBClient();
@@ -40,7 +40,11 @@ export default async function Handler(
           })
           .then((response) => {
             console.log("obtain-access-token-response", response.data);
-            saveAccessTokenToDB(dbClient, response.data);
+            const data = {
+              ...response.data,
+              email,
+            };
+            saveAccessTokenToDB(dbClient, data);
             res.status(200).json({ merchantId: response.data?.merchant_id });
           })
           .catch((error) => {

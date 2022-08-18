@@ -1,6 +1,6 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 import LabelledInput from "@/components/Form/FormElement/LabelledInput";
 import { useAppDispatch } from "@/hooks/useRedux";
@@ -11,10 +11,8 @@ import useOnboardingMutation from "@/hooks/useOnboardingMutation";
 
 export default function OnboardingForm() {
   const dispatch = useAppDispatch();
-  //   const router = useRouter();
-  const { mutate, data, isLoading } = useOnboardingMutation();
-
-  console.log("data", data);
+    const router = useRouter();
+  const { mutate, isLoading } = useOnboardingMutation();
 
   const methods = useForm({
     mode: "all",
@@ -22,7 +20,6 @@ export default function OnboardingForm() {
   });
 
   async function onSubmit(data: any) {
-    console.log("data", data);
     if (data) {
       mutate(data.email, {
         onSuccess: (response: any) => {
@@ -32,6 +29,7 @@ export default function OnboardingForm() {
         onError: (err: any) => {
           console.log("onboard-error", err?.response.data);
           dispatch(updateOnboarding(false));
+          router.push(err?.response.data.onboardingLink)
         },
       });
     }

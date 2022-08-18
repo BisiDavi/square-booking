@@ -35,8 +35,8 @@ export function getACatalogObject(catalogObjectId: string) {
   });
 }
 
-export function obtainAccessToken(squareCode: string) {
-  return axios.post("/api/oauth/obtain-access-token", { squareCode });
+export function obtainAccessToken(squareCode: string, email: string) {
+  return axios.post("/api/oauth/obtain-access-token", { squareCode, email });
 }
 
 export function listUsers() {

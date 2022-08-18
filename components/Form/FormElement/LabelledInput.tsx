@@ -27,8 +27,6 @@ export default function LabelledInput({
 
   const labelClassName = errors[inputName] ? "-mt-1" : "";
 
-  console.log("inputName", inputName);
-
   return (
     <div className={inputClassName}>
       <input

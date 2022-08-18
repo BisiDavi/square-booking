@@ -24,16 +24,19 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  console.log("router.query", router.query);
+
   const { isAccessTokenAvailable, isAccessTokenValid } = useAppSelector(
     (state) => state.Auth
   );
   const squareCode = router.asPath
     .split("?code=")[1]
     .split("&response_type=")[0];
+  const stateEmail = router.asPath.split("&state=")[1];
 
   useEffect(() => {
     if (!isAccessTokenAvailable && isAccessTokenValid === null && squareCode) {
-      obtainAccessToken(squareCode)
+      obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
           console.log("response", response.data);
           dispatch(updateAccessTokenStatus(true));
