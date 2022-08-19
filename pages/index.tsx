@@ -11,7 +11,7 @@ import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
-// import squareClient from "@/lib/squareClient";
+import squareClient from "@/lib/squareClient";
 import parseCookies from "@/lib/parseCookies";
 
 interface Props {
@@ -44,11 +44,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   console.log("cookieData", data);
 
   try {
-    // const { client } = await squareClient(data.token);
-    // const response = await client.locationsApi.listLocations();
+
+    const { client } = await squareClient(data.token);
+    const response = await client.locationsApi.listLocations();
     return {
       props: {
-        storeProfile: null,
+        storeProfile: response.result.locations
+          ? response.result.locations[0]
+          : null,
       },
     };
   } catch (error) {
