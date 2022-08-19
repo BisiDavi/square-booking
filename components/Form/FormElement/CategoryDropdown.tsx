@@ -42,7 +42,15 @@ export default function CategoryDropdown() {
 
   const filterCategories = (inputValue: string) => {
     return defaultOptions.filter(
-      (i) => i.label.toLowerCase().includes(inputValue.toLowerCase())
+      (i) => {
+        const checkAvailablity = i.label
+          .toLowerCase()
+          .includes(inputValue.toLowerCase());
+        console.log("checkAvailablity", checkAvailablity);
+        if (checkAvailablity) {
+          return checkAvailablity;
+        }
+      }
 
       //   if (!filterResult) {
       //     createCatalogCategory(inputValue);
@@ -52,33 +60,38 @@ export default function CategoryDropdown() {
 
   const promiseOptions: any = (inputValue: string) =>
     new Promise((resolve) => {
-      resolve(filterCategories(inputValue));
+      setTimeout(() => {
+        resolve(filterCategories(inputValue));
+      }, 1000);
     });
 
   return (
-    <div className="categorydropdown flex items-center h-12 mt-1">
+    <div className="categorydropdown flex items-center">
       <label
-        className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-gray-100 font-bold items-center flex"
+        className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-white font-bold items-center flex"
         htmlFor="categoryDropdown"
       >
         Category
       </label>
       <AsyncCreatableSelect
         id="categoryDropdown"
-        cacheOptions
-        className="w-3/4 h-12"
-        defaultOptions={defaultOptions}
+        className="w-3/4"
         classNamePrefix="categoryDropdown"
-        loadOptions={promiseOptions}
         placeholder="Select Category"
+        cacheOptions
+        onChange={(inputValue) => console.log("inputValue", inputValue)}
+        defaultOptions={defaultOptions}
+        loadOptions={promiseOptions}
       />
       <style jsx>
         {`
           .categorydropdown {
             width: 750px;
+            height: 50px;
           }
           .categorydropdown label {
             width: 230px;
+            height: 50px;
           }
           .categorydropdown select {
             width: 100%;

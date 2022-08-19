@@ -7,19 +7,15 @@ interface Props {
     placeholder?: string;
     label: string;
   };
-  index: number;
 }
 
-export default function NewInput({ input, index }: Props) {
+export default function NewInput({ input }: Props) {
   const { name, type, placeholder, label } = input;
   const id = toSlug(label);
-  const inputClassName = index % 2 >= 0 ? "border-t" : "border-b";
   return (
-    <div
-      className={`input-group flex items-center h-12 border-r ${inputClassName} border-gray-300`}
-    >
+    <div className={`input-group flex items-center h-12`}>
       <label
-        className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-gray-100 font-bold h-full items-center flex"
+        className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-white font-bold h-full items-center flex"
         htmlFor={id}
       >
         {label}
@@ -27,7 +23,7 @@ export default function NewInput({ input, index }: Props) {
       <input
         id={name}
         name={name}
-        className="placeholder-gray-300 px-3 h-full py-4 font-bold border-b border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
+        className="placeholder-gray-300 px-3 h-full py-4 font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         type={type}
         min={0}
         placeholder={placeholder}

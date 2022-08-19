@@ -10,7 +10,7 @@
     {
       "name": "category",
       "label": "Category",
-      "elementType": "dropdown",
+      "elementType": "categoryDropdown",
       "options": [{ "text": "None", "value": "NONE" }],
       "type": "text",
       "placeholder": "None"
