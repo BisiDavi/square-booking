@@ -41,12 +41,10 @@ export default function Home({ storeProfile }: Props) {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context;
   console.log("req.cookies", req.cookies);
-  const data: any = parseCookies(req);
-  console.log("cookieData", data);
 
   try {
 
-    const { client } = await squareClient(data.token);
+    const { client } = await squareClient(req.cookies.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
