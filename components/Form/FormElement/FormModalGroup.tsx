@@ -53,7 +53,7 @@ export default function FormModalGroup({ input }: Props) {
         <style jsx>
           {`
             .input-group {
-              width: 750px;
+              width: 95%;
             }
             .input-group label {
               width: 295px;

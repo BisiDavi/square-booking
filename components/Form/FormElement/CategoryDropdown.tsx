@@ -86,11 +86,11 @@ export default function CategoryDropdown() {
       <style jsx>
         {`
           .categorydropdown {
-            width: 750px;
+            width: 95%;
             height: 50px;
           }
           .categorydropdown label {
-            width: 230px;
+            width: 225px;
             height: 50px;
           }
           .categorydropdown select {

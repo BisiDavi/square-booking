@@ -31,7 +31,7 @@ export default function NewInput({ input }: Props) {
       <style jsx>
         {`
           .input-group {
-            width: 750px;
+            width: 95%;
           }
           .input-group label {
             width: 300px;
