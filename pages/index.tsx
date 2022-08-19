@@ -43,8 +43,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   console.log("req.cookies", req.cookies);
 
   try {
-
-    const { client } = await squareClient(req.cookies.token);
+    const { client } = await squareClient(req.cookies?.merchant?.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
