@@ -12,7 +12,6 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
 import squareClient from "@/lib/squareClient";
-import parseCookies from "@/lib/parseCookies";
 
 interface Props {
   storeProfile: storeProfileType;
