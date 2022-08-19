@@ -18,7 +18,6 @@ export default async function Handler(
         const response = await client.catalogApi.searchCatalogObjects({
           ...searchQuery,
         });
-        console.log("searchCatalogObjects", response.result);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);

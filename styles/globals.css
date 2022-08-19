@@ -35,3 +35,10 @@
   color: white;
   background-color: var(--site-purple);
 }
+
+/* category dropdown - react-select */
+#categoryDropdown .categoryDropdown__control {
+  height: 55px;
+  margin-top: -5px;
+  border-radius: 0px;
+}

@@ -1,10 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable unused-imports/no-unused-vars */
 import { useQuery } from "react-query";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 
-import { createCatalogCategory, searchCatalogObject } from "@/requests";
+import {
+  //  createCatalogCategory,
+  searchCatalogObject,
+} from "@/requests";
 
 type defaultOptions = { label: string; value: string }[];
 
@@ -16,46 +19,74 @@ export default function CategoryDropdown() {
     searchCatalogObject({ objectTypes: ["CATEGORY"] })
   );
 
-  console.log("data-data", data);
-
   console.log("defaultOptions", defaultOptions);
 
-  useEffect(() => {
-    if (status === "success" && defaultOptions.length === 0) {
-      const parsedData = JSON.parse(data);
-      parsedData.objects.map((itemData: any) => {
-        setDefaultOptions([
-          ...defaultOptions,
-          { label: itemData?.categoryData?.name, value: itemData?.id },
-        ]);
+  function getCategories() {
+    const parsedData = JSON.parse(data.data);
+    let defaultOptionsArray = [{ label: "None", value: "NONE" }];
+    parsedData.objects.map((itemData: any) => {
+      defaultOptionsArray.push({
+        label: itemData?.categoryData?.name,
+        value: itemData?.id,
       });
+    });
+    return defaultOptionsArray;
+  }
+
+  useMemo(() => {
+    if (status === "success") {
+      const defaultOptionsArray = getCategories();
+      setDefaultOptions(defaultOptionsArray);
     }
   }, [status]);
 
-  const filterColors = (inputValue: string) => {
+  const filterCategories = (inputValue: string) => {
     return defaultOptions.filter((i) => {
       const filterResult = i.label
         .toLowerCase()
         .includes(inputValue.toLowerCase());
       console.log("filterResult", filterResult);
-      if (!filterResult) {
-        createCatalogCategory(inputValue);
-      }
+      //   if (!filterResult) {
+      //     createCatalogCategory(inputValue);
+      //   }
     });
   };
 
   const promiseOptions: any = (inputValue: string) =>
     new Promise((resolve) => {
-      resolve(filterColors(inputValue));
+      resolve(filterCategories(inputValue));
     });
 
   return (
-    <AsyncCreatableSelect
-      cacheOptions
-      className="mt-5 w-3/4"
-      defaultOptions={defaultOptions}
-      loadOptions={promiseOptions}
-      placeholder="Select Location"
-    />
+    <div className="categorydropdown flex items-center h-12 mt-1">
+      <label
+        className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-gray-100 font-bold items-center flex"
+        htmlFor="categoryDropdown"
+      >
+        Category
+      </label>
+      <AsyncCreatableSelect
+        id="categoryDropdown"
+        cacheOptions
+        className="w-3/4 h-12"
+        defaultOptions={defaultOptions}
+        classNamePrefix="categoryDropdown"
+        loadOptions={promiseOptions}
+        placeholder="Select Category"
+      />
+      <style jsx>
+        {`
+          .categorydropdown {
+            width: 750px;
+          }
+          .categorydropdown label {
+            width: 230px;
+          }
+          .categorydropdown select {
+            width: 100%;
+          }
+        `}
+      </style>
+    </div>
   );
 }
