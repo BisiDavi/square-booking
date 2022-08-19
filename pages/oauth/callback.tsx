@@ -22,8 +22,6 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   const router = useRouter();
   const [, setCookie] = useCookies(["merchant"]);
 
-  console.log("router.query", router.query);
-
   const squareCode = `${router?.query?.code}`;
   const stateEmail = `${router?.query?.state}`;
 
@@ -31,17 +29,14 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     if (squareCode && stateEmail) {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
-          console.log("response", response?.data);
           setCookie("merchant", JSON.stringify(response.data), {
             path: "/",
             maxAge: 604800, // expires in a week
             sameSite: true,
           });
-          const { id, email, token, refreshToken, expiresAt } = response?.data;
+          const { id, email, expiresAt } = response?.data;
           dispatch(updateOnboarding(true));
-          dispatch(
-            updateMerchant({ id, email, token, refreshToken, expiresAt })
-          );
+          dispatch(updateMerchant({ id, email, expiresAt }));
         })
         .catch((error) => {
           console.log("error", error);

@@ -10,8 +10,6 @@ const initialState: AuthStateType = {
   merchant: {
     id: null,
     email: null,
-    token: null,
-    refreshToken: null,
     expiresAt: null,
   },
 };

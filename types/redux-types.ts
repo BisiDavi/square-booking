@@ -16,8 +16,6 @@ export type AuthStateType = {
   merchant: {
     id: string | null;
     email: string | null;
-    token: string | null;
-    refreshToken: string | null;
     expiresAt: string | null;
   };
 };
