@@ -37,6 +37,7 @@
     "redux-persist": "^6.0.0",
     "square": "^19.1.0",
     "typewriter-effect": "^2.19.0",
+    "use-debounce": "^8.0.3",
     "uuid": "^8.3.2",
     "yup": "^0.32.11"
   },

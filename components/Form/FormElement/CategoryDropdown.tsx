@@ -43,7 +43,7 @@ export default function CategoryDropdown() {
     });
   };
 
-  const promiseOptions = (inputValue: string) =>
+  const promiseOptions: any = (inputValue: string) =>
     new Promise((resolve) => {
       resolve(filterColors(inputValue));
     });
