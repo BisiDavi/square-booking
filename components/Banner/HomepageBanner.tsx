@@ -9,8 +9,8 @@ export default function HomepageBanner() {
     (state) => state.ServiceCategories
   );
   return (
-    <section className="w-full relative py-10 pt-24">
-      <div className="container flex mx-auto justify-center items-center">
+    <section className="w-full py-5 pt-24">
+      <div className="container py-5 flex mx-auto justify-center items-center relative">
         <div className="w-1/2">
           <h1 className="font-bold text-5xl text-gray-900">
             Let&#39;s make
@@ -35,7 +35,6 @@ export default function HomepageBanner() {
             Discover the easiest way to schedule appointments with the #1 online
             booking system
           </p>
-          <BannerAnimation />
         </div>
         <div className="w-1/2">
           <Image
@@ -46,6 +45,7 @@ export default function HomepageBanner() {
             width={1000}
           />
         </div>
+        <BannerAnimation />
       </div>
       <style jsx>
         {`
