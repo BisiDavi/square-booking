@@ -46,3 +46,11 @@ export function listUsers() {
 export function onboardUser(email: string) {
   return axios.post("/api/onboard-user", { email });
 }
+
+export function searchCatalogObject(searchQuery: any) {
+  return axios.post("/api/search-catalog-objects", { searchQuery });
+}
+
+export function createCatalogCategory(category: string) {
+  return axios.post("/api/create-catalog-category", { category });
+}

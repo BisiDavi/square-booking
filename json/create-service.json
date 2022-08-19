@@ -11,6 +11,7 @@
       "name": "category",
       "label": "Category",
       "elementType": "dropdown",
+      "options": [{ "text": "None", "value": "NONE" }],
       "type": "text",
       "placeholder": "None"
     },
