@@ -39,8 +39,11 @@ export default function Home({ storeProfile }: Props) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context;
-  const merchant: any = req.cookies?.merchant;
+  const merchant = req.cookies?.merchant
+    ? JSON.parse(req.cookies?.merchant)
+    : {};
   console.log("req.cookies", req.cookies);
+
   console.log("req.cookies.merchant", merchant);
 
   try {
