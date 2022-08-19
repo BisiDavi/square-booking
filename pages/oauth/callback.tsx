@@ -2,19 +2,15 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
 
 import DefaultLayout from "@/layout/Default-layout";
 import squareClient from "@/lib/squareClient";
 import { storeProfileType } from "@/types/store-types";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests";
-import {
-  updateAccessTokenValidity,
-  updateAccessTokenStatus,
-  updateMerchant,
-  updateOnboarding,
-} from "@/redux/auth-slice";
+import { updateMerchant, updateOnboarding } from "@/redux/auth-slice";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -23,23 +19,24 @@ interface Props {
 export default function OAUTHPAGE({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [, setCookie] = useCookies(["merchant"]);
 
   console.log("router.query", router.query);
 
-  const { isAccessTokenAvailable, isAccessTokenValid } = useAppSelector(
-    (state) => state.Auth
-  );
   const squareCode = `${router?.query?.code}`;
   const stateEmail = `${router?.query?.state}`;
 
   useEffect(() => {
-    if (!isAccessTokenAvailable && isAccessTokenValid === null && squareCode) {
+    if (squareCode && stateEmail) {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
           console.log("response", response?.data);
+          setCookie("merchant", JSON.stringify(response.data), {
+            path: "/",
+            maxAge: 604800, // expires in a week
+            sameSite: true,
+          });
           const { id, email, token, refreshToken, expiresAt } = response?.data;
-          dispatch(updateAccessTokenStatus(true));
-          dispatch(updateAccessTokenValidity(true));
           dispatch(updateOnboarding(true));
           dispatch(
             updateMerchant({ id, email, token, refreshToken, expiresAt })
@@ -49,7 +46,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           console.log("error", error);
         });
     }
-  }, [isAccessTokenAvailable, squareCode]);
+  }, [squareCode, stateEmail]);
 
   useEffect(() => {
     dispatch(updateStoreProfile(storeProfile));

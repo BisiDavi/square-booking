@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
+import { GetServerSidePropsContext } from "next";
 
 import HomepageBanner from "@/components/Banner/HomepageBanner";
 import InfoSection from "@/components/UI/InfoSection";
@@ -11,6 +12,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
 import squareClient from "@/lib/squareClient";
+import parseCookies from "@/lib/parseCookies";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -18,8 +20,6 @@ interface Props {
 
 export default function Home({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
-
-  // console.log("storeProfile", storeProfile);
 
   useEffect(() => {
     if (storeProfile !== null) {
@@ -38,9 +38,20 @@ export default function Home({ storeProfile }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { req, res } = context;
+  const data: any = parseCookies(req);
+  console.log("cookieData", data);
+
   try {
-    const { client } = await squareClient();
+    if (res) {
+      if (Object.keys(data).length === 0 && data.constructor === Object) {
+        res.writeHead(301, { Location: "/" });
+        res.end();
+      }
+    }
+
+    const { client } = await squareClient(data.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
