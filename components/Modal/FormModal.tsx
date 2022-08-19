@@ -4,7 +4,7 @@ import Modal from "@/components/Modal";
 
 interface Props {
   input: { placeholder: string };
-  modal: boolean;
+  modal: null | "form-modal-location";
   toggleModal: () => void;
 }
 

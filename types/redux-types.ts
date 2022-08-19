@@ -1,5 +1,5 @@
 export type UIStateType = {
-  modal: "auth-modal" | null;
+  modal: "auth-modal" | "form-modal-location" | null;
   accordion: string | null;
   apploaded: boolean;
 };

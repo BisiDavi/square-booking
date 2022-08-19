@@ -1,8 +1,9 @@
-import { useState } from "react";
-
 import Button from "@/components/UI/Button";
 import toSlug from "@/lib/toSlug";
 import FormModal from "@/components/Modal/FormModal";
+import { useAppDispatch } from "@/redux/store";
+import { useAppSelector } from "@/hooks/useRedux";
+import { updateModal } from "@/redux/ui-slice";
 
 interface Props {
   input: {
@@ -13,20 +14,31 @@ interface Props {
 }
 
 export default function FormModalGroup({ input }: Props) {
-  const [modal, setModal] = useState(false);
+  const dispatch = useAppDispatch();
+  const { modal } = useAppSelector((state) => state.UI);
   const { label, text } = input;
   const id = toSlug(label);
 
   function modalHandler() {
-    setModal((prevState) => !prevState);
+    dispatch(updateModal("form-modal-location"));
+  }
+
+  function closeModalHandler() {
+    dispatch(updateModal(null));
   }
 
   return (
     <>
-      <FormModal modal={modal} toggleModal={modalHandler} input={input} />
-      <div className={`input-group flex items-center h-12`}>
+      {modal === "form-modal-location" && (
+        <FormModal
+          modal={modal}
+          toggleModal={closeModalHandler}
+          input={input}
+        />
+      )}
+      <div className={`input-group flex items-center h-14`}>
         <label
-          className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-white font-bold h-full items-center flex"
+          className="bg-gray-300 text-gray-900 px-3 h-14 border-b border-white font-bold h-full items-center flex"
           htmlFor={id}
         >
           {label}
@@ -34,7 +46,7 @@ export default function FormModalGroup({ input }: Props) {
         <div id={id}>
           <Button
             text={text}
-            className="placeholder-gray-300 px-3 h-full py-4 font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
+            className="placeholder-gray-300 px-3 w-full h-14 my-0 font-bold border hover:text-blue-500 border-gray-300"
             onClick={modalHandler}
           />
         </div>
@@ -44,9 +56,10 @@ export default function FormModalGroup({ input }: Props) {
               width: 750px;
             }
             .input-group label {
-              width: 300px;
+              width: 295px;
+              height: 100%;
             }
-            .input-group input {
+            .input-group div {
               width: 100%;
             }
           `}

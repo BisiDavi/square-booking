@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 interface Props {
   title?: string;
   toggleModal: (modalState: null | "auth-modal") => void;
-  modal: null | "auth-modal" | boolean;
+  modal: null | "auth-modal" | "form-modal-location";
   size?: "large" | "small";
 }
 
@@ -18,7 +18,7 @@ export default function Modal({
   const modalSize = size ? `${size} w-auto` : "max-w-2xl w-screen";
   return (
     <>
-      {modal === "auth-modal" ? (
+      {modal ? (
         <>
           <div
             role="dialog"
