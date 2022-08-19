@@ -1,4 +1,4 @@
-import formatBigInt from "@/lib/formatBigInt";
+// import formatBigInt from "@/lib/formatBigInt";
 import squareClient from "@/lib/squareClient";
 
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -19,7 +19,7 @@ export default async function Handler(
           ...searchQuery,
         });
         console.log("searchCatalogObjects", response.result);
-        res.status(200).json(formatBigInt(response.result));
+        res.status(200).json(response.result);
       } catch (error) {
         console.log("error", error);
         res.status(400).json(JSON.stringify(error));
