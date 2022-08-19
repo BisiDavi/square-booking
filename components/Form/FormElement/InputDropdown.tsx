@@ -11,10 +11,10 @@ interface Props {
   index: number;
 }
 
-export default function NewInput({ input, index }: Props) {
+export default function InputDropdown({ input, index }: Props) {
   const { name, type, placeholder, label } = input;
   const id = toSlug(label);
-  const inputClassName = index % 2 >= 0 ? "border-t" : "border-b";
+  const inputClassName = index === 0 ? "border-t" : "border-b";
   return (
     <div
       className={`input-group flex items-center h-12 border-r ${inputClassName} border-gray-300`}
