@@ -36,7 +36,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     if (!isAccessTokenAvailable && isAccessTokenValid === null && squareCode) {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
-          console.log("response", response.data);
+          console.log("response", response?.data);
           dispatch(updateAccessTokenStatus(true));
           dispatch(updateAccessTokenValidity(true));
           dispatch(updateOnboarding(true));
