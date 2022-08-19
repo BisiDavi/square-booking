@@ -24,7 +24,8 @@
     },
     {
       "name": "location",
-      "label": "Location",
+      "label": "Locations",
+      "text": "All Locations",
       "elementType": "form-modal",
       "type": "text",
       "placeholder": "Edit Locations"

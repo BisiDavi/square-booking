@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 interface Props {
   title?: string;
   toggleModal: (modalState: null | "auth-modal") => void;
-  modal: null | "auth-modal";
+  modal: null | "auth-modal" | boolean;
   size?: "large" | "small";
 }
 
