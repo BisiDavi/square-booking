@@ -41,15 +41,13 @@ export default function CategoryDropdown() {
   }, [status]);
 
   const filterCategories = (inputValue: string) => {
-    return defaultOptions.filter((i) => {
-      const filterResult = i.label
-        .toLowerCase()
-        .includes(inputValue.toLowerCase());
-      console.log("filterResult", filterResult);
+    return defaultOptions.filter(
+      (i) => i.label.toLowerCase().includes(inputValue.toLowerCase())
+
       //   if (!filterResult) {
       //     createCatalogCategory(inputValue);
       //   }
-    });
+    );
   };
 
   const promiseOptions: any = (inputValue: string) =>
