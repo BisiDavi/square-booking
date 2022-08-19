@@ -39,10 +39,12 @@ export default function Home({ storeProfile }: Props) {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context;
+  const merchant: any = req.cookies?.merchant;
   console.log("req.cookies", req.cookies);
+  console.log("req.cookies.merchant", merchant);
 
   try {
-    const { client } = await squareClient(req.cookies?.merchant?.token);
+    const { client } = await squareClient(merchant.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
