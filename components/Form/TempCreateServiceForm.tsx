@@ -2,6 +2,7 @@ import createService from "@/json/create-service.json";
 import NewInput from "@/components/Form/FormElement/NewInput";
 import NewTextArea from "@/components/Form/FormElement/NewTextArea";
 import UploadIcon from "@/components/Form/FormElement/UploadIcon";
+import CategoryDropdown from "@/components/Form/FormElement/CategoryDropdown";
 
 export default function TempCreateServiceForm() {
   return (
@@ -29,6 +30,7 @@ export default function TempCreateServiceForm() {
           );
         })}
       </div>
+      <CategoryDropdown />
     </div>
   );
 }

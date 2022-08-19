@@ -48,9 +48,9 @@ export function onboardUser(email: string) {
 }
 
 export function searchCatalogObject(searchQuery: any) {
-  return axios.post("/api/search-catalog-objects", { searchQuery });
+  return axios.post("/api/catalog/search-catalog-objects", { searchQuery });
 }
 
 export function createCatalogCategory(category: string) {
-  return axios.post("/api/create-catalog-category", { category });
+  return axios.post("/api/catalog/create-catalog-category", { category });
 }

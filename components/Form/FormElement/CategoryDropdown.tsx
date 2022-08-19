@@ -1,49 +1,60 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable unused-imports/no-unused-vars */
 import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 import AsyncCreatableSelect from "react-select/async-creatable";
 
 import { createCatalogCategory, searchCatalogObject } from "@/requests";
-import { useState } from "react";
 
 type defaultOptions = { label: string; value: string }[];
 
 export default function CategoryDropdown() {
-  const [defaultOptions, setDefaultOptions] = useState<defaultOptions>([]);
+  const [defaultOptions, setDefaultOptions] = useState<defaultOptions>([
+    { label: "None", value: "NONE" },
+  ]);
   const { data, status } = useQuery("searchCatalogObject", () =>
     searchCatalogObject({ objectTypes: ["CATEGORY"] })
   );
 
   console.log("data-data", data);
 
-  let defaultOptionsArray = [{ label: "None", value: "NONE" }];
+  console.log("defaultOptions", defaultOptions);
 
-  if (status === "success" && defaultOptions.length === 0) {
-    data?.objects.map((itemData: any) => {
-      defaultOptionsArray = [
-        ...defaultOptionsArray,
-        { label: itemData?.categoryData?.name, value: itemData?.id },
-      ];
-    });
-    setDefaultOptions(defaultOptionsArray);
-  }
+  useEffect(() => {
+    if (status === "success" && defaultOptions.length === 0) {
+      data?.objects.map((itemData: any) => {
+        setDefaultOptions([
+          ...defaultOptions,
+          { label: itemData?.categoryData?.name, value: itemData?.id },
+        ]);
+      });
+    }
+  }, [status]);
 
   const filterColors = (inputValue: string) => {
-    return defaultOptions.filter((i) =>
-      i.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
+    return defaultOptions.filter((i) => {
+      const filterResult = i.label
+        .toLowerCase()
+        .includes(inputValue.toLowerCase());
+      console.log("filterResult", filterResult);
+      if (!filterResult) {
+        createCatalogCategory(inputValue);
+      }
+    });
   };
 
-  const promiseOptions = (inputValue: string, dataArray: any[]) =>
+  const promiseOptions = (inputValue: string) =>
     new Promise((resolve) => {
-      createCatalogCategory(inputValue);
       resolve(filterColors(inputValue));
     });
 
   return (
     <AsyncCreatableSelect
       cacheOptions
+      className="mt-5 w-3/4"
       defaultOptions={defaultOptions}
       loadOptions={promiseOptions}
+      placeholder="Select Location"
     />
   );
 }

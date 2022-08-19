@@ -13,7 +13,7 @@ export default async function Handler(
   const { searchQuery } = req.body;
 
   switch (req.method) {
-    case "GET": {
+    case "POST": {
       try {
         const response = await client.catalogApi.searchCatalogObjects({
           ...searchQuery,
