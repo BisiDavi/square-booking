@@ -14,7 +14,6 @@ export default async function Handler(
     case "GET": {
       try {
         const response = await client.locationsApi.listLocations();
-        console.log("listLocation", response.result);
         res.status(200).json(response.result);
       } catch (error) {
         console.log("error", error);

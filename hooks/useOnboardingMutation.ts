@@ -1,5 +1,5 @@
 import useRequestMutation from "@/hooks/useRequestMutation";
-import { onboardUser } from "@/requests";
+import { onboardUser } from "@/requests/postRequests";
 
 export default function useOnboardingMutation() {
   return useRequestMutation((email) => onboardUser(email), {

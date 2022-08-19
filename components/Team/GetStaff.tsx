@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { IoPersonCircleSharp } from "react-icons/io5";
 
-import { getTeam } from "@/requests";
+import { getTeam } from "@/requests/postRequests";
 
 interface Props {
   staffId: string;

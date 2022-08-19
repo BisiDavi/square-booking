@@ -21,6 +21,9 @@ export default function FormModal({ input, modal, toggleModal }: Props) {
             className="border border-gray-300 py-2 w-full rounded-md pl-10"
           />
         </div>
+        <div className="location-view h-44">
+            
+        </div>
       </div>
     </Modal>
   );

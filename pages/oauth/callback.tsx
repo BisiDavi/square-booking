@@ -9,7 +9,7 @@ import squareClient from "@/lib/squareClient";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
-import { obtainAccessToken } from "@/requests";
+import { obtainAccessToken } from "@/requests/postRequests";
 import { updateMerchant, updateOnboarding } from "@/redux/auth-slice";
 import { GetServerSidePropsContext } from "next";
 

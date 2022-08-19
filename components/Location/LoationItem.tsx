@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
 import formatCountry from "@/lib/formatCountry";
-import { getLocation } from "@/requests";
+import { getLocation } from "@/requests/postRequests";
 
 
 interface LocationItemProps {

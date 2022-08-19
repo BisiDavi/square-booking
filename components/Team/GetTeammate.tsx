@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
-import { getTeam } from "@/requests";
+import { getTeam } from "@/requests/postRequests";
 import Button from "@/components/UI/Button";
 import toSlug from "@/lib/toSlug";
 

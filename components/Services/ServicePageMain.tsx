@@ -5,7 +5,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 import formatCountry from "@/lib/formatCountry";
 import SearchServices from "@/components/Form/FormElement/SearchServices";
 import ServiceView from "@/components/View/ServiceView";
-import { listServices } from "@/requests";
+import { listServices } from "@/requests/getRequests";
 
 import type { serviceItemType, serviceType } from "@/types/service-type";
 interface Props {

@@ -1,4 +1,4 @@
-import { createCustomer } from "@/requests";
+import { createCustomer } from "@/requests/postRequests";
 import useRequestMutation from "@/hooks/useRequestMutation";
 import useFirebase from "@/hooks/useFirebase";
 

@@ -9,7 +9,7 @@ import { IoPricetag } from "react-icons/io5";
 import Button from "@/components/UI/Button";
 import GetLocation from "@/components/Location/GetLocation";
 import BookingSidebar from "@/components/Sidebar/BookingSidebar";
-import { getACatalogObject } from "@/requests";
+import { getACatalogObject } from "@/requests/postRequests";
 import GetStaff from "@/components/Team/GetStaff";
 import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";

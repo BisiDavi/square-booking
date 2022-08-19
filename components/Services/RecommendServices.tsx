@@ -2,7 +2,7 @@
 import { useQuery } from "react-query";
 import { useEffect, useMemo } from "react";
 
-import { listServices } from "@/requests";
+import { listServices } from "@/requests/getRequests";
 import RecommendService from "@/components/Services/RecommendService";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateServiceCategories } from "@/redux/service-categories-slice";

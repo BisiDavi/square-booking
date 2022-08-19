@@ -7,7 +7,7 @@ import AsyncCreatableSelect from "react-select/async-creatable";
 import {
   //  createCatalogCategory,
   searchCatalogObject,
-} from "@/requests";
+} from "@/requests/postRequests";
 
 type defaultOptions = { label: string; value: string }[];
 
