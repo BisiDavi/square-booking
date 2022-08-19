@@ -45,7 +45,13 @@ export default async function Handler(
               email,
             };
             saveAccessTokenToDB(dbClient, data);
-            res.status(200).json({ merchantId: response.data?.merchant_id });
+            res.status(200).json({
+              id: response.data?.merchant_id,
+              email,
+              token: response.data?.access_token,
+              refreshToken: response.data?.refresh_token,
+              expiresAt: response.data?.expires_at,
+            });
           })
           .catch((error) => {
             console.log("obtain-access-token-error", error);

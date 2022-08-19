@@ -12,7 +12,7 @@ import { obtainAccessToken } from "@/requests";
 import {
   updateAccessTokenValidity,
   updateAccessTokenStatus,
-  updateMerchantId,
+  updateMerchant,
   updateOnboarding,
 } from "@/redux/auth-slice";
 
@@ -37,10 +37,13 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
           console.log("response", response?.data);
+          const { id, email, token, refreshToken, expiresAt } = response?.data;
           dispatch(updateAccessTokenStatus(true));
           dispatch(updateAccessTokenValidity(true));
           dispatch(updateOnboarding(true));
-          dispatch(updateMerchantId(response?.data?.merchantId));
+          dispatch(
+            updateMerchant({ id, email, token, refreshToken, expiresAt })
+          );
         })
         .catch((error) => {
           console.log("error", error);

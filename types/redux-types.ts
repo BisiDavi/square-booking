@@ -13,8 +13,13 @@ export type AuthStateType = {
   isAccessTokenAvailable: boolean;
   isAccessTokenValid: boolean | null;
   onboarding: boolean;
-  merchantId: string | null;
-  userEmail: string;
+  merchant: {
+    id: string | null;
+    email: string | null;
+    token: string | null;
+    refreshToken: string | null;
+    expiresAt: string | null;
+  };
 };
 
 export type ViewStateType = {
