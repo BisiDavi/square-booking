@@ -43,6 +43,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     ? JSON.parse(req.cookies?.merchant)
     : {};
 
+  if (!req.cookies?.merchant) {
+    return {
+      redirect: {
+        destination: "/onboarding",
+        permanent: false,
+      },
+    };
+  }
+
   try {
     const { client } = await squareClient(merchant.token);
     const response = await client.locationsApi.listLocations();
