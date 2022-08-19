@@ -42,9 +42,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const merchant = req.cookies?.merchant
     ? JSON.parse(req.cookies?.merchant)
     : {};
-  console.log("req.cookies", req.cookies);
-
-  console.log("req.cookies.merchant", merchant);
 
   try {
     const { client } = await squareClient(merchant.token);

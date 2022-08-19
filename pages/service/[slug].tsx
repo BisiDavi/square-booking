@@ -45,9 +45,14 @@ export default function ServicePage({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { client } = await squareClient();
-  const serviceId: string | any = context.query.id;
   try {
+    const { req, query } = context;
+    const merchant = req.cookies.merchant
+      ? JSON.parse(req.cookies.merchant)
+      : {};
+
+    const { client } = await squareClient(merchant.token);
+    const serviceId: string | any = query.id;
     const response = await client.catalogApi.retrieveCatalogObject(serviceId);
     const storeProfileData = await client.locationsApi.listLocations();
 

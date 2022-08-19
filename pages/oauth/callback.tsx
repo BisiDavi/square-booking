@@ -11,6 +11,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests";
 import { updateMerchant, updateOnboarding } from "@/redux/auth-slice";
+import { GetServerSidePropsContext } from "next";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -76,9 +77,14 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
-    const { client } = await squareClient();
+    const { req } = context;
+    const merchant = req.cookies.merchant
+      ? JSON.parse(req.cookies.merchant)
+      : {};
+
+    const { client } = await squareClient(merchant.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {

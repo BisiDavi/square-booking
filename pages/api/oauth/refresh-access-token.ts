@@ -6,7 +6,9 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await squareClient();
+  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
+
+  const { client } = await squareClient(merchant.token);
 
   const { refreshToken } = req.body;
   const clientId = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;

@@ -7,7 +7,7 @@ import { updateStoreProfile } from "@/redux/store-profile-slice";
 import squareClient from "@/lib/squareClient";
 import { useAppDispatch } from "@/redux/store";
 
-import type { GetServerSideProps } from "next";
+import type { GetServerSideProps, GetServerSidePropsContext } from "next";
 import type { storeProfileType } from "@/types/store-types";
 import BookingView from "@/components/View/BookingView";
 
@@ -32,9 +32,16 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { client } = await squareClient();
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { req } = context;
   try {
+    const merchant = req.cookies.merchant
+      ? JSON.parse(req.cookies.merchant)
+      : {};
+
+    const { client } = await squareClient(merchant.token);
     const storeProfileData = await client.locationsApi.listLocations();
 
     return {
