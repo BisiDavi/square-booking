@@ -22,7 +22,8 @@ export default function CategoryDropdown() {
 
   useEffect(() => {
     if (status === "success" && defaultOptions.length === 0) {
-      data?.objects.map((itemData: any) => {
+      const parsedData = JSON.parse(data);
+      parsedData.objects.map((itemData: any) => {
         setDefaultOptions([
           ...defaultOptions,
           { label: itemData?.categoryData?.name, value: itemData?.id },
