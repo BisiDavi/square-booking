@@ -4,9 +4,8 @@ interface Props {
   input: {
     name: string;
     type: string;
-    placeholder: string;
+    placeholder?: string;
     label: string;
-    info?: string;
   };
   index: number;
 }

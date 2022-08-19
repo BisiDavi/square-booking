@@ -7,6 +7,7 @@ interface Props {
     placeholder: string;
     label: string;
     info?: string;
+    options?: any;
   };
   index: number;
 }
