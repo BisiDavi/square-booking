@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-import variationTab from "@/json/variation-tab.json";
+import variationTabContent from "@/json/variation-tab.json";
 import toSlug from "@/lib/toSlug";
 import VariationTabItem from "@/components/Tab/VariationTabItem";
+import FormGroup from "@/components/Form/FormElement/FormGroup";
+import VarationTabWrapper from "@/components/Tab/VarationTabWrapper";
 
 export default function VariationTab() {
   const [activeTab, setActiveTab] = useState("details");
@@ -20,7 +22,7 @@ export default function VariationTab() {
           data-tabs-toggle="#myTabContent"
           role="tablist"
         >
-          {variationTab.header.map((variationItem) => {
+          {variationTabContent.header.map((variationItem) => {
             const id = toSlug(variationItem);
             return (
               <VariationTabItem
@@ -34,70 +36,34 @@ export default function VariationTab() {
         </ul>
       </div>
       <div id="myTabContent">
-        <div
-          className="p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="profile"
-          role="tabpanel"
-          aria-labelledby="profile-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Profile tab associated content
-            </strong>
-            . Clicking another tab will toggle the visibility of this one for
-            the next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
-        </div>
-        <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="dashboard"
-          role="tabpanel"
-          aria-labelledby="dashboard-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Dashboard tab associated content
-            </strong>
-            . Clicking another tab will toggle the visibility of this one for
-            the next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
-        </div>
-        <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="settings"
-          role="tabpanel"
-          aria-labelledby="settings-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Settings tab associated content
-            </strong>
-            . Clicking another tab will toggle the visibility of this one for
-            the next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
-        </div>
-        <div
-          className="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800"
-          id="contacts"
-          role="tabpanel"
-          aria-labelledby="contacts-tab"
-        >
-          <p className="text-sm text-gray-500 dark:text-gray-400">
-            This is some placeholder content the{" "}
-            <strong className="font-medium text-gray-800 dark:text-white">
-              Contacts tab associated content
-            </strong>
-            . Clicking another tab will toggle the visibility of this one for
-            the next. The tab JavaScript swaps classes to control the content
-            visibility and styling.
-          </p>
-        </div>
+        {activeTab === "details" ? (
+          <VarationTabWrapper>
+            {variationTabContent.details.main.map((mainItemInput) => (
+              <FormGroup input={mainItemInput} key={mainItemInput.name} />
+            ))}
+            <div className="duration mt-6">
+              {variationTabContent.details.duration.map((mainItemInput) => (
+                <FormGroup input={mainItemInput} key={mainItemInput.name} />
+              ))}
+            </div>
+          </VarationTabWrapper>
+        ) : activeTab === "online-booking" ? (
+          <VarationTabWrapper>
+            <div className="online-booking mt-6">
+              {variationTabContent.onlineBooking.bookable.map(
+                (mainItemInput) => (
+                  <FormGroup input={mainItemInput} key={mainItemInput.name} />
+                )
+              )}
+            </div>
+          </VarationTabWrapper>
+        ) : (
+          <VarationTabWrapper>
+            <div className="online-booking mt-6">
+              <FormGroup input={variationTabContent.locations} />
+            </div>
+          </VarationTabWrapper>
+        )}
       </div>
     </>
   );

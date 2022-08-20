@@ -5,6 +5,8 @@ import FormModalGroup from "@/components/Form/FormElement/FormModalGroup";
 import LabelledSelect from "@/components/Form/FormElement/LabelledSelect";
 import DurationElement from "@/components/Form/FormElement/DurationElement";
 import ToggleElement from "@/components/Form/FormElement/ToggleElement";
+import TeamModalView from "@/components/View/TeamModalView";
+import ListLocationView from "@/components/View/ListLocationView";
 
 function displayFormElement(input: any) {
   switch (input.elementType) {
@@ -22,6 +24,10 @@ function displayFormElement(input: any) {
       return <DurationElement input={input} />;
     case "toggle":
       return <ToggleElement input={input} />;
+    case "teamMembersView":
+      return <TeamModalView />;
+    case "locationsView":
+      return <ListLocationView />;
   }
 }
 
