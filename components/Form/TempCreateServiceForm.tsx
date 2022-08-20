@@ -20,7 +20,7 @@ export default function TempCreateServiceForm() {
             <FormGroup input={input} key={input.name} />
           ))}
         </div>
-        <div className="duration mt-3">
+        <div className="duration mt-6">
           {createService.duration.map((input) => (
             <FormGroup input={input} key={input.name} />
           ))}

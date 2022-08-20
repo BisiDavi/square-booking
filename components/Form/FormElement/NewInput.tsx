@@ -15,7 +15,7 @@ export default function NewInput({ input }: Props) {
   return (
     <div className={`input-group flex items-center h-12`}>
       <label
-        className="bg-gray-300 text-gray-900 px-3 py-4 border-b border-white font-bold h-full items-center flex"
+        className="bg-gray-200 text-gray-900 px-3 py-4 border-b border-white font-bold h-full items-center flex"
         htmlFor={id}
       >
         {label}

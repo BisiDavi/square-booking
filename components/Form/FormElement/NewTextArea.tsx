@@ -15,7 +15,7 @@ export default function NewTextArea({ input }: Props) {
   return (
     <div className="input-group flex items-center h-32">
       <label
-        className="w-72 bg-gray-300 py-3 text-gray-900 px-3 font-bold h-full border-b border-gray-100 items- flex h-full"
+        className="w-72 bg-gray-200 py-3 text-gray-900 px-3 font-bold h-full border-b border-gray-100 items- flex h-full"
         htmlFor={id}
       >
         {label}
