@@ -30,7 +30,7 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   try {
     const { client } = await userSquareClient();
     const response = await client.locationsApi.listLocations();
