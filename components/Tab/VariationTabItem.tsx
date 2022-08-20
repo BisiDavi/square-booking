@@ -2,14 +2,20 @@
 interface Props {
   tab: string;
   id: string;
+  className: string;
   tabHandler: (id: string) => void;
 }
 
-export default function VariationTabItem({ tab, id, tabHandler }: Props) {
+export default function VariationTabItem({
+  tab,
+  id,
+  tabHandler,
+  className,
+}: Props) {
   return (
     <li className="mr-2" role="presentation">
       <button
-        className="inline-block p-4 rounded-t-lg border-b-2 text-blue-600 hover:text-blue-600 dark:text-blue-500 dark:hover:text-blue-500 border-blue-600 dark:border-blue-500"
+        className={`inline-block p-4 rounded-t-lg text-lg border-b-2 ${className}`}
         id={id}
         data-tabs-target={`#${id}`}
         type="button"

@@ -14,20 +14,25 @@ export default function VariationTab() {
   }
 
   return (
-    <>
-      <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <div className="border rounded-lg px">
+      <div className="mb-4 border-b border-gray-200 border-gray-700">
         <ul
-          className="flex flex-wrap -mb-px text-sm font-medium text-center"
+          className="flex flex-wrap items-center mx-auto justify-between px-4 text-sm font-medium text-center"
           id="variationTab"
           data-tabs-toggle="#myTabContent"
           role="tablist"
         >
           {variationTabContent.header.map((variationItem) => {
             const id = toSlug(variationItem);
+            const activeClassName =
+              activeTab === id
+                ? "text-blue-600 hover:text-blue-600 text-blue-500 hover:text-blue-500  border-blue-500"
+                : "";
             return (
               <VariationTabItem
                 key={id}
                 id={id}
+                className={activeClassName}
                 tab={variationItem}
                 tabHandler={tabHandler}
               />
@@ -49,12 +54,15 @@ export default function VariationTab() {
           </VarationTabWrapper>
         ) : activeTab === "online-booking" ? (
           <VarationTabWrapper>
-            <div className="online-booking mt-6">
+            <div className="online-booking">
               {variationTabContent.onlineBooking.bookable.map(
                 (mainItemInput) => (
                   <FormGroup input={mainItemInput} key={mainItemInput.name} />
                 )
               )}
+              <div className="team mt-6">
+                <FormGroup input={variationTabContent.onlineBooking.team} />
+              </div>
             </div>
           </VarationTabWrapper>
         ) : (
@@ -65,6 +73,6 @@ export default function VariationTab() {
           </VarationTabWrapper>
         )}
       </div>
-    </>
+    </div>
   );
 }

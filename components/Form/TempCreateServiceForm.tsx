@@ -12,7 +12,7 @@ export default function TempCreateServiceForm() {
   const { modal } = useAppSelector((state) => state.UI);
 
   function modalHandler() {
-    dispatch(updateModal("form-modal-location"));
+    dispatch(updateModal("variation-modal-location"));
   }
 
   function closeModalHandler() {

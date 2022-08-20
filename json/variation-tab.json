@@ -73,12 +73,12 @@
         "label": "Describe Pricing",
         "placeholder": "Eg. 'Call Us' or 'Price Varies'",
         "elementType": "input"
-      },
-      {
-        "name": "teamMembersView",
-        "elementType": "teamMembersView"
       }
-    ]
+    ],
+    "team": {
+      "name": "teamMembersView",
+      "elementType": "teamMembersView"
+    }
   },
   "locations": {
     "name": "locationsView",
