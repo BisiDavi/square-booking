@@ -46,14 +46,14 @@ export default function FormModalGroup({ input }: Props) {
         <div id={id}>
           <Button
             text={text}
-            className="placeholder-gray-300 px-3 w-full h-14 my-0 font-bold border hover:text-blue-500 border-gray-300"
+            className="placeholder-gray-300 px-3 w-full h-14 my-0  text-left items-start border hover:text-blue-500 border-gray-300"
             onClick={modalHandler}
           />
         </div>
         <style jsx>
           {`
             .input-group {
-              width: 95%;
+              width: 100%;
             }
             .input-group label {
               width: 295px;

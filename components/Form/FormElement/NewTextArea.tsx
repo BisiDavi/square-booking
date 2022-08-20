@@ -27,19 +27,6 @@ export default function NewTextArea({ input }: Props) {
         placeholder={placeholder}
         className="placeholder-gray-300 py-3 px-3 h-full w-full items-center font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
       ></textarea>
-      <style jsx>
-        {`
-          .input-group {
-            width: 95%;
-          }
-          .input-group label {
-            width: 300px;
-          }
-          .input-group input {
-            width: 100%;
-          }
-        `}
-      </style>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import NewInput from "@/components/Form/FormElement/NewInput";
 import CategoryDropdown from "@/components/Form/FormElement/CategoryDropdown";
 import FormModalGroup from "@/components/Form/FormElement/FormModalGroup";
 import LabelledSelect from "@/components/Form/FormElement/LabelledSelect";
+import DurationElement from "@/components/Form/FormElement/DurationElement";
 
 function displayFormElement(input: any) {
   switch (input.elementType) {
@@ -16,6 +17,8 @@ function displayFormElement(input: any) {
       return <FormModalGroup input={input} />;
     case "select":
       return <LabelledSelect input={input} />;
+      case "duration":
+        return <DurationElement input={input} />
   }
 }
 

@@ -58,7 +58,7 @@
       "info": "Require customers to add a payment card when they book. If they don‘t show up or cancel outside your cancellation window, you can choose to charge them this fee"
     }
   ],
-  "Duration": [
+  "duration": [
     {
       "name": "duration",
       "label": "Duration",

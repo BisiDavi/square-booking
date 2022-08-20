@@ -43,14 +43,27 @@
   border-bottom: 1px solid #d1d5da;
 }
 
+#categoryDropdown .categoryDropdown__container {
+  width: 100%;
+}
+
 /* form-input */
 .input-group {
-  width: 95%;
+  width: 100%;
 }
 .input-group label {
   width: 300px;
 }
+
 .input-group input,
 select {
+  width: 100%;
+}
+
+.select-group label {
+  width: 300px;
+}
+
+.select-group {
   width: 100%;
 }
