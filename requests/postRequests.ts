@@ -50,3 +50,7 @@ export function createCatalogCategory(category: string) {
 export function searchTeam(query: any) {
   return axios.post("/api/team/list-team-member", { query });
 }
+
+export function retrieveCustomer(id: string) {
+  return axios.post("/api/customer/retrieve-customer", { id });
+}
