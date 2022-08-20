@@ -1,5 +1,18 @@
 export default function StaffTable() {
   return (
-    <div>StaffTable</div>
-  )
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Created</th>
+          <th>Total Spent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+      </tbody>
+    </table>
+  );
 }

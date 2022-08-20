@@ -2,16 +2,20 @@ import { PropsWithChildren } from "react";
 
 import AdminHeader from "@/components/Header/AdminHeader";
 import DashboardSidebar from "@/components/Sidebar/DashboardSidebar";
+import DashboardRightSidebar from "@/components/Sidebar/DashboardRightSidebar";
+import { useAppSelector } from "@/hooks/useRedux";
 
 export default function AdminLayoutPage({ children }: PropsWithChildren<{}>) {
+  const { sidebar } = useAppSelector((state) => state.UI);
   return (
-    <main className="relative">
+    <main>
       <AdminHeader />
       <section className="flex items-center w-full relative">
         <DashboardSidebar />
         <div className="wrapper bg-gray-200 w-4/5 absolute px-6">
           {children}
         </div>
+        {sidebar && <DashboardRightSidebar />}
       </section>
       <style jsx>
         {`
