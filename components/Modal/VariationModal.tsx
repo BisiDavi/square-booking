@@ -2,7 +2,7 @@ import Modal from "@/components/Modal";
 import VariationTab from "@/components/Tab/VariationTab";
 
 interface Props {
-  modal: null | "form-modal-location";
+  modal: null | "variation-modal-location";
   toggleModal: () => void;
 }
 
