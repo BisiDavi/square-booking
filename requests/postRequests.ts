@@ -46,3 +46,7 @@ export function searchCatalogObject(searchQuery: any) {
 export function createCatalogCategory(category: string) {
   return axios.post("/api/catalog/create-catalog-category", { category });
 }
+
+export function searchTeam(query: any) {
+  return axios.post("/api/team/list-team-member", { query });
+}

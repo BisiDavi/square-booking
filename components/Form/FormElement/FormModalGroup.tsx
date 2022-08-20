@@ -9,6 +9,7 @@ interface Props {
   input: {
     label: string;
     text: string;
+    name: string;
     placeholder: string;
   };
 }

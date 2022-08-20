@@ -4,7 +4,7 @@ import createService from "@/json/create-service.json";
 
 export default function TempCreateServiceForm() {
   return (
-    <div className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col p">
+    <div className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col">
       <div className="main flex  items-start">
         <div className="w-4/5 mr-4">
           {createService.main.map((input) => (
@@ -22,6 +22,11 @@ export default function TempCreateServiceForm() {
         </div>
         <div className="duration mt-6">
           {createService.duration.map((input) => (
+            <FormGroup input={input} key={input.name} />
+          ))}
+        </div>
+        <div className="bookable mt-6">
+          {createService.bookable.map((input) => (
             <FormGroup input={input} key={input.name} />
           ))}
         </div>
