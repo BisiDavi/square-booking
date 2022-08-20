@@ -3,7 +3,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Link from "next/link";
 
 import Button from "@/components/UI/Button";
-import ServicesTable from "../Tables/ServicesTable";
+import ServicesTable from "@/components/Tables/ServicesTable";
 
 export default function CreateServiceView() {
   return (
@@ -15,11 +15,13 @@ export default function CreateServiceView() {
           prices to speed-up Booking
         </h4>
         <Link href="/admin/services/new" passHref>
-          <Button
-            text="Create Service"
-            className="bg-site-purple text-white py-1 px-3 flex items-center mx-auto mt-2 rounded-lg hover:bg-blue-500"
-            icon={<AiOutlinePlus className="mr-2 font-bold" />}
-          />
+          <a>
+            <Button
+              text="Create Service"
+              className="bg-site-purple text-white py-1 px-3 flex items-center mx-auto mt-2 rounded-lg hover:bg-blue-500"
+              icon={<AiOutlinePlus className="mr-2 font-bold" />}
+            />
+          </a>
         </Link>
       </div>
       <ServicesTable />
