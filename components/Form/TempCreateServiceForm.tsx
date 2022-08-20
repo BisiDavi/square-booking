@@ -1,6 +1,7 @@
 import UploadIcon from "@/components/Form/FormElement/UploadIcon";
 import FormGroup from "@/components/Form/FormElement/FormGroup";
 import createService from "@/json/create-service.json";
+import Button from "../UI/Button";
 
 export default function TempCreateServiceForm() {
   return (
@@ -30,6 +31,10 @@ export default function TempCreateServiceForm() {
             <FormGroup input={input} key={input.name} />
           ))}
         </div>
+        <Button
+          className="text-blue-500 w-full mt-6 py-3 text-left px-4 border hover:bg-gray-100"
+          text="Add Variation"
+        />
       </div>
     </div>
   );
