@@ -50,6 +50,7 @@
 .input-group label {
   width: 300px;
 }
-.input-group input {
+.input-group input,
+select {
   width: 100%;
 }
