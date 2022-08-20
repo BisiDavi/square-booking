@@ -24,8 +24,8 @@ function ServicePageHeaderComponent() {
             <div className="service-name">
               <h4 className="text-2xl font-bold">{storeProfile?.name}</h4>
               <p className="text-gray-600">
-                {storeProfile?.address.addressLine1},{" "}
-                {formatCountry(storeProfile.country)}
+                {storeProfile?.address?.addressLine1},{" "}
+                {formatCountry(storeProfile?.country)}
               </p>
             </div>
           )}

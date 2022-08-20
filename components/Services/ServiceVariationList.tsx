@@ -19,7 +19,6 @@ interface Props {
 export default function ServiceVariationList({ variation, service }: Props) {
   const { presentAtLocationIds, itemVariationData } = variation;
   const { priceMoney, serviceDuration, teamMemberIds } = itemVariationData;
-  const { amount, currency } = priceMoney;
 
   const [teamAccordion, setTeamAccordion] = useState(false);
 
@@ -39,7 +38,9 @@ export default function ServiceVariationList({ variation, service }: Props) {
         <div className="flex items-center">
           <span className="mr-4">
             <h6 className="font-medium mb-0">
-              {formatPrice(amount, currency)}
+              {priceMoney?.amount
+                ? formatPrice(priceMoney?.amount, priceMoney?.currency)
+                : "Free"}
             </h6>
             <p className="text-gray-700 font-medium text-sm">
               {formatServicePeriod(serviceDuration)}

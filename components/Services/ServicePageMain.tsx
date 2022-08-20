@@ -34,8 +34,8 @@ export default function ServicePageMain({ service }: Props) {
                 <div className="title my-4">
                   <h3 className="font-bold text-3xl">{storeProfile?.name}</h3>
                   <p className="text-gray-600 text-sm">
-                    {storeProfile?.address.addressLine1},{" "}
-                    {formatCountry(storeProfile.country)}
+                    {storeProfile?.address?.addressLine1},{" "}
+                    {formatCountry(storeProfile?.country)}
                   </p>
                 </div>
                 <AiOutlineHeart className="text-4xl mr-8" color="gray" />
