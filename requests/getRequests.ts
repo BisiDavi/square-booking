@@ -11,3 +11,7 @@ export function listUsers() {
 export function listLocations() {
   return axios.get("/api/locations/list-location");
 }
+
+export function listBookings() {
+  return axios.get("/api/booking/list-bookings");
+}

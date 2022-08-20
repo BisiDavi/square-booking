@@ -14,7 +14,7 @@ export default function ServicesTable() {
   console.log("parsedData", parsedData);
 
   return (
-    <table className="w-full mt-4">
+    <table className="w-full mt-4 bg-white">
       <thead className="bg-gray-300 h-14">
         <tr className="border-b border-gray-300 text-left">
           <th>Name</th>
@@ -29,9 +29,12 @@ export default function ServicesTable() {
       ) : status === "loading" ? (
         "loading, fetching services"
       ) : (
-        <tbody>
+        <tbody className="">
           {parsedData.map((item: serviceItemType) => (
-            <tr key={item.id} className="text-left">
+            <tr
+              key={item.id}
+              className="text-left hover:bg-gray-300 h-12 border-b"
+            >
               <td>{item?.itemData?.name}</td>
               <td>-</td>
               <td>-</td>
@@ -45,13 +48,14 @@ export default function ServicesTable() {
                   : "-"}
               </td>
               <td>
-                {item?.itemData?.variations[0]?.itemVariationData?.priceMoney &&
-                  formatPrice(
-                    item?.itemData?.variations[0]?.itemVariationData?.priceMoney
-                      .amount,
-                    item?.itemData?.variations[0]?.itemVariationData?.priceMoney
-                      .currency
-                  )}
+                {item?.itemData?.variations[0]?.itemVariationData?.priceMoney
+                  ? formatPrice(
+                      item?.itemData?.variations[0]?.itemVariationData
+                        ?.priceMoney.amount,
+                      item?.itemData?.variations[0]?.itemVariationData
+                        ?.priceMoney.currency
+                    )
+                  : "Varies"}
               </td>
             </tr>
           ))}

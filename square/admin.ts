@@ -3,6 +3,7 @@ export default async function adminSquareClient(token: string) {
 
   const squareEnvironment = squareClient.Environment.Production;
 
+
   const client = new squareClient.Client({
     accessToken: token,
     environment: squareEnvironment,

@@ -8,7 +8,6 @@ export default function StaffTable() {
 
   const parsedData = status === "success" ? JSON.parse(data?.data) : null;
 
-  console.log("parsedData", parsedData);
   return (
     <table className="border mt-4 w-full">
       <thead className="bg-gray-100 h-14">
