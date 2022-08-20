@@ -11,7 +11,7 @@ function SelectElement({ name, options }: SelectElementProps) {
     <select
       id={id}
       name={name}
-      className="px-2 h-full font-bold mr-10 text-blue-500 focus:border-blue-500 focus:outline-none focus:ring-0"
+      className="px-2 h-full bg-transparent font-bold mr-10 text-blue-500 focus:border-blue-500 focus:outline-none focus:ring-0"
     >
       {options.map((option, index) => {
         const optionName =

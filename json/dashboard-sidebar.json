@@ -1,9 +1,12 @@
 {
   "links": [
-    { "link": "/admin", "text": "Home" },
+    { "link": "/admin", "text": "Overview" },
+    { "link": "/admin/calendar", "text": "Calendar" },
     { "link": "/admin/services", "text": "Services" },
     { "link": "/admin/customers", "text": "Customers" },
     { "link": "/admin/staff", "text": "Staff" },
+    { "link": "/admin/cms", "text": "CMS" },
+    { "link": "/admin/media", "text": "Media Library" },
     { "link": "/admin/settings", "text": "Account & Settings" }
   ],
   "extras": [

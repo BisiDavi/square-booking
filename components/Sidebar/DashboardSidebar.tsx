@@ -18,7 +18,7 @@ function SidebarLinks({ linkGroup }: Props) {
           router.asPath === content.link ? "text-purple-500" : "";
         return (
           <li
-            className={`my-4 hover:bg-gray-100 p-2 px-6 hover:text-purple-500 ${activeLink}`}
+            className={`my-2 border-b hover:bg-gray-100 p-2 px-6 hover:text-purple-500 ${activeLink}`}
             key={content.link}
           >
             <Link href={content.link} passHref>
@@ -38,7 +38,6 @@ export default function DashboardSidebar() {
   return (
     <aside className="w-1/5 h-screen border border-r fixed top-20">
       <SidebarLinks linkGroup="links" />
-      <hr className="mb-10 mt-2" />
       <SidebarLinks linkGroup="extras" />
     </aside>
   );
