@@ -5,6 +5,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Button from "@/components/UI/Button";
 import AdminLayoutPage from "@/layout/Admin-layout";
 import { updateSidebar } from "@/redux/ui-slice";
+import StaffTable from "@/components/Tables/StaffTable";
 
 export default function Staffpage() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function Staffpage() {
 
   return (
     <AdminLayoutPage>
-      <section className="container">
+      <section className="container bg-white p-4 my-4">
         <div className="row justify-between flex items-center my-2">
           <div className="search-input relative flex justify-center w-1/4">
             <BsSearch className="mr-2 text-xl absolute left-3 top-3" />
@@ -32,6 +33,7 @@ export default function Staffpage() {
             onClick={addEmployeeHandler}
           />
         </div>
+        <StaffTable />
       </section>
     </AdminLayoutPage>
   );
