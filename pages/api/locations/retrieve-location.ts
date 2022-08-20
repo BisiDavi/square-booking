@@ -1,13 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import squareClient from "@/lib/squareClient";
+import userSquareClient from "@/square/user";
 
 export default async function RetrieveLocationHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
-
-  const { client } = await squareClient(merchant.token);
+  const { client } = await userSquareClient();
   const locationId = req.body.locationId;
   switch (req.method) {
     case "POST": {

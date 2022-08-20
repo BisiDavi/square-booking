@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import formatBigInt from "@/lib/formatBigInt";
-import squareClient from "@/lib/squareClient";
+import adminSquareClient from "@/square/admin";
+
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function CreateCustomerHandler(
@@ -9,7 +10,7 @@ export default async function CreateCustomerHandler(
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
-  const { client } = await squareClient(merchant.token);
+  const { client } = await adminSquareClient(merchant.token);
   const { email, firstName, lastName, idempotencyKey } = req.body;
 
   switch (req.method) {

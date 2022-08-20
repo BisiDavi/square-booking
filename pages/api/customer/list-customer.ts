@@ -1,14 +1,12 @@
 // import formatBigInt from "@/lib/formatBigInt";
-import squareClient from "@/lib/squareClient";
+import userSquareClient from "@/square/user";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function CreateCustomerHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
-
-  const { client } = await squareClient(merchant.token);
+  const { client } = await userSquareClient();
 
   switch (req.method) {
     case "GET": {

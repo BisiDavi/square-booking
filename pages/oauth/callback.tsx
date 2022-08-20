@@ -5,13 +5,12 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 import DefaultLayout from "@/layout/Default-layout";
-import squareClient from "@/lib/squareClient";
+import userSquareClient from "@/square/user";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests/postRequests";
 import { updateMerchant, updateOnboarding } from "@/redux/auth-slice";
-import { GetServerSidePropsContext } from "next";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -72,14 +71,9 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   );
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps() {
   try {
-    const { req } = context;
-    const merchant = req.cookies.merchant
-      ? JSON.parse(req.cookies.merchant)
-      : {};
-
-    const { client } = await squareClient(merchant.token);
+    const { client } = await userSquareClient();
     const response = await client.locationsApi.listLocations();
     return {
       props: {

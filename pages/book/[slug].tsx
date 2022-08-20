@@ -4,10 +4,8 @@ import { useEffect } from "react";
 import { useAppSelector } from "@/hooks/useRedux";
 import DefaultLayout from "@/layout/Default-layout";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
-import squareClient from "@/lib/squareClient";
 import { useAppDispatch } from "@/redux/store";
-
-import type { GetServerSideProps, GetServerSidePropsContext } from "next";
+import userSquareClient from "@/square/user";
 import type { storeProfileType } from "@/types/store-types";
 import BookingView from "@/components/View/BookingView";
 
@@ -32,22 +30,14 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const { req } = context;
+export async function getStaticProps() {
   try {
-    const merchant = req.cookies.merchant
-      ? JSON.parse(req.cookies.merchant)
-      : {};
-
-    const { client } = await squareClient(merchant.token);
-    const storeProfileData = await client.locationsApi.listLocations();
-
+    const { client } = await userSquareClient();
+    const response = await client.locationsApi.listLocations();
     return {
       props: {
-        storeProfile: storeProfileData.result.locations
-          ? storeProfileData.result.locations[0]
+        storeProfile: response.result.locations
+          ? response.result.locations[0]
           : null,
       },
     };
@@ -58,4 +48,4 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     };
   }
-};
+}

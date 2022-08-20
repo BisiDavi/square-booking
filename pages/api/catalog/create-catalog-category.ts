@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 
 import formatBigInt from "@/lib/formatBigInt";
-import squareClient from "@/lib/squareClient";
+import adminSquareClient from "@/square/admin";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -11,7 +11,7 @@ export default async function Handler(
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
-  const { client } = await squareClient(merchant.token);
+  const { client } = await adminSquareClient(merchant.token);
   const { category } = req.body;
 
   switch (req.method) {
