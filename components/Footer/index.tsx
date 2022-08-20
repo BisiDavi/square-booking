@@ -26,34 +26,34 @@ export default function Footer() {
           {storeProfile && (
             <div className="location text-white w-1/6">
               <h3 className="text-lg font-bold">Contact Us</h3>
-              <p className="text-sm">Phone: {storeProfile.phoneNumber}</p>
+              <p className="text-sm">Phone: {storeProfile?.phoneNumber}</p>
               <p className="text-sm break-words">
-                Email:{storeProfile.businessEmail}
+                Email:{storeProfile?.businessEmail}
               </p>
             </div>
           )}
           {storeProfile && (
             <div className="location text-white w-1/5">
               <h3 className="text-lg font-bold">Location</h3>
-              <p>{storeProfile?.address.addressLine1}</p>
+              <p>{storeProfile?.address?.addressLine1}</p>
               <p>
-                {storeProfile?.address.postalCode},{" "}
-                {storeProfile?.address.locality},{" "}
-                {storeProfile?.address.administrativeDistrictLevel1},{" "}
-                {formatCountry(storeProfile.country)}
+                {storeProfile?.address?.postalCode},{" "}
+                {storeProfile?.address?.locality},{" "}
+                {storeProfile?.address?.administrativeDistrictLevel1},{" "}
+                {formatCountry(storeProfile?.country)}
               </p>
             </div>
           )}
-          {storeProfile && (
+          {storeProfile?.businessHours && (
             <div className="location text-white w-1/5">
               <h3 className="text-lg font-bold">Business Hours</h3>
               <ul>
-                {storeProfile?.businessHours.periods.map((period) => (
+                {storeProfile?.businessHours?.periods.map((period) => (
                   <li
                     key={period.dayOfWeek}
                     className="text-sm justify-between flex py-0.5"
                   >
-                    <span>{formatDays(period.dayOfWeek)}</span>
+                    <span>{formatDays(period?.dayOfWeek)}</span>
                     <span>
                       {period.startLocalTime} AM -{" "}
                       {formatTime(period.endLocalTime)} PM

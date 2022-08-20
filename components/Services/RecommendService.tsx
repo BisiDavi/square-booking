@@ -11,7 +11,6 @@ interface Props {
 export default function RecommendService({ service }: Props) {
   const { priceMoney, serviceDuration } =
     service?.itemData?.variations[0]?.itemVariationData;
-  const { amount, currency } = priceMoney;
 
   const serviceLink = `${toSlug(service.itemData.name)}?id=${service.id}`;
   return (
@@ -22,7 +21,11 @@ export default function RecommendService({ service }: Props) {
           {service?.itemData?.description}
         </p>
         <div className="flex items-center mt-4">
-          <span className="m4">{formatPrice(amount, currency)}</span>
+          <span className="m4">
+            {priceMoney?.amount
+              ? formatPrice(priceMoney?.amount, priceMoney?.currency)
+              : "Free"}
+          </span>
           <span className="ml-4">
             ⏰ {formatServicePeriod(serviceDuration)}{" "}
           </span>

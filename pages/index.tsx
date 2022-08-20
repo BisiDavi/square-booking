@@ -17,6 +17,7 @@ interface Props {
 }
 
 export default function Home({ storeProfile }: Props) {
+  console.log("storeProfile", storeProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
