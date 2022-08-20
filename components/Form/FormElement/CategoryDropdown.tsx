@@ -19,8 +19,6 @@ export default function CategoryDropdown() {
     searchCatalogObject({ objectTypes: ["CATEGORY"] })
   );
 
-  console.log("defaultOptions", defaultOptions);
-
   function getCategories() {
     const parsedData = JSON.parse(data.data);
     let defaultOptionsArray = [{ label: "None", value: "NONE" }];
@@ -41,20 +39,8 @@ export default function CategoryDropdown() {
   }, [status]);
 
   const filterCategories = (inputValue: string) => {
-    return defaultOptions.filter(
-      (i) => {
-        const checkAvailablity = i.label
-          .toLowerCase()
-          .includes(inputValue.toLowerCase());
-        console.log("checkAvailablity", checkAvailablity);
-        if (checkAvailablity) {
-          return checkAvailablity;
-        }
-      }
-
-      //   if (!filterResult) {
-      //     createCatalogCategory(inputValue);
-      //   }
+    return defaultOptions.filter((i) =>
+      i.label.toLowerCase().includes(inputValue.toLowerCase())
     );
   };
 

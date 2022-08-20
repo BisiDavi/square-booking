@@ -7,3 +7,7 @@ export function listServices() {
 export function listUsers() {
   return axios.get("/api/custom");
 }
+
+export function listLocations() {
+  return axios.get("/api/locations/list-location");
+}
