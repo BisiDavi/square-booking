@@ -1,7 +1,26 @@
-{
-    "main": [
-        {
-            
-        }
-    ]
-}
+[
+  {
+    "name": "firstname",
+    "placeholder": "First Name",
+    "type": "text",
+    "elementType": "simpleInput"
+  },
+  {
+    "name": "lastname",
+    "placeholder": "Last Name",
+    "type": "text",
+    "elementType": "simpleInput"
+  },
+  {
+    "name": "email",
+    "placeholder": "Work Email",
+    "type": "email",
+    "elementType": "simpleInput"
+  },
+  {
+    "name": "workPhone",
+    "placeholder": "Work Phone",
+    "type": "number",
+    "elementType": "simpleInput"
+  }
+]
