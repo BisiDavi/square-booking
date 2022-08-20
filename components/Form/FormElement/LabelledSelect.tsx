@@ -3,15 +3,16 @@ import toSlug from "@/lib/toSlug";
 interface Props {
   input: {
     name: string;
-    type: string;
+    options: { text: string; value: string }[];
     placeholder?: string;
     label: string;
   };
 }
 
-export default function NewInput({ input }: Props) {
-  const { name, type, placeholder, label } = input;
+export default function LabelledSelect({ input }: Props) {
+  const { name, options, placeholder, label } = input;
   const id = toSlug(label);
+
   return (
     <div className={`input-group flex items-center h-12`}>
       <label
@@ -20,14 +21,18 @@ export default function NewInput({ input }: Props) {
       >
         {label}
       </label>
-      <input
+      <select
         id={name}
         name={name}
         className="placeholder-gray-300 px-3 h-full py-4 font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
-        type={type}
-        min={0}
         placeholder={placeholder}
-      />
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.text}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

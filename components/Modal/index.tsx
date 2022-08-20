@@ -34,7 +34,7 @@ export default function Modal({
                       {title}
                     </h3>
                     <button
-                      className="hover:bg-red-500 hover:text-white hover:border-white p-1 ml-auto border border-gray-900 rounded-full text-black flex items-center float-right -mr-3 -mt-1 text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      className="hover:bg-red-500 hover:text-white hover:border-white p-1 ml-auto border border-gray-900 rounded-full text-black flex items-center float-right -mr-1 mt-1 text-3xl leading-none font-semibold outline-none focus:outline-none"
                       onClick={() => toggleModal(null)}
                     >
                       <span className="close text-center h-4 w-4 p-1  flex text-2xl items-center justify-center">

@@ -42,3 +42,14 @@
   border-radius: 0px;
   border-bottom: 1px solid #d1d5da;
 }
+
+/* form-input */
+.input-group {
+  width: 95%;
+}
+.input-group label {
+  width: 300px;
+}
+.input-group input {
+  width: 100%;
+}
