@@ -18,3 +18,31 @@ export type teamMemberType = {
     assignmentType: string;
   };
 };
+
+export type bookingType = {
+  id: string;
+  version: 0;
+  status: string;
+  createdAt: Date;
+  updatedAt: Date;
+  locationId: string;
+  customerId: string;
+  startAt: Date;
+  allDay: false;
+  appointmentSegments: {
+    durationMinutes: number;
+    durationHours?: number;
+    serviceVariationId: string;
+    teamMemberId: string;
+    serviceVariationVersion: number;
+    anyTeamMember: false;
+    intermissionMinutes: number;
+  }[];
+  transitionTimeMinutes: number;
+  creatorDetails: {
+    creatorType: string;
+    teamMemberId: string;
+  };
+  source: string;
+  locationType: string;
+};
