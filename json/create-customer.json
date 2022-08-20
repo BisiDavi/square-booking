@@ -1,0 +1,23 @@
+[
+  {
+    "name": "firstName",
+    "label": "First Name",
+    "elementType": "input",
+    "type": "text",
+    "placeholder": "First Name"
+  },
+  {
+    "name": "surname",
+    "label": "Surname",
+    "elementType": "input",
+    "type": "text",
+    "placeholder": "Surname"
+  },
+  {
+    "name": "emailAddress",
+    "label": "Email Address",
+    "elementType": "input",
+    "type": "email",
+    "placeholder": "Email Address"
+  }
+]

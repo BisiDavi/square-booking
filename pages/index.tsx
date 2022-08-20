@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import { GetServerSidePropsContext } from "next";
 
 import HomepageBanner from "@/components/Banner/HomepageBanner";
 import InfoSection from "@/components/UI/InfoSection";
@@ -11,7 +10,7 @@ import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
-import squareClient from "@/lib/squareClient";
+import userSquareClient from "@/square/user";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -37,23 +36,9 @@ export default function Home({ storeProfile }: Props) {
   );
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { req } = context;
-  const merchant = req.cookies?.merchant
-    ? JSON.parse(req.cookies?.merchant)
-    : {};
-
-  if (!req.cookies?.merchant) {
-    return {
-      redirect: {
-        destination: "/onboarding",
-        permanent: false,
-      },
-    };
-  }
-
+export async function getStaticProps() {
   try {
-    const { client } = await squareClient(merchant.token);
+    const { client } = await userSquareClient();
     const response = await client.locationsApi.listLocations();
     return {
       props: {
