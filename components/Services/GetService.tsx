@@ -1,17 +1,36 @@
-import { retrieveCustomer } from "@/requests/postRequests";
+import { getACatalogObject } from "@/requests/postRequests";
 import { useQuery } from "react-query";
 
 interface Props {
   serviceId: string;
-  showName?: boolean;
 }
 
-export default function GetService({ serviceId, showName }: Props) {
-  const { data, status } = useQuery(`retrieveCustomer-${serviceId}`, () =>
-    retrieveCustomer(serviceId)
+function GetService({ serviceId }: Props) {
+  const { data, status } = useQuery(
+    `getACatalogObject-${serviceId}`,
+    () => getACatalogObject(serviceId),
+    {
+      enabled: !!serviceId,
+    }
+  );
+
+  const parsedData =
+    status === "success" ? JSON.parse(data?.data)?.object : null;
+  return (
+    <>
+      <span>{parsedData?.itemData?.name}</span>
+    </>
+  );
+}
+
+export default function GetServiceCatalog({ serviceId }: Props) {
+  const { data, status } = useQuery(`getACatalogObject-${serviceId}`, () =>
+    getACatalogObject(serviceId)
   );
   const parsedData =
-    status === "success" ? JSON.parse(data?.data)?.customer : null;
+    status === "success" ? JSON.parse(data?.data)?.object : null;
+
+  console.log("parsedData", parsedData);
   return (
     <div>
       {status === "error" ? (
@@ -20,12 +39,7 @@ export default function GetService({ serviceId, showName }: Props) {
         "loading..."
       ) : (
         <>
-          {showName && (
-            <div className="name flex items-center">
-              <span className="mx-1">{parsedData?.familyName}</span>
-              <span className="mx-1">{parsedData?.givenName}</span>
-            </div>
-          )}
+          <GetService serviceId={parsedData?.itemVariationData.itemId} />
         </>
       )}
     </div>

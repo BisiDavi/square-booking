@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { listBookings } from "@/requests/getRequests";
 import { bookingType } from "@/types/request-types";
 import GetCustomer from "../Customer/GetCustomer";
+import GetServiceCatalog from "../Services/GetService";
 
 function formatDate(dateString: Date) {
   const dateInstance = new Date(dateString).toDateString();
@@ -52,7 +53,9 @@ export default function AppointmentView() {
                   <td>
                     <GetCustomer customerId={booking?.customerId} showName />
                   </td>
-                  <td>{serviceVariationId}</td>
+                  <td>
+                    <GetServiceCatalog serviceId={serviceVariationId} />
+                  </td>
                   <td>{serviceDuration}</td>
                   <td>{serviceDuration}</td>
                   <td>{team}</td>
