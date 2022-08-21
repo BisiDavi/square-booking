@@ -7,55 +7,63 @@
         "label": "Variation name",
         "elementType": "input",
         "type": "text",
+        "formType": "service",
         "placeholder": "Variation name"
       },
       {
-        "name": "priceType",
+        "name": "variationPriceType",
         "label": "Price Type",
         "elementType": "select",
         "type": "text",
+        "formType": "service",
         "options": [
           { "text": "Fixed", "value": "FIXED_PRICING" },
           { "text": "Variable", "value": "VARIABLE_PRICING" }
         ]
       },
       {
-        "name": "price",
+        "name": "variatioPrice",
         "label": "Price",
         "elementType": "input",
         "type": "number",
+        "formType": "service",
         "placeholder": "0.00"
       },
       {
-        "name": "cancellationPrice",
+        "name": "variationCancellationPrice",
         "label": "Cancellation Price",
         "elementType": "input",
         "type": "number",
+        "formType": "service",
         "placeholder": "0.00",
         "info": "Require customers to add a payment card when they book. If they don‘t show up or cancel outside your cancellation window, you can choose to charge them this fee"
       }
     ],
     "duration": [
       {
-        "name": "duration",
+        "name": "variationDuration",
         "label": "Duration",
+        "formType": "service",
         "elementType": "duration",
         "type": "text"
       },
       {
-        "name": "AddProcessingTime",
+        "name": "variationAddProcessingTime",
         "label": "Add processing time (double booking)",
+        "formType": "service",
         "elementType": "toggle",
         "note": "PLUS"
       },
       {
-        "name": "blockExtraTime",
+        "name": "variationBlockExtraTime",
         "label": "Block Extra Time",
+        "formType": "service",
         "elementType": "toggle"
       },
       {
-        "name": "afterAppointment",
+        "name": "variationAfterAppointment",
         "label": "After Appointment",
+        "formType": "service",
         "elementType": "duration"
       }
     ]
@@ -63,25 +71,29 @@
   "onlineBooking": {
     "bookable": [
       {
-        "name": "bookableByCustomersOnline",
+        "name": "variationBookableByCustomersOnline",
         "info": "When enabled, this service will be bookable by customers online. This will not affect your ability to manually choose it when you create an appointment. This can only be enabled for services with a duration.",
         "label": "Bookable By Customers Online",
+        "formType": "service",
         "elementType": "toggle"
       },
       {
-        "name": "describePricing",
+        "name": "variationDescribePricing",
         "label": "Describe Pricing",
+        "formType": "service",
         "placeholder": "Eg. 'Call Us' or 'Price Varies'",
         "elementType": "input"
       }
     ],
     "team": {
-      "name": "teamMembersView",
+      "name": "variationTeamMembersView",
+      "formType": "service",
       "elementType": "teamMembersView"
     }
   },
   "locations": {
-    "name": "locationsView",
+    "name": "variationLocationsView",
+    "formType": "service",
     "elementType": "locationsView"
   }
 }

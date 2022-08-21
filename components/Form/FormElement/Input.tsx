@@ -7,14 +7,15 @@ interface Props {
     placeholder?: string;
     label: string;
     formType: string;
+    name: string;
   };
 }
 
 export default function Input({ input }: Props) {
   const { getInputValue, onChangeHandler } = useReduxForm();
 
-  const { type, placeholder, label, formType } = input;
-  const id = formElementId(label, formType);
+  const { type, name, placeholder, label, formType } = input;
+  const id = formElementId(name, formType);
 
   const value = getInputValue(id);
 

@@ -53,7 +53,7 @@ export default function CategoryDropdown() {
       }, 1000);
     });
 
-  function selectHandler(inputValue) {
+  function selectHandler(inputValue: any) {
     console.log("onChangeHandler", inputValue);
   }
 
@@ -71,7 +71,7 @@ export default function CategoryDropdown() {
         classNamePrefix="categoryDropdown"
         placeholder="Select Category"
         cacheOptions
-        onChange={selectHandler}
+        onChange={(value) => selectHandler(value)}
         defaultOptions={defaultOptions}
         loadOptions={promiseOptions}
       />

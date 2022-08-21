@@ -7,12 +7,13 @@ interface Props {
     placeholder: string;
     label: string;
     formType: string;
+    name: string;
   };
 }
 
 export default function TextArea({ input }: Props) {
-  const { placeholder, label, formType } = input;
-  const id = formElementId(label, formType);
+  const { placeholder, label, name, formType } = input;
+  const id = formElementId(name, formType);
   const { getInputValue, onChangeHandler } = useReduxForm();
   const value = getInputValue(id);
 

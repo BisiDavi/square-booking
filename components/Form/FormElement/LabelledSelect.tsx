@@ -14,8 +14,8 @@ interface Props {
 export default function LabelledSelect({ input }: Props) {
   const { getInputValue, onChangeHandler } = useReduxForm();
 
-  const { formType, options, placeholder, label } = input;
-  const id = formElementId(label, formType);
+  const { formType, options, name, placeholder, label } = input;
+  const id = formElementId(name, formType);
 
   const value = getInputValue(id);
 

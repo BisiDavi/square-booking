@@ -24,13 +24,24 @@ export default function ListLocationView() {
           "loading..."
         ) : (
           <div className="mt-4 list">
-            <Checkbox label="Locations" className="bg-gray-100" />
+            <Checkbox
+              label="Locations"
+              className="bg-gray-100"
+              formType="service"
+            />
             {data.data.locations.map(
               (location: { id: string; name: string }) => (
-                <Checkbox label={location.name} key={location.id} />
+                <Checkbox
+                  label={location.name}
+                  key={location.id}
+                  formType="service"
+                />
               )
             )}
-            <Checkbox label="Available at all future locations" />
+            <Checkbox
+              label="Available at all future locations"
+              formType="service"
+            />
           </div>
         )}
       </div>
