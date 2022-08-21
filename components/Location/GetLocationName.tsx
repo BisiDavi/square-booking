@@ -14,7 +14,6 @@ export default function GetLocationName({ locationId }: Props) {
       enabled: !!locationId,
     }
   );
-  console.log("data", data?.data);
   return (
     <div>
       {status === "error"

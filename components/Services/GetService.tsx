@@ -30,7 +30,6 @@ export default function GetServiceCatalog({ serviceId }: Props) {
   const parsedData =
     status === "success" ? JSON.parse(data?.data)?.object : null;
 
-  console.log("parsedData", parsedData);
   return (
     <div>
       {status === "error" ? (
