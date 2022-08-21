@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import useReduxForm from "@/hooks/useReduxForm";
 import formElementId from "@/lib/formElementId";
 
@@ -14,14 +13,8 @@ export default function Checkbox({ label, className, formType, name }: Props) {
   const id = formElementId(`${label}-${name}`, formType);
   const value = getClickInputValue(id);
 
-  console.log(`value-${value}`, value);
-
   function onClickHandler() {
-    if (!value) {
-      onChangeHandler(!value, id, true);
-    } else if (value === false) {
-      onChangeHandler(!value, id, true);
-    }
+    onChangeHandler(!value, id, true);
   }
 
   return (
