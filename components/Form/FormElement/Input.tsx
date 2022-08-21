@@ -1,4 +1,6 @@
 import toSlug from "@/lib/toSlug";
+import { updateServiceForm } from "@/redux/form-slice";
+import { useAppDispatch } from "@/redux/store";
 
 interface Props {
   input: {
@@ -9,9 +11,16 @@ interface Props {
   };
 }
 
-export default function NewInput({ input }: Props) {
+export default function Input({ input }: Props) {
+  const dispatch = useAppDispatch();
+
   const { name, type, placeholder, label } = input;
   const id = toSlug(label);
+
+  function inputChangeHandler(e: any) {
+    dispatch(updateServiceForm({ name, data: e.target.value }));
+  }
+
   return (
     <div className={`input-group flex items-center h-12`}>
       <label
@@ -27,6 +36,7 @@ export default function NewInput({ input }: Props) {
         type={type}
         min={0}
         placeholder={placeholder}
+        onChange={inputChangeHandler}
       />
     </div>
   );
