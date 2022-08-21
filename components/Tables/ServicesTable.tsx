@@ -4,6 +4,7 @@ import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";
 import { listServices } from "@/requests/getRequests";
 import { serviceItemType } from "@/types/service-type";
+import GetTeammateName from "../Team/GetTeammateName";
 
 export default function ServicesTable() {
   const { data, status } = useQuery("listServices", listServices);
@@ -19,7 +20,7 @@ export default function ServicesTable() {
         <tr className="border-b border-gray-300 text-left">
           <th>Name</th>
           <th>Category</th>
-          <th>Locations</th>
+          <th>Teams</th>
           <th>Duration</th>
           <th>Price</th>
         </tr>
@@ -37,7 +38,14 @@ export default function ServicesTable() {
             >
               <td>{item?.itemData?.name}</td>
               <td>-</td>
-              <td>-</td>
+              <td>
+                <GetTeammateName
+                  teamId={
+                    item?.itemData?.variations[0]?.itemVariationData
+                      ?.teamMemberIds[0]
+                  }
+                />
+              </td>
               <td>
                 {item?.itemData?.variations[0]?.itemVariationData
                   .serviceDuration

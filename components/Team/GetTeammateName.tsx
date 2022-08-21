@@ -10,6 +10,7 @@ export default function GetTeammateName({ teamId }: Props) {
   const { data, status } = useQuery(`team-${teamId}`, () => getTeam(teamId), {
     enabled: !!teamId,
   });
+
   return (
     <div>
       {status === "error" ? (
@@ -19,7 +20,7 @@ export default function GetTeammateName({ teamId }: Props) {
       ) : (
         <>
           <span>
-            {`${data.data.teamMember?.givenName} ${data.data.teamMember?.familyName}`}
+            {`${data?.data?.teamMember?.givenName} ${data?.data?.teamMember?.familyName}`}
           </span>
         </>
       )}
