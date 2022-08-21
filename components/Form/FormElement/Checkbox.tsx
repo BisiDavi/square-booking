@@ -10,7 +10,7 @@ interface Props {
 
 export default function Checkbox({ label, className, formType, name }: Props) {
   const { getClickInputValue, onChangeHandler } = useReduxForm();
-  const id = formElementId(`${label}-${name}`, formType);
+  const id = formElementId(`${name}`, formType);
   const value = getClickInputValue(id);
 
   function onClickHandler() {

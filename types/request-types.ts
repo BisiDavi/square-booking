@@ -46,3 +46,14 @@ export type bookingType = {
   source: string;
   locationType: string;
 };
+
+export type listCustomerType = {
+  id: string;
+  givenName: string;
+  familyName: string;
+  createdAt: Date;
+  emailAddress: string;
+  address: {
+    country: string;
+  };
+};
