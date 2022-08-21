@@ -16,6 +16,7 @@ export type serviceItemType = {
     name: string;
     description: string;
     visibility: string;
+    categoryId: string;
     variations: [
       {
         type: string;
