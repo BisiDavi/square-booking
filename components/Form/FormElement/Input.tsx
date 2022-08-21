@@ -1,7 +1,5 @@
-/* eslint-disable unused-imports/no-unused-vars */
+import useReduxForm from "@/hooks/useReduxForm";
 import toSlug from "@/lib/toSlug";
-import { updateForm } from "@/redux/form-slice";
-import { useAppDispatch } from "@/redux/store";
 
 interface Props {
   input: {
@@ -13,14 +11,12 @@ interface Props {
 }
 
 export default function Input({ input }: Props) {
-  const dispatch = useAppDispatch();
+  const { getInputValue, onChangeHandler } = useReduxForm();
 
   const { name, type, placeholder, label } = input;
   const id = toSlug(label);
 
-  function inputChangeHandler(e: any) {
-    dispatch(updateForm({ name, data: e.target.value }));
-  }
+  const value = getInputValue(input.name);
 
   return (
     <div className={`input-group flex items-center h-12`}>
@@ -36,8 +32,9 @@ export default function Input({ input }: Props) {
         className="placeholder-gray-300 px-3 h-full py-4 font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         type={type}
         min={0}
+        value={value}
         placeholder={placeholder}
-        onChange={inputChangeHandler}
+        onChange={(e) => onChangeHandler(e, input.name)}
       />
     </div>
   );

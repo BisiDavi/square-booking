@@ -19,7 +19,7 @@ export default function CreateServiceForm() {
     dispatch(updateModal(null));
   }
   return (
-    <>j
+    <>
       {modal === "variation-modal-location" && (
         <VariationModal modal={modal} toggleModal={closeModalHandler} />
       )}

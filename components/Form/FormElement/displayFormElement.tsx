@@ -1,4 +1,4 @@
-import NewTextArea from "@/components/Form/FormElement/NewTextArea";
+import TextArea from "@/components/Form/FormElement/TextArea";
 import Input from "@/components/Form/FormElement/Input";
 import CategoryDropdown from "@/components/Form/FormElement/CategoryDropdown";
 import FormModalGroup from "@/components/Form/FormElement/FormModalGroup";
@@ -13,7 +13,7 @@ export default function displayFormElement(input: any, key: string) {
     case "input":
       return <Input input={input} key={key} />;
     case "textarea":
-      return <NewTextArea input={input} key={key} />;
+      return <TextArea input={input} key={key} />;
     case "categoryDropdown":
       return <CategoryDropdown key={key} />;
     case "form-modal":

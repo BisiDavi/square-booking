@@ -1,6 +1,6 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren } from "react";
 
 type modalType = null | "form-modal-location" | "variation-modal-location";
 
@@ -20,13 +20,11 @@ export default function Modal({
 }: PropsWithChildren<Props>) {
   const modalSize = size ? `${size} w-auto` : "max-w-2xl w-screen";
 
-  useEffect(() => {
-    if (modal === null) {
-      enableBodyScroll(document.body);
-    } else {
-      disableBodyScroll(document.body);
-    }
-  }, [modal]);
+  if (modal === null) {
+    enableBodyScroll(document.body);
+  } else {
+    disableBodyScroll(document.body);
+  }
 
   return (
     <>

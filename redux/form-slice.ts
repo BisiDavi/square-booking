@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type seviceFormType = { [key: string]: any };
 type payloadType = { name: string; data: any };
+
 type initialStateType = {
-  form: seviceFormType | any;
+  form: { [key: string]: any };
 };
 
 const initialState: initialStateType = {
-  form: null,
+  form: {},
 };
 
 const FormSlice = createSlice({
