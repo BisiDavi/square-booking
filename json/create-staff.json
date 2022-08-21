@@ -3,24 +3,28 @@
     "name": "firstname",
     "placeholder": "First Name",
     "type": "text",
+    "formType": "staff",
     "elementType": "simpleInput"
   },
   {
     "name": "lastname",
     "placeholder": "Last Name",
     "type": "text",
+    "formType": "staff",
     "elementType": "simpleInput"
   },
   {
     "name": "email",
     "placeholder": "Work Email",
     "type": "email",
+    "formType": "staff",
     "elementType": "simpleInput"
   },
   {
     "name": "workPhone",
     "placeholder": "Work Phone",
     "type": "number",
+    "formType": "staff",
     "elementType": "simpleInput"
   }
 ]

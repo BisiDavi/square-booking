@@ -1,20 +1,20 @@
 import useReduxForm from "@/hooks/useReduxForm";
-import toSlug from "@/lib/toSlug";
+import formElementId from "@/lib/formElementId";
 
 interface Props {
   input: {
-    name: string;
     type: string;
     placeholder: string;
     label: string;
+    formType: string;
   };
 }
 
 export default function TextArea({ input }: Props) {
-  const { name, placeholder, label } = input;
-  const id = toSlug(label);
+  const { placeholder, label, formType } = input;
+  const id = formElementId(label, formType);
   const { getInputValue, onChangeHandler } = useReduxForm();
-  const value = getInputValue(name);
+  const value = getInputValue(id);
 
   return (
     <div className="input-group flex items-center h-32">
@@ -25,13 +25,13 @@ export default function TextArea({ input }: Props) {
         {label}
       </label>
       <textarea
-        id={name}
+        id={id}
         rows={4}
-        name={name}
+        name={id}
         value={value}
         placeholder={placeholder}
         className="placeholder-gray-300 py-3 px-3 h-full w-full items-center border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
-        onChange={(e) => onChangeHandler(e, name)}
+        onChange={(e) => onChangeHandler(e, id)}
       ></textarea>
     </div>
   );

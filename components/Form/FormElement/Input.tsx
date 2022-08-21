@@ -1,22 +1,22 @@
 import useReduxForm from "@/hooks/useReduxForm";
-import toSlug from "@/lib/toSlug";
+import formElementId from "@/lib/formElementId";
 
 interface Props {
   input: {
-    name: string;
     type: string;
     placeholder?: string;
     label: string;
+    formType: string;
   };
 }
 
 export default function Input({ input }: Props) {
   const { getInputValue, onChangeHandler } = useReduxForm();
 
-  const { name, type, placeholder, label } = input;
-  const id = toSlug(label);
+  const { type, placeholder, label, formType } = input;
+  const id = formElementId(label, formType);
 
-  const value = getInputValue(input.name);
+  const value = getInputValue(id);
 
   return (
     <div className={`input-group flex items-center h-12`}>
@@ -27,14 +27,14 @@ export default function Input({ input }: Props) {
         {label}
       </label>
       <input
-        id={name}
-        name={name}
+        id={id}
+        name={id}
         className="placeholder-gray-300 px-3 h-full py-4 border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         type={type}
         min={0}
         value={value}
         placeholder={placeholder}
-        onChange={(e) => onChangeHandler(e, input.name)}
+        onChange={(e) => onChangeHandler(e, id)}
       />
     </div>
   );
