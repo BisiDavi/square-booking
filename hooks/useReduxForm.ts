@@ -9,8 +9,9 @@ export default function useReduxForm() {
   const getInputValue = (name: string) =>
     Object.keys(form).includes(name) ? form[name] : "";
 
-  function onChangeHandler(e: any, name: string) {
-    dispatch(updateForm({ name, data: e.target.value }));
+  function onChangeHandler(e: any, name: string, click?: boolean) {
+    const data = click ? e : e.target.value;
+    dispatch(updateForm({ name, data }));
   }
 
   return { getInputValue, onChangeHandler };
