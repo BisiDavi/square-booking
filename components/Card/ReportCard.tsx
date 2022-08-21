@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import reportCardQueryFunction, {
   parseReportCard,
-} from "@/components/Card/reportCardQueryFunction";
+} from "@/lib/reportCardQueryFunction";
 import Link from "next/link";
 
 /* eslint-disable @next/next/no-img-element */

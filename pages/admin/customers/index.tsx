@@ -12,7 +12,7 @@ export default function CustomersPage() {
 
   return (
     <AdminLayoutPage>
-      <section className="customers bg-white h-screen my-4 rounded-md">
+      <section className="customers bg-white my-4 rounded-md">
         <table className="border mt-4 w-full">
           <thead className="bg-gray-100 h-14">
             <tr>

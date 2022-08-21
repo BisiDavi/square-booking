@@ -39,6 +39,8 @@ export default function AdminLayoutPage({ children }: PropsWithChildren<{}>) {
           .wrapper {
             right: 0px;
             top: 80px;
+            height: 90vh;
+            overflow-y: scroll;
           }
         `}
       </style>
