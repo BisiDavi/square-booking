@@ -15,7 +15,6 @@ export default async function Handler(
     case "GET": {
       try {
         const response = await client.bookingsApi.listBookings();
-        console.log("response", response.result);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);
