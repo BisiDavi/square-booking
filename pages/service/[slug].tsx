@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "@/hooks/useRedux";
 import DefaultLayout from "@/layout/Default-layout";
 import formatBigInt from "@/lib/formatBigInt";
-import userSquareClient from "@/square/user";
+import squareClient from "@/squareClient";
 import { useAppDispatch } from "@/redux/store";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import ServicePageSidebar from "@/components/Sidebar/ServicePageSidebar";
@@ -47,7 +47,7 @@ export default function ServicePage({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
   try {
-    const { client } = await userSquareClient();
+    const { client } = await squareClient();
     const serviceId: string | any = query.id;
     const response = await client.catalogApi.retrieveCatalogObject(serviceId);
     const storeProfileData = await client.locationsApi.listLocations();

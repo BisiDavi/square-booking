@@ -5,7 +5,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 import DefaultLayout from "@/layout/Default-layout";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { useAppDispatch } from "@/redux/store";
-import userSquareClient from "@/square/user";
+import squareClient from "@/squareClient";
 import type { storeProfileType } from "@/types/store-types";
 import BookingView from "@/components/View/BookingView";
 
@@ -32,7 +32,7 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
 
 export async function getServerSideProps() {
   try {
-    const { client } = await userSquareClient();
+    const { client } = await squareClient();
     const response = await client.locationsApi.listLocations();
     return {
       props: {

@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import userSquareClient from "@/square/user";
+import squareClient from "@/squareClient";
 
 export default async function RetrieveTeamHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await userSquareClient();
+  const { client } = await squareClient();
   const teamMemberId = req.body.teamMemberId;
   switch (req.method) {
     case "POST": {

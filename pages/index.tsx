@@ -10,7 +10,7 @@ import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
-import userSquareClient from "@/square/user";
+import suareClient from "@/squareClient";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -39,7 +39,7 @@ export default function Home({ storeProfile }: Props) {
 
 export async function getStaticProps() {
   try {
-    const { client } = await userSquareClient();
+    const { client } = await suareClient();
     const response = await client.locationsApi.listLocations();
     return {
       props: {

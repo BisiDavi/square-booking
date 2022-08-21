@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { DBClient } from "@/DB/DBConnection";
-import { fetchAccessTokenFromDBViaEmail } from "@/DB/fetchAccessTokenFromDB";
+import fetchAccessTokenFromDB from "@/DB/fetchAccessTokenFromDB";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function Handler(
@@ -16,7 +16,7 @@ export default async function Handler(
     case "POST": {
       try {
         const dbClient = await DBClient();
-        await fetchAccessTokenFromDBViaEmail(dbClient, email)
+        await fetchAccessTokenFromDB(dbClient, email)
           .then((response) => {
             console.log("fetchAccessTokenFromDBViaEmail-response", response);
             if (response) {

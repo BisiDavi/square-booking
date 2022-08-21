@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import formatBigInt from "@/lib/formatBigInt";
-import userSquareClient from "@/square/user";
+import squareClient from "@/squareClient";
 
 export default async function RetrieveTeamHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await userSquareClient();
+  const { client } = await squareClient();
   const { query } = req.body;
 
   switch (req.method) {

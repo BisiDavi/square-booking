@@ -1,13 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import formatBigInt from "@/lib/formatBigInt";
-import userSquareClient from "@/square/user";
+import squareClient from "@/squareClient";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await userSquareClient();
+  const { client } = await squareClient();
 
   switch (req.method) {
     case "GET": {

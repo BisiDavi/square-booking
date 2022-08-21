@@ -3,9 +3,10 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import type { GetServerSidePropsContext } from "next";
 
 import DefaultLayout from "@/layout/Default-layout";
-import userSquareClient from "@/square/user";
+import squareClient from "@/squareClient";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
@@ -71,9 +72,13 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { req } = context;
   try {
-    const { client } = await userSquareClient();
+    const merchant = req.cookies?.merchant
+      ? JSON.parse(req.cookies?.merchant)
+      : {};
+    const { client } = await squareClient(merchant.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
