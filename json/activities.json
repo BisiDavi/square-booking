@@ -4,27 +4,31 @@
     "count": 0,
     "icon": "/bookingIcon.png",
     "method": "listBookings",
-    "key": "bookings"
+    "key": "bookings",
+    "link": "/admin/calendar"
   },
   {
     "text": "Total Customers",
     "count": 0,
     "icon": "/customer.png",
     "method": "listCustomer",
-    "key":"customers"
+    "key": "customers",
+    "link": "/admin/customers"
   },
   {
     "text": "Total Services",
     "count": 0,
     "icon": "/services.png",
     "method": "listServices",
-    "key": "items"
+    "key": "items",
+    "link": "/admin/services"
   },
   {
     "text": "Staff Total ",
     "count": 0,
     "icon": "staff.png",
     "method": "listStaff",
-    "key": "teamMembers"
+    "key": "teamMembers",
+    "link": "/admin/staff"
   }
 ]
