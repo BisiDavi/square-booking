@@ -1,9 +1,5 @@
 export type UIStateType = {
-  modal:
-    | "auth-modal"
-    | "form-modal-location"
-    | "variation-modal-location"
-    | null;
+  modal: "form-modal-location" | "variation-modal-location" | null;
   accordion: string | null;
   apploaded: boolean;
   sidebar: "create-staff" | null;

@@ -4,7 +4,6 @@ import { PropsWithChildren, useEffect } from "react";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import AuthModal from "@/components/Modal/AuthModal";
 import { useAppSelector } from "@/hooks/useRedux";
 import { useAppDispatch } from "@/redux/store";
 import { updateAppload } from "@/redux/ui-slice";
@@ -24,7 +23,6 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
       <Head>
         <title>Booking made easy, try us today</title>
       </Head>
-      <AuthModal />
       <Header />
       {children}
       <Footer />

@@ -1,14 +1,12 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { PropsWithChildren } from "react";
 
+type modalType = null | "form-modal-location" | "variation-modal-location";
+
 interface Props {
   title?: string;
-  toggleModal: (modalState: null | "auth-modal") => void;
-  modal:
-    | null
-    | "auth-modal"
-    | "form-modal-location"
-    | "variation-modal-location";
+  toggleModal: (modalState: modalType) => void;
+  modal: modalType;
   size?: "large" | "small";
 }
 
