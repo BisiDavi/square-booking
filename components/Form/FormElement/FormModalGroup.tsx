@@ -32,7 +32,7 @@ export default function FormModalGroup({ input }: Props) {
     (item) => item.name === "assignedTeamMembers"
   )[0].placeholder;
 
-  const modalTitle = name === "location" ? locationTitle : teamTitle;
+  const modalTitle = modal?.includes("location") ? locationTitle : teamTitle;
 
   function modalHandler() {
     dispatch(updateModal(modalStateType));

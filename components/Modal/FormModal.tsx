@@ -1,6 +1,7 @@
 import Modal from "@/components/Modal";
 import ListLocationView from "@/components/View/ListLocationView";
 import TeamModalView from "@/components/View/TeamModalView";
+
 import type { modalStateType } from "@/types/redux-types";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function FormModal({ modal, toggleModal, title }: Props) {
+  console.log("title", title);
   return (
     <>
       {modal === "form-modal-location" ? (
