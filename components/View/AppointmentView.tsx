@@ -4,6 +4,8 @@ import { listBookings } from "@/requests/getRequests";
 import { bookingType } from "@/types/request-types";
 import GetCustomer from "../Customer/GetCustomer";
 import GetServiceCatalog from "../Services/GetService";
+import GetTeammateName from "../Team/GetTeammateName";
+import GetLocationName from "../Location/GetLocationName";
 
 function formatDate(dateString: Date) {
   const dateInstance = new Date(dateString).toDateString();
@@ -58,8 +60,10 @@ export default function AppointmentView() {
                   </td>
                   <td>{serviceDuration}</td>
                   <td>{serviceDuration}</td>
-                  <td>{team}</td>
-                  <td>{booking?.locationId}</td>
+                  <td>{<GetTeammateName teamId={team} />} </td>
+                  <td>
+                    <GetLocationName locationId={booking?.locationId} />
+                  </td>
                 </tr>
               );
             })}
@@ -69,5 +73,3 @@ export default function AppointmentView() {
     </div>
   );
 }
-
-// durationMinutes
