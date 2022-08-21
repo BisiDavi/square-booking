@@ -23,7 +23,6 @@
     "cookie": "^0.5.0",
     "cypress": "^10.4.0",
     "date-fns": "^2.29.1",
-    "firebase": "^9.9.2",
     "mongodb": "^4.8.1",
     "next": "12.2.2",
     "nprogress": "^0.2.0",
