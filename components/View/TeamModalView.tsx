@@ -39,12 +39,15 @@ export default function TeamModalView({ name }: Props) {
                 name={name}
               />
               {teamMembers.map(
-                (member: {
-                  id: string;
-                  givenName: string;
-                  familyName: string;
-                  emailAddress: string;
-                }) => {
+                (
+                  member: {
+                    id: string;
+                    givenName: string;
+                    familyName: string;
+                    emailAddress: string;
+                  },
+                  index: number
+                ) => {
                   const label = member.givenName
                     ? `${member.givenName} ${member.familyName}`
                     : member.emailAddress;
@@ -53,7 +56,7 @@ export default function TeamModalView({ name }: Props) {
                       label={label}
                       key={member.id}
                       formType="service"
-                      name={name}
+                      name={`${name}-${index}`}
                     />
                   );
                 }

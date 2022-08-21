@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+
 import AppLogo from "@/components/Logo/AppLogo";
 import Logo from "@/components/Logo";
 import UpdateTheme from "@/components/Theme/UpdateTheme";
