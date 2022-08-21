@@ -11,14 +11,14 @@ interface Props {
 }
 
 export default function ToggleElement({ input }: Props) {
-  const [toggle, setToggle] = useState(false);
   const { label, name } = input;
-  const id = toSlug(label);
   const { getInputValue, onChangeHandler } = useReduxForm();
-  const value = getInputValue(name);
+  const value = getInputValue(name, true);
+  const [toggle, setToggle] = useState(value);
+  const id = toSlug(label);
 
   function onClickHandler() {
-    setToggle((prevState) => !prevState);
+    setToggle((prevState: boolean) => !prevState);
   }
 
   useEffect(() => {
@@ -33,8 +33,8 @@ export default function ToggleElement({ input }: Props) {
       >
         <input
           type="checkbox"
-          value={value}
-          className="sr-only peer"
+          checked={value}
+          className={`sr-only peer`}
           name={name}
           id={id}
           onChange={onClickHandler}
