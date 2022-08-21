@@ -10,8 +10,6 @@ export default function TeamModalView() {
   const teamMembers =
     status === "success" ? JSON.parse(data?.data).teamMembers : [];
 
-  console.log("teamMembers", teamMembers);
-
   return (
     <div>
       <div className="form-modal w-11/12 flex flex-col mx-auto">
@@ -30,7 +28,11 @@ export default function TeamModalView() {
             "loading..."
           ) : (
             <div className="mt-4 list">
-              <Checkbox label="All Team members" className="bg-gray-100" />
+              <Checkbox
+                label="All Team members"
+                className="bg-gray-100"
+                formType="service"
+              />
               {teamMembers.map(
                 (member: {
                   id: string;
@@ -41,7 +43,13 @@ export default function TeamModalView() {
                   const label = member.givenName
                     ? `${member.givenName} ${member.familyName}`
                     : member.emailAddress;
-                  return <Checkbox label={label} key={member.id} />;
+                  return (
+                    <Checkbox
+                      label={label}
+                      key={member.id}
+                      formType="service"
+                    />
+                  );
                 }
               )}
             </div>

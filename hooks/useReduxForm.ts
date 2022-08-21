@@ -15,7 +15,7 @@ export default function useReduxForm() {
   }
 
   const getClickInputValue = (name: string) => {
-    return Object.keys(form).includes(name) ? true : false;
+    return Object.keys(form).includes(name) ? form[name] : false;
   };
 
   return { getInputValue, onChangeHandler, getClickInputValue };

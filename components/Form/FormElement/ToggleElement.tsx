@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
-
 import useReduxForm from "@/hooks/useReduxForm";
 import formElementId from "@/lib/formElementId";
 
@@ -17,15 +15,12 @@ export default function ToggleElement({ input }: Props) {
   const { getClickInputValue, onChangeHandler } = useReduxForm();
   const id = formElementId(name, formType);
   const value = getClickInputValue(id);
-  const [toggle, setToggle] = useState(value);
+
+  console.log(id, value);
 
   function onClickHandler() {
-    setToggle((prevState: boolean) => !prevState);
+    onChangeHandler(!value, id, true);
   }
-
-  useEffect(() => {
-    onChangeHandler(toggle, id, true);
-  }, [toggle]);
 
   return (
     <div className="toggle py-4 w-full border px-6">
@@ -35,7 +30,7 @@ export default function ToggleElement({ input }: Props) {
       >
         <input
           type="checkbox"
-          checked={toggle}
+          checked={value}
           className="sr-only peer"
           name={id}
           id={id}

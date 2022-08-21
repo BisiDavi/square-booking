@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-
 import useReduxForm from "@/hooks/useReduxForm";
 import formElementId from "@/lib/formElementId";
 
@@ -14,15 +12,16 @@ export default function Checkbox({ label, className, formType }: Props) {
   const { getClickInputValue, onChangeHandler } = useReduxForm();
   const id = formElementId(label, formType);
   const value = getClickInputValue(id);
-  const [checkbox, setCheckbox] = useState(value);
+
+  console.log(`value-${value}`, value);
 
   function onClickHandler() {
-    setCheckbox((prevState: boolean) => !prevState);
+    if (!value) {
+      onChangeHandler(!value, id, true);
+    } else if (value === false) {
+      onChangeHandler(!value, id, true);
+    }
   }
-
-  useEffect(() => {
-    onChangeHandler(checkbox, id, true);
-  }, [checkbox]);
 
   return (
     <div
@@ -30,7 +29,7 @@ export default function Checkbox({ label, className, formType }: Props) {
     >
       <input
         type="checkbox"
-        checked={checkbox}
+        checked={value}
         className="mr-4"
         name={id}
         onClick={onClickHandler}
