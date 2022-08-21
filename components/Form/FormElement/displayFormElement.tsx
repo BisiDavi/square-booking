@@ -25,8 +25,8 @@ export default function displayFormElement(input: any, key: string) {
     case "toggle":
       return <ToggleElement input={input} key={key} />;
     case "teamMembersView":
-      return <TeamModalView />;
+      return <TeamModalView name={input.name} />;
     case "locationsView":
-      return <ListLocationView />;
+      return <ListLocationView name={input.name} />;
   }
 }

@@ -4,7 +4,11 @@ import { useQuery } from "react-query";
 import { listLocations } from "@/requests/getRequests";
 import Checkbox from "@/components/Form/FormElement/Checkbox";
 
-export default function ListLocationView() {
+interface Props {
+  name: string;
+}
+
+export default function ListLocationView({ name }: Props) {
   const { data, status } = useQuery("listLocations", listLocations);
 
   return (
@@ -28,6 +32,7 @@ export default function ListLocationView() {
               label="Locations"
               className="bg-gray-100"
               formType="service"
+              name={name}
             />
             {data.data.locations.map(
               (location: { id: string; name: string }) => (
@@ -35,12 +40,14 @@ export default function ListLocationView() {
                   label={location.name}
                   key={location.id}
                   formType="service"
+                  name={name}
                 />
               )
             )}
             <Checkbox
               label="Available at all future locations"
               formType="service"
+              name={name}
             />
           </div>
         )}

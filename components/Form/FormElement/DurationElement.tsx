@@ -6,11 +6,18 @@ interface SelectElementProps {
   options: number[];
   label: string;
   formType: string;
+  inputName: string;
 }
 
-function SelectElement({ name, options, label, formType }: SelectElementProps) {
+function SelectElement({
+  name,
+  options,
+  label,
+  formType,
+  inputName,
+}: SelectElementProps) {
   const { onChangeHandler, getInputValue } = useReduxForm();
-  const inputId = formElementId(`${label}-${name}`, formType);
+  const inputId = formElementId(`${label}-${name}-${inputName}`, formType);
   const value = getInputValue(inputId);
 
   return (
@@ -45,11 +52,12 @@ interface Props {
   input: {
     label: string;
     formType: string;
+    name: string;
   };
 }
 
 export default function DurationElement({ input }: Props) {
-  const { label, formType } = input;
+  const { label, formType, name } = input;
   const hours = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     21, 22, 23, 24,
@@ -66,12 +74,14 @@ export default function DurationElement({ input }: Props) {
       <div className="select-group flex items-center px-4" id="select-group">
         <SelectElement
           name="hours"
+          inputName={name}
           options={hours}
           label={label}
           formType={formType}
         />
         <SelectElement
           name="minutes"
+          inputName={name}
           options={minutes}
           label={label}
           formType={formType}

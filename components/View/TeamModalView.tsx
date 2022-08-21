@@ -4,7 +4,11 @@ import { BsSearch } from "react-icons/bs";
 import { searchTeam } from "@/requests/postRequests";
 import Checkbox from "@/components/Form/FormElement/Checkbox";
 
-export default function TeamModalView() {
+interface Props {
+  name: string;
+}
+
+export default function TeamModalView({ name }: Props) {
   const { data, status } = useQuery("searchTeam", () => searchTeam({}));
 
   const teamMembers =
@@ -32,6 +36,7 @@ export default function TeamModalView() {
                 label="All Team members"
                 className="bg-gray-100"
                 formType="service"
+                name={name}
               />
               {teamMembers.map(
                 (member: {
@@ -48,6 +53,7 @@ export default function TeamModalView() {
                       label={label}
                       key={member.id}
                       formType="service"
+                      name={name}
                     />
                   );
                 }
