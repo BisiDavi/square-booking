@@ -7,7 +7,7 @@ export default function formatTime(givenTime: string) {
     const updateTime = `${updatedHour}:${seconds}`;
     return updateTime;
   } else {
-    return hour;
+    return givenTime;
   }
 }
 
@@ -28,4 +28,24 @@ export function formatServicePeriod(milliSeconds: number) {
     const hourText = periodHour < 2 ? "hr" : "hrs";
     return `${periodHour} ${hourText}`;
   }
+}
+
+export function formatDate(dateString: Date) {
+  const dateInstance = new Date(dateString).toDateString();
+  return dateInstance;
+}
+
+export function formatPeriod(givenDate: Date, duration: number) {
+  const timeInstance = new Date(givenDate).toLocaleTimeString();
+  const splitTime = timeInstance.split(":");
+  const minutesString = timeInstance.split(":")[1];
+  const timeString = Number(splitTime[0]) > 12 ? "pm" : "am";
+  const minutes = Number(minutesString);
+  const updateMinutes = duration < 60 ? duration + minutes : "";
+  const startPeriod = `${splitTime[0]}:${splitTime[1]}`;
+  const endPeriod = `${splitTime[0]}:${updateMinutes}`;
+  const period = `${formatTime(startPeriod)}${timeString} - ${formatTime(
+    endPeriod
+  )}${timeString}`;
+  return period;
 }

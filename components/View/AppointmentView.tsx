@@ -6,11 +6,7 @@ import GetCustomer from "../Customer/GetCustomer";
 import GetServiceCatalog from "../Services/GetService";
 import GetTeammateName from "../Team/GetTeammateName";
 import GetLocationName from "../Location/GetLocationName";
-
-function formatDate(dateString: Date) {
-  const dateInstance = new Date(dateString).toDateString();
-  return dateInstance;
-}
+import { formatDate, formatPeriod } from "@/lib/formatTime";
 
 export default function AppointmentView() {
   const { data, status } = useQuery("listBooking", listBookings);
@@ -59,7 +55,13 @@ export default function AppointmentView() {
                     <GetServiceCatalog serviceId={serviceVariationId} />
                   </td>
                   <td>{serviceDuration}</td>
-                  <td>{serviceDuration}</td>
+                  <td>
+                    {" "}
+                    {formatPeriod(
+                      booking?.startAt,
+                      appointment?.durationMinutes
+                    )}
+                  </td>
                   <td>{<GetTeammateName teamId={team} />} </td>
                   <td>
                     <GetLocationName locationId={booking?.locationId} />
