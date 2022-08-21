@@ -1,8 +1,9 @@
 import Modal from "@/components/Modal";
 import VariationTab from "@/components/Tab/VariationTab";
+import type { modalStateType } from "@/types/redux-types";
 
 interface Props {
-  modal: null | "variation-modal-location";
+  modal: modalStateType;
   toggleModal: () => void;
 }
 

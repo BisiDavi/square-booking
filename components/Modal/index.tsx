@@ -1,12 +1,12 @@
 /* eslint-disable unused-imports/no-unused-vars */
 import { PropsWithChildren } from "react";
 
-type modalType = null | "form-modal-location" | "variation-modal-location";
+import type { modalStateType } from "@/types/redux-types";
 
 interface Props {
   title?: string;
-  toggleModal: (modalState: modalType) => void;
-  modal: modalType;
+  toggleModal: (modalStateType: modalStateType) => void;
+  modal: modalStateType;
   size?: "large" | "small";
 }
 

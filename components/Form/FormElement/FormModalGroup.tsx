@@ -4,24 +4,38 @@ import FormModal from "@/components/Modal/FormModal";
 import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "@/hooks/useRedux";
 import { updateModal } from "@/redux/ui-slice";
-
+import serviceForm from "@/json/create-service.json";
 interface Props {
   input: {
     label: string;
     text: string;
     name: string;
     placeholder: string;
+    formModalType: string;
   };
 }
 
 export default function FormModalGroup({ input }: Props) {
   const dispatch = useAppDispatch();
   const { modal } = useAppSelector((state) => state.UI);
-  const { label, text } = input;
+  const { label, text, name } = input;
   const id = toSlug(label);
 
+  const modalStateType =
+    name === "location" ? "form-modal-location" : "form-modal-team";
+
+  const locationTitle = serviceForm.main.filter(
+    (item) => item.name === "location"
+  )[0].placeholder;
+
+  const teamTitle = serviceForm.bookable.filter(
+    (item) => item.name === "assignedTeamMembers"
+  )[0].placeholder;
+
+  const modalTitle = name === "location" ? locationTitle : teamTitle;
+
   function modalHandler() {
-    dispatch(updateModal("form-modal-location"));
+    dispatch(updateModal(modalStateType));
   }
 
   function closeModalHandler() {
@@ -30,13 +44,11 @@ export default function FormModalGroup({ input }: Props) {
 
   return (
     <>
-      {modal === "form-modal-location" && (
-        <FormModal
-          modal={modal}
-          toggleModal={closeModalHandler}
-          input={input}
-        />
-      )}
+      <FormModal
+        title={modalTitle}
+        modal={modal}
+        toggleModal={closeModalHandler}
+      />
       <div className={`input-group flex items-center h-14`}>
         <label
           className="bg-gray-200 text-gray-900 px-3 h-14 border-b border-white font-bold h-full items-center flex"

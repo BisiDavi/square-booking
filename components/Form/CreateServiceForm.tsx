@@ -12,7 +12,7 @@ export default function CreateServiceForm() {
   const { modal } = useAppSelector((state) => state.UI);
 
   function modalHandler() {
-    dispatch(updateModal("variation-modal-location"));
+    dispatch(updateModal("variation-modal"));
   }
 
   function closeModalHandler() {
@@ -20,7 +20,7 @@ export default function CreateServiceForm() {
   }
   return (
     <>
-      {modal === "variation-modal-location" && (
+      {modal === "variation-modal" && (
         <VariationModal modal={modal} toggleModal={closeModalHandler} />
       )}
       <div className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col">

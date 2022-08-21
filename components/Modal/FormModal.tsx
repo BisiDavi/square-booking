@@ -1,22 +1,26 @@
 import Modal from "@/components/Modal";
 import ListLocationView from "@/components/View/ListLocationView";
 import TeamModalView from "@/components/View/TeamModalView";
+import type { modalStateType } from "@/types/redux-types";
 
 interface Props {
-  input: { placeholder: string; name: string };
-  modal: null | "form-modal-location";
+  modal: modalStateType;
   toggleModal: () => void;
+  title: string;
 }
 
-export default function FormModal({
-  input,
-  modal,
-  toggleModal,
-}: Props) {
-  const { placeholder } = input;
+export default function FormModal({ modal, toggleModal, title }: Props) {
   return (
-    <Modal title={placeholder} modal={modal} toggleModal={toggleModal}>
-      {input.name === "location" ? <ListLocationView /> : <TeamModalView />}
-    </Modal>
+    <>
+      {modal === "form-modal-location" ? (
+        <Modal title={title} modal={modal} toggleModal={toggleModal}>
+          <ListLocationView />
+        </Modal>
+      ) : (
+        <Modal title={title} modal={modal} toggleModal={toggleModal}>
+          <TeamModalView />
+        </Modal>
+      )}
+    </>
   );
 }
