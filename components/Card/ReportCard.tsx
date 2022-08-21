@@ -24,7 +24,6 @@ export default function ReportCard({ report }: Props) {
   const parsedData =
     status === "success" ? parseReportCard(data, report.key) : null;
 
-  console.log(`data-${report.method}`, parsedData);
   const count = parsedData ? parsedData.length : 0;
 
   return (

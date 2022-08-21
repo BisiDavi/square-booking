@@ -11,6 +11,8 @@ interface Props {
 export default function ListLocationView({ name }: Props) {
   const { data, status } = useQuery("listLocations", listLocations);
 
+  const parsedData = status === "success" ? JSON.parse(data?.data) : null;
+
   return (
     <div className="form-modal w-11/12 flex flex-col mx-auto">
       <div className="search-input relative mx-auto flex justify-center w-full">
@@ -34,7 +36,7 @@ export default function ListLocationView({ name }: Props) {
               formType="service"
               name={name}
             />
-            {data.data.locations.map(
+            {parsedData.locations.map(
               (location: { id: string; name: string }) => (
                 <Checkbox
                   label={location.name}

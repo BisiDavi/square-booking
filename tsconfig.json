@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/**/*.ts",
-    "**/**/*.tsx"
-, "pages/service/[service]"  ],
+    "**/**/*.tsx",
+    "pages/service/[service]"
+  ],
   "exclude": ["node_modules"]
 }
