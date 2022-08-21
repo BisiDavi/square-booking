@@ -29,7 +29,7 @@ export default function Input({ input }: Props) {
       <input
         id={name}
         name={name}
-        className="placeholder-gray-300 px-3 h-full py-4 font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
+        className="placeholder-gray-300 px-3 h-full py-4 border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         type={type}
         min={0}
         value={value}

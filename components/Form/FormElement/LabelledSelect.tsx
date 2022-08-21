@@ -24,7 +24,7 @@ export default function LabelledSelect({ input }: Props) {
       <select
         id={name}
         name={name}
-        className="placeholder-gray-300 bg-transparent px-3 h-full font-bold border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
+        className="placeholder-gray-300 bg-transparent px-3 h-full border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         placeholder={placeholder}
       >
         {options.map((option) => (

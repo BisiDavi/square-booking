@@ -1,5 +1,4 @@
 import { BsSearch } from "react-icons/bs";
-
 import { useQuery } from "react-query";
 
 import { listLocations } from "@/requests/getRequests";
