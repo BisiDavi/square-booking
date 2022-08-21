@@ -1,16 +1,24 @@
+import useReduxForm from "@/hooks/useReduxForm";
 import toSlug from "@/lib/toSlug";
 
 interface SelectElementProps {
   name: string;
   options: number[];
+  label: string;
 }
 
-function SelectElement({ name, options }: SelectElementProps) {
-  const id = toSlug(name);
+function SelectElement({ name, options, label }: SelectElementProps) {
+  const { onChangeHandler, getInputValue } = useReduxForm();
+  const labelId = toSlug(label);
+  const inputId = `${labelId}-${name}`;
+  const value = getInputValue(inputId);
+
   return (
     <select
-      id={id}
+      id={inputId}
       name={name}
+      value={value}
+      onChange={(e) => onChangeHandler(e, inputId)}
       className="px-2 h-full bg-transparent font-bold mr-10 text-blue-500 focus:border-blue-500 focus:outline-none focus:ring-0"
     >
       {options.map((option, index) => {
@@ -55,8 +63,8 @@ export default function DurationElement({ input }: Props) {
         {label}
       </label>
       <div className="select-group flex items-center px-4" id="select-group">
-        <SelectElement name="hours" options={hours} />
-        <SelectElement name="minutes" options={minutes} />
+        <SelectElement name="hours" options={hours} label={label} />
+        <SelectElement name="minutes" options={minutes} label={label} />
       </div>
     </div>
   );

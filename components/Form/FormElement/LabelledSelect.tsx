@@ -1,3 +1,4 @@
+import useReduxForm from "@/hooks/useReduxForm";
 import toSlug from "@/lib/toSlug";
 
 interface Props {
@@ -10,8 +11,12 @@ interface Props {
 }
 
 export default function LabelledSelect({ input }: Props) {
+  const { getInputValue, onChangeHandler } = useReduxForm();
+
   const { name, options, placeholder, label } = input;
   const id = toSlug(label);
+
+  const value = getInputValue(name);
 
   return (
     <div className={`input-group flex items-center h-12`}>
@@ -26,6 +31,8 @@ export default function LabelledSelect({ input }: Props) {
         name={name}
         className="placeholder-gray-300 bg-transparent px-3 h-full border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChangeHandler(e, name)}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

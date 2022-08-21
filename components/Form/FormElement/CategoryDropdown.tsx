@@ -8,10 +8,12 @@ import {
   //  createCatalogCategory,
   searchCatalogObject,
 } from "@/requests/postRequests";
+import useReduxForm from "@/hooks/useReduxForm";
 
 type defaultOptions = { label: string; value: string }[];
 
 export default function CategoryDropdown() {
+  const { getInputValue, onChangeHandler } = useReduxForm();
   const [defaultOptions, setDefaultOptions] = useState<defaultOptions>([
     { label: "None", value: "NONE" },
   ]);
@@ -51,6 +53,10 @@ export default function CategoryDropdown() {
       }, 1000);
     });
 
+  function selectHandler(inputValue) {
+    console.log("onChangeHandler", inputValue);
+  }
+
   return (
     <div className="categorydropdown flex items-center">
       <label
@@ -65,7 +71,7 @@ export default function CategoryDropdown() {
         classNamePrefix="categoryDropdown"
         placeholder="Select Category"
         cacheOptions
-        onChange={(inputValue) => console.log("inputValue", inputValue)}
+        onChange={selectHandler}
         defaultOptions={defaultOptions}
         loadOptions={promiseOptions}
       />
