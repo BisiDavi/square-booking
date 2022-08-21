@@ -1,10 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { useQuery } from "react-query";
 import reportCardQueryFunction, {
   parseReportCard,
 } from "@/lib/reportCardQueryFunction";
 import Link from "next/link";
 
-/* eslint-disable @next/next/no-img-element */
 interface Props {
   report: {
     count: number;

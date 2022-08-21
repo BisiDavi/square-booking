@@ -6,6 +6,8 @@ import UpdateTheme from "@/components/Theme/UpdateTheme";
 export default function AdminHeader() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
+  console.log("storeProfile", storeProfile);
+
   return (
     <div className="w-full z-40 fixed bg-white max-h-20 shadow justify-between py-4 px-8 flex items-center">
       <AppLogo className="text-2xl" link="/admin" />
