@@ -8,29 +8,25 @@ import ToggleElement from "@/components/Form/FormElement/ToggleElement";
 import TeamModalView from "@/components/View/TeamModalView";
 import ListLocationView from "@/components/View/ListLocationView";
 
-function displayFormElement(input: any) {
+export default function displayFormElement(input: any, key: string) {
   switch (input.elementType) {
     case "input":
-      return <Input input={input} />;
+      return <Input input={input} key={key} />;
     case "textarea":
-      return <NewTextArea input={input} />;
+      return <NewTextArea input={input} key={key} />;
     case "categoryDropdown":
-      return <CategoryDropdown />;
+      return <CategoryDropdown key={key} />;
     case "form-modal":
-      return <FormModalGroup input={input} />;
+      return <FormModalGroup input={input} key={key} />;
     case "select":
-      return <LabelledSelect input={input} />;
+      return <LabelledSelect input={input} key={key} />;
     case "duration":
-      return <DurationElement input={input} />;
+      return <DurationElement input={input} key={key} />;
     case "toggle":
-      return <ToggleElement input={input} />;
+      return <ToggleElement input={input} key={key} />;
     case "teamMembersView":
       return <TeamModalView />;
     case "locationsView":
       return <ListLocationView />;
   }
-}
-
-export default function FormGroup({ input }: any) {
-  return <>{displayFormElement(input)}</>;
 }

@@ -4,24 +4,22 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type seviceFormType = { [key: string]: any };
 type payloadType = { name: string; data: any };
 type initialStateType = {
-  service: seviceFormType | any;
-  staff: null;
+  form: seviceFormType | any;
 };
 
 const initialState: initialStateType = {
-  service: null,
-  staff: null,
+  form: null,
 };
 
 const FormSlice = createSlice({
   name: "Form",
   initialState,
   reducers: {
-    updateServiceForm(state, action: PayloadAction<payloadType>) {
-      state.service[action.payload.name] = action.payload.data;
+    updateForm(state, action: PayloadAction<payloadType>) {
+      state.form[action.payload.name] = action.payload.data;
     },
   },
 });
 
-export const { updateServiceForm } = FormSlice.actions;
+export const { updateForm } = FormSlice.actions;
 export default FormSlice.reducer;

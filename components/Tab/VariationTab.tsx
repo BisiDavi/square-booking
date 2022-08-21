@@ -3,7 +3,7 @@ import { useState } from "react";
 import variationTabContent from "@/json/variation-tab.json";
 import toSlug from "@/lib/toSlug";
 import VariationTabItem from "@/components/Tab/VariationTabItem";
-import FormGroup from "@/components/Form/FormElement/FormGroup";
+import displayFormElement from "@/components/Form/FormElement/displayFormElement";
 import VarationTabWrapper from "@/components/Tab/VarationTabWrapper";
 
 export default function VariationTab() {
@@ -43,32 +43,36 @@ export default function VariationTab() {
       <div id="myTabContent">
         {activeTab === "details" ? (
           <VarationTabWrapper>
-            {variationTabContent.details.main.map((mainItemInput) => (
-              <FormGroup input={mainItemInput} key={mainItemInput.name} />
-            ))}
+            {variationTabContent.details.main.map((mainItemInput) =>
+              displayFormElement(mainItemInput, mainItemInput.name)
+            )}
             <div className="duration mt-6">
-              {variationTabContent.details.duration.map((mainItemInput) => (
-                <FormGroup input={mainItemInput} key={mainItemInput.name} />
-              ))}
+              {variationTabContent.details.duration.map((mainItemInput) =>
+                displayFormElement(mainItemInput, mainItemInput.name)
+              )}
             </div>
           </VarationTabWrapper>
         ) : activeTab === "online-booking" ? (
           <VarationTabWrapper>
             <div className="online-booking">
-              {variationTabContent.onlineBooking.bookable.map(
-                (mainItemInput) => (
-                  <FormGroup input={mainItemInput} key={mainItemInput.name} />
-                )
+              {variationTabContent.onlineBooking.bookable.map((mainItemInput) =>
+                displayFormElement(mainItemInput, mainItemInput.name)
               )}
               <div className="team mt-6">
-                <FormGroup input={variationTabContent.onlineBooking.team} />
+                {displayFormElement(
+                  variationTabContent.onlineBooking.team,
+                  "variationTabContent.onlineBooking.team"
+                )}
               </div>
             </div>
           </VarationTabWrapper>
         ) : (
           <VarationTabWrapper>
             <div className="online-booking mt-6">
-              <FormGroup input={variationTabContent.locations} />
+              {displayFormElement(
+                variationTabContent.locations,
+                "variationTabContent.locations"
+              )}
             </div>
           </VarationTabWrapper>
         )}

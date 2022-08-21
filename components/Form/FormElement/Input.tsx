@@ -1,5 +1,6 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import toSlug from "@/lib/toSlug";
-import { updateServiceForm } from "@/redux/form-slice";
+import { updateForm } from "@/redux/form-slice";
 import { useAppDispatch } from "@/redux/store";
 
 interface Props {
@@ -18,7 +19,7 @@ export default function Input({ input }: Props) {
   const id = toSlug(label);
 
   function inputChangeHandler(e: any) {
-    dispatch(updateServiceForm({ name, data: e.target.value }));
+    dispatch(updateForm({ name, data: e.target.value }));
   }
 
   return (
