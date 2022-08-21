@@ -8,9 +8,9 @@ import ServicesTable from "@/components/Tables/ServicesTable";
 export default function CreateServiceView() {
   return (
     <div className="service-page flex flex-col py-4 items-center justify-center">
-      <div className="create-service  border border-gray-400 rounded p-4">
+      <div className="create-service  border border-gray-400 rounded p-2">
         <MdMiscellaneousServices className="font-bold text-6xl  p-2 bg-white mb-4 rounded-full mx-auto flex items-center justify-center" />
-        <h4 className="font-medium text-lg">
+        <h4 className="font-medium text-base">
           Create Services you want customers to book with names, photos and
           prices to speed-up Booking
         </h4>

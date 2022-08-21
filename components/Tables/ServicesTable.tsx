@@ -4,8 +4,8 @@ import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";
 import { listServices } from "@/requests/getRequests";
 import { serviceItemType } from "@/types/service-type";
-import GetTeammateName from "../Team/GetTeammateName";
-import GetCategory from "../Category/GetCategory";
+import GetTeammateName from "@/components/Team/GetTeammateName";
+import GetCategory from "@/components/Category/GetCategory";
 
 export default function ServicesTable() {
   const { data, status } = useQuery("listServices", listServices);
@@ -17,7 +17,7 @@ export default function ServicesTable() {
     <table className="w-full mt-4 bg-white">
       <thead className="bg-gray-300 h-14">
         <tr className="border-b border-gray-300 text-left">
-          <th>Name</th>
+          <th className="pl-4">Name</th>
           <th>Category</th>
           <th>Teams</th>
           <th>Duration</th>
@@ -33,9 +33,9 @@ export default function ServicesTable() {
           {parsedData.map((item: serviceItemType) => (
             <tr
               key={item.id}
-              className="text-left hover:bg-gray-300 h-12 border-b"
+              className="text-left hover:bg-gray-200 h-12 border-b"
             >
-              <td>{item?.itemData?.name}</td>
+              <td className="pl-4">{item?.itemData?.name}</td>
               <td>
                 <GetCategory categoryId={item?.itemData?.categoryId} />
               </td>

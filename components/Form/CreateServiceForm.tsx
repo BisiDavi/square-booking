@@ -1,82 +1,61 @@
-import { useForm, FormProvider } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-
-import Button from "@/components/UI/Button";
-import { useAppDispatch } from "@/redux/store";
-import { updateService } from "@/redux/view-slice";
-import LabelledInput from "@/components/Form/FormElement/LabelledInput";
-import Select from "@/components/Form/FormElement/Select";
-import Textarea from "@/components/Form/FormElement/Textarea";
 import UploadIcon from "@/components/Form/FormElement/UploadIcon";
-import PriceOverride from "@/components/Form/FormElement/PriceOverride";
+import FormGroup from "@/components/Form/FormElement/FormGroup";
+import createService from "@/json/create-service.json";
+import Button from "@/components/UI/Button";
+import VariationModal from "@/components/Modal/VariationModal";
+import { useAppDispatch } from "@/redux/store";
+import { useAppSelector } from "@/hooks/useRedux";
+import { updateModal } from "@/redux/ui-slice";
 
-export default function CreateServiceForm() {
+export default function TempCreateServiceForm() {
   const dispatch = useAppDispatch();
+  const { modal } = useAppSelector((state) => state.UI);
 
-  const methods = useForm({
-    mode: "all",
-    // resolver: yupResolver(onboardingFormSchema),
-  });
-
-  function goBackHandler() {
-    dispatch(updateService("create-service"));
+  function modalHandler() {
+    dispatch(updateModal("variation-modal-location"));
   }
 
+  function closeModalHandler() {
+    dispatch(updateModal(null));
+  }
   return (
-    <div className="m-4">
-      <div className="button-group justify-between flex items-center">
-        <Button
-          text="back"
-          className="bg-gray-900 text-white px-3 py-1 rounded-lg hover:bg-opacity-70"
-          onClick={goBackHandler}
-        />
-        <Button
-          text="Save"
-          className="bg-purple-900 text-white px-3 py-1 rounded-lg hover:bg-opacity-70"
-        />
-      </div>
-      <div className="form-content mt-4 py-4 bg-white container rounded-xl">
-        <h2 className="font-bold text-xl text-center">Create a Service</h2>
-        <div className="content w-11/12 mx-auto">
-          <FormProvider {...methods}>
-            <form>
-              <div className="row flex items-center">
-                <div className="inputGroup mt-2 w-4/5">
-                  <LabelledInput
-                    placeholder="eg:Barbing"
-                    label="Service Name"
-                  />
-                  <Select label="Category" />
-                </div>
-                <UploadIcon />
-              </div>
-              <Textarea
-                label="Description"
-                placeholder="Add a service description, describe details like features, benefits"
-              />
-              <div className="variations">
-                <div className="row flex items-center mt-4 justify-between mb-5">
-                  <h4 className="font-bold text-xl">Variations</h4>
-                </div>
-                <LabelledInput placeholder="Service sku" label="Service SKU" />
-                <div className="row flex items-center mt-3">
-                  <Select
-                    label="Category"
-                    className="relative w-1/2 mr-4 -mb-5"
-                  />
-                  <LabelledInput
-                    placeholder="Price"
-                    label="Price"
-                    className="w-1/2 relative"
-                    type="number"
-                  />
-                </div>
-                <PriceOverride />
-              </div>
-            </form>
-          </FormProvider>
+    <>
+      {modal === "variation-modal-location" && (
+        <VariationModal modal={modal} toggleModal={closeModalHandler} />
+      )}
+      <div className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col">
+        <div className="main flex  items-start">
+          <div className="w-4/5 mr-4">
+            {createService.main.map((input) => (
+              <FormGroup input={input} key={input.name} />
+            ))}
+          </div>
+          <UploadIcon />
+        </div>
+        <div className="others w-11/12">
+          <div className="price-duration">
+            <h3 className="my-3 text-lg font-medium">Price and Duration</h3>
+            {createService.priceDuration.map((input) => (
+              <FormGroup input={input} key={input.name} />
+            ))}
+          </div>
+          <div className="duration mt-6">
+            {createService.duration.map((input) => (
+              <FormGroup input={input} key={input.name} />
+            ))}
+          </div>
+          <div className="bookable mt-6">
+            {createService.bookable.map((input) => (
+              <FormGroup input={input} key={input.name} />
+            ))}
+          </div>
+          <Button
+            className="text-blue-500 w-full mt-6 py-3 text-left px-4 border hover:bg-gray-100"
+            text="Add Variation"
+            onClick={modalHandler}
+          />
         </div>
       </div>
-    </div>
+    </>
   );
 }
