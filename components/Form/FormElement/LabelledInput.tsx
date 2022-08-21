@@ -15,7 +15,7 @@ export default function LabelledInput({
   label,
   type,
   className,
-  name,
+  name, 
 }: Props) {
   const { register, formState }: any = useFormContext();
   const { errors } = formState;

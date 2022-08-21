@@ -1,13 +1,13 @@
 import UploadIcon from "@/components/Form/FormElement/UploadIcon";
 import FormGroup from "@/components/Form/FormElement/FormGroup";
-import createService from "@/json/create-service.json";
 import Button from "@/components/UI/Button";
 import VariationModal from "@/components/Modal/VariationModal";
 import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "@/hooks/useRedux";
 import { updateModal } from "@/redux/ui-slice";
+import createService from "@/json/create-service.json";
 
-export default function TempCreateServiceForm() {
+export default function CreateServiceForm() {
   const dispatch = useAppDispatch();
   const { modal } = useAppSelector((state) => state.UI);
 
