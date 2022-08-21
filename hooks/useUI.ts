@@ -1,7 +1,6 @@
 import { useAppSelector, useAppDispatch } from "@/hooks/useRedux";
 import { toggleAccordion, updateModal } from "@/redux/ui-slice";
-
-type modalState = "auth-modal" | null;
+import { modalState } from "@/types/redux-types";
 
 export default function useUI() {
   const { modal, accordion } = useAppSelector((state) => state.UI);

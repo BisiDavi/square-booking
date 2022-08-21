@@ -8,6 +8,7 @@ import StoreprofileReducer from "@/redux/store-profile-slice";
 import ServiceCategoriesReducer from "@/redux/service-categories-slice";
 import AuthReducer from "@/redux/auth-slice";
 import ViewReducer from "@/redux/view-slice";
+import FormReducer from "@/redux/form-slice";
 
 const reducers = combineReducers({
   UI: UIReducer,
@@ -16,12 +17,20 @@ const reducers = combineReducers({
   Booking: BookingReducer,
   Auth: AuthReducer,
   View: ViewReducer,
+  Form: FormReducer,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["UI", "StoreProfile", "View", "ServiceCategories", "Booking"],
+  blacklist: [
+    "UI",
+    "StoreProfile",
+    "View",
+    "ServiceCategories",
+    "Booking",
+    "Form",
+  ],
 };
 
 const RootReducer = persistReducer(persistConfig, reducers);

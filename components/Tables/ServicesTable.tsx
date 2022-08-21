@@ -13,8 +13,6 @@ export default function ServicesTable() {
   const parsedData =
     status === "success" ? JSON.parse(data?.data)?.items : null;
 
-  console.log("parsedData", parsedData);
-
   return (
     <table className="w-full mt-4 bg-white">
       <thead className="bg-gray-300 h-14">

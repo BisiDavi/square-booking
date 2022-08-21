@@ -1,5 +1,6 @@
+export type modalState = "form-modal-location" | "variation-modal-location" | null;
 export type UIStateType = {
-  modal: "form-modal-location" | "variation-modal-location" | null;
+  modal: modalState;
   accordion: string | null;
   apploaded: boolean;
   sidebar: "create-staff" | null;
