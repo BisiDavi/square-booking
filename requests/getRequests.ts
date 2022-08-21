@@ -15,3 +15,7 @@ export function listLocations() {
 export function listBookings() {
   return axios.get("/api/booking/list-bookings");
 }
+
+export function getCategories(){
+  return axios.get('/api/category/list-category')
+}

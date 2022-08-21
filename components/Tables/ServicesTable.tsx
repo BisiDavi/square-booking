@@ -5,6 +5,7 @@ import { formatServicePeriod } from "@/lib/formatTime";
 import { listServices } from "@/requests/getRequests";
 import { serviceItemType } from "@/types/service-type";
 import GetTeammateName from "../Team/GetTeammateName";
+import GetCategory from "../Category/GetCategory";
 
 export default function ServicesTable() {
   const { data, status } = useQuery("listServices", listServices);
@@ -37,7 +38,9 @@ export default function ServicesTable() {
               className="text-left hover:bg-gray-300 h-12 border-b"
             >
               <td>{item?.itemData?.name}</td>
-              <td>-</td>
+              <td>
+                <GetCategory categoryId={item?.itemData?.categoryId} />
+              </td>
               <td>
                 <GetTeammateName
                   teamId={

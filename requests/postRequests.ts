@@ -54,3 +54,4 @@ export function searchTeam(query: any) {
 export function retrieveCustomer(id: string) {
   return axios.post("/api/customer/retrieve-customer", { id });
 }
+
