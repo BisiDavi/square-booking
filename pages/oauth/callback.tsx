@@ -28,10 +28,13 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     if (squareCode && stateEmail) {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
-          if (response.data.premium) {
+          console.log("response", response);
+          const parsedData = JSON.parse(response.data);
+          console.log("parsedData-parse", parsedData);
+          if (parsedData.premium) {
             dispatch(updateModal("oauth-premium-modal"));
           }
-          setCookie("merchant", JSON.stringify(response.data), {
+          setCookie("merchant", JSON.stringify(parsedData), {
             path: "/",
             maxAge: 604800, // expires in a week
             sameSite: true,

@@ -7,6 +7,7 @@ import tokenScope from "@/lib/tokenScope";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import { businessBookingProfile } from "@/requests/postRequests";
+import formatBigInt from "@/lib/formatBigInt";
 
 export default async function Handler(
   req: NextApiRequest,
@@ -18,48 +19,47 @@ export default async function Handler(
   const dbClient = await DBClient();
   const { basicScope } = tokenScope();
 
-  function saveToDBSendToServer(response: any, status: boolean) {
+  async function saveToDBSendToServer(response: any, status: boolean) {
     const data = {
       ...response.data,
       premium: status,
       email,
     };
-    saveAccessTokenToDB(dbClient, data);
-    res.status(200).json(data);
+    return await saveAccessTokenToDB(dbClient, data).then(() => {
+      console.log("data-data", data);
+      res.status(200).json(formatBigInt(data));
+    });
   }
 
   switch (req.method) {
     case "POST": {
       try {
-        axios
-          .post("https://connect.squareup.com/oauth2/token", {
+        const tokenResult = await axios.post(
+          "https://connect.squareup.com/oauth2/token",
+          {
             client_id,
             client_secret,
             grant_type: "authorization_code",
             code: squareCode,
             short_lived: false,
             scopes: basicScope,
-          })
-          .then((response) => {
-            console.log("tokenResponse", response);
-            return businessBookingProfile(response.data.access_token).then(
-              async (responseItem) => {
-                const parsedData = JSON.parse(
-                  responseItem?.data
-                ).businessBookingProfile;
-                console.log("parsedData", parsedData);
-                if (parsedData.supportSellerLevelWrites) {
-                  await saveToDBSendToServer(response, true);
-                } else {
-                  await saveToDBSendToServer(response, false);
-                }
-              }
-            );
-          })
-          .catch((error) => {
-            console.log("obtain-access-token-error", error);
-            res.status(400).json(error);
-          });
+          }
+        );
+        console.log("tokenResut", tokenResult);
+        const profileResult = await businessBookingProfile(
+          tokenResult.data.access_token
+        );
+        console.log("profileResult", profileResult);
+        const parsedData = JSON.parse(
+          profileResult?.data
+        ).businessBookingProfile;
+        console.log("parsedData-api", parsedData);
+
+        if (parsedData.supportSellerLevelWrites) {
+          await saveToDBSendToServer(tokenResult, true);
+        } else {
+          await saveToDBSendToServer(tokenResult, false);
+        }
       } catch (error: any) {
         console.log("error", error);
         console.log("error-resposne", error?.response);
