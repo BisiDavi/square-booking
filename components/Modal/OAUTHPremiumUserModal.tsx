@@ -17,8 +17,8 @@ export default function OAUTHPremiumUserModal({
   const { premiumScopeString } = tokenScope();
 
   const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
-
-  const authorizationURL = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=${premiumScopeString}&session=false&state=${email}`;
+  const premiumState = `${email}premium`;
+  const authorizationURL = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=${premiumScopeString}&session=false&state=${premiumState}`;
   return (
     <Modal
       title="Request for Premium Square Authorization"

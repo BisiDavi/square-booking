@@ -2,7 +2,7 @@
 import axios from "axios";
 
 import { DBClient } from "@/DB/DBConnection";
-import saveAccessTokenToDB from "@/DB/saveAccessTokenToDB";
+import  { updateAccessToken } from "@/DB/saveAccessTokenToDB";
 import tokenScope from "@/lib/tokenScope";
 import type { NextApiRequest, NextApiResponse } from "next";
 import formatBigInt from "@/lib/formatBigInt";
@@ -40,7 +40,7 @@ export default async function Handler(
           premium: false,
           email,
         };
-        await saveAccessTokenToDB(dbClient, data).then(() => {
+        await updateAccessToken(dbClient, data).then(() => {
           res.status(200).json(formatBigInt(data));
         });
       } catch (error: any) {

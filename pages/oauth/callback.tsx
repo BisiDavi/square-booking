@@ -25,10 +25,16 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
 
   const squareCode = `${router?.query?.code}`;
   const stateEmail = `${router?.query?.state}`;
+  const email =
+    stateEmail !== "undefined" ? stateEmail.split("premium")[0] : "";
+  const isPremium =
+    stateEmail !== "undefined" && stateEmail.split("premiumn").length === 2
+      ? true
+      : false;
 
   useEffect(() => {
     if (squareCode !== "undefined" && stateEmail !== "undefined") {
-      obtainAccessToken(squareCode, stateEmail)
+      obtainAccessToken(squareCode, email)
         .then((response) => {
           const parsedData = JSON.parse(response.data);
           console.log("parsedData-parse", parsedData);
@@ -43,7 +49,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
           });
 
           businessBookingProfile(parsedData.access_token).then((response) => {
-            if (response.data.premium) {
+            if (response.data.premium && !isPremium) {
               dispatch(updateModal("oauth-premium-modal"));
             }
           });
