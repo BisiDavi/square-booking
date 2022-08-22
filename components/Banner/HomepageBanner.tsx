@@ -45,7 +45,7 @@ export default function HomepageBanner() {
             width={1000}
           />
         </div>
-        {/* <BannerAnimation /> */}
+        <BannerAnimation />
       </div>
       <style jsx>
         {`
