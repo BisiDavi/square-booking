@@ -43,15 +43,15 @@ export default async function Handler(
           .then((response) => {
             console.log("tokenResponse", response);
             return businessBookingProfile(response.data.access_token).then(
-              (responseItem) => {
+              async (responseItem) => {
                 const parsedData = JSON.parse(
                   responseItem?.data
                 ).businessBookingProfile;
                 console.log("parsedData", parsedData);
                 if (parsedData.supportSellerLevelWrites) {
-                  saveToDBSendToServer(response, true);
+                  await saveToDBSendToServer(response, true);
                 } else {
-                  saveToDBSendToServer(response, false);
+                  await saveToDBSendToServer(response, false);
                 }
               }
             );

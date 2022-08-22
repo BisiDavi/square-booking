@@ -13,7 +13,7 @@ export default function AppLogo({ className, link }: Props) {
       <a
         className={`text-center items-center ${logoclassName} font-bold border-white bg-gray-800 px-3 py-2 text-white`}
       >
-        Bookify
+        BookIT
       </a>
     </Link>
   );
