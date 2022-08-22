@@ -43,8 +43,10 @@ export default function RecommendServices() {
         <RecommendServiceLoader />
       ) : (
         <div className="flex flex-col">
-          <h3 className="text-2xl font-bold mb-3">Recommended Services</h3>
-          <div className="services grid grid-cols-2 gap-3 lg:flex items-center">
+          <h3 className="text-2xl font-bold text-center mb-3">
+            Recommended Services
+          </h3>
+          <div className="services grid grid-cols-2 gap-3 lg:grid-cols-4 items-center">
             {services.map((service) => (
               <RecommendService key={service.id} service={service} />
             ))}
