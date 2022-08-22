@@ -23,12 +23,16 @@ export default function MainHeader() {
         ) : status === "loading" ? (
           <Logo className="flex mx-auto my-2 lg:m-0" />
         ) : parsedData?.logoUrl ? (
-          <img
-            src={parsedData?.logoUrl}
-            alt="logo"
-            height="95px"
-            width="95px"
-          />
+          <Link passHref href="/">
+            <a>
+              <img
+                src={parsedData?.logoUrl}
+                alt="logo"
+                height="95px"
+                width="95px"
+              />
+            </a>
+          </Link>
         ) : (
           <Logo className="flex mx-auto my-2 lg:m-0" />
         )}

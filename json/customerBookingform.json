@@ -26,14 +26,14 @@
   {
     "name": "note",
     "label": "Customer's Note",
-    "placeholder": "Work Email",
+    "placeholder": "Customer's Note",
     "type": "email",
     "formType": "customer",
     "elementType": "textarea"
   },
   {
     "name": "priceType",
-    "placeholder": "Work Email",
+    "placeholder": "Price Type",
     "label": "Price Type",
     "elementType": "select",
     "formType": "service",

@@ -31,7 +31,7 @@ export default function HomepageBanner() {
               />
             )}
           </div>
-          <p className="mt-3 text-md text-center lg:text-xl text-gray-400 word-break w-full lg:w-11/12">
+          <p className="mt-3 text-md text-center lg:text-start lg:text-xl text-gray-400 word-break w-full lg:w-11/12">
             Discover the easiest way to schedule appointments with the #1 online
             booking system
           </p>

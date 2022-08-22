@@ -61,3 +61,8 @@ export function formatService(data: any) {
     },
   };
 }
+
+
+export function customerBookingForm(){
+    
+}
