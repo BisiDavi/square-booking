@@ -19,5 +19,13 @@ export async function updateAccessToken(
   await client
     .db("square-booking")
     .collection("auth")
-    .findOneAndUpdate({ email: data.email }, data);
+    .findAndModify({ email: data.email }, data, {
+      upsert: true,
+      update: {
+        $set: {
+          access_token: data.access_token,
+          refresh_token: data.refresh_token,
+        },
+      },
+    });
 }

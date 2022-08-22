@@ -52,6 +52,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
               dispatch(updateModal("oauth-premium-modal"));
             }
           });
+          router.push("/admin")
         })
         .catch((error) => {
           console.log("error", error);
