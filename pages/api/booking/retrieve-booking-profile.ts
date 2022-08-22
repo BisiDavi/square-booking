@@ -8,6 +8,7 @@ export default async function Handler(
   res: NextApiResponse
 ) {
   const { token } = req.body;
+  console.log("token", token);
   const { client } = await squareClient(token);
 
   switch (req.method) {
