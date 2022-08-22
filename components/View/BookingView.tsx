@@ -13,6 +13,7 @@ import { getACatalogObject } from "@/requests/postRequests";
 import GetStaff from "@/components/Team/GetStaff";
 import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";
+import CustomerBookingForm from "@/components/Form/CustomerBookingForm";
 
 export default function BookingView() {
   const router = useRouter();
@@ -108,6 +109,7 @@ export default function BookingView() {
             <div className="pill rounded-xl p-5 border border-gray-500 w-full lg:w-3/4 mt-5 hover:bg-gray-100">
               <GetStaff staffId={staffId} />
             </div>
+            <CustomerBookingForm />
           </>
         )}
       </div>

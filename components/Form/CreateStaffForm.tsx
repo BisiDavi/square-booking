@@ -18,8 +18,6 @@ export default function CreateStaffForm() {
   const queryClient = useQueryClient();
   const staffFormData = formatCreateStaff(form);
 
-  console.log("staffFormData", staffFormData);
-
   function createStaff() {
     mutate(staffFormData, {
       onSuccess: () => {
