@@ -1,18 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { BiUpload } from "react-icons/bi";
 
-import { useState } from "react";
 import { useAppSelector } from "@/hooks/useRedux";
 import useReduxForm from "@/hooks/useReduxForm";
 
 export default function UploadIcon() {
   const { form } = useAppSelector((state) => state.Form);
   const { getInputValue, onChangeHandler } = useReduxForm();
-  const [file, setFile] = useState<any>("");
   const formData = new FormData();
   const imgFile = getInputValue("service-image");
-
-  console.log("imgFile", imgFile);
 
   function uploadImageHandler(e: any) {
     const imageData = URL.createObjectURL(e.target.files[0]);
@@ -23,11 +19,6 @@ export default function UploadIcon() {
   const imageName = form["name-service"] ? form["name-service"] : "image";
   console.log("formData", formData);
 
-  function imageUploadHandler(e: any) {
-    console.log("e.target.files", e.target.files[0]);
-    setFile(URL.createObjectURL(e.target.files[0]));
-    formData.append(imageName, e.target.files[0]);
-  }
   return (
     <div className="h-32 upload-service-icon flex justify-center items-center bg-gray-500 border border-gray-900 w-1/4 ml-4 rounded-md relative">
       {!imgFile && (
@@ -70,7 +61,6 @@ export default function UploadIcon() {
           input[type="file"] {
             display: none;
           }
-       
         `}
       </style>
     </div>
