@@ -2,15 +2,15 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 
 import DefaultLayout from "@/layout/Default-layout";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
-import { obtainAccessToken } from "@/requests/postRequests";
-import { updateMerchant } from "@/redux/auth-slice";
-import { updateModal } from "@/redux/ui-slice";
+// import { obtainAccessToken } from "@/requests/postRequests";
+// import { updateMerchant } from "@/redux/auth-slice";
+// import { updateModal } from "@/redux/ui-slice";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -19,37 +19,40 @@ interface Props {
 export default function OAUTHPAGE({ storeProfile }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const [, setCookie] = useCookies(["merchant"]);
+  // const [, setCookie] = useCookies(["merchant"]);
 
   const squareCode = `${router?.query?.code}`;
   const stateEmail = `${router?.query?.state}`;
 
-  useEffect(() => {
-    if (squareCode && stateEmail) {
-      obtainAccessToken(squareCode, stateEmail)
-        .then((response) => {
-          console.log("response", response);
-          const parsedData = JSON.parse(response.data);
-          console.log("parsedData-parse", parsedData);
-          if (parsedData.premium) {
-            dispatch(updateModal("oauth-premium-modal"));
-          }
-          setCookie("merchant", JSON.stringify(parsedData), {
-            path: "/",
-            maxAge: 604800, // expires in a week
-            sameSite: true,
-          });
-          const { merchant_id, email, expires_at } = response?.data;
-          dispatch(
-            updateMerchant({ id: merchant_id, email, expiresAt: expires_at })
-          );
-        })
-        .catch((error) => {
-          console.log("error", error);
-          console.log("error-response", error?.response);
-        });
-    }
-  }, [squareCode, stateEmail]);
+  console.log("squareCode", squareCode);
+  console.log("stateEmail", stateEmail);
+
+  // useEffect(() => {
+  //   if (squareCode && stateEmail) {
+  //     obtainAccessToken(squareCode, stateEmail)
+  //       .then((response) => {
+  //         console.log("response", response);
+  //         const parsedData = JSON.parse(response.data);
+  //         console.log("parsedData-parse", parsedData);
+  //         if (parsedData.premium) {
+  //           dispatch(updateModal("oauth-premium-modal"));
+  //         }
+  //         setCookie("merchant", JSON.stringify(parsedData), {
+  //           path: "/",
+  //           maxAge: 604800, // expires in a week
+  //           sameSite: true,
+  //         });
+  //         const { merchant_id, email, expires_at } = response?.data;
+  //         dispatch(
+  //           updateMerchant({ id: merchant_id, email, expiresAt: expires_at })
+  //         );
+  //       })
+  //       .catch((error) => {
+  //         console.log("error", error);
+  //         console.log("error-response", error?.response);
+  //       });
+  //   }
+  // }, [squareCode, stateEmail]);
 
   useEffect(() => {
     dispatch(updateStoreProfile(storeProfile));
