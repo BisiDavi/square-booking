@@ -10,7 +10,7 @@ export default async function Handler(
 ) {
   const { email } = req.body;
   const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
-  const { premiumScopeString, basicScopeString } = tokenScope();
+  const { basicScopeString } = tokenScope();
 
   const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=${basicScopeString}&session=false&state=${email}`;
 

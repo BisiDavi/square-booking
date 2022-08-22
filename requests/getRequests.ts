@@ -25,5 +25,5 @@ export function getCustomers() {
 }
 
 export function getBusinessBookingProfile() {
-  return axios.get("/api/retrieve-a-business-booking-profile");
+  return axios.get("/api/booking/retrieve-a-business-booking-profile");
 }

@@ -15,7 +15,7 @@ export default async function Handler(
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const dbClient = await DBClient();
-  const { premiumScope, basicScope } = tokenScope();
+  const { basicScope } = tokenScope();
 
   switch (req.method) {
     case "POST": {
