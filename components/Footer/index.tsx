@@ -21,7 +21,7 @@ export default function Footer() {
       </div>
       <footer className="bg-gray-900 w-full py-10">
         <div className="container mb-8 px-6  lg:px-0 flex-col lg:flex lg:mx-auto lg:items-start lg:justify-between">
-          <Logo className="w-60" />
+          <Logo className="w-40 items-center text-center justify-center flex mb-4" />
           {storeProfile && (
             <div className="location text-white w-full lg:w-1/6">
               <h3 className="text-lg font-bold">Contact Us</h3>
