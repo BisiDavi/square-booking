@@ -63,6 +63,17 @@ export default function ServiceIconView() {
             padding: 10px;
             border-radius: 50%;
           }
+
+          @media (max-width: 768px) {
+            ul.flex.bg-black li {
+              margin: 0px 30px;
+              height: 120px;
+              width: 120px;
+            }
+            ul.flex.bg-black {
+              justify-content: space-between;
+            }
+          }
         `}
       </style>
     </ul>

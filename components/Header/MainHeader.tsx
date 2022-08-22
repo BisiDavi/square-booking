@@ -8,8 +8,8 @@ export default function MainHeader() {
   return (
     <header className="bg-gray-900 py-2 w-full h-30 fixed z-50">
       <div className="container flex items-center mx-auto justify-between">
-        <Logo />
-        <div className="button-group flex items-center">
+        <Logo className="flex mx-auto my-2 lg:m-0" />
+        <div className="button-group hidden flex items-center">
           <Link href="/onboarding" passHref>
             <a>
               <Button

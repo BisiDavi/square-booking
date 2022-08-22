@@ -18,7 +18,7 @@ interface queryType {
 
 export default function RecommendServices() {
   const { data, status }: queryType = useQuery("listServices", listServices);
-  const serviceData = status === "success" ? JSON.parse(data.data) : [];  
+  const serviceData = status === "success" ? JSON.parse(data.data) : [];
   const services: serviceType["items"] = serviceData.items;
   const dispatch = useAppDispatch();
   const { serviceCategories } = useAppSelector(
@@ -36,7 +36,7 @@ export default function RecommendServices() {
   }, [status]);
 
   return (
-    <div className="flex  items-center my-8 container mx-auto">
+    <div className="flex  items-center my-8 px-3 lg:px-2 container mx-auto">
       {status === "error" ? (
         "error"
       ) : status === "loading" ? (
@@ -44,7 +44,7 @@ export default function RecommendServices() {
       ) : (
         <div className="flex flex-col">
           <h3 className="text-2xl font-bold mb-3">Recommended Services</h3>
-          <div className="services sm:overflow-x-scroll flex items-center">
+          <div className="services grid grid-cols-2 gap-3 lg:flex items-center">
             {services.map((service) => (
               <RecommendService key={service.id} service={service} />
             ))}

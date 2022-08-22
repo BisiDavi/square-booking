@@ -12,14 +12,14 @@ export default function HomepageBanner() {
     <section className="w-full py-5 pt-24">
       <div className="container py-5 flex-col lg:flex lg:flex-row mx-auto justify-center items-center relative">
         <div className="w-full lg:h-64 lg:w-1/2">
-          <h1 className="font-bold text-5xl text-gray-900">
+          <h1 className="font-bold text-3xl text-center lg:text-start lg:text-5xl text-gray-900">
             Let&#39;s make
             <br />
             Booking better
             <br />
             together ✌🏼
           </h1>
-          <div className="text mt-2 font-bold">
+          <div className="text mt-2 text-center text-md font-bold">
             <h4>Book for </h4>
             {serviceCategories && (
               <Typewriter
@@ -31,7 +31,7 @@ export default function HomepageBanner() {
               />
             )}
           </div>
-          <p className="mt-3 text-xl text-gray-400 word-break w-11/12">
+          <p className="mt-3 text-md text-center lg:text-xl text-gray-400 word-break w-full lg:w-11/12">
             Discover the easiest way to schedule appointments with the #1 online
             booking system
           </p>
@@ -45,13 +45,12 @@ export default function HomepageBanner() {
             width={1000}
           />
         </div>
-        <BannerAnimation />
+        {/* <BannerAnimation /> */}
       </div>
       <style jsx>
         {`
           .w-full {
             background-color: var(--site-purple);
-            // height: 69vh;
           }
           .container {
             height: 100%;
@@ -63,6 +62,13 @@ export default function HomepageBanner() {
             display: flex;
             font-size: 30px;
             color: white;
+          }
+          @media (max-width: 500px) {
+            .text {
+              font-size: 20px;
+              text-align: center;
+              justify-content: center;
+            }
           }
         `}
       </style>

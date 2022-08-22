@@ -9,7 +9,7 @@ export default function AppHeader() {
     <header className="bg-gray-900 py-2 w-full h-30 fixed z-50">
       <div className="container flex items-center mx-auto justify-between">
         <AppLogo />
-        <div className="button-group flex items-center">
+        <div className="button-group flex hidden lg:flex items-center">
           <Link href="/onboarding" passHref>
             <a>
               <Button

@@ -7,8 +7,5 @@
     { "link": "/admin/staff", "text": "Staff" },
     { "link": "/admin/media", "text": "Media Library" },
     { "link": "/admin/settings", "text": "Account & Settings" }
-  ],
-  "extras": [
-    { "link": "/admin/link-to-instagram", "text": "Link with Instagram" }
   ]
 }

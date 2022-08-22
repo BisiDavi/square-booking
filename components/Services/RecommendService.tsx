@@ -15,18 +15,20 @@ export default function RecommendService({ service }: Props) {
   const serviceLink = `${toSlug(service.itemData.name)}?id=${service.id}`;
   return (
     <Link href={`/service/${serviceLink}`} passHref>
-      <a className="recommended-services border border-gray-200 rounded mr-4 p-4 h-48 w-1/4 shadow hover:bg-gray-50 hover:border-blue-500">
-        <h3 className="font-bold text-xl">{service.itemData.name}</h3>
-        <p className="text-gray-400 text-md font-medium">
+      <a className="recommended-services border border-gray-200 rounded mr-4 p-4 h-48 w-full  lg:w-1/4 shadow hover:bg-gray-50 hover:border-blue-500">
+        <h3 className="font-bold text-md lg:text-xl">
+          {service.itemData.name}
+        </h3>
+        <p className="text-gray-400 text-sm lg:text-md font-medium">
           {service?.itemData?.description}
         </p>
-        <div className="flex items-center mt-4">
-          <span className="m4">
+        <div className="lg:flex flex-col items-center mt-4">
+          <span className="m4 flex items-center">
             {priceMoney?.amount
               ? formatPrice(priceMoney?.amount, priceMoney?.currency)
               : "Free"}
           </span>
-          <span className="ml-4">
+          <span className="lg:ml-4 flex items-center">
             ⏰ {formatServicePeriod(serviceDuration)}{" "}
           </span>
         </div>
