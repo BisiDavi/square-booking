@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,11 +11,13 @@ import { updateAppload } from "@/redux/ui-slice";
 import SpinnerRipple from "@/components/Loader/SpinnerLoader";
 import OAUTHPremiumUserModal from "@/components/Modal/OAUTHPremiumUserModal";
 import useUI from "@/hooks/useUI";
+import AppFooter from "@/components/Footer/AppFooter";
 
 export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
   const { apploaded } = useAppSelector((state) => state.UI);
   const { merchant } = useAppSelector((state) => state.Auth);
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const { modal, toggleModal } = useUI();
 
   useEffect(() => {
@@ -36,7 +39,7 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
       </Head>
       <Header />
       {children}
-      <Footer />
+      {router.asPath.includes("/callback") ? <AppFooter /> : <Footer />}
     </>
   );
 }

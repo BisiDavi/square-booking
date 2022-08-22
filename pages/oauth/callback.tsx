@@ -3,10 +3,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
-import type { GetServerSidePropsContext } from "next";
 
 import DefaultLayout from "@/layout/Default-layout";
-import squareClient from "@/squareClient";
 import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
@@ -55,7 +53,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
 
   return (
     <DefaultLayout>
-      <section className="pt-20 container mx-auto h-80 justify-center items-center flex flex-col">
+      <section className="pt-20 w-full mx-auto h-screen justify-center items-center flex flex-col">
         <h1 className="text-center font-bold text-xl">
           Welcome to{" "}
           <span className="border mr-2 p-2 bg-gray-800 text-white">
@@ -75,28 +73,4 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
       </section>
     </DefaultLayout>
   );
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { req } = context;
-  try {
-    const merchant = req.cookies?.merchant
-      ? JSON.parse(req.cookies?.merchant)
-      : {};
-    const { client } = await squareClient(merchant.access_token);
-    const response = await client.locationsApi.listLocations();
-    return {
-      props: {
-        storeProfile: response.result.locations
-          ? response.result.locations[0]
-          : null,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        storeProfile: null,
-      },
-    };
-  }
 }
