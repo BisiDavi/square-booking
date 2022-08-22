@@ -42,7 +42,7 @@ function displayServiceIcon(icon: string) {
 
 export default function ServiceIconView() {
   return (
-    <ul className="w-full flex bg-black py-4">
+    <ul className="w-full overflow-x-scroll flex bg-black py-4">
       {serviceIcons.map((serviceIcon) => (
         <li
           key={serviceIcon.icon}

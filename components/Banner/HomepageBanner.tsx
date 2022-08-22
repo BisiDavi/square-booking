@@ -10,8 +10,8 @@ export default function HomepageBanner() {
   );
   return (
     <section className="w-full py-5 pt-24">
-      <div className="container py-5 flex mx-auto justify-center items-center relative">
-        <div className="w-1/2">
+      <div className="container py-5 flex-col  lg:flex mx-auto justify-center items-center relative">
+        <div className="w-full lg:w-1/2">
           <h1 className="font-bold text-5xl text-gray-900">
             Let&#39;s make
             <br />
@@ -36,7 +36,7 @@ export default function HomepageBanner() {
             booking system
           </p>
         </div>
-        <div className="w-1/2">
+        <div className="hidden lg:flex lg:w-1/2">
           <Image
             src="/booking-doodle-banner.webp"
             alt="booking-banner"

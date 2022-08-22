@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function MainView() {
   return (
-    <div className="main-view py- flex items-center">
+    <div className="main-view  py- flex items-center">
       <div className="container flex mx-auto flex-col lg:flex-row items-center justify-between">
-        <div className="image-wrapper w-2/5">
+        <div className="image-wrapper w-full my-4 lg:my-0 lg:w-2/5">
           <Image
             src="/services-rendered.webp"
             alt="services"
@@ -13,7 +13,7 @@ export default function MainView() {
             width={800}
           />
         </div>
-        <div className="w-1/2">
+        <div className="lg:w-1/2 lg:my-0 my-2 w-full">
           <h3 className="text-4xl text-blue-900 font-bold">
             We are Online Booking System
           </h3>
