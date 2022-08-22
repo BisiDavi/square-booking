@@ -28,7 +28,7 @@ export default function Button({
         type={buttonType}
         disabled={disabled}
       >
-        {loading && <ButtonSpinner />} {icon} {text}
+        {loading && <ButtonSpinner />} {icon} {!loading && text}
       </button>
     </>
   );

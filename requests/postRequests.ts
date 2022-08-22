@@ -68,3 +68,9 @@ export function businessBookingProfile(accesstoken: string) {
     token: accesstoken,
   });
 }
+
+export function createTeam(teamMember: any) {
+  return axios.post("/api/team/create-team-member", {
+    teamMember,
+  });
+}

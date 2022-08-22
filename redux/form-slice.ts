@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type payloadType = { name: string; data: any };
+type payloadType = { name: string; data: any } | any;
 
 type initialStateType = {
   form: { [key: string]: any };
@@ -18,8 +18,11 @@ const FormSlice = createSlice({
     updateForm(state, action: PayloadAction<payloadType>) {
       state.form[action.payload.name] = action.payload.data;
     },
+    resetForm(state) {
+      state.form = {};
+    },
   },
 });
 
-export const { updateForm } = FormSlice.actions;
+export const { updateForm, resetForm } = FormSlice.actions;
 export default FormSlice.reducer;

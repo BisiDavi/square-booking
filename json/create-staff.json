@@ -23,7 +23,7 @@
   {
     "name": "workPhone",
     "placeholder": "Work Phone",
-    "type": "number",
+    "type": "string",
     "formType": "staff",
     "elementType": "simpleInput"
   }

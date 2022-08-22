@@ -6,17 +6,37 @@ import SimpleInput from "@/components/Form/FormElement/SimpleInput";
 import { updateSidebar } from "@/redux/ui-slice";
 import { useAppSelector } from "@/hooks/useRedux";
 import { formatCreateStaff } from "@/lib/formatForm";
+import useCreateStaffMutation from "@/hooks/useCreateStaffMutation";
+import { useQueryClient } from "react-query";
+import { toast } from "react-toastify";
+import { resetForm } from "@/redux/form-slice";
 
 export default function CreateStaffForm() {
   const dispatch = useDispatch();
   const { form } = useAppSelector((state) => state.Form);
-
+  const { mutate, isLoading } = useCreateStaffMutation();
+  const queryClient = useQueryClient();
   const staffFormData = formatCreateStaff(form);
 
   console.log("staffFormData", staffFormData);
 
+  function createStaff() {
+    mutate(staffFormData, {
+      onSuccess: () => {
+        queryClient.invalidateQueries("searchTeam");
+        dispatch(resetForm());
+        dispatch(updateSidebar(null));
+      },
+      onError: (error: any) => {
+        console.log("error", error);
+        toast.error(error?.response?.data.errors[0].detail);
+      },
+    });
+  }
+
   function cancelHandler() {
     dispatch(updateSidebar(null));
+    dispatch(resetForm());
   }
 
   return (
@@ -33,7 +53,9 @@ export default function CreateStaffForm() {
           />
           <Button
             text="Create Staff"
-            className="bg-blue-500 text-white w-32 h-10 hover:bg-blue-800"
+            className="bg-blue-500 text-white w-32 h-10 hover:bg-blue-800 mx-auto flex items-center justify-center"
+            onClick={createStaff}
+            loading={isLoading}
           />
         </div>
       </form>
