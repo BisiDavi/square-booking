@@ -37,7 +37,6 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
       obtainAccessToken(squareCode, email)
         .then((response) => {
           const parsedData = JSON.parse(response.data);
-          console.log("parsedData-parse", parsedData);
           const { merchant_id, email, expires_at } = parsedData;
           dispatch(
             updateMerchant({ id: merchant_id, email, expiresAt: expires_at })
@@ -56,7 +55,6 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
         })
         .catch((error) => {
           console.log("error", error);
-          console.log("error-response", error?.response);
         });
     }
   }, [squareCode, stateEmail]);

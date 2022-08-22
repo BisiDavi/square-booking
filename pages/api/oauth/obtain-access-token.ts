@@ -2,7 +2,7 @@
 import axios from "axios";
 
 import { DBClient } from "@/DB/DBConnection";
-import  { updateAccessToken } from "@/DB/saveAccessTokenToDB";
+import { updateAccessToken } from "@/DB/saveAccessTokenToDB";
 import tokenScope from "@/lib/tokenScope";
 import type { NextApiRequest, NextApiResponse } from "next";
 import formatBigInt from "@/lib/formatBigInt";
@@ -12,8 +12,6 @@ export default async function Handler(
   res: NextApiResponse
 ) {
   const { squareCode, email } = req.body;
-  console.log("squareCode", squareCode);
-  console.log("email", email);
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const { basicScope } = tokenScope();
@@ -22,7 +20,6 @@ export default async function Handler(
     case "POST": {
       try {
         const dbClient = await DBClient();
-
         const tokenResult = await axios.post(
           "https://connect.squareup.com/oauth2/token",
           {
@@ -34,10 +31,8 @@ export default async function Handler(
             scopes: basicScope,
           }
         );
-        console.log("tokenResut", tokenResult);
         const data = {
           ...tokenResult.data,
-          premium: false,
           email,
         };
         await updateAccessToken(dbClient, data).then(() => {
