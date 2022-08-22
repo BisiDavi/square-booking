@@ -1,11 +1,10 @@
 import { Environment, Client } from "square";
 
 export default async function squareClient(token: string) {
-  const squareEnvironment = Environment.Production;
-
+  console.log("tokem", token);
   const client = new Client({
+    environment: Environment.Production,
     accessToken: token,
-    environment: squareEnvironment,
   });
 
   return { client };
