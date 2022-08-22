@@ -9,13 +9,17 @@ export default function InfoSection() {
         const order = index === 1 ? "order-2" : "";
         return (
           <section
-            className="container flex flex-col my-2 lg:my-0 lg:flex-row mx-auto my-2 items-center"
+            className="container px-4 lg:px-0 flex flex-col my-2 lg:my-0 lg:flex-row mx-auto my-2 items-center"
             key={info.image}
           >
             <div className={`text w-full lg:w-1/2 ${order}`}>
-              <h1 className="text-3xl font-bold mb-4">{info.title}</h1>
-              <p className="mb-3 text-xl">{info.text}</p>
-              {info?.text2 && <p className="mb-3 text-xl">{info.text2}</p>}
+              <h1 className="text-2xl lg:text-3xl font-bold mb-2 lg:mb-4">
+                {info.title}
+              </h1>
+              <p className="mb-3 text-lg lg:text-xl">{info.text}</p>
+              {info?.text2 && (
+                <p className="mb-3 text-lg lg:text-xl">{info.text2}</p>
+              )}
             </div>
             <div
               className={`imagewrapper my-2 lg:my-0 lg:w-1/2 w-full  block order-1`}
