@@ -9,7 +9,7 @@ export default function OnboardingBanner() {
       <p className="font-bold text-2xl text-white text-center mt-4">
         Booking Management made Easy
       </p>
-      <div className="lg:hidden w-5/6">
+      <div className="lg:hidden w-5/6 z-50">
         <OnboardingForm />
       </div>
       <BannerAnimation />

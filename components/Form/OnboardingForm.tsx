@@ -60,8 +60,8 @@ export default function OnboardingForm({ type }: Props) {
     : "Get onboarded with a single click.";
   return (
     <div className="w-full mt-10 lg:mt-0 lg:w-2/3  mx-auto bg-white  p-4 rounded-md">
-      <h5 className="font-bold">
-        Welcome <span className="text-2xl ml-2">🤗</span>
+      <h5 className="font-bold text-center">
+        Welcome <span className="text-2xl  ml-2">🤗</span>
       </h5>
       <h6 className="font-medium my-2">{formText}</h6>
 
