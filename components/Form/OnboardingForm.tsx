@@ -11,7 +11,11 @@ import useOnboardingMutation from "@/hooks/useOnboardingMutation";
 import cookieExpiryDate from "@/lib/cookieExpiryDate";
 import { updateMerchant } from "@/redux/auth-slice";
 
-export default function OnboardingForm() {
+interface Props {
+  type?: string;
+}
+
+export default function OnboardingForm({ type }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { mutate, isLoading } = useOnboardingMutation();
@@ -50,12 +54,16 @@ export default function OnboardingForm() {
     }
   }
 
+  const buttonText = type ? "Login" : "Onboard Me";
+  const formText = type
+    ? " Please enter your email, to login"
+    : "Get onboarded with a single click.";
   return (
     <div className="w-2/3 mx-auto bg-white  p-4 rounded-md">
       <h5 className="font-bold">
         Welcome <span className="text-2xl ml-2">🤗</span>
       </h5>
-      <h6 className="font-medium my-2">Get onboarded with a single click.</h6>
+      {!type && <h6 className="font-medium my-2">{formText}</h6>}
 
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -66,7 +74,7 @@ export default function OnboardingForm() {
             type="email"
           />
           <Button
-            text="Onboard me"
+            text={buttonText}
             type="submit"
             className="bg-site-purple flex font-medium items-center mx-auto justify-center flex text-white px-3 py-2 rounded-md hover:bg-blue-500"
             loading={isLoading}
