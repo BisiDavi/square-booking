@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import { businessBookingProfile } from "@/requests/postRequests";
 
 import DefaultLayout from "@/layout/Default-layout";
 import { storeProfileType } from "@/types/store-types";
@@ -29,21 +30,23 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     if (squareCode !== "undefined" && stateEmail !== "undefined") {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
-          console.log("response", response);
           const parsedData = JSON.parse(response.data);
           console.log("parsedData-parse", parsedData);
-          if (parsedData.premium) {
-            dispatch(updateModal("oauth-premium-modal"));
-          }
+          const { merchant_id, email, expires_at } = parsedData;
+          dispatch(
+            updateMerchant({ id: merchant_id, email, expiresAt: expires_at })
+          );
           setCookie("merchant", JSON.stringify(parsedData), {
             path: "/",
             maxAge: 604800, // expires in a week
             sameSite: true,
           });
-          const { merchant_id, email, expires_at } = response?.data;
-          dispatch(
-            updateMerchant({ id: merchant_id, email, expiresAt: expires_at })
-          );
+
+          businessBookingProfile(parsedData.access_token).then((response) => {
+            if (response.data.premium) {
+              dispatch(updateModal("oauth-premium-modal"));
+            }
+          });
         })
         .catch((error) => {
           console.log("error", error);

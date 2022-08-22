@@ -9,5 +9,5 @@ export default async function saveAccessTokenToDB(
   await client
     .db("square-booking")
     .collection("auth")
-    .insertOne({ accessTokenData });
+    .insertOne(accessTokenData);
 }
