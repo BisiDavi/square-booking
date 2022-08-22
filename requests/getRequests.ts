@@ -23,3 +23,7 @@ export function getCategories() {
 export function getCustomers() {
   return axios.get("/api/customer/list-customer");
 }
+
+export function getBusinessBookingProfile() {
+  return axios.get("/api/retrieve-a-business-booking-profile");
+}

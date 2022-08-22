@@ -9,6 +9,7 @@ import { onboardingFormSchema } from "@/components/Form/Schema/OnboardingSchema"
 import Button from "@/components/UI/Button";
 import { updateOnboarding } from "@/redux/auth-slice";
 import useOnboardingMutation from "@/hooks/useOnboardingMutation";
+import cookieExpiryDate from "@/lib/cookieExpiryDate";
 
 export default function OnboardingForm() {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ export default function OnboardingForm() {
           console.log("onboard-response", data);
           setCookie("merchant", JSON.stringify(data.data), {
             path: "/",
+            expires: cookieExpiryDate(),
             maxAge: 604800, // expires in a week
             sameSite: true,
           });

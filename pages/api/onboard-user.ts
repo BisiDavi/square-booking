@@ -2,6 +2,7 @@
 import { DBClient } from "@/DB/DBConnection";
 import fetchAccessTokenFromDB from "@/DB/fetchAccessTokenFromDB";
 import type { NextApiRequest, NextApiResponse } from "next";
+import tokenScope from "@/lib/tokenScope";
 
 export default async function Handler(
   req: NextApiRequest,
@@ -9,8 +10,9 @@ export default async function Handler(
 ) {
   const { email } = req.body;
   const clientID = process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID;
+  const { premiumScopeString, basicScopeString } = tokenScope();
 
-  const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=APPOINTMENTS_READ+APPOINTMENTS_WRITE+APPOINTMENTS_ALL_READ+APPOINTMENTS_BUSINESS_SETTINGS_READ+ITEMS_READ+ITEMS_WRITE+MERCHANT_PROFILE_READ+MERCHANT_PROFILE_WRITE+EMPLOYEES_WRITE+EMPLOYEES_READ&session=false&state=${email}`;
+  const squareLink = `https://connect.squareup.com/oauth2/authorize?client_id=${clientID}&scope=${basicScopeString}&session=false&state=${email}`;
 
   switch (req.method) {
     case "POST": {

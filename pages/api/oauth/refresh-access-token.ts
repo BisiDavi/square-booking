@@ -22,6 +22,20 @@ export default async function Handler(
           clientSecret,
           grantType: "refresh_token",
           refreshToken,
+          redirectUri: "https://square-booking.vercel.app/oauth/callback",
+          shortLived: false,
+          scopes: [
+            "ITEMS_READ",
+            "ITEMS_WRITE",
+            "APPOINTMENTS_READ",
+            "APPOINTMENTS_WRITE",
+            "APPOINTMENTS_ALL_READ",
+            "APPOINTMENTS_BUSINESS_SETTINGS_READ",
+            "MERCHANT_PROFILE_READ",
+            "MERCHANT_PROFILE_WRITE",
+            "EMPLOYEES_WRITE",
+            "EMPLOYEES_READ",
+          ],
         });
         console.log("retrieveBusinessBookingProfile", response.result);
         res.status(200).json(response.result);

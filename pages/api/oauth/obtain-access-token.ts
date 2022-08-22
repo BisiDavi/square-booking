@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { DBClient } from "@/DB/DBConnection";
 import saveAccessTokenToDB from "@/DB/saveAccessTokenToDB";
+import tokenScope from "@/lib/tokenScope";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -14,6 +15,7 @@ export default async function Handler(
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const dbClient = await DBClient();
+  const { premiumScope, basicScope } = tokenScope();
 
   switch (req.method) {
     case "POST": {
@@ -25,18 +27,7 @@ export default async function Handler(
             grant_type: "authorization_code",
             code: squareCode,
             short_lived: false,
-            scopes: [
-              "ITEMS_READ",
-              "ITEMS_WRITE",
-              "APPOINTMENTS_READ",
-              "APPOINTMENTS_WRITE",
-              "APPOINTMENTS_ALL_READ",
-              "APPOINTMENTS_BUSINESS_SETTINGS_READ",
-              "MERCHANT_PROFILE_READ",
-              "MERCHANT_PROFILE_WRITE",
-              "EMPLOYEES_WRITE",
-              "EMPLOYEES_READ",
-            ],
+            scopes: basicScope,
           })
           .then((response) => {
             console.log("obtain-access-token-response", response.data);
