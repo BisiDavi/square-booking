@@ -4,9 +4,16 @@ import staffFormContent from "@/json/create-staff.json";
 import Button from "@/components/UI/Button";
 import SimpleInput from "@/components/Form/FormElement/SimpleInput";
 import { updateSidebar } from "@/redux/ui-slice";
+import { useAppSelector } from "@/hooks/useRedux";
+import { formatCreateStaff } from "@/lib/formatForm";
 
 export default function CreateStaffForm() {
   const dispatch = useDispatch();
+  const { form } = useAppSelector((state) => state.Form);
+
+  const staffFormData = formatCreateStaff(form);
+
+  console.log("staffFormData", staffFormData);
 
   function cancelHandler() {
     dispatch(updateSidebar(null));
