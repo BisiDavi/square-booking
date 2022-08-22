@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
+import type { GetServerSidePropsContext } from "next";
 
 import HomepageBanner from "@/components/Banner/HomepageBanner";
 import InfoSection from "@/components/UI/InfoSection";
@@ -17,7 +18,6 @@ interface Props {
 }
 
 export default function Home({ storeProfile }: Props) {
-  console.log("storeProfile", storeProfile);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -37,9 +37,23 @@ export default function Home({ storeProfile }: Props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
-    const { client } = await suareClient();
+    const { req } = context;
+    const merchant = req.cookies.merchant
+      ? JSON.parse(req.cookies.merchant)
+      : {};
+
+    if (!merchant?.token) {
+      return {
+        redirect: {
+          destination: "/onboarding",
+          permanent: false,
+        },
+      };
+    }
+
+    const { client } = await suareClient(merchant.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
