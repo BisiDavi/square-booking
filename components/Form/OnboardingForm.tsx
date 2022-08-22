@@ -20,7 +20,6 @@ export default function OnboardingForm({ type }: Props) {
   const router = useRouter();
   const { mutate, isLoading } = useOnboardingMutation();
   const [, setCookie] = useCookies(["merchant"]);
-  const [, setAdminCookie] = useCookies(["admin"]);
 
   const methods = useForm({
     mode: "all",
@@ -45,18 +44,7 @@ export default function OnboardingForm({ type }: Props) {
             maxAge: 604800, // expires in a week
             sameSite: true,
           });
-          if (!type) {
-            router.push("/");
-          }
-          if (type) {
-            setAdminCookie("admin", JSON.stringify(data.data), {
-              path: "/",
-              expires: cookieExpiryDate(),
-              maxAge: 604800, // expires in a week
-              sameSite: true,
-            });
-            router.push("/admin");
-          }
+          return router.push("/admin");
         },
         onError: (err: any) => {
           console.log("onboard-error", err?.response.data);
@@ -71,7 +59,7 @@ export default function OnboardingForm({ type }: Props) {
     ? " Please enter your email, to login"
     : "Get onboarded with a single click.";
   return (
-    <div className="w-2/3 mx-auto bg-white  p-4 rounded-md">
+    <div className="w-full mt-10 lg:mt-0 lg:w-2/3  mx-auto bg-white  p-4 rounded-md">
       <h5 className="font-bold">
         Welcome <span className="text-2xl ml-2">🤗</span>
       </h5>

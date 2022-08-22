@@ -13,9 +13,11 @@ export default function OnboardingPage() {
         <title> Welcome to Bookify | Booking Made Easy </title>
       </Head>
       <main className="w-full h-screen flex items-center">
-        <div className="w-1/2 bg-gray-100 flex pt-20  text-center  flex-col relative h-full">
+        <div className="hidden lg:flex lg:w-1/2 bg-gray-100 pt-20  text-center  flex-col relative h-full">
           <AppLogo className="text-4xl mx-auto flex justify-center mb-24" />
-          <OnboardingForm />
+          <div className="hidden lg:flex">
+            <OnboardingForm />
+          </div>
           <p className="font-bold text-xs text-red-500 absolute bottom-20 text-left left-10">
             By clicking on &#34;Onboard me&#34;, You will be authorizing this
             application to use your Square account resources.

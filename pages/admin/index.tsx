@@ -18,7 +18,7 @@ export default function Dashboard() {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context;
 
-  if (!req.cookies?.admin) {
+  if (!req.cookies?.merchant) {
     return {
       redirect: {
         destination: "/admin/login",
