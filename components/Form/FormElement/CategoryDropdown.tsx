@@ -9,17 +9,22 @@ import {
   searchCatalogObject,
 } from "@/requests/postRequests";
 import useReduxForm from "@/hooks/useReduxForm";
+import useCreateCategoryMutation from "@/hooks/useCreateCategoryMutation";
+import { useQueryClient } from "react-query";
 
 type defaultOptions = { label: string; value: string }[];
 
 export default function CategoryDropdown() {
   const { getInputValue, onChangeHandler } = useReduxForm();
+  const value = getInputValue("service-category");
+  const { mutate, isLoading } = useCreateCategoryMutation();
   const [defaultOptions, setDefaultOptions] = useState<defaultOptions>([
     { label: "None", value: "NONE" },
   ]);
   const { data, status } = useQuery("searchCatalogObject", () =>
     searchCatalogObject({ objectTypes: ["CATEGORY"] })
   );
+  const queryClient = useQueryClient();
 
   function getCategories() {
     const parsedData = JSON.parse(data.data);
@@ -54,7 +59,21 @@ export default function CategoryDropdown() {
     });
 
   function selectHandler(inputValue: any) {
-    console.log("onChangeHandler", inputValue);
+    onChangeHandler(inputValue, "service-category", true);
+  }
+
+  function onCreateHandler(inputValue: any) {
+    mutate(inputValue, {
+      onSuccess: (data: any) => {
+        const parsedData = JSON.parse(data?.data).catalogObject;
+        onChangeHandler(
+          { label: parsedData.categoryData.name, value: parsedData.id },
+          "service-category",
+          true
+        );
+        queryClient.invalidateQueries("searchCatalogObject");
+      },
+    });
   }
 
   return (
@@ -71,7 +90,11 @@ export default function CategoryDropdown() {
         classNamePrefix="categoryDropdown"
         placeholder="Select Category"
         cacheOptions
-        onChange={(value) => selectHandler(value)}
+        value={value}
+        isClearable
+        isLoading={isLoading}
+        onCreateOption={onCreateHandler}
+        onChange={selectHandler}
         defaultOptions={defaultOptions}
         loadOptions={promiseOptions}
       />

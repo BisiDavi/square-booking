@@ -17,7 +17,6 @@ export default function UploadIcon() {
   }
 
   const imageName = form["name-service"] ? form["name-service"] : "image";
-  console.log("formData", formData);
 
   return (
     <div className="h-32 upload-service-icon flex justify-center items-center bg-gray-500 border border-gray-900 w-1/4 ml-4 rounded-md relative">
