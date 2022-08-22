@@ -21,7 +21,7 @@ export function formatService(data: any) {
     Number(formatFormField(data, "duration-minutes-duration-service")) *
     60 *
     1000;
-  const categoryId = data["service-category"]["value"]
+  const categoryId = data["service-category"]
     ? {
         categoryId: data["service-category"]["value"],
       }

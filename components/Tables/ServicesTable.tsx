@@ -37,15 +37,20 @@ export default function ServicesTable() {
             >
               <td className="pl-4">{item?.itemData?.name}</td>
               <td>
-                <GetCategory categoryId={item?.itemData?.categoryId} />
+                {item?.itemData?.categoryId && (
+                  <GetCategory categoryId={item?.itemData?.categoryId} />
+                )}
               </td>
               <td>
-                <GetTeammateName
-                  teamId={
-                    item?.itemData?.variations[0]?.itemVariationData
-                      ?.teamMemberIds[0]
-                  }
-                />
+                {item?.itemData?.variations[0]?.itemVariationData
+                  ?.teamMemberIds && (
+                  <GetTeammateName
+                    teamId={
+                      item?.itemData?.variations[0]?.itemVariationData
+                        ?.teamMemberIds[0]
+                    }
+                  />
+                )}
               </td>
               <td>
                 {item?.itemData?.variations[0]?.itemVariationData
