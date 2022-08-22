@@ -9,11 +9,13 @@ import { useAppDispatch } from "@/redux/store";
 import { updateAppload } from "@/redux/ui-slice";
 import SpinnerRipple from "@/components/Loader/SpinnerLoader";
 import OAUTHPremiumUserModal from "@/components/Modal/OAUTHPremiumUserModal";
+import useUI from "@/hooks/useUI";
 
 export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
-  const { apploaded, modal } = useAppSelector((state) => state.UI);
+  const { apploaded } = useAppSelector((state) => state.UI);
   const { merchant } = useAppSelector((state) => state.Auth);
   const dispatch = useAppDispatch();
+  const { modal, toggleModal } = useUI();
 
   useEffect(() => {
     dispatch(updateAppload(true));
@@ -21,11 +23,13 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
 
   return (
     <>
-      <OAUTHPremiumUserModal
-        modal={modal}
-        toggleModal={}
-        email={merchant.email}
-      />
+      {modal === "oauth-premium-modal" && (
+        <OAUTHPremiumUserModal
+          modal={modal}
+          toggleModal={() => toggleModal(null)}
+          email={merchant.email}
+        />
+      )}
       {!apploaded && <SpinnerRipple centerRipple />}
       <Head>
         <title>Booking made easy, try us today</title>

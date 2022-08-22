@@ -32,7 +32,7 @@ export default function OAUTHPremiumUserModal({
         </h3>
         <a
           href={authorizationURL}
-          className="font-bold text-white flex mx-auto my-20 bg-blue-700 px-2 py-1 hover:bg-red-700"
+          className="font-bold text-white flex mx-auto h-10 w-32 items-center justify-center rounded-md my-10 bg-blue-700 px-2 py-1 hover:bg-red-700"
         >
           Authorize
         </a>
