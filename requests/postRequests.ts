@@ -55,6 +55,8 @@ export function retrieveCustomer(id: string) {
   return axios.post("/api/customer/retrieve-customer", { id });
 }
 
-export function businessBookingProfile(token: string) {
-  return axios.post("/api/booking/retrieve-booking-profile", { token });
+export function businessBookingProfile(accesstoken: string) {
+  return axios.post("/api/booking/retrieve-booking-profile", {
+    token: accesstoken,
+  });
 }

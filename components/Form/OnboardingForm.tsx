@@ -75,7 +75,7 @@ export default function OnboardingForm({ type }: Props) {
       <h5 className="font-bold">
         Welcome <span className="text-2xl ml-2">🤗</span>
       </h5>
-      {!type && <h6 className="font-medium my-2">{formText}</h6>}
+      <h6 className="font-medium my-2">{formText}</h6>
 
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
