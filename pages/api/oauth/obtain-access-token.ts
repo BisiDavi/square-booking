@@ -13,6 +13,8 @@ export default async function Handler(
   res: NextApiResponse
 ) {
   const { squareCode, email } = req.body;
+  console.log("squareCode", squareCode);
+  console.log("email", email);
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const { basicScope } = tokenScope();
@@ -62,8 +64,8 @@ export default async function Handler(
           );
         }
       } catch (error: any) {
-        console.log("error", error);
-        console.log("error-resposne", error?.response);
+        // console.log("error", error);
+        // console.log("error-response", error?.response);
         res.status(400).json(error);
       }
     }
