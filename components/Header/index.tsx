@@ -13,11 +13,11 @@ export default function Header() {
     <>
       {router.route.includes("service") && scroll > 80 ? (
         <ServicePageHeader />
-      ) : router.route.includes("/callback") ? (
+      ) : router.asPath.includes("/callback") ? (
         <AppHeader />
       ) : (
         <MainHeader />
       )}
-    </>
+    </> 
   );
 }

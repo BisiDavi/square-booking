@@ -14,8 +14,8 @@ export default function AppFooter() {
           layout="responsive"
         />
       </div>
-      <footer className="bg-gray-900 w-full py-10">
-        <div className="container mb-8 flex mx-auto items-start justify-between">
+      <footer className="bg-gray-900 w-full py-10 h-32">
+        <div className="container mb-8 flex mx-auto h-full items-center justify-between">
           <AppLogo />
 
           <span className="text-white font-bold">

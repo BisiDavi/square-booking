@@ -43,6 +43,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
         })
         .catch((error) => {
           console.log("error", error);
+          console.log("error-response", error?.response);
         });
     }
   }, [squareCode, stateEmail]);

@@ -60,8 +60,9 @@ export default async function Handler(
             console.log("obtain-access-token-error", error);
             res.status(400).json(error);
           });
-      } catch (error) {
+      } catch (error: any) {
         console.log("error", error);
+        console.log("error-resposne", error?.response);
         res.status(400).json(error);
       }
     }
