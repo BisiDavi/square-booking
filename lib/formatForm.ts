@@ -15,13 +15,47 @@ export function formatCreateStaff(data: any) {
 }
 
 export function formatService(data: any) {
+  const duration =
+    Number(formatFormField(data, "duration-minutes-duration-service")) *
+    60 *
+    1000;
+  const categoryId = data["service-category"]["value"]
+    ? {
+        categoryId: data["service-category"]["value"],
+      }
+    : "";
+  const descriptionHtml = data["description-service"]
+    ? { descriptionHtml: data["description-service"] }
+    : "";
+  const name = formatFormField(data, "name-service");
+  const durationPeriod = duration ? { serviceDuration: duration } : "";
+
   return {
     presentAtAllLocations: true,
+    type: "ITEM",
+    id: `#${name}`,
     itemData: {
-      name: formatFormField(data, "name-service"),
-      description: formatFormField(data, "description-service"),
-      varations: [],
-      productType: "",
+      name: name,
+      ...categoryId,
+      variations: [
+        {
+          type: "ITEM_VARIATION",
+          id: "#regular",
+          itemVariationData: {
+            itemId: `#${name}`,
+            name: "Regular",
+            pricingType: data["pricetype-service"],
+            priceMoney: {
+              amount: formatFormField(data, "price-service"),
+              currency: "USD",
+            },
+            availableForBooking: true,
+          },
+        },
+      ],
+      ...descriptionHtml,
+      ...durationPeriod,
+      productType: "APPOINTMENTS_SERVICE",
     },
   };
 }

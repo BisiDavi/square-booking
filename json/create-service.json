@@ -74,13 +74,6 @@
       "type": "text"
     },
     {
-      "name": "AddProcessingTime",
-      "label": "Add processing time (double booking)",
-      "elementType": "toggle",
-      "formType": "service",
-      "note": "PLUS"
-    },
-    {
       "name": "blockExtraTime",
       "label": "Block Extra Time",
       "formType": "service",

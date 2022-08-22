@@ -12,20 +12,14 @@ export default async function Handler(
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
   const { client } = squareClient(merchant.access_token);
-  const { category } = req.body;
+  const { formData } = req.body;
 
   switch (req.method) {
     case "POST": {
       try {
         const response = await client.catalogApi.upsertCatalogObject({
           idempotencyKey: uuidv4(),
-          object: {
-            type: "CATEGORY",
-            id: `#${category}`,
-            categoryData: {
-              name: category,
-            },
-          },
+          ...formData,
         });
         console.log("upsertCatalogObject", response.result);
         res.status(200).json(formatBigInt(response.result));

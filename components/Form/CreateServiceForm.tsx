@@ -7,13 +7,29 @@ import { useAppSelector } from "@/hooks/useRedux";
 import { updateModal } from "@/redux/ui-slice";
 import createService from "@/json/create-service.json";
 import { resetForm } from "@/redux/form-slice";
+import { formatService } from "@/lib/formatForm";
+import useCreateServiceMutation from "@/hooks/useCreateServiceMutation";
 
 export default function CreateServiceForm() {
   const dispatch = useAppDispatch();
   const { modal } = useAppSelector((state) => state.UI);
+  const { form } = useAppSelector((state) => state.Form);
+  const serviceFormData = formatService(form);
+  const { mutate, isLoading } = useCreateServiceMutation();
 
   function modalHandler() {
     dispatch(updateModal("variation-modal"));
+  }
+
+  function createServiceHandler() {
+    mutate(serviceFormData, {
+      onSuccess: (data: any) => {
+        console.log("data-createServiceHandler", data);
+      },
+      onError: (error: any) => {
+        console.log("error", error);
+      },
+    });
   }
 
   function closeModalHandler() {
@@ -70,8 +86,8 @@ export default function CreateServiceForm() {
           <Button
             text="Create Staff"
             className="bg-blue-500 text-white w-32 h-10 hover:bg-blue-800 mx-auto flex items-center justify-center"
-            // onClick={createStaff}
-            // loading={isLoading}
+            onClick={createServiceHandler}
+            loading={isLoading}
           />
         </div>
       </div>
