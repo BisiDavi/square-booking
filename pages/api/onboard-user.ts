@@ -20,7 +20,7 @@ export default async function Handler(
         const dbClient = await DBClient();
         await fetchAccessTokenFromDB(dbClient, email)
           .then((response) => {
-            console.log("fetchAccessTokenFromDBViaEmail-response", response);
+            console.log("fetchAccessTokenFromDB", response);
             if (response) {
               res.status(200).json(response);
             } else {

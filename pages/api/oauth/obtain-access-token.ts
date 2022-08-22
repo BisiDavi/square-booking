@@ -5,7 +5,7 @@ import { DBClient } from "@/DB/DBConnection";
 import saveAccessTokenToDB from "@/DB/saveAccessTokenToDB";
 import tokenScope from "@/lib/tokenScope";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { businessBookingProfile } from "@/requests/postRequests";
+// import { businessBookingProfile } from "@/requests/postRequests";
 import formatBigInt from "@/lib/formatBigInt";
 
 export default async function Handler(
@@ -36,35 +36,47 @@ export default async function Handler(
           }
         );
         console.log("tokenResut", tokenResult);
-        const profileResult = await businessBookingProfile(
-          tokenResult.data.access_token
-        );
-        console.log("profileResult", profileResult);
-        const parsedData = JSON.parse(
-          profileResult?.data
-        ).businessBookingProfile;
-        console.log("parsedData-api", parsedData);
         const data = {
           ...tokenResult.data,
           email,
         };
-        if (parsedData.supportSellerLevelWrites) {
-          await saveAccessTokenToDB(dbClient, {
-            ...data,
-            premium: true,
-          }).then(() => {
-            console.log("data-data", data);
-            res.status(200).json(formatBigInt(data));
-          });
-        } else {
-          await saveAccessTokenToDB(dbClient, {
-            ...data,
-            premium: false,
-          }).then(() => {
-            console.log("data-data", data);
-            res.status(200).json(formatBigInt(data));
-          });
-        }
+        await saveAccessTokenToDB(dbClient, {
+          ...data,
+          premium: false,
+        }).then(() => {
+          console.log("data-data", data);
+          res.status(200).json(formatBigInt(data));
+        });
+
+        // const profileResult = await businessBookingProfile(
+        //   tokenResult.data.access_token
+        // );
+        // console.log("profileResult", profileResult);
+        // const parsedData = JSON.parse(
+        //   profileResult?.data
+        // ).businessBookingProfile;
+        // console.log("parsedData-api", parsedData);
+        // const data = {
+        //   ...tokenResult.data,
+        //   email,
+        // };
+        // if (parsedData.supportSellerLevelWrites) {
+        //   await saveAccessTokenToDB(dbClient, {
+        //     ...data,
+        //     premium: true,
+        //   }).then(() => {
+        //     console.log("data-data", data);
+        //     res.status(200).json(formatBigInt(data));
+        //   });
+        // } else {
+        //   await saveAccessTokenToDB(dbClient, {
+        //     ...data,
+        //     premium: false,
+        //   }).then(() => {
+        //     console.log("data-data", data);
+        //     res.status(200).json(formatBigInt(data));
+        //   });
+        // }
       } catch (error: any) {
         // console.log("error", error);
         // console.log("error-response", error?.response);

@@ -11,6 +11,7 @@ import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests/postRequests";
 import { updateMerchant } from "@/redux/auth-slice";
 import { updateModal } from "@/redux/ui-slice";
+import AppLogo from "@/components/Logo/AppLogo";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -59,10 +60,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     <DefaultLayout>
       <section className="pt-20 w-full mx-auto h-screen justify-center items-center flex flex-col">
         <h1 className="text-center font-bold text-xl">
-          Welcome to{" "}
-          <span className="border mr-2 p-2 bg-gray-800 text-white">
-            {storeProfile?.name}
-          </span>
+          Welcome to <AppLogo />
           you&#39;re now authorized.
         </h1>
         <h3 className="font-bold text-center mt-10">
