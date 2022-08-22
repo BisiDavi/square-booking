@@ -1,3 +1,5 @@
+import toSlug from "./toSlug";
+
 type dataType = { [key: string]: string | number };
 
 export function formatFormField(data: dataType, field: string) {
@@ -27,13 +29,13 @@ export function formatService(data: any) {
   const descriptionHtml = data["description-service"]
     ? { descriptionHtml: data["description-service"] }
     : "";
-  const name = formatFormField(data, "name-service");
+  const name: any = formatFormField(data, "name-service");
   const durationPeriod = duration ? { serviceDuration: duration } : "";
 
   return {
     presentAtAllLocations: true,
     type: "ITEM",
-    id: `#${name}`,
+    id: `#${toSlug(name)}`,
     itemData: {
       name: name,
       ...categoryId,
@@ -42,7 +44,7 @@ export function formatService(data: any) {
           type: "ITEM_VARIATION",
           id: "#regular",
           itemVariationData: {
-            itemId: `#${name}`,
+            itemId: `#${toSlug(name)}`,
             name: "Regular",
             pricingType: data["pricetype-service"],
             priceMoney: {

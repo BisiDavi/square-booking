@@ -9,6 +9,7 @@ import createService from "@/json/create-service.json";
 import { resetForm } from "@/redux/form-slice";
 import { formatService } from "@/lib/formatForm";
 import useCreateServiceMutation from "@/hooks/useCreateServiceMutation";
+import { useQueryClient } from "react-query";
 
 export default function CreateServiceForm() {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ export default function CreateServiceForm() {
   const { form } = useAppSelector((state) => state.Form);
   const serviceFormData = formatService(form);
   const { mutate, isLoading } = useCreateServiceMutation();
+  const queryClient = useQueryClient();
 
   function modalHandler() {
     dispatch(updateModal("variation-modal"));
@@ -25,6 +27,10 @@ export default function CreateServiceForm() {
     mutate(serviceFormData, {
       onSuccess: (data: any) => {
         console.log("data-createServiceHandler", data);
+        dispatch(resetForm());
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries("listServices");
       },
       onError: (error: any) => {
         console.log("error", error);

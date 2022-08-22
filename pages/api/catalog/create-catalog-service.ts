@@ -14,12 +14,14 @@ export default async function Handler(
   const { client } = squareClient(merchant.access_token);
   const { formData } = req.body;
 
+  console.log("formData", formData);
+
   switch (req.method) {
     case "POST": {
       try {
         const response = await client.catalogApi.upsertCatalogObject({
           idempotencyKey: uuidv4(),
-          ...formData,
+          object: formData,
         });
         console.log("upsertCatalogObject", response.result);
         res.status(200).json(formatBigInt(response.result));
