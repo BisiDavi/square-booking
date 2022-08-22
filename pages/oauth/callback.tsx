@@ -25,7 +25,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
   const stateEmail = `${router?.query?.state}`;
 
   useEffect(() => {
-    if (squareCode !== undefined && stateEmail !== undefined) {
+    if (squareCode !== "undefined" && stateEmail !== "undefined") {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
           console.log("response", response);

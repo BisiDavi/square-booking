@@ -49,19 +49,21 @@ export default async function Handler(
           email,
         };
         if (parsedData.supportSellerLevelWrites) {
-          await saveAccessTokenToDB(dbClient, { ...data, premium: true }).then(
-            () => {
-              console.log("data-data", data);
-              res.status(200).json(formatBigInt(data));
-            }
-          );
+          await saveAccessTokenToDB(dbClient, {
+            ...data,
+            premium: true,
+          }).then(() => {
+            console.log("data-data", data);
+            res.status(200).json(formatBigInt(data));
+          });
         } else {
-          await saveAccessTokenToDB(dbClient, { ...data, premium: false }).then(
-            () => {
-              console.log("data-data", data);
-              res.status(200).json(formatBigInt(data));
-            }
-          );
+          await saveAccessTokenToDB(dbClient, {
+            ...data,
+            premium: false,
+          }).then(() => {
+            console.log("data-data", data);
+            res.status(200).json(formatBigInt(data));
+          });
         }
       } catch (error: any) {
         // console.log("error", error);
