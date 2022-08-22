@@ -1,6 +1,7 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
 
 import LabelledInput from "@/components/Form/FormElement/LabelledInput";
 import { useAppDispatch } from "@/hooks/useRedux";
@@ -11,8 +12,9 @@ import useOnboardingMutation from "@/hooks/useOnboardingMutation";
 
 export default function OnboardingForm() {
   const dispatch = useAppDispatch();
-    const router = useRouter();
+  const router = useRouter();
   const { mutate, isLoading } = useOnboardingMutation();
+  const [, setCookie] = useCookies(["merchant"]);
 
   const methods = useForm({
     mode: "all",
@@ -22,14 +24,19 @@ export default function OnboardingForm() {
   async function onSubmit(data: any) {
     if (data) {
       mutate(data.email, {
-        onSuccess: (response: any) => {
-          console.log("onboard-response", response);
+        onSuccess: (data: any) => {
+          console.log("onboard-response", data);
+          setCookie("merchant", JSON.stringify(data.data), {
+            path: "/",
+            maxAge: 604800, // expires in a week
+            sameSite: true,
+          });
           dispatch(updateOnboarding(true));
         },
         onError: (err: any) => {
           console.log("onboard-error", err?.response.data);
           dispatch(updateOnboarding(false));
-          router.push(err?.response.data.onboardingLink)
+          router.push(err?.response.data.onboardingLink);
         },
       });
     }

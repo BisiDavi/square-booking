@@ -20,10 +20,7 @@ export default async function Handler(
           .then((response) => {
             console.log("fetchAccessTokenFromDBViaEmail-response", response);
             if (response) {
-              res.status(200).json({
-                status: "onboarded",
-                accessToken: response.access_token,
-              });
+              res.status(200).json(response);
             } else {
               res.status(400).json({
                 status: "not-onboarded",
