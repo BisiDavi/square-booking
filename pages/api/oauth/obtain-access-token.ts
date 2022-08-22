@@ -25,15 +25,7 @@ export default async function Handler(
       email,
     };
     saveAccessTokenToDB(dbClient, data);
-    const serverData = {
-      id: response.data?.merchant_id,
-      email,
-      token: response.data?.access_token,
-      refreshToken: response.data?.refresh_token,
-      premium: status,
-      expiresAt: response.data?.expires_at,
-    };
-    res.status(200).json(serverData);
+    res.status(200).json(data);
   }
 
   switch (req.method) {

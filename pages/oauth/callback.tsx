@@ -38,8 +38,10 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
             maxAge: 604800, // expires in a week
             sameSite: true,
           });
-          const { id, email, expiresAt } = response?.data;
-          dispatch(updateMerchant({ id, email, expiresAt }));
+          const { merchant_id, email, expires_at } = response?.data;
+          dispatch(
+            updateMerchant({ id: merchant_id, email, expiresAt: expires_at })
+          );
         })
         .catch((error) => {
           console.log("error", error);
@@ -81,7 +83,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const merchant = req.cookies?.merchant
       ? JSON.parse(req.cookies?.merchant)
       : {};
-    const { client } = await squareClient(merchant.token);
+    const { client } = await squareClient(merchant.access_token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {

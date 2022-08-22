@@ -8,7 +8,7 @@ export default async function Handler(
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
-  const { client } = await squareClient(merchant.token);
+  const { client } = await squareClient(merchant.access_token);
 
   const { refreshToken } = req.body;
   const clientId = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;

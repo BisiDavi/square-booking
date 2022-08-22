@@ -38,7 +38,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       ? JSON.parse(req.cookies.merchant)
       : {};
 
-    const { client } = await squareClient(merchant.token);
+    const { client } = await squareClient(merchant.access_token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {

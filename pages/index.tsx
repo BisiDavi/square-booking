@@ -44,7 +44,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       ? JSON.parse(req.cookies.merchant)
       : {};
 
-    if (!merchant?.token) {
+    if (!req.cookies?.merchant) {
       return {
         redirect: {
           destination: "/onboarding",
@@ -53,7 +53,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
     }
 
-    const { client } = await suareClient(merchant.token);
+    const { client } = await suareClient(merchant.access_token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {
