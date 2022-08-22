@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "@/hooks/useRedux";
 import { updateModal } from "@/redux/ui-slice";
 import createService from "@/json/create-service.json";
+import { resetForm } from "@/redux/form-slice";
 
 export default function CreateServiceForm() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,11 @@ export default function CreateServiceForm() {
   function closeModalHandler() {
     dispatch(updateModal(null));
   }
+
+  function cancelHandler() {
+    dispatch(resetForm());
+  }
+
   return (
     <>
       {modal === "variation-modal" && (
@@ -53,6 +59,19 @@ export default function CreateServiceForm() {
             className="text-blue-500 w-full mt-6 py-3 text-left px-4 border hover:bg-gray-100"
             text="Add Variation"
             onClick={modalHandler}
+          />
+        </div>
+        <div className="button-group flex mt-10 justify-center items-center w-3/5 mx-auto justify-between">
+          <Button
+            text="Cancel"
+            className="border border-blue-500 text-blue-500 w-32 h-10 hover:bg-blue-200"
+            onClick={cancelHandler}
+          />
+          <Button
+            text="Create Staff"
+            className="bg-blue-500 text-white w-32 h-10 hover:bg-blue-800 mx-auto flex items-center justify-center"
+            // onClick={createStaff}
+            // loading={isLoading}
           />
         </div>
       </div>

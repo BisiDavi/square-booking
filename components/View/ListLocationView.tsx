@@ -40,11 +40,6 @@ export default function ListLocationView({ name }: Props) {
                 />
               )
             )}
-            <Checkbox
-              label="Available at all future locations"
-              formType="service"
-              name={name}
-            />
           </div>
         )}
       </div>
