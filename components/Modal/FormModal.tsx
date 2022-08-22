@@ -12,7 +12,6 @@ interface Props {
 }
 
 export default function FormModal({ modal, toggleModal, title, name }: Props) {
-  console.log("title", title);
   return (
     <>
       {modal === "form-modal-location" ? (
