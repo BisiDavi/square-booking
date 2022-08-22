@@ -12,6 +12,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests/postRequests";
 import { updateMerchant, updateOnboarding } from "@/redux/auth-slice";
+import { updateModal } from "@/redux/ui-slice";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -29,6 +30,9 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
     if (squareCode && stateEmail) {
       obtainAccessToken(squareCode, stateEmail)
         .then((response) => {
+          if (response.data.premium) {
+            dispatch(updateModal("oauth-premium-modal"));
+          }
           setCookie("merchant", JSON.stringify(response.data), {
             path: "/",
             maxAge: 604800, // expires in a week

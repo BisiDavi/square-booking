@@ -7,12 +7,11 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
-  
-  const { client } = await squareClient(merchant.token);
+  const { token } = req.body;
+  const { client } = await squareClient(token);
 
   switch (req.method) {
-    case "GET": {
+    case "POST": {
       try {
         const response =
           await client.bookingsApi.retrieveBusinessBookingProfile();

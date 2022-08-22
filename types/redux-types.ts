@@ -1,7 +1,7 @@
 export type modalStateType =
   | "form-modal-location"
   | "variation-modal"
-  | "form-modal-team"
+  | "form-modal-team" | "oauth-premium-modal"
   | null;
 
 export type UIStateType = {

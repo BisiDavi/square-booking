@@ -6,7 +6,7 @@ import { modalStateType } from "@/types/redux-types";
 interface Props {
   modal: modalStateType;
   toggleModal: (modal: modalStateType) => void;
-  email: string;
+  email: string | null;
 }
 
 export default function OAUTHPremiumUserModal({

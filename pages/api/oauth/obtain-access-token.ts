@@ -6,6 +6,7 @@ import saveAccessTokenToDB from "@/DB/saveAccessTokenToDB";
 import tokenScope from "@/lib/tokenScope";
 
 import type { NextApiRequest, NextApiResponse } from "next";
+import { businessBookingProfile } from "@/requests/postRequests";
 
 export default async function Handler(
   req: NextApiRequest,
@@ -16,6 +17,24 @@ export default async function Handler(
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const dbClient = await DBClient();
   const { basicScope } = tokenScope();
+
+  function saveToDBSendToServer(response: any, status: boolean) {
+    const data = {
+      ...response.data,
+      premium: status,
+      email,
+    };
+    saveAccessTokenToDB(dbClient, data);
+    const serverData = {
+      id: response.data?.merchant_id,
+      email,
+      token: response.data?.access_token,
+      refreshToken: response.data?.refresh_token,
+      premium: status,
+      expiresAt: response.data?.expires_at,
+    };
+    res.status(200).json(serverData);
+  }
 
   switch (req.method) {
     case "POST": {
@@ -30,19 +49,17 @@ export default async function Handler(
             scopes: basicScope,
           })
           .then((response) => {
-            console.log("obtain-access-token-response", response.data);
-            const data = {
-              ...response.data,
-              email,
-            };
-            saveAccessTokenToDB(dbClient, data);
-            res.status(200).json({
-              id: response.data?.merchant_id,
-              email,
-              token: response.data?.access_token,
-              refreshToken: response.data?.refresh_token,
-              expiresAt: response.data?.expires_at,
-            });
+            console.log("tokenResponse", response);
+            return businessBookingProfile(response.data.access_token).then(
+              (responseItem) => {
+                console.log("responseItem", responseItem);
+                if (responseItem?.data?.supportSellerLevelWrites) {
+                  saveToDBSendToServer(response, true);
+                } else {
+                  saveToDBSendToServer(response, false);
+                }
+              }
+            );
           })
           .catch((error) => {
             console.log("obtain-access-token-error", error);
