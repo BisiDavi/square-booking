@@ -1,5 +1,5 @@
-export default function cookieExpiryDate(): any {
+export default function cookieExpiryDate() {
   const dateInstance: Date = new Date();
   dateInstance.setDate(dateInstance.getDate() + 7);
-  return dateInstance.toDateString();
+  return dateInstance;
 }
