@@ -74,3 +74,7 @@ export function createTeam(teamMember: any) {
     teamMember,
   });
 }
+
+export function createService(formData: any) {
+  return axios.post("/api/catalog/create-catalog-service", formData);
+}

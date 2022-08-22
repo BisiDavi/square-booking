@@ -31,14 +31,18 @@ export default function ListLocationView({ name }: Props) {
         ) : (
           <div className="mt-4 list">
             {parsedData.locations.map(
-              (location: { id: string; name: string }, index: number) => (
-                <Checkbox
-                  label={location.name}
-                  key={location.id}
-                  formType="service"
-                  name={`${name}-${index}`}
-                />
-              )
+              (location: { id: string; name: string }, index: number) => {
+                console.log("location", location);
+                return (
+                  <Checkbox
+                    label={location.name}
+                    key={location.id}
+                    value={location.id}
+                    formType="service"
+                    name={`${name}-${index}`}
+                  />
+                );
+              }
             )}
           </div>
         )}

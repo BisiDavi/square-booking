@@ -36,6 +36,7 @@ export default function TeamModalView({ name }: Props) {
                 label="All Team members"
                 className="bg-gray-100"
                 formType="service"
+                value="all-team-members"
                 name={name}
               />
               {teamMembers.map(
@@ -55,6 +56,7 @@ export default function TeamModalView({ name }: Props) {
                     <Checkbox
                       label={label}
                       key={member.id}
+                      value={member.id}
                       formType="service"
                       name={`${name}-${index}`}
                     />
