@@ -26,9 +26,9 @@ export default function ServicePageMain({ service }: Props) {
   return (
     <>
       {storeProfile && (
-        <div className="w-3/5 bg-white overflow-y-scroll mr-12">
+        <div className="w-full px-4 lg:w-3/5 bg-white overflow-y-scroll mr-12">
           <div className="image-carousel">
-            <div className="h-80 bg-gray-600 w-full rounded-lg" />
+            <div className="h-60 lg:h-80 bg-gray-600 w-full rounded-lg" />
             <div className="store">
               <div className="store-title flex items-center justify-between">
                 <div className="title my-4">

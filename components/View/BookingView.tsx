@@ -40,8 +40,8 @@ export default function BookingView() {
     : "bg-red-600 ";
 
   return (
-    <div className="content container flex items-start mx-auto py-4 pt-24">
-      <div className="w-3/5">
+    <div className="content container flex lg:flex-row flex-col lg:items-start lg:mx-auto py-4 pt-24">
+      <div className="lg:w-3/5 w-full">
         <Button
           text="back"
           className="rounded-lg px-4 py-2 mb-2 bg-gray-400 text-white font-bold flex items-center hover:bg-gray-500"

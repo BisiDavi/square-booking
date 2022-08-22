@@ -18,7 +18,7 @@ export default function BookingSidebar({ serviceDuration }: Props) {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
-    <div className="w-2/5 bg-gray-100 flex flex-col items-center justify-center">
+    <div className="lg:w-2/5 w-full px-4å bg-gray-100 flex flex-col items-center justify-center">
       <div className="calender-wrapper border border-gray-400 rounded-lg my-6">
         <BookingCalendar />
       </div>

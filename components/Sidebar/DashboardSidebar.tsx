@@ -5,7 +5,7 @@ import sidebarContent from "@/json/dashboard-sidebar.json";
 import SidebarIcons from "@/icons/SidebarIcons";
 
 interface Props {
-  linkGroup: "links" | "extras";
+  linkGroup: "links";
 }
 
 function SidebarLinks({ linkGroup }: Props) {
@@ -38,7 +38,6 @@ export default function DashboardSidebar() {
   return (
     <aside className="w-1/5 h-screen border border-r fixed top-20">
       <SidebarLinks linkGroup="links" />
-      <SidebarLinks linkGroup="extras" />
     </aside>
   );
 }

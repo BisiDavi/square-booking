@@ -62,7 +62,7 @@ export default function GetTeammate({
         "fetching team member..."
       ) : (
         <div
-          className={`${showBorder} w-full flex justify-between items-center`}
+          className={`${showBorder} w-full flex lg:flex-row flex-col justify-between items-center`}
         >
           <div className="text">
             <h6>
@@ -84,7 +84,7 @@ export default function GetTeammate({
             </p>
           </div>
           <Button
-            className={`${bookMeClassname} text-white py-2 px-4 rounded-md `}
+            className={`${bookMeClassname} text-white py-1.5 mt-2 lg:py-2 px-4 rounded-md `}
             text={buttonText}
             disabled={disableButton}
             onClick={bookMeHandler}
