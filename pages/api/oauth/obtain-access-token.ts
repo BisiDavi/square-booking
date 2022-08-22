@@ -11,7 +11,7 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { squareCode, email } = req.body;
+  const { squareCode, email, isPremium } = req.body;
   const client_id = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_APP_ID}`;
   const client_secret = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_CLIENT_SECRET}`;
   const { basicScope } = tokenScope();
@@ -34,6 +34,7 @@ export default async function Handler(
         const data = {
           ...tokenResult.data,
           email,
+          premium: isPremium,
         };
         await updateAccessToken(dbClient, data).then(() => {
           res.status(200).json(formatBigInt(data));

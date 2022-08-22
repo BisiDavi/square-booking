@@ -19,13 +19,20 @@ export async function updateAccessToken(
   await client
     .db("square-booking")
     .collection("auth")
-    .findAndModify({ email: data.email }, data, {
-      upsert: true,
-      update: {
+    .findOneAndUpdate(
+      { email: data.email },
+      {
         $set: {
           access_token: data.access_token,
           refresh_token: data.refresh_token,
+          merchant_id: data.merchant_id,
+          premium: data?.premium,
+          email: data?.email,
         },
       },
-    });
+      {
+        upsert: true,
+        returnNewDocument: true,
+      }
+    );
 }

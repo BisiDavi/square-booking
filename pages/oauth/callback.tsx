@@ -34,7 +34,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
 
   useEffect(() => {
     if (squareCode !== "undefined" && stateEmail !== "undefined") {
-      obtainAccessToken(squareCode, email)
+      obtainAccessToken(squareCode, email, isPremium)
         .then((response) => {
           const parsedData = JSON.parse(response.data);
           const { merchant_id, email, expires_at } = parsedData;
@@ -52,7 +52,7 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
               dispatch(updateModal("oauth-premium-modal"));
             }
           });
-          router.push("/admin")
+          return router.push("/admin");
         })
         .catch((error) => {
           console.log("error", error);
