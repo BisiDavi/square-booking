@@ -7,7 +7,8 @@ export default async function RetrieveCustomerHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await squareClient();
+  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
+  const { client } = await squareClient(merchant.token);
   const { id } = req.body;
 
   switch (req.method) {

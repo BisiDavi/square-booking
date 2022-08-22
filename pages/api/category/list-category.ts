@@ -8,7 +8,9 @@ export default async function CreateCustomerHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await squareClient();
+  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
+
+  const { client } = await squareClient(merchant.token);
 
   switch (req.method) {
     case "GET": {

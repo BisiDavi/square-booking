@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/redux/store";
 import squareClient from "@/squareClient";
 import type { storeProfileType } from "@/types/store-types";
 import BookingView from "@/components/View/BookingView";
+import { GetServerSidePropsContext } from "next";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -30,9 +31,14 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   try {
-    const { client } = await squareClient();
+    const { req } = context;
+    const merchant = req.cookies.merchant
+      ? JSON.parse(req.cookies.merchant)
+      : {};
+
+    const { client } = await squareClient(merchant.token);
     const response = await client.locationsApi.listLocations();
     return {
       props: {

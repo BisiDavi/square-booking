@@ -7,7 +7,10 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await squareClient();
+  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
+
+  const { client } = await squareClient(merchant.token);
+
   const { catalogObjectId } = req.body;
   switch (req.method) {
     case "POST": {

@@ -5,7 +5,8 @@ export default async function RetrieveTeamHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { client } = await squareClient();
+  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
+  const { client } = await squareClient(merchant.token);
   const teamMemberId = req.body.teamMemberId;
   switch (req.method) {
     case "POST": {
