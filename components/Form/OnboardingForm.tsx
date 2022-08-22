@@ -20,6 +20,7 @@ export default function OnboardingForm({ type }: Props) {
   const router = useRouter();
   const { mutate, isLoading } = useOnboardingMutation();
   const [, setCookie] = useCookies(["merchant"]);
+  const [, setAdminCookie] = useCookies(["admin"]);
 
   const methods = useForm({
     mode: "all",
@@ -44,7 +45,18 @@ export default function OnboardingForm({ type }: Props) {
             maxAge: 604800, // expires in a week
             sameSite: true,
           });
-          router.push("/");
+          if (!type) {
+            router.push("/");
+          }
+          if (type) {
+            setAdminCookie("admin", JSON.stringify(data.data), {
+              path: "/",
+              expires: cookieExpiryDate(),
+              maxAge: 604800, // expires in a week
+              sameSite: true,
+            });
+            router.push("/admin");
+          }
         },
         onError: (err: any) => {
           console.log("onboard-error", err?.response.data);
