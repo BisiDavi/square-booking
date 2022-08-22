@@ -7,9 +7,9 @@ import LabelledInput from "@/components/Form/FormElement/LabelledInput";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { onboardingFormSchema } from "@/components/Form/Schema/OnboardingSchema";
 import Button from "@/components/UI/Button";
-import { updateOnboarding } from "@/redux/auth-slice";
 import useOnboardingMutation from "@/hooks/useOnboardingMutation";
 import cookieExpiryDate from "@/lib/cookieExpiryDate";
+import { updateMerchant } from "@/redux/auth-slice";
 
 export default function OnboardingForm() {
   const dispatch = useAppDispatch();
@@ -27,17 +27,23 @@ export default function OnboardingForm() {
       mutate(data.email, {
         onSuccess: (data: any) => {
           console.log("onboard-response", data);
+          dispatch(
+            updateMerchant({
+              id: data?.data.merchant_id,
+              email: data.data.email,
+              expiresAt: data?.data?.expires_at,
+            })
+          );
           setCookie("merchant", JSON.stringify(data.data), {
             path: "/",
             expires: cookieExpiryDate(),
             maxAge: 604800, // expires in a week
             sameSite: true,
           });
-          dispatch(updateOnboarding(true));
+          router.push("/");
         },
         onError: (err: any) => {
           console.log("onboard-error", err?.response.data);
-          dispatch(updateOnboarding(false));
           router.push(err?.response.data.onboardingLink);
         },
       });

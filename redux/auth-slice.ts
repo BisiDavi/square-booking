@@ -6,7 +6,6 @@ import type { AuthStateType } from "@/types/redux-types";
 const initialState: AuthStateType = {
   isAccessTokenAvailable: false,
   isAccessTokenValid: null,
-  onboarding: false,
   merchant: {
     id: null,
     email: null,
@@ -30,12 +29,6 @@ const AuthSlice = createSlice({
     ) {
       state.isAccessTokenValid = action.payload;
     },
-    updateOnboarding(
-      state,
-      action: PayloadAction<AuthStateType["onboarding"]>
-    ) {
-      state.onboarding = action.payload;
-    },
     updateMerchant(state, action: PayloadAction<AuthStateType["merchant"]>) {
       state.merchant = action.payload;
     },
@@ -45,7 +38,6 @@ const AuthSlice = createSlice({
 export const {
   updateAccessTokenStatus,
   updateAccessTokenValidity,
-  updateOnboarding,
   updateMerchant,
 } = AuthSlice.actions;
 export default AuthSlice.reducer;

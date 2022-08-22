@@ -1,7 +1,8 @@
 export type modalStateType =
   | "form-modal-location"
   | "variation-modal"
-  | "form-modal-team" | "oauth-premium-modal"
+  | "form-modal-team"
+  | "oauth-premium-modal"
   | null;
 
 export type UIStateType = {
@@ -19,7 +20,6 @@ export type BookingStateType = {
 export type AuthStateType = {
   isAccessTokenAvailable: boolean;
   isAccessTokenValid: boolean | null;
-  onboarding: boolean;
   merchant: {
     id: string | null;
     email: string | null;

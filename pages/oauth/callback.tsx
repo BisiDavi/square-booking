@@ -11,7 +11,7 @@ import { storeProfileType } from "@/types/store-types";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { updateStoreProfile } from "@/redux/store-profile-slice";
 import { obtainAccessToken } from "@/requests/postRequests";
-import { updateMerchant, updateOnboarding } from "@/redux/auth-slice";
+import { updateMerchant } from "@/redux/auth-slice";
 import { updateModal } from "@/redux/ui-slice";
 
 interface Props {
@@ -39,7 +39,6 @@ export default function OAUTHPAGE({ storeProfile }: Props) {
             sameSite: true,
           });
           const { id, email, expiresAt } = response?.data;
-          dispatch(updateOnboarding(true));
           dispatch(updateMerchant({ id, email, expiresAt }));
         })
         .catch((error) => {
