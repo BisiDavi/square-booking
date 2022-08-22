@@ -50,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const merchant = req.cookies.merchant
       ? JSON.parse(req.cookies.merchant)
       : {};
-    const { client } = await squareClient(merchant.access_token);
+    const { client } = squareClient(merchant.access_token);
     const serviceId: string | any = query.id;
     const response = await client.catalogApi.retrieveCatalogObject(serviceId);
     const storeProfileData = await client.locationsApi.listLocations();

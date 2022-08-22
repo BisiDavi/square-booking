@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
-  const { client } = await squareClient(merchant.access_token);
+  const { client } = squareClient(merchant.access_token);
   const { startAt, locationId, customerId, customerNote, appointmentSegments } =
     req.body;
 

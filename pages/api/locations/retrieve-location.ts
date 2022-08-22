@@ -6,7 +6,7 @@ export default async function RetrieveLocationHandler(
   res: NextApiResponse
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
-  const { client } = await squareClient(merchant.access_token);
+  const { client } = squareClient(merchant.access_token);
 
   const locationId = req.body.locationId;
   switch (req.method) {

@@ -9,7 +9,7 @@ export default async function Handler(
 ) {
   const { token } = req.body;
   console.log("token", token);
-  const { client } = await squareClient(token);
+  const { client } = squareClient(token);
 
   switch (req.method) {
     case "POST": {
