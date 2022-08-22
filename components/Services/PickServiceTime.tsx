@@ -18,7 +18,7 @@ export default function PickServiceTime({ serviceTime }: Props) {
   const timeArray = getAvailablePeriods(startTime, endtTime, serviceTime);
 
   return (
-    <div className="grid grid-cols-4 w-11/12 place-items-center mb-6">
+    <div className="grid grid-cols-4 gap-2 w-11/12 place-items-center mb-6">
       {timeArray.map((time) => (
         <TimePill key={time} time={time} />
       ))}

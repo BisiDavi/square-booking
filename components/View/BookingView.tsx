@@ -41,14 +41,14 @@ export default function BookingView() {
 
   return (
     <div className="content container flex lg:flex-row flex-col lg:items-start lg:mx-auto py-4 pt-24">
-      <div className="lg:w-3/5 w-full">
+      <div className="lg:w-3/5 w-full px-6">
         <Button
           text="back"
           className="rounded-lg px-4 py-2 mb-2 bg-gray-400 text-white font-bold flex items-center hover:bg-gray-500"
           icon={<FaLongArrowAltLeft className="mr-2 text-2xl" />}
           onClick={goBack}
         />
-        <h3 className="text-3xl font-medium">
+        <h3 className="text-lg tect-center lg:text-start lg:text-3xl font-medium">
           Please, pick a date for your appointment
         </h3>
         {status === "error" ? (
@@ -57,7 +57,7 @@ export default function BookingView() {
           "loading..."
         ) : (
           <>
-            <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100 relative">
+            <div className="pill rounded-xl p-5 border border-gray-500 w-full lg:w-3/4 mt-5 hover:bg-gray-100 relative">
               <div
                 className={`tag ${availabiltyClassName} rounded-md absolute px-2 py-1 text-xs top-2 right-2 text-white`}
               >
@@ -70,7 +70,7 @@ export default function BookingView() {
                 <span className="flex items-center text-md">
                   <BiLoaderCircle className="mr-2 text-xl" /> Service{" "}
                 </span>
-                <h4 className="font-bold text-gray-800 text-2xl">
+                <h4 className="text-xl font-bold text-gray-800 text-2xl">
                   {catalogData.itemData.name}
                 </h4>
               </div>
@@ -105,7 +105,7 @@ export default function BookingView() {
                 </h6>
               </div>
             </div>
-            <div className="pill rounded-xl p-5 border border-gray-500 w-3/4 mt-5 hover:bg-gray-100">
+            <div className="pill rounded-xl p-5 border border-gray-500 w-full lg:w-3/4 mt-5 hover:bg-gray-100">
               <GetStaff staffId={staffId} />
             </div>
           </>

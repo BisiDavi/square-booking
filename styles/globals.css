@@ -22,11 +22,12 @@
 .height-max-content {
   height: max-content;
 }
-
-.calender-wrapper button.rdp-button_reset.rdp-button.rdp-day {
-  margin: 5px 10px;
-  border: 1px solid;
-}
+@media (min-width: 768px) {
+  .calender-wrapper button.rdp-button_reset.rdp-button.rdp-day {
+    margin: 5px 10px;
+    border: 1px solid;
+  }
+}                    
 
 .rdp-cell .rdp-day_selected:not([disabled]),
 .rdp-day_selected:focus:not([disabled]),
@@ -67,3 +68,10 @@
 .select-group {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .calender-wrapper button.rdp-button_reset.rdp-button.rdp-day {
+    margin: 3px 4px;
+    border: 1px solid;
+  }
+} 
