@@ -33,19 +33,5 @@
     "type": "text",
     "formType": "customer",
     "elementType": "textarea"
-  },
-  {
-    "name": "location",
-    "placeholder": "Location Type",
-    "label": "Location Type",
-    "required": true,
-    "elementType": "select",
-    "formType": "customer",
-    "type": "text",
-    "options": [
-      { "text": "Business Location", "value": "BUSINESS_LOCATION" },
-      { "text": "Customer Location", "value": "CUSTOMER_LOCATION" },
-      { "text": "Phone", "value": "PHONE" }
-    ]
   }
 ]
