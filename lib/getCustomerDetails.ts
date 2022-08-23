@@ -8,16 +8,13 @@ type dataType = {
 
 export async function getCustomerDetails(data: dataType | any) {
   const { email } = data;
-  try {
-    const searchCustomerResult = await searchCustomer(email);
-    const resultArrayLength = Object.keys(searchCustomerResult.data).length;
-    if (resultArrayLength > 0) {
-      return searchCustomerResult.data;
-    } else {
-      const createCustomerResult = await createCustomer(data);
-      return createCustomerResult.data;
-    }
-  } catch (error) {
-    return null;
+  const searchCustomerResult = await searchCustomer(email);
+  const parsedData = JSON.parse(searchCustomerResult.data);
+  const resultArrayLength = Object.keys(parsedData).length;
+  if (resultArrayLength > 0) {
+    return parsedData?.customers[0];
+  } else {
+    const createCustomerResult = await createCustomer(data);
+    return createCustomerResult.data;
   }
 }

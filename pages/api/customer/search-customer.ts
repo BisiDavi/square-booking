@@ -1,4 +1,5 @@
 // import formatBigInt from "@/lib/formatBigInt";
+import formatBigInt from "@/lib/formatBigInt";
 import squareClient from "@/squareClient";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -22,9 +23,10 @@ export default async function RetrieveCustomerHandler(
             },
           },
         });
-        res.status(200).json(response.result);
+        console.log("response.result", response.result);
+        res.status(200).json(formatBigInt(response.result));
       } catch (error) {
-        res.status(400).json(JSON.stringify(error));
+        res.status(400).json(error);
       }
     }
   }

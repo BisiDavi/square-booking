@@ -18,7 +18,7 @@ export default function CustomerBookingForm() {
   const timeZone =
     storeProfile !== null ? storeProfile?.timezone : "America/Anchorage";
   const locationId = storeProfile && storeProfile.id;
-  const { mutate, isLoading } = useCreateBookingMutation();
+  const { mutateAsync, isLoading } = useCreateBookingMutation();
 
   const serviceVariationId = `${router.query.id}`;
   const teamMemberId = `${router.query.teamMember}`;
@@ -27,9 +27,6 @@ export default function CustomerBookingForm() {
     if (bookingDate && bookingTime) {
       const startDate = getBookingStartData(bookingDate, bookingTime, timeZone);
       const customerDetails = await getCustomerDetails(customerbookingFormData);
-
-      console.log("customerDetails", customerDetails);
-
       const data = {
         ...customerbookingFormData,
         locationId,
@@ -49,7 +46,7 @@ export default function CustomerBookingForm() {
   async function submitHandler(e: any) {
     e.preventDefault();
     const formdata = await getFormData();
-    mutate(formdata, {
+    mutateAsync(formdata, {
       onSuccess: (data: any) => {
         console.log("onsuccess-data", data);
       },
@@ -70,7 +67,7 @@ export default function CustomerBookingForm() {
             text="Submit"
             type="submit"
             loading={isLoading}
-            className="bg-purple-800 hover:bg-opacity-80 py-2 px-3 mx-auto font-bold flex items-center mt-10 text-white "
+            className="bg-purple-800 w-24 flex justify-center hover:bg-opacity-80 py-2 px-3 mx-auto font-bold flex items-center mt-10 text-white "
           />
         </form>
       )}
