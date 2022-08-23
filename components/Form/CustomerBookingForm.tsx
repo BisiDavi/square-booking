@@ -39,6 +39,7 @@ export default function CustomerBookingForm() {
           },
         ],
       };
+      console.log("data", data);
       return data;
     }
   }

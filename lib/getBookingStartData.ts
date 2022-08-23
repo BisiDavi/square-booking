@@ -24,6 +24,6 @@ export default function getBookingStartData(
     const timezoneDate = new Date(
       actualDate.toLocaleString("en-US", { timeZone })
     );
-    return timezoneDate;
+    return timezoneDate.toISOString();
   }
 }
