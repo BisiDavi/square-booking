@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 
@@ -7,48 +6,30 @@ import displayFormElement from "@/components/Form/FormElement/displayFormElement
 import Button from "@/components/UI/Button";
 import { useAppSelector } from "@/hooks/useRedux";
 import { formatCustomerBookingForm } from "@/lib/formatForm";
-import getBookingStartDate from "@/lib/getBookingStartDate";
 import useCreateBookingMutation from "@/hooks/useCreateBookingMutation";
 import { getCustomerDetails } from "@/lib/getCustomerDetails";
 import { resetForm } from "@/redux/form-slice";
-import { resetBooking } from "@/redux/booking-slice";
+import { resetBooking, setAppointment } from "@/redux/booking-slice";
 import { updateModal } from "@/redux/ui-slice";
 
 export default function CustomerBookingForm() {
   const { form } = useAppSelector((state) => state.Form);
-  const { storeProfile } = useAppSelector((state) => state.StoreProfile);
   const dispatch = useDispatch();
   const { appointment, bookingDate, bookingTime } = useAppSelector(
     (state) => state.Booking
   );
-  console.log("appointment", appointment);
   const customerbookingFormData = formatCustomerBookingForm(form);
-  const router = useRouter();
-  const { teamMember, serviceId, version, duration } = router.query;
-  const durationMinutes = Number(duration) / 6000;
-  const timeZone =
-    storeProfile !== null ? storeProfile?.timezone : "America/Anchorage";
-  const locationId = storeProfile && storeProfile.id;
   const { mutateAsync, isLoading } = useCreateBookingMutation();
 
   async function getFormData() {
     if (bookingDate && bookingTime) {
-      const startDate = getBookingStartDate(bookingDate, bookingTime, timeZone);
       const customerDetails = await getCustomerDetails(customerbookingFormData);
       const data = {
         ...customerbookingFormData,
-        locationId,
+        ...appointment,
         customerId: customerDetails?.id,
-        startAt: startDate,
-        appointmentSegments: [
-          {
-            durationMinutes,
-            serviceVariationId: serviceId,
-            teamMemberId: teamMember,
-            serviceVariationVersion: version,
-          },
-        ],
       };
+
       return data;
     }
   }
@@ -61,6 +42,7 @@ export default function CustomerBookingForm() {
         console.log("onsuccess-data", data);
         dispatch(resetForm());
         dispatch(resetBooking());
+        dispatch(setAppointment(null));
         dispatch(updateModal("successful-booking-modal"));
       },
       onError: (error: any) => {

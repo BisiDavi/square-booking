@@ -12,7 +12,8 @@ export default function TimePill({ data }: TimePillProps) {
   const hourVal = dateInstance.getHours();
   const minutesVal = dateInstance.getMinutes();
   const formatMinutes = minutesVal === 0 ? "00" : minutesVal;
-  const formattedHour = hourVal > 12 ? hourVal - 12 : hourVal;
+  const formattedHour =
+    hourVal > 12 ? (hourVal - 12 === 0 ? 12 : hourVal - 12) : hourVal;
   const period = hourVal > 12 ? "pm" : "am";
 
   const time = `${formattedHour}:${formatMinutes} ${period}`;
