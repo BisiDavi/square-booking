@@ -28,7 +28,7 @@ export default function CustomersPage() {
             ? "loading..."
             : parsedData && (
                 <tbody>
-                  {parsedData.customers.map((customer: listCustomerType) => (
+                  {parsedData?.customers.map((customer: listCustomerType) => (
                     <tr
                       key={customer.id}
                       className="my-4 h-14 border border-y text-center"
@@ -37,9 +37,9 @@ export default function CustomersPage() {
                         <span className="mx-1">{customer?.givenName}</span>
                         <span className="mx-1">{customer?.familyName}</span>
                       </td>
-                      <td>{customer.emailAddress}</td>
-                      <td>{formatDate(customer.createdAt)}</td>
-                      <td>{customer.address.country}</td>
+                      <td>{customer?.emailAddress}</td>
+                      <td>{formatDate(customer?.createdAt)}</td>
+                      <td>{customer.address?.country}</td>
                     </tr>
                   ))}
                 </tbody>
