@@ -8,6 +8,7 @@ interface Props {
     label: string;
     formType: string;
     name: string;
+    required?: boolean;
   };
 }
 
@@ -16,6 +17,7 @@ export default function Input({ input }: Props) {
 
   const { type, name, placeholder, label, formType } = input;
   const id = formElementId(name, formType);
+  const isRequired = input?.required ? true : false;
 
   const value = getInputValue(id);
 
@@ -34,6 +36,7 @@ export default function Input({ input }: Props) {
         type={type}
         min={0}
         value={value}
+        required={isRequired}
         placeholder={placeholder}
         onChange={(e) => onChangeHandler(e, id)}
       />

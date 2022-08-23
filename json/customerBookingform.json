@@ -4,6 +4,7 @@
     "placeholder": "First Name",
     "label": "First Name",
     "type": "text",
+    "required": true,
     "formType": "customer",
     "elementType": "input"
   },
@@ -12,6 +13,7 @@
     "placeholder": "Last Name",
     "label": "Last Name",
     "type": "text",
+    "required": true,
     "formType": "customer",
     "elementType": "input"
   },
@@ -21,22 +23,24 @@
     "label": "Work Email",
     "type": "email",
     "formType": "customer",
+    "required": true,
     "elementType": "input"
   },
   {
     "name": "note",
     "label": "Customer's Note",
     "placeholder": "Customer's Note",
-    "type": "email",
+    "type": "text",
     "formType": "customer",
     "elementType": "textarea"
   },
   {
-    "name": "priceType",
+    "name": "location",
     "placeholder": "Price Type",
     "label": "Price Type",
+    "required": true,
     "elementType": "select",
-    "formType": "service",
+    "formType": "cutomer",
     "type": "text",
     "options": [
       { "text": "Business Location", "value": "BUSINESS_LOCATION" },

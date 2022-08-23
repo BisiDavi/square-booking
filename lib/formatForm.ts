@@ -62,7 +62,21 @@ export function formatService(data: any) {
   };
 }
 
+function dataObj(data: dataType, label: string, name: string) {
+  return data[label] ? { [name]: data[label] } : "";
+}
 
-export function customerBookingForm(){
-    
+export function formatCustomerBookingForm(data: any) {
+  const firstName = dataObj(data, "firstname-customer", "firstName");
+  const lastName = dataObj(data, "lastname-customer", "lastName");
+  const email = dataObj(data, "email-customer", "email");
+  const locationType = dataObj(data, "location-customer", "locationType");
+  const note = dataObj(data, "note-customer", "note");
+  return {
+    ...firstName,
+    ...lastName,
+    ...email,
+    ...locationType,
+    ...note,
+  };
 }

@@ -25,7 +25,7 @@ export default function MainHeader() {
         ) : parsedData?.logoUrl ? (
           <Link passHref href="/">
             <a>
-              <img
+            <img
                 src={parsedData?.logoUrl}
                 alt="logo"
                 height="95px"
