@@ -13,6 +13,12 @@ const withTM = require("next-transpile-modules")([
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    format: ["image/webp"],
+    domains: ["square-web-production-f.squarecdn.com"],
+    deviceSizes: [320, 375, 425, 640, 768, 828, 1024, 1200, 1440, 1920, 2560],
+    minimumCacheTTL: 60 * 60 * 24,
+  },
 };
 
 module.exports = withTM(nextConfig);

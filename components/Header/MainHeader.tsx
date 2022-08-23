@@ -5,6 +5,7 @@ import Link from "next/link";
 import Button from "@/components/UI/Button";
 import Logo from "@/components/Logo";
 import { useAppSelector } from "@/hooks/useRedux";
+import Image from "next/image";
 
 export default function MainHeader() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
@@ -15,11 +16,11 @@ export default function MainHeader() {
         {storeProfile !== null && storeProfile?.logoUrl ? (
           <Link passHref href="/">
             <a>
-              <img
+              <Image
                 src={storeProfile?.logoUrl}
                 alt="logo"
-                height="95px"
-                width="95px"
+                height={95}
+                width={95}
               />
             </a>
           </Link>

@@ -18,8 +18,12 @@ const BookingSlice = createSlice({
     updateTime(state, action: PayloadAction<BookingStateType["bookingTime"]>) {
       state.bookingTime = action.payload;
     },
+    resetBooking(state) {
+      state.bookingDate = undefined;
+      state.bookingTime = null;
+    },
   },
 });
 
-export const { updateDate, updateTime } = BookingSlice.actions;
+export const { updateDate, updateTime, resetBooking } = BookingSlice.actions;
 export default BookingSlice.reducer;
