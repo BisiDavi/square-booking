@@ -6,7 +6,7 @@ import BookingSidebar from "@/components/Sidebar/BookingSidebar";
 import { getACatalogObject } from "@/requests/postRequests";
 import GetStaff from "@/components/Team/GetStaff";
 import CustomerBookingForm from "@/components/Form/CustomerBookingForm";
-import ServiceCard from "../Card/ServiceCard";
+import ServiceCard from "@/components/Card/ServiceCard";
 
 export default function BookingView() {
   const router = useRouter();

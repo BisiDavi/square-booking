@@ -9,6 +9,8 @@ import squareClient from "@/squareClient";
 import type { storeProfileType } from "@/types/store-types";
 import BookingView from "@/components/View/BookingView";
 import { GetServerSidePropsContext } from "next";
+import BookingModal from "@/components/Modal/BookingModal";
+import useUI from "@/hooks/useUI";
 
 interface Props {
   storeProfile: storeProfileType;
@@ -17,6 +19,7 @@ interface Props {
 export default function BookPage({ storeProfile: storeProfileData }: Props) {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
   const dispatch = useAppDispatch();
+  const { modal, toggleModal } = useUI();
 
   useEffect(() => {
     if (storeProfile === null) {
@@ -24,10 +27,19 @@ export default function BookPage({ storeProfile: storeProfileData }: Props) {
     }
   }, []);
 
+  function closeModal() {
+    toggleModal(null);
+  }
+
   return (
-    <DefaultLayout>
-      <BookingView />
-    </DefaultLayout>
+    <>
+      {modal === "successful-booking-modal" && (
+        <BookingModal modal={modal} toggleModal={closeModal} />
+      )}
+      <DefaultLayout>
+        <BookingView />
+      </DefaultLayout>
+    </>
   );
 }
 

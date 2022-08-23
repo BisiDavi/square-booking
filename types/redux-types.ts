@@ -3,6 +3,7 @@ export type modalStateType =
   | "variation-modal"
   | "form-modal-team"
   | "oauth-premium-modal"
+  | "successful-booking-modal"
   | null;
 
 export type UIStateType = {

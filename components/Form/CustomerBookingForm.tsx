@@ -12,6 +12,7 @@ import useCreateBookingMutation from "@/hooks/useCreateBookingMutation";
 import { getCustomerDetails } from "@/lib/getCustomerDetails";
 import { resetForm } from "@/redux/form-slice";
 import { resetBooking } from "@/redux/booking-slice";
+import { updateModal } from "@/redux/ui-slice";
 
 export default function CustomerBookingForm() {
   const { form } = useAppSelector((state) => state.Form);
@@ -45,7 +46,6 @@ export default function CustomerBookingForm() {
           },
         ],
       };
-      console.log("data,", data);
       return data;
     }
   }
@@ -58,6 +58,7 @@ export default function CustomerBookingForm() {
         console.log("onsuccess-data", data);
         dispatch(resetForm());
         dispatch(resetBooking());
+        dispatch(updateModal("successful-booking-modal"));
       },
       onError: (error: any) => {
         toast.error(error?.response?.data.errors[0].detail);
