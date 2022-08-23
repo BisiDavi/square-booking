@@ -1,0 +1,31 @@
+import { useDropzone } from "react-dropzone";
+import { useCallback, useMemo } from "react";
+
+import { styles } from "@/styles/dropzone.styles";
+
+export default function useImageDropzone() {
+  const onDrop = useCallback((acceptedFiles: any) => {
+    const imageFile = acceptedFiles[0];
+  }, []);
+  const dropzone = useDropzone({
+    onDrop,
+    accept: {
+      "image/png": [".png"],
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/avif": [".avif"],
+      "image/webp": [".webp"],
+    },
+  });
+
+  const style: any = useMemo(
+    () => ({
+      ...styles.baseStyle,
+      ...(dropzone.isFocused ? styles.focusedStyle : {}),
+      ...(dropzone.isDragAccept ? styles.acceptStyle : {}),
+      ...(dropzone.isDragReject ? styles.rejectStyle : {}),
+    }),
+    [dropzone.isFocused, dropzone.isDragAccept, dropzone.isDragReject]
+  );
+
+  return { dropzone, style };
+}

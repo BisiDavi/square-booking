@@ -33,6 +33,7 @@
     "react-day-picker": "^8.1.0",
     "react-dom": "18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
+    "react-dropzone": "^14.2.2",
     "react-hook-form": "^7.34.0",
     "react-icons": "^4.4.0",
     "react-query": "^3.34.0",
