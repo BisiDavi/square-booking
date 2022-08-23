@@ -15,6 +15,7 @@ export async function getCustomerDetails(data: dataType | any) {
     return parsedData?.customers[0];
   } else {
     const createCustomerResult = await createCustomer(data);
-    return createCustomerResult.data;
+    const parsedData = JSON.parse(createCustomerResult.data);
+    return parsedData.customer;
   }
 }

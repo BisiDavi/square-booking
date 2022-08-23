@@ -5,7 +5,7 @@ import BookingCalendar from "@/components/Calendar/BookingCalendar";
 import { useAppSelector } from "@/hooks/useRedux";
 import PickServiceTime from "@/components/Services/PickServiceTime";
 import { formatServicePeriod } from "@/lib/formatTime";
-import CustomerBookingForm from "../Form/CustomerBookingForm";
+import CustomerBookingForm from "@/components/Form/CreateServiceForm";
 
 interface Props {
   serviceDuration: number;

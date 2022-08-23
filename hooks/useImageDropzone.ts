@@ -1,12 +1,27 @@
 import { useDropzone } from "react-dropzone";
 import { useCallback, useMemo } from "react";
+import axios from "axios";
 
 import { styles } from "@/styles/dropzone.styles";
 
 export default function useImageDropzone() {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    const imageFile = acceptedFiles[0];
+  const onDrop = useCallback(async (acceptedFiles: any) => {
+    let formData = new FormData();
+    const [file] = acceptedFiles;
+    formData.append("file", file);
+ 
+
+    axios
+      .post("/api/image/upload-image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => console.log("fetch-response", response))
+      .catch((error) => console.log("fetch-error", error));
   }, []);
+
+  // const imageFile = acceptedFiles[0];
   const dropzone = useDropzone({
     onDrop,
     accept: {
