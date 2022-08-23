@@ -55,7 +55,7 @@ export default function RecommendServices() {
             ))}
           </div>
           <Link href="/services">
-            <a>
+            <a className="mt-4">
               <Button
                 text="View All"
                 className="font-bold text-xl my-4 flex justify-center hover:bg-gray-600 items-center relative bg-gray-800 w-1/6 mx-auto text-white py-3 rounded-md"
