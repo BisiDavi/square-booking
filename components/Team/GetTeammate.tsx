@@ -44,13 +44,16 @@ export default function GetTeammate({
     router.query.slug = serviceId;
     router.query.serviceId = variation.id;
     router.query.id = variation.itemVariationData.itemId;
+    router.query.version = variation.version;
+    router.query.duration = `${variation.itemVariationData.serviceDuration}`;
+
     router.push(router).then(() => {
       toast.success(
         `${data.data.teamMember?.givenName} ${data.data.teamMember?.familyName} selected`
       );
       toast.success(`${service} selected`);
       router.push(
-        `/book/${router.query.slug}?id=${router.query.id}&teamMember=${router.query.teamMember}&serviceId=${router.query.serviceId}`
+        `/book/${router.query.slug}?id=${router.query.id}&teamMember=${router.query.teamMember}&serviceId=${router.query.serviceId}&version=${router.query.version}&duration=${router.query.duration}`
       );
     });
   }

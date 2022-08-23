@@ -23,7 +23,7 @@ export default async function handler(
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);
-        res.status(400).json(JSON.stringify(error));
+        res.status(400).json(error);
       }
     }
   }

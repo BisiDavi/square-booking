@@ -36,11 +36,11 @@
   },
   {
     "name": "location",
-    "placeholder": "Price Type",
-    "label": "Price Type",
+    "placeholder": "Location Type",
+    "label": "Location Type",
     "required": true,
     "elementType": "select",
-    "formType": "cutomer",
+    "formType": "customer",
     "type": "text",
     "options": [
       { "text": "Business Location", "value": "BUSINESS_LOCATION" },

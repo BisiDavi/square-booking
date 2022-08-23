@@ -8,32 +8,22 @@ import { formatCustomerBookingForm } from "@/lib/formatForm";
 import getBookingStartData from "@/lib/getBookingStartData";
 import useCreateBookingMutation from "@/hooks/useCreateBookingMutation";
 import { getCustomerDetails } from "@/lib/getCustomerDetails";
-import { getACatalogObject } from "@/requests/postRequests";
-import { useQuery } from "react-query";
-import { parsedData } from "@/lib/parsedData";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { resetForm } from "@/redux/form-slice";
 
 export default function CustomerBookingForm() {
   const { form } = useAppSelector((state) => state.Form);
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
+  const dispatch = useDispatch();
   const { bookingDate, bookingTime } = useAppSelector((state) => state.Booking);
   const customerbookingFormData = formatCustomerBookingForm(form);
   const router = useRouter();
+  const { teamMember, serviceId, version, duration } = router.query;
   const timeZone =
     storeProfile !== null ? storeProfile?.timezone : "America/Anchorage";
   const locationId = storeProfile && storeProfile.id;
-  const catalogID = `${router.query.id}`;
   const { mutateAsync, isLoading } = useCreateBookingMutation();
-  const { data, status } = useQuery(
-    "getACatalogObject",
-    () => getACatalogObject(catalogID),
-    {
-      enabled: !!catalogID,
-    }
-  );
-  const teamMemberId = `${router.query.teamMember}`;
-
-  const parsedDataValue = status === "success" && parsedData(data?.data).object
-  console.log("parsedDataValue", parsedDataValue);
 
   async function getFormData() {
     if (bookingDate && bookingTime) {
@@ -46,8 +36,10 @@ export default function CustomerBookingForm() {
         startAt: startDate,
         appointmentSegments: [
           {
-            teamMemberId,
-            serviceVariationId,
+            durationMinutes: duration,
+            serviceVariationId: serviceId,
+            teamMemberId: teamMember,
+            serviceVariationVersion: version,
           },
         ],
       };
@@ -62,8 +54,10 @@ export default function CustomerBookingForm() {
     mutateAsync(formdata, {
       onSuccess: (data: any) => {
         console.log("onsuccess-data", data);
+        dispatch(resetForm());
       },
       onError: (error: any) => {
+        toast.error(error?.response?.data.errors[0].detail);
         console.log("onsuccess-error", error);
       },
     });
