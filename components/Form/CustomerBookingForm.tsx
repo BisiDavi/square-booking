@@ -69,7 +69,7 @@ export default function CustomerBookingForm() {
   return (
     <>
       {bookingDate && bookingTime && (
-        <form className="mt-6 w-4/5" onSubmit={submitHandler}>
+        <form className="mt-6 lg:w-4/5 w-full" onSubmit={submitHandler}>
           {customerBookingForm.map((formElement, index: any) =>
             displayFormElement(formElement, index)
           )}

@@ -36,7 +36,7 @@ export default function GetStaff({ staffId }: Props) {
               {data.data.teamMember?.givenName}{" "}
               {data.data.teamMember?.familyName}
             </h6>
-            <p>
+            <p className="break-words">
               <span className="font-medium mr-1">Email</span>
               {data.data.teamMember?.emailAddress}
             </p>

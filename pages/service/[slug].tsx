@@ -34,7 +34,7 @@ export default function ServicePage({
 
   return (
     <DefaultLayout>
-      <main className="service-page container mx-auto pt-20">
+      <main className="service-page container mx-auto pt-4">
         <div className="content lg:flex flex-col py-4 justify-between relative w-full">
           <ServicePageMain service={service} />
           <ServicePageSidebar service={service} />

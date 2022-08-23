@@ -5,6 +5,7 @@ import BookingCalendar from "@/components/Calendar/BookingCalendar";
 import { useAppSelector } from "@/hooks/useRedux";
 import PickServiceTime from "@/components/Services/PickServiceTime";
 import { formatServicePeriod } from "@/lib/formatTime";
+import CustomerBookingForm from "../Form/CustomerBookingForm";
 
 interface Props {
   serviceDuration: number;
@@ -33,6 +34,9 @@ export default function BookingSidebar({ serviceDuration }: Props) {
         </p>
       </div>
       {storeProfile && <PickServiceTime serviceTime={serviceTime} />}
+      <div className="wrapper flex lg:hidden">
+        <CustomerBookingForm />
+      </div>
     </div>
   );
 }
