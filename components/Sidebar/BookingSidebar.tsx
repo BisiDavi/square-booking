@@ -4,18 +4,11 @@ import { AiOutlineWarning } from "react-icons/ai";
 import BookingCalendar from "@/components/Calendar/BookingCalendar";
 import { useAppSelector } from "@/hooks/useRedux";
 import PickServiceTime from "@/components/Services/PickServiceTime";
-import { formatServicePeriod } from "@/lib/formatTime";
 import CustomerBookingForm from "@/components/Form/CreateServiceForm";
 
-interface Props {
-  serviceDuration: number;
-}
 
-export default function BookingSidebar({ serviceDuration }: Props) {
-  const servicePeriod = formatServicePeriod(serviceDuration);
-  const serviceTime = servicePeriod?.includes("mins")
-    ? Number(servicePeriod.split("mins")[0])
-    : 30;
+
+export default function BookingSidebar() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
   return (
@@ -33,7 +26,7 @@ export default function BookingSidebar({ serviceDuration }: Props) {
           {storeProfile?.timezone} time.
         </p>
       </div>
-      {storeProfile && <PickServiceTime serviceTime={serviceTime} />}
+      {storeProfile && <PickServiceTime />}
       <div className="wrapper flex lg:hidden">
         <CustomerBookingForm />
       </div>

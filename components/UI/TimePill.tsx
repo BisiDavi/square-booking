@@ -1,15 +1,23 @@
-import { toast } from "react-toastify";
-
 import Button from "@/components/UI/Button";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateTime } from "@/redux/booking-slice";
 
 interface TimePillProps {
-  time: string;
+  data: any;
 }
 
-export default function TimePill({ time }: TimePillProps) {
-  const { bookingDate, bookingTime } = useAppSelector((state) => state.Booking);
+export default function TimePill({ data }: TimePillProps) {
+  const { startAt } = data;
+  const dateInstance = new Date(startAt);
+  const hourVal = dateInstance.getHours();
+  const minutesVal = dateInstance.getMinutes();
+  const formatMinutes = minutesVal === 0 ? "00" : minutesVal;
+  const formattedHour = hourVal > 12 ? hourVal - 12 : hourVal;
+  const period = hourVal > 12 ? "pm" : "am";
+
+  const time = `${formattedHour}:${formatMinutes} ${period}`;
+
+  const { bookingTime } = useAppSelector((state) => state.Booking);
   const dispatch = useAppDispatch();
 
   const splitTime = time.split(":");
@@ -21,11 +29,7 @@ export default function TimePill({ time }: TimePillProps) {
   const validTime = `${amPm}:${getSecondString} ${amPmPeriod}`;
 
   function selectTimeHandler(time: string) {
-    if (bookingDate === undefined) {
-      toast.info("Please select a booking date");
-    } else {
-      dispatch(updateTime(time));
-    }
+    dispatch(updateTime(time));
   }
 
   const selectedTime =
@@ -36,7 +40,7 @@ export default function TimePill({ time }: TimePillProps) {
   return (
     <>
       <Button
-        text={validTime}
+        text={time}
         className={`timepill  my-2 font-bold ${selectedTime} hover:text-white rounded-md py-2 flex justify-center px-2 items-center border border-gray-500`}
         onClick={() => selectTimeHandler(validTime)}
       />

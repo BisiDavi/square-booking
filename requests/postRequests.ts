@@ -87,3 +87,7 @@ export function createService(formData: any) {
 export function searchCustomer(email: string) {
   return axios.post("/api/customer/search-customer", { email });
 }
+
+export function searchBookingAvailability(formData: any) {
+  return axios.post("/api/booking/search-booking-availablity", { formData });
+}

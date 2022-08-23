@@ -1,3 +1,4 @@
+import formatBigInt from "@/lib/formatBigInt";
 import squareClient from "@/squareClient";
 
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -6,9 +7,14 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { token } = req.body;
-  console.log("token", token);
-  const { client } = squareClient(token);
+  const { formData } = req.body;
+  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
+
+  console.log("formData", formData);
+
+  const { client } = squareClient(merchant.access_token);
+  const { startAt, endAt, locationId, serviceVariationId, teamMemberIdFilter } =
+    formData;
 
   switch (req.method) {
     case "POST": {
@@ -17,27 +23,22 @@ export default async function Handler(
           query: {
             filter: {
               startAtRange: {
-                startAt: "2020-11-26T13:00:00Z",
-                endAt: "2020-11-27T13:00:00Z",
+                startAt,
+                endAt,
               },
-              locationId: "LEQHH0YY8B42M",
+              locationId,
               segmentFilters: [
                 {
-                  serviceVariationId: "RU3PBTZTK7DXZDQFCJHOK2MC",
+                  serviceVariationId,
                   teamMemberIdFilter: {
-                    any: ["TMXUrsBWWcHTt79t", "TMaJcbiRqPIGZuS9"],
+                    any: [teamMemberIdFilter],
                   },
                 },
               ],
             },
           },
         });
-
-        if (response.businessBookingProfile.supportSellerLevelWrites) {
-          return res.status(200).json({ premium: true });
-        } else {
-          return res.status(200).json({ premium: false });
-        }
+        res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);
         res.status(400).json(error);

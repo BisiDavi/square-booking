@@ -7,7 +7,7 @@ import displayFormElement from "@/components/Form/FormElement/displayFormElement
 import Button from "@/components/UI/Button";
 import { useAppSelector } from "@/hooks/useRedux";
 import { formatCustomerBookingForm } from "@/lib/formatForm";
-import getBookingStartData from "@/lib/getBookingStartData";
+import getBookingStartDate from "@/lib/getBookingStartDate";
 import useCreateBookingMutation from "@/hooks/useCreateBookingMutation";
 import { getCustomerDetails } from "@/lib/getCustomerDetails";
 import { resetForm } from "@/redux/form-slice";
@@ -30,7 +30,7 @@ export default function CustomerBookingForm() {
 
   async function getFormData() {
     if (bookingDate && bookingTime) {
-      const startDate = getBookingStartData(bookingDate, bookingTime, timeZone);
+      const startDate = getBookingStartDate(bookingDate, bookingTime, timeZone);
       const customerDetails = await getCustomerDetails(customerbookingFormData);
       const data = {
         ...customerbookingFormData,
