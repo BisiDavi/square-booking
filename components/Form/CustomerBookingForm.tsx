@@ -8,6 +8,9 @@ import { formatCustomerBookingForm } from "@/lib/formatForm";
 import getBookingStartData from "@/lib/getBookingStartData";
 import useCreateBookingMutation from "@/hooks/useCreateBookingMutation";
 import { getCustomerDetails } from "@/lib/getCustomerDetails";
+import { getACatalogObject } from "@/requests/postRequests";
+import { useQuery } from "react-query";
+import { parsedData } from "@/lib/parsedData";
 
 export default function CustomerBookingForm() {
   const { form } = useAppSelector((state) => state.Form);
@@ -18,10 +21,19 @@ export default function CustomerBookingForm() {
   const timeZone =
     storeProfile !== null ? storeProfile?.timezone : "America/Anchorage";
   const locationId = storeProfile && storeProfile.id;
+  const catalogID = `${router.query.id}`;
   const { mutateAsync, isLoading } = useCreateBookingMutation();
-
-  const serviceVariationId = `${router.query.id}`;
+  const { data, status } = useQuery(
+    "getACatalogObject",
+    () => getACatalogObject(catalogID),
+    {
+      enabled: !!catalogID,
+    }
+  );
   const teamMemberId = `${router.query.teamMember}`;
+
+  const parsedDataValue = status === "success" && parsedData(data?.data).object
+  console.log("parsedDataValue", parsedDataValue);
 
   async function getFormData() {
     if (bookingDate && bookingTime) {

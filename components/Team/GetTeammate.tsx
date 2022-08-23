@@ -42,6 +42,7 @@ export default function GetTeammate({
   function bookMeHandler() {
     router.query.teamMember = teamId;
     router.query.slug = serviceId;
+    router.query.serviceId = variation.id;
     router.query.id = variation.itemVariationData.itemId;
     router.push(router).then(() => {
       toast.success(
@@ -49,7 +50,7 @@ export default function GetTeammate({
       );
       toast.success(`${service} selected`);
       router.push(
-        `/book/${router.query.slug}?id=${router.query.id}&teamMember=${router.query.teamMember}`
+        `/book/${router.query.slug}?id=${router.query.id}&teamMember=${router.query.teamMember}&serviceId=${router.query.serviceId}`
       );
     });
   }

@@ -10,24 +10,32 @@ import formatPrice from "@/lib/formatPrice";
 import { formatServicePeriod } from "@/lib/formatTime";
 
 export default function ServiceCard() {
-      const router = useRouter();
-      const catalogId: any = router?.query?.id;
+  const router = useRouter();
+  const catalogId: any = router?.query?.id;
+  const serviceId = router.query.serviceId;
 
-      const { data, status } = useQuery(
-        "getACatalogObject",
-        () => getACatalogObject(catalogId),
-        {
-          enabled: !!catalogId,
-        }
-      );
-      const catalogData =
-        status === "success" ? JSON.parse(data?.data).object : null;
+  const { data, status } = useQuery(
+    "getACatalogObject",
+    () => getACatalogObject(catalogId),
+    {
+      enabled: !!catalogId,
+    }
+  );
+  const catalogData =
+    status === "success" ? JSON.parse(data?.data).object : null;
 
-      const availabilityCheck =
-        catalogData?.itemData?.variations[0]?.itemVariationData;
-      const availabiltyClassName = availabilityCheck
-        ? "bg-green-600"
-        : "bg-red-600 ";
+  const serviceVariation =
+    status === "success"
+      ? catalogData.itemData.variations.filter(
+          (variation: any) => variation.id === serviceId
+        )[0]
+      : null;
+
+  const availabilityCheck =
+    catalogData?.itemData?.variations[0]?.itemVariationData;
+  const availabiltyClassName = availabilityCheck
+    ? "bg-green-600"
+    : "bg-red-600 ";
 
   return (
     <div className="pill rounded-xl p-5 border border-gray-500 w-full lg:w-3/4 mt-5 hover:bg-gray-100 relative">
@@ -44,7 +52,8 @@ export default function ServiceCard() {
           <BiLoaderCircle className="mr-2 text-xl" /> Service{" "}
         </span>
         <h4 className="text-xl font-bold text-gray-800 text-2xl">
-          {catalogData.itemData.name}
+          {catalogData.itemData.name} (
+          {serviceVariation?.itemVariationData?.name})
         </h4>
       </div>
       <div className="flex items-start flex-col font-bold text-gray-600">

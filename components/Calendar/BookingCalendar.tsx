@@ -19,7 +19,6 @@ export default function BookingCalendar() {
   if (bookingDate) {
     footer = (
       <p className="font-bold text-green-500 text-md mt-4">
-        {" "}
         {bookingDate && bookingDate.toDateString()} selected
       </p>
     );
