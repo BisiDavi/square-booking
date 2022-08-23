@@ -71,12 +71,12 @@ export function formatCustomerBookingForm(data: any) {
   const lastName = dataObj(data, "lastname-customer", "lastName");
   const email = dataObj(data, "email-customer", "email");
   const locationType = dataObj(data, "location-customer", "locationType");
-  const note = dataObj(data, "note-customer", "note");
+  const customerNote = dataObj(data, "note-customer", "customerNote");
   return {
     ...firstName,
     ...lastName,
     ...email,
     ...locationType,
-    ...note,
+    ...customerNote,
   };
 }

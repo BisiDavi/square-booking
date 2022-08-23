@@ -69,6 +69,10 @@ export function businessBookingProfile(accesstoken: string) {
   });
 }
 
+export function createBooking(bookingData: any) {
+  return axios.post("/api/booking/create-booking", { bookingData });
+}
+
 export function createTeam(teamMember: any) {
   return axios.post("/api/team/create-team-member", {
     teamMember,
@@ -77,4 +81,8 @@ export function createTeam(teamMember: any) {
 
 export function createService(formData: any) {
   return axios.post("/api/catalog/create-catalog-service", { formData });
+}
+
+export function searchCustomer(email: string) {
+  return axios.post("/api/customer/search-customer", { email });
 }

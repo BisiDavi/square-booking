@@ -18,6 +18,7 @@ export type storeProfileType = {
   currency: string;
   phoneNumber: string;
   businessName: string;
+  logoUrl: string;
   type: string;
   businessHours: {
     periods: {
