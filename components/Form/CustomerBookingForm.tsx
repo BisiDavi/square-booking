@@ -18,7 +18,10 @@ export default function CustomerBookingForm() {
   const { form } = useAppSelector((state) => state.Form);
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
   const dispatch = useDispatch();
-  const { bookingDate, bookingTime } = useAppSelector((state) => state.Booking);
+  const { appointment, bookingDate, bookingTime } = useAppSelector(
+    (state) => state.Booking
+  );
+  console.log("appointment", appointment);
   const customerbookingFormData = formatCustomerBookingForm(form);
   const router = useRouter();
   const { teamMember, serviceId, version, duration } = router.query;
