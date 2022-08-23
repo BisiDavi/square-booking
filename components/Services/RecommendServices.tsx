@@ -28,7 +28,8 @@ export default function RecommendServices() {
     (state) => state.ServiceCategories
   );
 
-  const getFirstEightServices = services.slice(0, 8);
+  const getFirstEightServices =
+    services?.length > 0 ? services.slice(0, 8) : [];
 
   const memoizedServiceCategory = useMemo(() => {
     return status === "success" ? getServiceCategories(services) : [];
@@ -51,7 +52,7 @@ export default function RecommendServices() {
           <h3 className="text-2xl font-bold text-center mb-3">
             Recommended Services
           </h3>
-          <div className="services grid grid-cols-2 gap-3 lg:grid-cols-4 items-center">
+          <div className="services grid grid-cols-2 gap-4 lg:gap-6 lg:grid-cols-4 items-center">
             {getFirstEightServices.map((service) => (
               <RecommendService key={service.id} service={service} />
             ))}
@@ -60,9 +61,9 @@ export default function RecommendServices() {
             <a className="mt-4">
               <Button
                 text="View All"
-                className="font-bold text-xl my-4 flex justify-center hover:bg-gray-600 items-center relative bg-gray-800 w-1/6 mx-auto text-white py-3 rounded-md"
+                className="font-bold text-xl my-4 flex justify-center hover:bg-gray-600 items-center relative bg-gray-800 w-44 lg:w-1/6 mx-auto text-white py-3 rounded-md"
                 icon={
-                  <BsFillArrowRightCircleFill className="absolute right-5" />
+                  <BsFillArrowRightCircleFill className="absolute right-2 lg:right-5" />
                 }
               />
             </a>

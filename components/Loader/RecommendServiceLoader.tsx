@@ -9,7 +9,7 @@ function RecommendServiceLoaderItem(props: any) {
       viewBox="0 0 150 90"
       backgroundColor="#e3d9d9"
       foregroundColor="#ada4a4"
-      className="w-1/4 mr-4"
+      className={props.className}
       title="loading services..."
       {...props}
     >
@@ -19,13 +19,13 @@ function RecommendServiceLoaderItem(props: any) {
 }
 
 export default function RecommendServiceLoader() {
-  const servicesArray = new Array(4).fill(0);
+  const servicesArray = new Array(8).fill(0);
 
   return (
-    <>
+    <div className="loader grid grid-cols-2 lg:grid-cols-4 lg:gap-8 gap-4">
       {servicesArray.map((_, index) => (
-        <RecommendServiceLoaderItem key={index} />
+        <RecommendServiceLoaderItem className="w-full" key={index} />
       ))}
-    </>
+    </div>
   );
 }
