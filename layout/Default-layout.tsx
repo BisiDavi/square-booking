@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -19,6 +18,9 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const { modal, toggleModal } = useUI();
+  const { storeProfile } = useAppSelector((state) => state.StoreProfile);
+
+  const paddingTop = storeProfile?.logoUrl ? "pt-32" : "pt-24";
 
   useEffect(() => {
     dispatch(updateAppload(true));
@@ -34,11 +36,8 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
         />
       )}
       {!apploaded && <SpinnerRipple centerRipple />}
-      <Head>
-        <title>Booking made easy, try us today</title>
-      </Head>
       <Header />
-      {children}
+      <main className={paddingTop}>{children}</main>
       {router.asPath.includes("/callback") ? <AppFooter /> : <Footer />}
     </>
   );

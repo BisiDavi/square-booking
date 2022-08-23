@@ -22,7 +22,7 @@ export default function RecommendService({ service }: Props) {
         <p className="card-description text-gray-400 text-sm lg:text-md font-medium">
           {service?.itemData?.description}
         </p>
-        <div className="flex absolute w-11/12 left-4 bottom-5 justify-between text-xs lg:text-sm items-center mt-4">
+        <div className="flex w-full justify-between text-xs lg:text-sm items-center mt-4">
           <span className="m4 flex items-center">
             {priceMoney?.amount
               ? formatPrice(priceMoney?.amount, priceMoney?.currency)
