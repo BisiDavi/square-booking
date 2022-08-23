@@ -63,6 +63,14 @@
   width: 100%;
 }
 
+.padding-top-large {
+  padding-top: 120px;
+}
+
+.padding-top-small {
+  padding-top: 70px;
+}
+
 @media (max-width: 768px) {
   .calender-wrapper button.rdp-button_reset.rdp-button.rdp-day {
     margin: 3px 4px;

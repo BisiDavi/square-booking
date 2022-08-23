@@ -12,16 +12,12 @@ import { useAppSelector } from "@/hooks/useRedux";
 export default function MainHeader() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
-  console.log("storeProfile", storeProfile);
-
   return (
     <>
-      <Head>
-        {storeProfile?.name} | Book your appointment with easy. 
-      </Head>
+      <Head>{storeProfile?.name} | Book your appointment with easy.</Head>
       <header className="bg-gray-900 py-2 w-full h-30 fixed z-50">
         <div className="container  justify-center  py-2 flex items-center mx-auto lg:justify-between">
-          {storeProfile !== null && storeProfile?.logoUrl ? (
+          {storeProfile?.logoUrl ? (
             <Link passHref href="/">
               <a className="logo">
                 <Image

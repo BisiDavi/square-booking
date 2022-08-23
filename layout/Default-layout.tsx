@@ -20,7 +20,9 @@ export default function DefaultLayout({ children }: PropsWithChildren<{}>) {
   const { modal, toggleModal } = useUI();
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
-  const paddingTop = storeProfile?.logoUrl ? "pt-32" : "pt-24";
+  const paddingTop = storeProfile?.logoUrl
+    ? "padding-top-large"
+    : "padding-top-small";
 
   useEffect(() => {
     dispatch(updateAppload(true));
