@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 import customerBookingForm from "@/json/customerBookingform.json";
 import displayFormElement from "@/components/Form/FormElement/displayFormElement";
@@ -8,8 +10,6 @@ import { formatCustomerBookingForm } from "@/lib/formatForm";
 import getBookingStartData from "@/lib/getBookingStartData";
 import useCreateBookingMutation from "@/hooks/useCreateBookingMutation";
 import { getCustomerDetails } from "@/lib/getCustomerDetails";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 import { resetForm } from "@/redux/form-slice";
 
 export default function CustomerBookingForm() {
@@ -20,6 +20,7 @@ export default function CustomerBookingForm() {
   const customerbookingFormData = formatCustomerBookingForm(form);
   const router = useRouter();
   const { teamMember, serviceId, version, duration } = router.query;
+  const durationMinutes = Number(duration) / 6000;
   const timeZone =
     storeProfile !== null ? storeProfile?.timezone : "America/Anchorage";
   const locationId = storeProfile && storeProfile.id;
@@ -36,14 +37,14 @@ export default function CustomerBookingForm() {
         startAt: startDate,
         appointmentSegments: [
           {
-            durationMinutes: duration,
+            durationMinutes,
             serviceVariationId: serviceId,
             teamMemberId: teamMember,
             serviceVariationVersion: version,
           },
         ],
       };
-      console.log("data", data);
+      console.log("data,", data);
       return data;
     }
   }

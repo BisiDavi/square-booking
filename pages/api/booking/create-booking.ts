@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
-
+  // const accessToken = `${process.env.NEXT_PUBLIC_SQUARE_PRODUCTION_ACCESS_TOKEN}`;
   const { client } = squareClient(merchant.access_token);
   const { bookingData } = req.body;
 
