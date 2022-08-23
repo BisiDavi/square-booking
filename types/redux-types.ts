@@ -16,6 +16,16 @@ export type UIStateType = {
 export type BookingStateType = {
   bookingDate: Date | undefined;
   bookingTime: string | null;
+  appointment: {
+    startAt: Date;
+    locationId: string;
+    appointmentSegments: {
+      durationMinutes: number;
+      serviceVariationId: string;
+      teamMemberId: string;
+      serviceVariationVersion: number;
+    }[];
+  } | null;
 };
 
 export type AuthStateType = {
