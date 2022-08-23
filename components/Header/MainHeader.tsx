@@ -1,21 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { BsPersonCircle } from "react-icons/bs";
 import Link from "next/link";
-import { useQuery } from "react-query";
 
 import Button from "@/components/UI/Button";
 import Logo from "@/components/Logo";
-import { listLocations } from "@/requests/getRequests";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export default function MainHeader() {
-  const { data, status } = useQuery("listLocations", listLocations);
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
-
-  const parsedData =
-    status === "success" ? JSON.parse(data?.data).locations[0] : null;
-
-  console.log("data", parsedData);
 
   return (
     <header className="bg-gray-900 py-2 w-full h-30 fixed z-50">
