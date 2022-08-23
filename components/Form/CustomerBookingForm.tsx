@@ -28,10 +28,12 @@ export default function CustomerBookingForm() {
       const startDate = getBookingStartData(bookingDate, bookingTime, timeZone);
       const customerDetails = await getCustomerDetails(customerbookingFormData);
 
+      console.log("customerDetails", customerDetails);
+
       const data = {
         ...customerbookingFormData,
         locationId,
-        customerId: customerDetails.id,
+        customerId: customerDetails?.id,
         startAt: startDate,
         appointmentSegments: [
           {
@@ -44,8 +46,10 @@ export default function CustomerBookingForm() {
     }
   }
 
-  function submitHandler() {
-    mutate(getFormData, {
+  async function submitHandler(e: any) {
+    e.preventDefault();
+    const formdata = await getFormData();
+    mutate(formdata, {
       onSuccess: (data: any) => {
         console.log("onsuccess-data", data);
       },
@@ -56,16 +60,20 @@ export default function CustomerBookingForm() {
   }
 
   return (
-    <form className="mt-6 w-4/5" onSubmit={submitHandler}>
-      {customerBookingForm.map((formElement, index: any) =>
-        displayFormElement(formElement, index)
+    <>
+      {bookingDate && bookingTime && (
+        <form className="mt-6 w-4/5" onSubmit={submitHandler}>
+          {customerBookingForm.map((formElement, index: any) =>
+            displayFormElement(formElement, index)
+          )}
+          <Button
+            text="Submit"
+            type="submit"
+            loading={isLoading}
+            className="bg-purple-800 hover:bg-opacity-80 py-2 px-3 mx-auto font-bold flex items-center mt-10 text-white "
+          />
+        </form>
       )}
-      <Button
-        text="Submit"
-        type="submit"
-        loading={isLoading}
-        className="bg-purple-800 hover:bg-opacity-80 py-2 px-3 mx-auto font-bold flex items-center mt-10 text-white "
-      />
-    </form>
+    </>
   );
 }

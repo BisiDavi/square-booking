@@ -10,20 +10,15 @@ export default async function handler(
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
   const { client } = squareClient(merchant.access_token);
-  const { startAt, locationId, customerId, customerNote, appointmentSegments } =
-    req.body;
+  const { bookingData } = req.body;
+
+  console.log("bookingData", bookingData);
 
   switch (req.method) {
     case "POST": {
       try {
         const response = await client.bookingsApi.createBooking({
-          booking: {
-            startAt,
-            locationId,
-            customerId,
-            customerNote,
-            appointmentSegments,
-          },
+          booking: bookingData,
         });
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {

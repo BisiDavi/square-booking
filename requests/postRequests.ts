@@ -70,6 +70,7 @@ export function businessBookingProfile(accesstoken: string) {
 }
 
 export function createBooking(bookingData: any) {
+  console.log("bookingData-createBooking", bookingData);
   return axios.post("/api/booking/create-booking", { bookingData });
 }
 
