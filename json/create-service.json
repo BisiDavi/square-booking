@@ -5,6 +5,7 @@
       "label": "Name",
       "elementType": "input",
       "type": "text",
+      "required": true,
       "placeholder": "Name",
       "formType": "service"
     },
@@ -20,6 +21,7 @@
     {
       "name": "description",
       "label": "Description",
+      "required": true,
       "elementType": "textarea",
       "type": "text",
       "placeholder": "Description",

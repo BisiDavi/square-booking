@@ -1,3 +1,5 @@
+import { useQueryClient } from "react-query";
+
 import UploadIcon from "@/components/Form/FormElement/UploadIcon";
 import displayFormElement from "@/components/Form/FormElement/displayFormElement";
 import Button from "@/components/UI/Button";
@@ -9,7 +11,6 @@ import createService from "@/json/create-service.json";
 import { resetForm } from "@/redux/form-slice";
 import { formatService } from "@/lib/formatForm";
 import useCreateServiceMutation from "@/hooks/useCreateServiceMutation";
-import { useQueryClient } from "react-query";
 
 export default function CreateServiceForm() {
   const dispatch = useAppDispatch();
@@ -23,7 +24,8 @@ export default function CreateServiceForm() {
     dispatch(updateModal("variation-modal"));
   }
 
-  function createServiceHandler() {
+  function createServiceHandler(e: any) {
+    e.preventDefault();
     mutate(serviceFormData, {
       onSuccess: (data: any) => {
         console.log("data-createServiceHandler", data);
@@ -51,7 +53,10 @@ export default function CreateServiceForm() {
       {modal === "variation-modal" && (
         <VariationModal modal={modal} toggleModal={closeModalHandler} />
       )}
-      <div className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col">
+      <form
+        onSubmit={createServiceHandler}
+        className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col"
+      >
         <div className="main flex  items-start">
           <div className="w-4/5 mr-4">
             {createService.main.map((input) =>
@@ -91,12 +96,12 @@ export default function CreateServiceForm() {
           />
           <Button
             text="Create Staff"
+            type="submit"
             className="bg-blue-500 text-white w-32 h-10 hover:bg-blue-800 mx-auto flex items-center justify-center"
-            onClick={createServiceHandler}
             loading={isLoading}
           />
         </div>
-      </div>
+      </form>
     </>
   );
 }

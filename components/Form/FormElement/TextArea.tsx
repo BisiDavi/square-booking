@@ -8,6 +8,7 @@ interface Props {
     label: string;
     formType: string;
     name: string;
+    required?: string;
   };
 }
 
@@ -16,6 +17,7 @@ export default function TextArea({ input }: Props) {
   const id = formElementId(name, formType);
   const { getInputValue, onChangeHandler } = useReduxForm();
   const value = getInputValue(id);
+  const isRequired = input?.required ? true : false;
 
   return (
     <div className="input-group flex items-center h-32">
@@ -33,6 +35,7 @@ export default function TextArea({ input }: Props) {
         placeholder={placeholder}
         className="placeholder-gray-300 py-3 px-3 h-full w-full items-center border border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0"
         onChange={(e) => onChangeHandler(e, id)}
+        required={isRequired}
       ></textarea>
     </div>
   );

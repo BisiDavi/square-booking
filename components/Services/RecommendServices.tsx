@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useQuery } from "react-query";
 import { useEffect, useMemo } from "react";
+import Link from "next/link";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
 
 import { listServices } from "@/requests/getRequests";
 import RecommendService from "@/components/Services/RecommendService";
@@ -11,8 +13,6 @@ import RecommendServiceLoader from "@/components/Loader/RecommendServiceLoader";
 import Button from "@/components/UI/Button";
 
 import type { serviceType } from "@/types/service-type";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import Link from "next/link";
 
 interface queryType {
   data: { data: string };
@@ -27,6 +27,8 @@ export default function RecommendServices() {
   const { serviceCategories } = useAppSelector(
     (state) => state.ServiceCategories
   );
+
+  const getFirstEightServices = services.slice(0, 8);
 
   const memoizedServiceCategory = useMemo(() => {
     return status === "success" ? getServiceCategories(services) : [];
@@ -50,7 +52,7 @@ export default function RecommendServices() {
             Recommended Services
           </h3>
           <div className="services grid grid-cols-2 gap-3 lg:grid-cols-4 items-center">
-            {services.map((service) => (
+            {getFirstEightServices.map((service) => (
               <RecommendService key={service.id} service={service} />
             ))}
           </div>
