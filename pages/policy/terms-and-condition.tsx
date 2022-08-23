@@ -3,7 +3,11 @@ import DefaultLayout from "@/layout/Default-layout";
 export default function TermsAndConditionPage() {
   return (
     <DefaultLayout>
-      <h3>Terms and condition page page</h3>
+      <section className="section pt-40">
+        <h3 className="text-center font-bold text-xl">
+          Terms and condition page
+        </h3>
+      </section>
     </DefaultLayout>
   );
 }

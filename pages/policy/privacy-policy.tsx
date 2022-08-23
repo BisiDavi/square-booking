@@ -3,7 +3,9 @@ import DefaultLayout from "@/layout/Default-layout";
 export default function PrivacyPolicy() {
   return (
     <DefaultLayout>
-      <h3>privacy-policy page</h3>
+      <section className="section pt-40">
+        <h3>Our Privacy Policy </h3>
+      </section>
     </DefaultLayout>
   );
 }
