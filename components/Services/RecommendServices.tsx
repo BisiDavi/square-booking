@@ -8,8 +8,11 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { updateServiceCategories } from "@/redux/service-categories-slice";
 import getServiceCategories from "@/lib/getServiceCategories";
 import RecommendServiceLoader from "@/components/Loader/RecommendServiceLoader";
+import Button from "@/components/UI/Button";
 
 import type { serviceType } from "@/types/service-type";
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import Link from "next/link";
 
 interface queryType {
   data: { data: string };
@@ -51,6 +54,17 @@ export default function RecommendServices() {
               <RecommendService key={service.id} service={service} />
             ))}
           </div>
+          <Link href="/services">
+            <a>
+              <Button
+                text="View All"
+                className="font-bold text-xl my-4 flex justify-center hover:bg-gray-600 items-center relative bg-gray-800 w-1/6 mx-auto text-white py-3 rounded-md"
+                icon={
+                  <BsFillArrowRightCircleFill className="absolute right-5" />
+                }
+              />
+            </a>
+          </Link>
         </div>
       )}
     </div>

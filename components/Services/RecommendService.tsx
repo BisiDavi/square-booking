@@ -14,7 +14,7 @@ export default function RecommendService({ service }: Props) {
 
   const serviceLink = `${toSlug(service.itemData.name)}?id=${service.id}`;
   return (
-    <Link href={`/service/${serviceLink}`} passHref>
+    <Link href={`/services/${serviceLink}`} passHref>
       <a className="recommended-services relative border border-gray-200 rounded mr-4 p-4 h-44 lg:h-40 w-full   shadow hover:bg-gray-50 hover:border-blue-500">
         <h3 className="font-bold text-md lg:text-xl">
           {service.itemData.name}
