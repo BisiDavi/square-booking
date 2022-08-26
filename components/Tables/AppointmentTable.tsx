@@ -1,28 +1,18 @@
 /* eslint-disable react/jsx-key */
 import { useTable, usePagination } from "react-table";
-import { BsTrash } from "react-icons/bs";
+import React from "react";
 
-import useServiceTable from "@/hooks/useServiceTable";
+import useAppointmentTable from "@/hooks/useAppointmentTable";
 import SpinnerRipple from "@/components/Loader/SpinnerRipple";
-import GetCategory from "@/components/Category/GetCategory";
-import GetTeammateName from "@/components/Team/GetTeammateName";
-import TablePagination from "@/components/Tables/TablePagination";
 import TableHeader from "@/components/Tables/TableHeader";
+import TablePagination from "@/components/Tables/TablePagination";
+import GetCustomer from "@/components/Customer/GetCustomer";
+import GetServiceCatalog from "@/components/Services/GetService";
+import GetTeammateName from "@/components/Team/GetTeammateName";
+import GetLocationName from "@/components/Location/GetLocationName";
 
-function displayTeam(value: string) {
-  return value ? <GetTeammateName teamId={value} /> : "-";
-}
-
-function displayCategory(value: string) {
-  return value ? <GetCategory categoryId={value} /> : "-";
-}
-
-export default function ServicesTable() {
-  const { status, dataArray, columns, deleteService } = useServiceTable();
-  const initialState: any = {
-    pageIndex: 0,
-    pageSize: 5,
-  };
+export default function AppointmentTable() {
+  const { dataArray, status, columns, initialState } = useAppointmentTable();
   const tableInstance: any = useTable(
     {
       columns,
@@ -36,16 +26,16 @@ export default function ServicesTable() {
     tableInstance;
 
   return (
-    <section className="customers  my-4 rounded-md w-full">
+    <>
       {status === "error" ? (
         "unable to fetch table data"
       ) : status === "loading" ? (
         <div className="center-ripple flex flex-col items-center justify-center h-52">
           <SpinnerRipple />
-          <p>fetching services...</p>
+          <p>fetching appointments...</p>
         </div>
       ) : dataArray.length === 0 ? (
-        <h3 className="font-bold text-2xl text-center">No Services yet</h3>
+        <h3 className="font-bold text-2xl text-center">No Appointment yet</h3>
       ) : (
         <>
           <table {...getTableProps()} className="border mt-4 w-full">
@@ -60,25 +50,19 @@ export default function ServicesTable() {
                   >
                     {row.cells.map((cell: any) => {
                       const indexCount = index + 1;
-                      console.log("cell", cell);
                       return (
                         <>
                           <td {...cell.getCellProps()}>
                             {cell.column.Header === "S/N" ? (
                               indexCount
-                            ) : cell.column.Header === "Delete" ? (
-                              <button
-                                className="hover:text-red-500"
-                                onClick={() =>
-                                  deleteService(cell.row.original.id)
-                                }
-                              >
-                                <BsTrash className="mx-auto" />
-                              </button>
-                            ) : cell.column.Header === "Category" ? (
-                              displayCategory(cell?.value)
-                            ) : cell.column.Header === "Teams" ? (
-                              displayTeam(cell?.value)
+                            ) : cell.column.Header === "Customer" ? (
+                              <GetCustomer customerId={cell?.value} showName />
+                            ) : cell.column.Header === "Service" ? (
+                              <GetServiceCatalog serviceId={cell?.value} />
+                            ) : cell.column.Header === "Team" ? (
+                              <GetTeammateName teamId={cell?.value} />
+                            ) : cell.column.Header === "Location" ? (
+                              <GetLocationName locationId={cell?.value} />
                             ) : (
                               cell.render("Cell")
                             )}
@@ -94,6 +78,6 @@ export default function ServicesTable() {
           <TablePagination tableInstance={tableInstance} />
         </>
       )}
-    </section>
+    </>
   );
 }

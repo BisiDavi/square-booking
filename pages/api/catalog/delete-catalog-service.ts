@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 import formatBigInt from "@/lib/formatBigInt";
 import squareClient from "@/squareClient";
 
@@ -12,16 +10,12 @@ export default async function Handler(
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
   const { client } = squareClient(merchant.access_token);
-  const { formData } = req.body;
+  const { id } = req.body;
 
   switch (req.method) {
     case "POST": {
       try {
-        const response = await client.catalogApi.upsertCatalogObject({
-          idempotencyKey: uuidv4(),
-          object: formData,
-        });
-        console.log("upsertCatalogObject", response.result);
+        const response = await client.catalogApi.deleteCatalogObject(id);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
         console.log("error", error);

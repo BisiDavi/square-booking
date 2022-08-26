@@ -54,7 +54,7 @@ export default function VariationTab() {
           </VarationTabWrapper>
         ) : activeTab === "online-booking" ? (
           <VarationTabWrapper>
-            <div className="online-booking">
+            <div className="online-booking overflow-y-scroll">
               {variationTabContent.onlineBooking.bookable.map((mainItemInput) =>
                 displayFormElement(mainItemInput, mainItemInput.name)
               )}

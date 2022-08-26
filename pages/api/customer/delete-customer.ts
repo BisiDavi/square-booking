@@ -1,31 +1,25 @@
-import { v4 as uuidv4 } from "uuid";
-
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import formatBigInt from "@/lib/formatBigInt";
 import squareClient from "@/squareClient";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function Handler(
+export default async function DeleteCustomerHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
 
   const { client } = squareClient(merchant.access_token);
-  const { formData } = req.body;
+  const { id } = req.body;
 
   switch (req.method) {
     case "POST": {
       try {
-        const response = await client.catalogApi.upsertCatalogObject({
-          idempotencyKey: uuidv4(),
-          object: formData,
-        });
-        console.log("upsertCatalogObject", response.result);
+        const response = await client.customersApi.deleteCustomer(id);
         res.status(200).json(formatBigInt(response.result));
       } catch (error) {
-        console.log("error", error);
-        res.status(400).json(JSON.stringify(error));
+        res.status(400).json(error);
       }
     }
   }

@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { useAppSelector } from "@/hooks/useRedux";
 import { useAppDispatch } from "@/redux/store";
 import { updateAppload } from "@/redux/ui-slice";
-import SpinnerRipple from "@/components/Loader/SpinnerLoader";
+import SpinnerRipple from "@/components/Loader/SpinnerRipple";
 import OAUTHPremiumUserModal from "@/components/Modal/OAUTHPremiumUserModal";
 import useUI from "@/hooks/useUI";
 import AppFooter from "@/components/Footer/AppFooter";

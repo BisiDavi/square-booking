@@ -91,3 +91,12 @@ export function searchCustomer(email: string) {
 export function searchBookingAvailability(formData: any) {
   return axios.post("/api/booking/search-booking-availablity", { formData });
 }
+
+export function deleteCustomer(id: string) {
+  return axios.post("/api/customer/delete-customer", { id });
+}
+
+
+export function deleteService(id: string) {
+  return axios.post("/api/catalog/delete-catalog-service", { id });
+}

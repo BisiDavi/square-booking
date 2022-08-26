@@ -38,8 +38,7 @@ export default function CustomerBookingForm() {
     e.preventDefault();
     const formdata = await getFormData();
     mutateAsync(formdata, {
-      onSuccess: (data: any) => {
-        console.log("onsuccess-data", data);
+      onSuccess: () => {
         dispatch(resetForm());
         dispatch(resetBooking());
         dispatch(setAppointment(null));

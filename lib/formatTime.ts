@@ -41,9 +41,12 @@ export function formatPeriod(givenDate: Date, duration: number) {
   const minutesString = timeInstance.split(":")[1];
   const timeString = Number(splitTime[0]) > 12 ? "pm" : "am";
   const minutes = Number(minutesString);
-  const updateMinutes = duration < 60 ? duration + minutes : "";
+  const hour =
+    duration === 60 ? Number(splitTime[0]) + 1 : Number(splitTime[0]);
+  const updateMinutes =
+    duration === 60 ? "00" : duration < 60 ? duration + minutes : "";
   const startPeriod = `${splitTime[0]}:${splitTime[1]}`;
-  const endPeriod = `${splitTime[0]}:${updateMinutes}`;
+  const endPeriod = `${hour}:${updateMinutes}`;
   const period = `${formatTime(startPeriod)}${timeString} - ${formatTime(
     endPeriod
   )}${timeString}`;

@@ -53,11 +53,12 @@ export default function CreateServiceForm() {
       {modal === "variation-modal" && (
         <VariationModal modal={modal} toggleModal={closeModalHandler} />
       )}
+      <h2 className="text-center font-bold text-3xl py-3">Create Service</h2>
       <form
         onSubmit={createServiceHandler}
         className="bg-white rounded-md p-8 w-11/12 mx-auto my-4 flex flex-col"
       >
-        <div className="main flex  items-start">
+        <div className="main flex items-start">
           <div className="w-4/5 mr-4">
             {createService.main.map((input) =>
               displayFormElement(input, input.name)
