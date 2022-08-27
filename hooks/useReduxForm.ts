@@ -11,7 +11,11 @@ export default function useReduxForm() {
 
   function onChangeHandler(e: any, name: string, click?: boolean) {
     const data = click ? e : e.target.value;
+    // if (name.includes("variation")) {
+    //   dispatch(updateVariation({ index, data }));
+    // } else {
     dispatch(updateForm({ name, data }));
+    // }
   }
 
   const getClickInputValue = (name: string) => {

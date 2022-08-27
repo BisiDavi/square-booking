@@ -8,6 +8,7 @@ const initialState: UIStateType = {
   accordion: null,
   apploaded: false,
   sidebar: null,
+  mediaUpload: false,
 };
 
 const UISlice = createSlice({
@@ -26,9 +27,20 @@ const UISlice = createSlice({
     updateSidebar(state, action: PayloadAction<UIStateType["sidebar"]>) {
       state.sidebar = action.payload;
     },
+    updateMediaUpload(
+      state,
+      action: PayloadAction<UIStateType["mediaUpload"]>
+    ) {
+      state.mediaUpload = action.payload;
+    },
   },
 });
 
-export const { updateModal, toggleAccordion, updateAppload, updateSidebar } =
-  UISlice.actions;
+export const {
+  updateModal,
+  toggleAccordion,
+  updateAppload,
+  updateSidebar,
+  updateMediaUpload,
+} = UISlice.actions;
 export default UISlice.reducer;

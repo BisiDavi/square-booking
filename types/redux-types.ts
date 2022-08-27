@@ -11,6 +11,7 @@ export type UIStateType = {
   accordion: string | null;
   apploaded: boolean;
   sidebar: "create-staff" | null;
+  mediaUpload:boolean
 };
 
 export type BookingStateType = {

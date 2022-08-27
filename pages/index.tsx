@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
 import type { GetServerSidePropsContext } from "next";
 
 import HomepageBanner from "@/components/Banner/HomepageBanner";
@@ -7,25 +5,9 @@ import InfoSection from "@/components/UI/InfoSection";
 import MainView from "@/components/View/MainView";
 import ServiceIconView from "@/components/View/ServiceIconView";
 import DefaultLayout from "@/layout/Default-layout";
-import { storeProfileType } from "@/types/store-types";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { updateStoreProfile } from "@/redux/store-profile-slice";
 import RecommendServices from "@/components/Services/RecommendServices";
-import suareClient from "@/squareClient";
 
-interface Props {
-  storeProfile: storeProfileType;
-}
-
-export default function Home({ storeProfile }: Props) {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (storeProfile !== null) {
-      dispatch(updateStoreProfile(storeProfile));
-    }
-  }, []);
-
+export default function Home() {
   return (
     <DefaultLayout>
       <HomepageBanner />
@@ -38,35 +20,18 @@ export default function Home({ storeProfile }: Props) {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  try {
-    const { req } = context;
-    const merchant = req.cookies.merchant
-      ? JSON.parse(req.cookies.merchant)
-      : {};
+  const { req } = context;
 
-    if (!req.cookies?.merchant) {
-      return {
-        redirect: {
-          destination: "/onboarding",
-          permanent: false,
-        },
-      };
-    }
-
-    const { client } = await suareClient(merchant.access_token);
-    const response = await client.locationsApi.listLocations();
+  if (!req.cookies?.merchant) {
     return {
-      props: {
-        storeProfile: response.result.locations
-          ? response.result.locations[0]
-          : null,
-      },
-    };
-  } catch (error) {
-    return {
-      props: {
-        storeProfile: null,
+      redirect: {
+        destination: "/onboarding",
+        permanent: false,
       },
     };
   }
+
+  return {
+    props: {},
+  };
 }

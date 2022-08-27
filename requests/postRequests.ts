@@ -96,7 +96,14 @@ export function deleteCustomer(id: string) {
   return axios.post("/api/customer/delete-customer", { id });
 }
 
-
 export function deleteService(id: string) {
   return axios.post("/api/catalog/delete-catalog-service", { id });
+}
+
+export function getImages() {
+  return axios.post("/api/catalog/search-catalog-objects", {
+    searchQuery: {
+      objectTypes: ["IMAGE"],
+    },
+  });
 }

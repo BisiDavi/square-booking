@@ -1,9 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
-import fs from "fs";
-import squareClient from "@/squareClient";
-
-import type { NextApiRequest, NextApiResponse } from "next";
 import { FileWrapper } from "square";
+import formidable from "formidable";
+import fs from "fs";
+
+import squareClient from "@/squareClient";
+import type { NextApiRequest, NextApiResponse } from "next";
+import formatBigInt from "@/lib/formatBigInt";
 
 export const config = {
   api: {
@@ -15,27 +17,37 @@ export default async function Handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const merchant = req.cookies.merchant ? JSON.parse(req.cookies.merchant) : {};
-  const { client } = squareClient(merchant.access_token);
-
-  const file = new FileWrapper(fs.createReadStream("image_example_1.png")); // Modify this to point to your desired file.
-
   try {
-    const response = await client.catalogApi.createCatalogImage(
-      {
-        idempotencyKey: uuidv4(),
-        image: {
-          type: "IMAGE",
-          id: `#${uuidv4()}`,
+    const form = new formidable.IncomingForm({ keepExtensions: true });
+    const merchant = req.cookies.merchant
+      ? JSON.parse(req.cookies.merchant)
+      : {};
+    const { client } = squareClient(merchant.access_token);
+
+    form.parse(req, async (err: any, fields: any, files: any) => {
+      if (err) {
+        res.status(400).json(err);
+      }
+      const file = new FileWrapper(fs.createReadStream(files.file.filepath));
+      const response = await client.catalogApi.createCatalogImage(
+        {
+          idempotencyKey: uuidv4(),
+          image: {
+            type: "IMAGE",
+            id: `#${uuidv4()}`,
+            imageData: {
+              caption: files.file.originalFilename.split(".")[0],
+            },
+          },
         },
-      },
-      file
-    );
-    res.status(200).json(response.result);
-    console.log(response.result);
+        file
+      );
+      console.log(response.result);
+      return res.status(200).json(formatBigInt(response.result));
+    });
   } catch (error) {
     console.log(error);
-    res.status(400).json(error);
+    return res.status(400).json(error);
   }
   switch (req.method) {
   }

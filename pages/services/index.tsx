@@ -4,6 +4,7 @@ import RecommendService from "@/components/Services/RecommendService";
 import DefaultLayout from "@/layout/Default-layout";
 import { listServices } from "@/requests/getRequests";
 import { serviceType } from "@/types/service-type";
+import StoreImages from "@/components/Images/StoreImages";
 
 type queryType = {
   data: { data: string };
@@ -17,7 +18,9 @@ export default function AllServicePage() {
   return (
     <DefaultLayout>
       <section className="all-services container mx-auto mt-14">
-        <h3 className="font-bold text-2xl text-center my-4">All Our Services</h3>
+        <h3 className="font-bold text-2xl text-center my-4">
+          All Our Services
+        </h3>
         <div className="service-grid">
           {status === "error" ? (
             "error"
@@ -33,8 +36,8 @@ export default function AllServicePage() {
             </div>
           )}
         </div>
+        <StoreImages />
       </section>
     </DefaultLayout>
   );
 }
- 

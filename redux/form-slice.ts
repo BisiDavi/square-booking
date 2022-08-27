@@ -8,7 +8,9 @@ type initialStateType = {
 };
 
 const initialState: initialStateType = {
-  form: {},
+  form: {
+    variations: [],
+  },
 };
 
 const FormSlice = createSlice({
@@ -18,8 +20,13 @@ const FormSlice = createSlice({
     updateForm(state, action: PayloadAction<payloadType>) {
       state.form[action.payload.name] = action.payload.data;
     },
+    // updateVariation(state, action) {
+    //   state.form.variations[action.payload.index] = action.payload.data;
+    // },
     resetForm(state) {
-      state.form = {};
+      state.form = {
+        variations: [],
+      };
     },
   },
 });

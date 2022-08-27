@@ -47,6 +47,14 @@ export default function RecommendServices() {
         "error"
       ) : status === "loading" ? (
         <RecommendServiceLoader />
+      ) : getFirstEightServices.length === 0 ? (
+        <p className="font-bold text-center text-xl">
+          No services yet, go to the
+          <Link href="/admin">
+            <a className="text-red-500">admin</a>
+          </Link>
+          to create a service
+        </p>
       ) : (
         <div className="flex flex-col">
           <h3 className="text-2xl font-bold text-center mb-3">

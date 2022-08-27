@@ -23,8 +23,8 @@ export default function MainHeader() {
                 <Image
                   src={storeProfile?.logoUrl}
                   alt="logo"
-                  height={95}
-                  width={95}
+                  height={70}
+                  width={120}
                 />
               </a>
             </Link>

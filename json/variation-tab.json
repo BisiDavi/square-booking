@@ -22,7 +22,7 @@
         ]
       },
       {
-        "name": "variatioPrice",
+        "name": "variationPrice",
         "label": "Price",
         "elementType": "input",
         "type": "number",
