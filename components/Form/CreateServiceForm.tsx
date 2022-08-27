@@ -72,16 +72,31 @@ export default function CreateServiceForm() {
             {createService.priceDuration.map((input) =>
               displayFormElement(input, input.name)
             )}
+            {form?.["pricetype-service"] !== "VARIABLE_PRICING" &&
+              createService.price.map((input) =>
+                displayFormElement(input, input.name)
+              )}
+            {createService.cancellationPrice.map((input) =>
+              displayFormElement(input, input.name)
+            )}
           </div>
           <div className="duration mt-6">
             {createService.duration.map((input) =>
               displayFormElement(input, input.name)
             )}
+            {form?.["blockextratime-service"] &&
+              createService.afterAppointment.map((input) =>
+                displayFormElement(input, input.name)
+              )}
           </div>
           <div className="bookable mt-6">
-            {createService.bookable.map((input) =>
+            {createService.online.map((input) =>
               displayFormElement(input, input.name)
             )}
+            {form?.["bookablebycustomersonline-service"] &&
+              createService.bookable.map((input) =>
+                displayFormElement(input, input.name)
+              )}
           </div>
           <Button
             className="text-blue-500 w-full mt-6 py-3 text-left px-4 border hover:bg-gray-100"

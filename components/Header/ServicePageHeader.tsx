@@ -1,10 +1,10 @@
 import { memo } from "react";
-import { AiOutlineHeart } from "react-icons/ai";
 
 import { useAppSelector } from "@/hooks/useRedux";
 import Button from "@/components/UI/Button";
 import getStoreInitials from "@/lib/getStoreInitials";
 import formatCountry from "@/lib/formatCountry";
+import { greetUser } from "@/lib/formatDays";
 
 function ServicePageHeaderComponent() {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
@@ -31,10 +31,9 @@ function ServicePageHeaderComponent() {
           )}
         </div>
         <div className="cta w-2/5 hidden lg:flex items-center justify-end">
-          <AiOutlineHeart className="text-3xl mr-8" color="gray" />
           <Button
-            className="bg-site-purple w-3/5 text-white h-12 hover:bg-blue-800 rounded"
-            text="Book Now"
+            className="bg-site-purple w-2/5 text-white text-xl font-bold h-12 hover:bg-blue-800 rounded"
+            text={greetUser()}
           />
         </div>
       </div>

@@ -33,7 +33,7 @@
       "text": "All Locations",
       "elementType": "form-modal",
       "type": "text",
-      "placeholder": "Edit Locations",
+      "placeholder": "Locations",
       "formType": "service"
     }
   ],
@@ -48,7 +48,9 @@
         { "text": "Fixed", "value": "FIXED_PRICING" },
         { "text": "Variable", "value": "VARIABLE_PRICING" }
       ]
-    },
+    }
+  ],
+  "price": [
     {
       "name": "price",
       "label": "Price",
@@ -56,7 +58,9 @@
       "type": "number",
       "placeholder": "0.00",
       "formType": "service"
-    },
+    }
+  ],
+  "cancellationPrice": [
     {
       "name": "cancellationPrice",
       "label": "Cancellation Price",
@@ -80,7 +84,9 @@
       "label": "Block Extra Time",
       "formType": "service",
       "elementType": "toggle"
-    },
+    }
+  ],
+  "afterAppointment": [
     {
       "name": "afterAppointment",
       "label": "After Appointment",
@@ -88,7 +94,7 @@
       "formType": "service"
     }
   ],
-  "bookable": [
+  "online":[
     {
       "name": "bookableByCustomersOnline",
       "info": "When enabled, this service will be bookable by customers online. This will not affect your ability to manually choose it when you create an appointment. This can only be enabled for services with a duration.",
@@ -96,13 +102,15 @@
       "formType": "service",
       "placeholder": "",
       "elementType": "toggle"
-    },
+    }
+  ],
+  "bookable": [
     {
       "name": "assignedTeamMembers",
       "label": "Assigned Team Members",
       "text": "Select Team Members",
       "formType": "service",
-      "placeholder": "Edit Assigned Team Members",
+      "placeholder": "Assigned Team Members",
       "elementType": "form-modal"
     },
     {

@@ -12,3 +12,16 @@ export default function formatDays(givenDay: string) {
   const day = filterDays[0].day;
   return day;
 }
+
+export function greetUser() {
+  const today = new Date();
+  const curHr = today.getHours();
+
+  if (curHr < 12) {
+    return "Good Morning 🌤";
+  } else if (curHr < 18) {
+    return "Good Afternoon 🌥";
+  } else {
+    return "Good Evening 🌙";
+  }
+}

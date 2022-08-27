@@ -1,6 +1,5 @@
 import AppLogo from "@/components/Logo/AppLogo";
 import Logo from "@/components/Logo";
-import UpdateTheme from "@/components/Theme/UpdateTheme";
 import { useAppSelector } from "@/hooks/useRedux";
 
 export default function AdminHeader() {
@@ -11,12 +10,7 @@ export default function AdminHeader() {
       <AppLogo className="text-2xl" link="/admin" />
       <Logo className="bg-gray-900" />
       <div className="greetings flex items-center">
-        {status === "success" && (
-          <h3 className="font-bold text-xl">
-            Welcome 👋 ,{storeProfile?.name}
-          </h3>
-        )}
-        <UpdateTheme />
+        <h3 className="font-bold text-xl">Welcome 👋 ,{storeProfile?.name}</h3>
       </div>
     </div>
   );

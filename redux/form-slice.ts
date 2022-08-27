@@ -9,7 +9,17 @@ type initialStateType = {
 
 const initialState: initialStateType = {
   form: {
-    variations: [],
+    variation: {
+      "blockextratime-service": false,
+      "pricetype-service": "FIXED_PRICING",
+      "duration-minutes-duration-service": 20,
+      "bookablebycustomersonline-service": true,
+    },
+    allVariations: [],
+    "blockextratime-service": false,
+    "pricetype-service": "FIXED_PRICING",
+    "duration-minutes-duration-service": 20,
+    "bookablebycustomersonline-service": true,
   },
 };
 
@@ -18,18 +28,45 @@ const FormSlice = createSlice({
   initialState,
   reducers: {
     updateForm(state, action: PayloadAction<payloadType>) {
-      state.form[action.payload.name] = action.payload.data;
+      const { name, data } = action.payload;
+      state.form[name] = data;
     },
-    // updateVariation(state, action) {
-    //   state.form.variations[action.payload.index] = action.payload.data;
-    // },
+    updateVariation(state, action) {
+      const { name, data } = action.payload;
+      state.form.variations[name] = data;
+    },
+    updateAllVariations(state) {
+      state.form.allVariations = [
+        ...state.form.allVariations,
+        state.form.variation,
+      ];
+    },
+    resetVariation(state) {
+      state.form.variation = {};
+    },
     resetForm(state) {
       state.form = {
-        variations: [],
+        variation: {
+          "blockextratime-service": false,
+          "pricetype-service": "FIXED_PRICING",
+          "duration-minutes-duration-service": 20,
+          "bookablebycustomersonline-service": true,
+        },
+        allVariations: [],
+        "blockextratime-service": false,
+        "pricetype-service": "FIXED_PRICING",
+        "duration-minutes-duration-service": 20,
+        "bookablebycustomersonline-service": true,
       };
     },
   },
 });
 
-export const { updateForm, resetForm } = FormSlice.actions;
+export const {
+  updateForm,
+  updateVariation,
+  updateAllVariations,
+  resetVariation,
+  resetForm,
+} = FormSlice.actions;
 export default FormSlice.reducer;
