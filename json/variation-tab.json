@@ -20,7 +20,9 @@
           { "text": "Fixed", "value": "FIXED_PRICING" },
           { "text": "Variable", "value": "VARIABLE_PRICING" }
         ]
-      },
+      }
+    ],
+    "price": [
       {
         "name": "variationPrice",
         "label": "Price",
@@ -28,7 +30,9 @@
         "type": "number",
         "formType": "service",
         "placeholder": "0.00"
-      },
+      }
+    ],
+    "cancellationPrice": [
       {
         "name": "variationCancellationPrice",
         "label": "Cancellation Price",
@@ -48,18 +52,13 @@
         "type": "text"
       },
       {
-        "name": "variationAddProcessingTime",
-        "label": "Add processing time (double booking)",
-        "formType": "service",
-        "elementType": "toggle",
-        "note": "PLUS"
-      },
-      {
         "name": "variationBlockExtraTime",
         "label": "Block Extra Time",
         "formType": "service",
         "elementType": "toggle"
-      },
+      }
+    ],
+    "afterAppointment": [
       {
         "name": "variationAfterAppointment",
         "label": "After Appointment",

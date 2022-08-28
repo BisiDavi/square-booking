@@ -5,10 +5,12 @@ import toSlug from "@/lib/toSlug";
 import VariationTabItem from "@/components/Tab/VariationTabItem";
 import displayFormElement from "@/components/Form/FormElement/displayFormElement";
 import VarationTabWrapper from "@/components/Tab/VarationTabWrapper";
+import { useAppSelector } from "@/hooks/useRedux";
 
 export default function VariationTab() {
   const [activeTab, setActiveTab] = useState("details");
-
+  const { form } = useAppSelector((state) => state.Form);
+  const { variation } = form;
   function tabHandler(tab: string) {
     setActiveTab(tab);
   }
@@ -46,10 +48,23 @@ export default function VariationTab() {
             {variationTabContent.details.main.map((mainItemInput) =>
               displayFormElement(mainItemInput, mainItemInput.name)
             )}
+            {variation["variationpricetype-service"] === "FIXED_PRICING" &&
+              variationTabContent.details.price.map((mainItemInput) =>
+                displayFormElement(mainItemInput, mainItemInput.name)
+              )}
+            {variationTabContent.details.cancellationPrice.map(
+              (mainItemInput) =>
+                displayFormElement(mainItemInput, mainItemInput.name)
+            )}
             <div className="duration mt-6">
               {variationTabContent.details.duration.map((mainItemInput) =>
                 displayFormElement(mainItemInput, mainItemInput.name)
               )}
+              {variation["variationblockextratime-service"] &&
+                variationTabContent.details.afterAppointment.map(
+                  (mainItemInput) =>
+                    displayFormElement(mainItemInput, mainItemInput.name)
+                )}
             </div>
           </VarationTabWrapper>
         ) : activeTab === "online-booking" ? (
@@ -77,7 +92,6 @@ export default function VariationTab() {
           </VarationTabWrapper>
         )}
       </div>
-      
     </div>
   );
 }

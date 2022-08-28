@@ -16,7 +16,6 @@ export default function ToggleElement({ input }: Props) {
   const id = formElementId(name, formType);
   const value = getClickInputValue(id);
 
-  console.log("value-val", value);
 
   function onClickHandler() {
     onChangeHandler(!value, id, true);

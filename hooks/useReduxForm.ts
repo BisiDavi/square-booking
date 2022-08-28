@@ -6,8 +6,14 @@ export default function useReduxForm() {
   const dispatch = useAppDispatch();
   const { form } = useAppSelector((state) => state.Form);
 
-  const getInputValue = (name: string) =>
-    Object.keys(form).includes(name) ? form[name] : "";
+  const getInputValue = (name: string) => {
+    if (name.includes("variation")) {
+      return Object.keys(form.variation).includes(name)
+        ? form.variation[name]
+        : "";
+    }
+    return Object.keys(form).includes(name) ? form[name] : "";
+  };
 
   function onChangeHandler(e: any, name: string, click?: boolean) {
     const data = click ? e : e.target.value;
@@ -19,6 +25,11 @@ export default function useReduxForm() {
   }
 
   const getClickInputValue = (name: string) => {
+    if (name.includes("variation")) {
+      return Object.keys(form.variation).includes(name)
+        ? form.variation[name]
+        : false;
+    }
     return Object.keys(form).includes(name) ? form[name] : false;
   };
 

@@ -10,10 +10,10 @@ type initialStateType = {
 const initialState: initialStateType = {
   form: {
     variation: {
-      "blockextratime-service": false,
-      "pricetype-service": "FIXED_PRICING",
-      "duration-minutes-duration-service": 20,
-      "bookablebycustomersonline-service": true,
+      "variationpricetype-service": "FIXED_PRICING",
+      "duration-minutes-variationduration-service": 20,
+      "variationblockextratime-service": false,
+      "variationbookablebycustomersonline-service": true,
     },
     allVariations: [],
     "blockextratime-service": false,

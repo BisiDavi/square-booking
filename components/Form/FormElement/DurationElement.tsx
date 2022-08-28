@@ -20,12 +20,21 @@ function SelectElement({
   const inputId = formElementId(`${label}-${name}-${inputName}`, formType);
   const value = getInputValue(inputId);
 
+    console.log("name", inputName);
+
+
+  function onClickHandler(e: any) {
+    console.log("value", value);
+    console.log("inputId", inputId);
+    onChangeHandler(e, inputId);
+  }
+
   return (
     <select
       id={inputId}
       name={inputId}
       value={value}
-      onChange={(e) => onChangeHandler(e, inputId)}
+      onChange={onClickHandler}
       className="px-2 h-full bg-transparent font-bold mr-10 text-blue-500 focus:border-blue-500 focus:outline-none focus:ring-0"
     >
       {options.map((option, index) => {
