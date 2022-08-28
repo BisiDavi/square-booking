@@ -33,7 +33,7 @@ const FormSlice = createSlice({
     },
     updateVariation(state, action) {
       const { name, data } = action.payload;
-      state.form.variations[name] = data;
+      state.form.variation[name] = data;
     },
     updateAllVariations(state) {
       state.form.allVariations = [
