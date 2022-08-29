@@ -87,12 +87,14 @@
     "team": {
       "name": "variationTeamMembersView",
       "formType": "service",
+      "type": "team",
       "elementType": "teamMembersView"
     }
   },
   "locations": {
     "name": "variationLocationsView",
     "formType": "service",
+    "type":"location",
     "elementType": "locationsView"
   }
 }

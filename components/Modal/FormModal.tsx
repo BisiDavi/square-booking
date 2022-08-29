@@ -8,20 +8,21 @@ interface Props {
   modal: modalStateType;
   toggleModal: () => void;
   title: string;
-  name: string;
 }
 
-export default function FormModal({ modal, toggleModal, title, name }: Props) {
+export default function FormModal({ modal, toggleModal, title }: Props) {
+  const checkboxName =
+    title === "Locations" ? "location" : "assignedTeamMembers";
   return (
     <>
       {modal === "form-modal-location" ? (
         <Modal title={title} modal={modal} toggleModal={toggleModal}>
-          <ListLocationView name={name} />
+          <ListLocationView name={checkboxName} />
         </Modal>
       ) : (
         modal === "form-modal-team" && (
           <Modal title={title} modal={modal} toggleModal={toggleModal}>
-            <TeamModalView name={name} />
+            <TeamModalView name={checkboxName} />
           </Modal>
         )
       )}

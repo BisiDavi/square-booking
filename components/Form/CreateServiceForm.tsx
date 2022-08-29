@@ -111,7 +111,7 @@ export default function CreateServiceForm() {
             onClick={cancelHandler}
           />
           <Button
-            text="Create Staff"
+            text="Create Service"
             type="submit"
             className="bg-blue-500 text-white w-32 h-10 hover:bg-blue-800 mx-auto flex items-center justify-center"
             loading={isLoading}

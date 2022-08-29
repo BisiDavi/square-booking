@@ -20,9 +20,6 @@ function SelectElement({
   const inputId = formElementId(`${label}-${name}-${inputName}`, formType);
   const value = getInputValue(inputId);
 
-    console.log("name", inputName);
-
-
   function onClickHandler(e: any) {
     console.log("value", value);
     console.log("inputId", inputId);

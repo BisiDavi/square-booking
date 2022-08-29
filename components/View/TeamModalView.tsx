@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 
 import { searchTeam } from "@/requests/postRequests";
 import Checkbox from "@/components/Form/FormElement/Checkbox";
+import SpinnerRipple from "@/components/Loader/SpinnerRipple";
 
 interface Props {
   name: string;
@@ -20,7 +21,10 @@ export default function TeamModalView({ name }: Props) {
           {status === "error" ? (
             "unable to fetch location"
           ) : status === "loading" ? (
-            "loading..."
+            <div className="mx-auto flex flex-col justify-center items-center">
+              <SpinnerRipple />
+              <p>Fetching team...</p>
+            </div>
           ) : (
             <div className="list">
               <h4>Select Teammate</h4>
@@ -29,6 +33,7 @@ export default function TeamModalView({ name }: Props) {
                 className="bg-gray-100"
                 formType="service"
                 value="all-team-members"
+                type="team"
                 name={name}
               />
               {teamMembers.map(
@@ -50,6 +55,7 @@ export default function TeamModalView({ name }: Props) {
                       key={member.id}
                       value={member.id}
                       formType="service"
+                      type="team"
                       name={`${name}-${index}`}
                     />
                   );

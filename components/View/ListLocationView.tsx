@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 
 import { listLocations } from "@/requests/getRequests";
 import Checkbox from "@/components/Form/FormElement/Checkbox";
+import SpinnerRipple from "@/components/Loader/SpinnerRipple";
 
 interface Props {
   name: string;
@@ -18,19 +19,22 @@ export default function ListLocationView({ name }: Props) {
         {status === "error" ? (
           "unable to fetch location"
         ) : status === "loading" ? (
-          "loading..."
+          <div className="mx-auto flex flex-col justify-center items-center">
+            <SpinnerRipple />
+            <p>Fetching location...</p>
+          </div>
         ) : (
           <div className="list">
             <h3>Select Locations</h3>
             {parsedData.locations.map(
               (location: { id: string; name: string }, index: number) => {
-                console.log("location", location);
                 return (
                   <Checkbox
                     label={location.name}
                     key={location.id}
                     value={location.id}
                     formType="service"
+                    type="location"
                     name={`${name}-${index}`}
                   />
                 );

@@ -1,6 +1,11 @@
 import { useAppDispatch } from "@/redux/store";
 import { useAppSelector } from "@/hooks/useRedux";
-import { updateForm, updateVariation } from "@/redux/form-slice";
+import {
+  updateCheckBox,
+  updateForm,
+  updateVariation,
+  updateVariationCheckBox,
+} from "@/redux/form-slice";
 
 export default function useReduxForm() {
   const dispatch = useAppDispatch();
@@ -33,5 +38,17 @@ export default function useReduxForm() {
     return Object.keys(form).includes(name) ? form[name] : false;
   };
 
-  return { getInputValue, onChangeHandler, getClickInputValue };
+  function onCheckboxHandler(inputName: string, data: string, name: string) {
+    if (name.includes("variation")) {
+      return dispatch(updateVariationCheckBox({ name: inputName, data }));
+    }
+    return dispatch(updateCheckBox({ name: inputName, data }));
+  }
+
+  return {
+    getInputValue,
+    onChangeHandler,
+    getClickInputValue,
+    onCheckboxHandler,
+  };
 }

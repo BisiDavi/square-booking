@@ -48,7 +48,6 @@ export default function FormModalGroup({ input }: Props) {
         title={modalTitle}
         modal={modal}
         toggleModal={closeModalHandler}
-        name={input.name}
       />
       <div className={`input-group flex items-center h-14`}>
         <label

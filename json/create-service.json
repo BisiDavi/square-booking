@@ -32,7 +32,7 @@
       "label": "Locations",
       "text": "All Locations",
       "elementType": "form-modal",
-      "type": "text",
+      "type": "location",
       "placeholder": "Locations",
       "formType": "service"
     }
@@ -109,6 +109,7 @@
       "name": "assignedTeamMembers",
       "label": "Assigned Team Members",
       "text": "Select Team Members",
+      "type": "team",
       "formType": "service",
       "placeholder": "Assigned Team Members",
       "elementType": "form-modal"

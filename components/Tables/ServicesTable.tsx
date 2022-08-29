@@ -60,30 +60,27 @@ export default function ServicesTable() {
                   >
                     {row.cells.map((cell: any) => {
                       const indexCount = index + 1;
-                      console.log("cell", cell);
                       return (
-                        <>
-                          <td {...cell.getCellProps()}>
-                            {cell.column.Header === "S/N" ? (
-                              indexCount
-                            ) : cell.column.Header === "Delete" ? (
-                              <button
-                                className="hover:text-red-500"
-                                onClick={() =>
-                                  deleteService(cell.row.original.id)
-                                }
-                              >
-                                <BsTrash className="mx-auto" />
-                              </button>
-                            ) : cell.column.Header === "Category" ? (
-                              displayCategory(cell?.value)
-                            ) : cell.column.Header === "Teams" ? (
-                              displayTeam(cell?.value)
-                            ) : (
-                              cell.render("Cell")
-                            )}
-                          </td>
-                        </>
+                        <td {...cell.getCellProps()}>
+                          {cell.column.Header === "S/N" ? (
+                            indexCount
+                          ) : cell.column.Header === "Delete" ? (
+                            <button
+                              className="hover:text-red-500"
+                              onClick={() =>
+                                deleteService(cell.row.original.id)
+                              }
+                            >
+                              <BsTrash className="mx-auto" />
+                            </button>
+                          ) : cell.column.Header === "Category" ? (
+                            displayCategory(cell?.value)
+                          ) : cell.column.Header === "Teams" ? (
+                            displayTeam(cell?.value)
+                          ) : (
+                            cell.render("Cell")
+                          )}
+                        </td>
                       );
                     })}
                   </tr>
