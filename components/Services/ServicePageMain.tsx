@@ -6,6 +6,7 @@ import formatCountry from "@/lib/formatCountry";
 import SearchServices from "@/components/Form/FormElement/SearchServices";
 import ServiceView from "@/components/View/ServiceView";
 import { listServices } from "@/requests/getRequests";
+import ServiceImage from "@/components/Images/ServiceImage";
 
 import type { serviceItemType, serviceType } from "@/types/service-type";
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 export default function ServicePageMain({ service }: Props) {
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
   const { data, status } = useQuery("listServices", listServices);
+
   const serviceData: serviceType =
     status === "success" ? JSON.parse(data.data) : null;
 
@@ -28,7 +30,11 @@ export default function ServicePageMain({ service }: Props) {
       {storeProfile && (
         <div className="w-full px-4 lg:w-3/5 bg-white overflow-y-scroll mr-12">
           <div className="image-carousel">
-            <div className="h-60 lg:h-80 bg-gray-600 w-full rounded-lg" />
+            {service?.itemData?.imageIds ? (
+              <ServiceImage imageId={service?.itemData?.imageIds[0]} />
+            ) : (
+              <div className="h-60 lg:h-80 bg-gray-600 w-full rounded-lg" />
+            )}
             <div className="store">
               <div className="store-title flex items-center justify-between">
                 <div className="title my-4">

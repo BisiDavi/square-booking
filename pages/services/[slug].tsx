@@ -26,6 +26,8 @@ export default function ServicePage({
   const dispatch = useAppDispatch();
   const { storeProfile } = useAppSelector((state) => state.StoreProfile);
 
+  console.log("service", service);
+
   useEffect(() => {
     if (storeProfile === null) {
       dispatch(updateStoreProfile(storeProfileData));

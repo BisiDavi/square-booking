@@ -63,7 +63,7 @@ export function formatService(data: any) {
               : 0,
             currency: "USD",
           },
-          durationPeriod:
+          serviceDuration:
             Number(variation["duration-minutes-variationduration-service"]) *
             60 *
             1000,
@@ -77,9 +77,13 @@ export function formatService(data: any) {
 
   const variations = formatVariation();
 
-  console.log("variations", variations);
+  const imageId = data["image"]
+    ? typeof data["image"] === "string"
+      ? JSON.parse(data["image"]).image.id
+      : data["image"].image.id
+    : "";
 
-  const imageIds = data["image"] ? { imageIds: [] } : "";
+  const imageIds = data["image"] ? { imageIds: [imageId] } : "";
 
   return {
     presentAtAllLocations: true,

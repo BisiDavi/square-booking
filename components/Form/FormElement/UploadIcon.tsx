@@ -1,22 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
 import { BiUpload } from "react-icons/bi";
+import axios from "axios";
 
-import { useAppSelector } from "@/hooks/useRedux";
 import useReduxForm from "@/hooks/useReduxForm";
+import { updateImage } from "@/redux/form-slice";
+import { useAppDispatch } from "@/redux/store";
 
 export default function UploadIcon() {
-  const { form } = useAppSelector((state) => state.Form);
   const { getInputValue, onChangeHandler } = useReduxForm();
   const formData = new FormData();
+  const dispatch = useAppDispatch();
   const imgFile = getInputValue("service-image");
 
   function uploadImageHandler(e: any) {
     const imageData = URL.createObjectURL(e.target.files[0]);
     onChangeHandler(imageData, "service-image", true);
-    formData.append(imageName, e.target.files[0]);
+    formData.append("file", e.target.files[0]);
+    axios
+      .post("/api/image/upload-image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        const imageData = JSON.parse(response.data);
+        dispatch(updateImage(imageData));
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   }
-
-  const imageName = form["name-service"] ? form["name-service"] : "image";
 
   return (
     <div className="h-32 upload-service-icon flex justify-center items-center bg-gray-500 border border-gray-900 w-1/4 ml-4 rounded-md relative">
