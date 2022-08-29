@@ -17,7 +17,7 @@ export default function TeamModalView({ name }: Props) {
   return (
     <div>
       <div className="form-modal w-11/12 flex flex-col mx-auto">
-        <div className="team-view h-40 overflow-y-scroll">
+        <div className="team-view">
           {status === "error" ? (
             "unable to fetch location"
           ) : status === "loading" ? (

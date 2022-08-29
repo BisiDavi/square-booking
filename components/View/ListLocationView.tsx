@@ -15,7 +15,7 @@ export default function ListLocationView({ name }: Props) {
 
   return (
     <div className="form-modal w-11/12 flex flex-col mx-auto">
-      <div className="location-view h-40 overflow-y-scroll">
+      <div className="location-view">
         {status === "error" ? (
           "unable to fetch location"
         ) : status === "loading" ? (

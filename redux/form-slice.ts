@@ -17,6 +17,7 @@ const initialState: initialStateType = {
       locations: [],
       team: [],
     },
+    image: null,
     allVariations: [],
     "blockextratime-service": false,
     "pricetype-service": "FIXED_PRICING",
@@ -68,7 +69,17 @@ const FormSlice = createSlice({
       }
     },
     resetVariation(state) {
-      state.form.variation = {};
+      state.form.variation = {
+        "variationpricetype-service": "FIXED_PRICING",
+        "duration-minutes-variationduration-service": 20,
+        "variationblockextratime-service": false,
+        "variationbookablebycustomersonline-service": true,
+        locations: [],
+        team: [],
+      };
+    },
+    updateImage(state, action) {
+      state.form.image = action.payload;
     },
     resetForm(state) {
       state.form = {
@@ -80,6 +91,7 @@ const FormSlice = createSlice({
           locations: [],
           team: [],
         },
+        image: null,
         allVariations: [],
         "blockextratime-service": false,
         "pricetype-service": "FIXED_PRICING",
@@ -100,5 +112,6 @@ export const {
   updateCheckBox,
   resetVariation,
   resetForm,
+  updateImage,
 } = FormSlice.actions;
 export default FormSlice.reducer;

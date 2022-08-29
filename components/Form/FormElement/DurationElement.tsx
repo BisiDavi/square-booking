@@ -21,8 +21,6 @@ function SelectElement({
   const value = getInputValue(inputId);
 
   function onClickHandler(e: any) {
-    console.log("value", value);
-    console.log("inputId", inputId);
     onChangeHandler(e, inputId);
   }
 

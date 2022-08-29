@@ -32,6 +32,55 @@ export function formatService(data: any) {
   const name: any = formatFormField(data, "name-service");
   const durationPeriod = duration ? { serviceDuration: duration } : "";
 
+  function formatVariation() {
+    const { allVariations } = data;
+    let variationArray: any[] = [];
+    allVariations.map((variation: any) => {
+      const locationIds = variation["locations"]
+        ? { presentAtLocationIds: variation["locations"] }
+        : "";
+      const teamIds = variation["team"]
+        ? { teamMemberIds: variation["team"] }
+        : "";
+      return variationArray.push({
+        type: "ITEM_VARIATION",
+        id: variation["variationname-service"]
+          ? `#${variation["variationname-service"]}`
+          : "#regular",
+        itemVariationData: {
+          itemId: `#${toSlug(name)}`,
+          name: variation["variationname-service"]
+            ? variation["variationname-service"]
+            : "Regular",
+          ...locationIds,
+          ...teamIds,
+          pricingType: variation["variationpricetype-service"]
+            ? variation["variationpricetype-service"]
+            : "FIXED_PRICING",
+          priceMoney: {
+            amount: variation["variationprice-service"]
+              ? Number(variation["variationprice-service"]) * 100
+              : 0,
+            currency: "USD",
+          },
+          durationPeriod:
+            Number(variation["duration-minutes-variationduration-service"]) *
+            60 *
+            1000,
+          availableForBooking:
+            variation["variationbookablebycustomersonline-service"],
+        },
+      });
+    });
+    return variationArray;
+  }
+
+  const variations = formatVariation();
+
+  console.log("variations", variations);
+
+  const imageIds = data["image"] ? { imageIds: [] } : "";
+
   return {
     presentAtAllLocations: true,
     type: "ITEM",
@@ -39,23 +88,9 @@ export function formatService(data: any) {
     itemData: {
       name: name,
       ...categoryId,
-      variations: [
-        {
-          type: "ITEM_VARIATION",
-          id: "#regular",
-          itemVariationData: {
-            itemId: `#${toSlug(name)}`,
-            name: "Regular",
-            pricingType: data["pricetype-service"],
-            priceMoney: {
-              amount: formatFormField(data, "price-service"),
-              currency: "USD",
-            },
-            availableForBooking: true,
-          },
-        },
-      ],
+      variations,
       ...descriptionHtml,
+      ...imageIds,
       ...durationPeriod,
       productType: "APPOINTMENTS_SERVICE",
     },
